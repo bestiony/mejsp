@@ -125,10 +125,10 @@ class InvoicesController extends Controller
   {
     $id = $request->id;
     $request->validate([
-        "service_name.*" => 'required|max:1000', 
+        "service_name.*" => 'required|max:1000',
         'price.*' => 'required|numeric',
         'email' => 'required',
-        
+
         ]);
     $update = Invoices::find($id);
     $update->email = $request->email;
@@ -153,7 +153,7 @@ class InvoicesController extends Controller
   {
     $id = $request->id;
     $request->validate([
-        "service_name.*" => 'required|max:1000', 
+        "service_name.*" => 'required|max:1000',
         'price.*' => 'required|numeric',
         'journal_id' => 'required',
         'default_page_count' => 'required|numeric',
@@ -164,7 +164,7 @@ class InvoicesController extends Controller
     $update->default_page_count = $request->default_page_count;
     $update->extra_page_price = $request->extra_page_price;
     $update->save();
-    
+
     for ($i = 0; $i < count($request->service_name); $i++) {
       if (isset($request->item_id[$i])) {
         $item = InvoiceJournalItem::find($request->item_id[$i]);
@@ -329,6 +329,10 @@ class InvoicesController extends Controller
             $info['mail_details5'] = 'يدون بالشهادة موعد النشر على الموقع الإلكتروني';
 
             $do_send = true;
+
+        }
+        if ($reminder == '5'){
+            $info['note'] =  '(تنتهي صلاحية التخفيض خلال 72 ساعة) ';
 
         }
         if($do_send){

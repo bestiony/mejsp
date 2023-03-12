@@ -119,58 +119,60 @@
                             <div style="text-align: center;"> <img src="{{ env('APP_URL') . env('APP_LOGO') }}"
                                     alt=""> </div>
                             <h2 style="color:#212121">{{ $info['mail_title'] }}    </h2>
-                            
+
                              <p>{{ $info['mail_details1'] }} </p>
-                             
+
                                @if($info['mail_details2'] !== " " )
                                     <p> {{ $info['mail_details2'] }} </p>
                                @endif
-                               
+
                                @if($info['mail_details3'] !== " " )
                                     <p> {{ $info['mail_details3'] }} </p>
                                @endif
-                               
+                               @isset($info['note'])
+                               <p style="color: black"> {{ $info['note'] }} </p>
+                               @endisset
                                @if($info['mail_details4'] !== " " )
-                                    <p> {{ $info['mail_details4'] }} </p>
+                                    <p > {{ $info['mail_details4'] }} </p>
                                @endif
-                               
+
                                @if($info['mail_details5'] !== " " )
                                     <p> {{ $info['mail_details5'] }} </p>
                                @endif
-                               
-                               
+
+
                                @if($info['status'] == 1 || $info['status'] == 2 )
                                     <a href="{{ env('APP_URL').'/u/researches/all' }}" style="margin-top:10px;background-color: #09c; color: #fff; text-decoration: none; padding: 10px; border-radius: 4px; display: block; text-align: center;">عرض حالة الطلب </a>
 
-                               
+
                                @elseif($info['status'] == 3 )
                                     <a href="{{ $info['link'] }}" style="margin-top:10px;background-color: #09c; color: #fff; text-decoration: none; padding: 10px; border-radius: 4px; display: block; text-align: center;">سداد رسوم النشر </a>
-         
-                               
+
+
                                @elseif($info['status'] == 4)
                                     <a href="{{ env('APP_URL').'/u/researches' }}" style="margin-top:10px;background-color: #09c; color: #fff; text-decoration: none; padding: 10px; border-radius: 4px; display: block; text-align: center;">تقديم دراسة جديدة   </a>
-      
-                               
+
+
                                @elseif($info['status'] == 5  )
                                     <a href="{{ env('APP_URL').'/u/chat/'.$info['id'] }}" style="margin-top:10px;background-color: #09c; color: #fff; text-decoration: none; padding: 10px; border-radius: 4px; display: block; text-align: center;">عرض التعليقات   </a>
-                               
+
                                @elseif($info['status'] == 6 )
-                               
+
                                <a href="{{ env('APP_URL').'/admin/users/chat/'.$info['id'] }}" style="margin-top:10px;background-color: #09c; color: #fff; text-decoration: none; padding: 10px; border-radius: 4px; display: block; text-align: center;">عرض الرد   </a>
-                               
+
                                @elseif($info['status'] == 7 )
-                               
+
                                <a href="{{ env('APP_URL').'/u/chat/'.$info['id'] }}" style="margin-top:10px;background-color: #09c; color: #fff; text-decoration: none; padding: 10px; border-radius: 4px; display: block; text-align: center;">عرض الرد   </a>
-                               
+
                                @else
-                               
+
                                 <a href="{{ env('APP_URL').'/u/researches/all' }}" style="margin-top:10px;background-color: #09c; color: #fff; text-decoration: none; padding: 10px; border-radius: 4px; display: block; text-align: center;">عرض حالة الطلب </a>
-                               
+
                                @endif
-                               
-                               
+
+
                                @php
-                               
+
                                if($info['type'] == 0 ){
                                 $info['type'] = 'مفتوح المصدر';
 
@@ -178,11 +180,11 @@
                                 $info['type'] = 'مقيد الوصول';
 
                                }
-                               
+
                                @endphp
-                            
-                            
-                            
+
+
+
                             <hr>
                             <h5> تفاصيل الطلب  </h5>
 
@@ -213,7 +215,7 @@
                                 <div style="clear: both;"></div>
                             </div>
 
-                            
+
 
                             <div style=" margin-bottom:15px; font-family:'Cairo', sans-serif !important;">
                                 <span style="float: right;color:#212121">اسم المستخدم</span>
@@ -234,8 +236,8 @@
                                 <span style="float: left"><a href="{{ $info['file'] }}" download>فتح البحث</a></span>
                                 <div style="clear: both;"></div>
                             </div>
-                            
-                            
+
+
 
                         </div>
                     </tbody>
