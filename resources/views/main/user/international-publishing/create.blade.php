@@ -105,6 +105,11 @@
                                         </div><!-- file -->
 
                                         <div class="form-group">
+                                            <label>عنوان البحث</label>
+                                            <input required type="text" name="title" class="form-control">
+                                        </div>
+
+                                        <div class="form-group">
                                             <label>ملاحظات</label>
                                             <textarea name="desc" class=" form-control" cols="30" rows="7"></textarea>
                                         </div>

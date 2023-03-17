@@ -59,9 +59,24 @@
     @endif
 
 
-    <div class="">
+    <div class="mb-3">
         <span class="float-right text-secondary">تاريخ الحجز</span>
         <span class="float-left">{{ parseTime($details['created_at']) }}</span>
+        <div class="clearfix"></div>
+    </div><!-- created_at -->
+
+    
+    <div class="">
+        <span class="float-right text-secondary">حالة الطلب</span>
+        @if ($details['status']=='1')
+            <span class="float-left mr-2"><button class="btn btn-success disabled" id="accept" href="#">قبول</button> </span>
+        @elseif ($details['status']=='0')
+            <span class="float-left"><button class="btn btn-danger disabled" id="refuse" href="#">رفض</button> </span>
+        @else
+        <span class="float-left mr-2"><button data-toggle="modal" data-target="#exampleModal1" class="btn btn-success" id="accept" href="#">قبول</button> </span>
+        <span class="float-left"><button data-toggle="modal" data-target="#exampleModal" class="btn btn-danger" id="refuse" href="#">رفض</button> </span>
+
+        @endif
         <div class="clearfix"></div>
     </div><!-- created_at -->
 

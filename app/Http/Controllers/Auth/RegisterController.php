@@ -9,7 +9,7 @@ use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use App\Models\Subscribers;
 class RegisterController extends Controller
 {
 
@@ -71,6 +71,7 @@ class RegisterController extends Controller
             'password' => Hash::make($password),
             'created_at' => date('Y-m-d')
         ]);
+        Subscribers::create(['email'=>$email]);
 
         if ($insert->save()) {
 

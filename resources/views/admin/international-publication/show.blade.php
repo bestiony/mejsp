@@ -30,6 +30,8 @@
                         @php
                             $data = [
                                 'journal_name' => $intr->journal->name,
+                                'status'=>$intr->status,
+                                'reason_to_refused'=>$intr->reason_to_refused,
                                 'journal_price' => $intr->journal->price,
                                 'payment_response' => $intr->payment_response,
                                 'created_at' => $intr->created_at,
@@ -107,7 +109,61 @@
         </div><!-- row -->
     </div><!-- user -->
 
+    <form method="POST" action="{{ Route('ChangeInternationalPublicationOrders') }}">
+        @csrf
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> رفض</h5>
+                </div>
+                <div class="modal-body">
+                
+                    
+                    <div class="form-group">
+                    <label for="message-text" class="col-form-label">سبب الرفض</label>
+                    <input type="hidden" name="international_order_id" value="{{ $intr->id }}">
+                    <input type="hidden" name="status" value="0">
+                    <textarea name="reason_to_refused" class="form-control" id="message-text"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">غلق</button>
+                <button type="sublit" class="btn btn-primary">رفض</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </form>
 
+    <form method="POST" action="{{ Route('AcceptInternationalPublicationOrders') }}">
+        @csrf
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> قبول الطلب</h5>
+                </div>
+                <div class="modal-body">
+                
+                    
+                    <div class="form-group">
+                        <h3>هل انت متاكد من قبول الطلب ؟</h3>
+                    <input type="hidden" name="international_order_id" value="{{ $intr->id }}">
+                    <input type="hidden" name="status" value="1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">غلق</button>
+                <button type="sublit" class="btn btn-primary">قبول</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </form>
 
+@endsection
+
+@section('js')
 
 @endsection

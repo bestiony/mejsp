@@ -35,6 +35,12 @@
                                     <span class=" float-left">${{ $row->journal->price }}</span>
                                     <div class="clearfix"></div>
                                 </div>
+
+                                <div class="px-3 mb-3">
+                                    <span class=" float-right text-secondary">عنوان البحث</span>
+                                    <span class=" float-left">{{ $row->title }}</span>
+                                    <div class="clearfix"></div>
+                                </div>
                                 <!---->
 
                                 <div class="px-3 mb-3">

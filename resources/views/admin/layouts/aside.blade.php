@@ -259,6 +259,15 @@
                 ];
             @endphp
             <x-aside :details="$users" />
+
+            @php
+                $users = [
+                    'name' => 'المشتركين',
+                    'icon' => '<i class="fa-solid fa-users"></i>',
+                    'link' => 'users/subscribers',
+                ];
+            @endphp
+            <x-aside :details="$users" />
             <!-- End Users -->
             @php
                 $users = [
