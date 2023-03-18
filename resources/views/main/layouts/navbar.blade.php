@@ -1,5 +1,67 @@
 <nav dir="rtl" id="navbar" class="navbar navbar-expand-sm navbar-light fixed-top">
+    <div class="header w-100 fixed-top">
+        <a href="#">المدونة</a>
+        <a href="#">اتصل بنا</a>
+        <a href="#">من نحن</a>
+        <a href="#">شروط الاستخدام</a>
+        <select name="languages" id="languages">
+            <option value="ar">العربية</option>
+            <option value="en">english</option>
+        </select>
+        <a href="#">
+            <span>(671) 555-0110</span>
+            <i class="fa-solid fa-mobile"></i>
+        </a>
+        <a href="#">
+            <span>youremail@gmail.com</span>
+            <i class="fa-solid fa-envelope-open-text"></i>
+        </a>
+    </div>
 
+    <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="row pt-5">
+        <div class="col-12">
+            <div class="img-container">
+                <img src="{{asset('assets/images/logo.png')}}" alt="">
+            </div>
+        </div>
+        <a href="#" class="col-4">
+            <i class="fa-solid fa-house"></i>
+            <span>.header</span>
+        </a>
+        <a href="#" class="col-4">
+            <i class="fa-solid fa-users"></i>
+            <span>المدربين</span>
+        </a>
+        <a href="#" class="col-4"> 
+            <i class="fa-solid fa-book-open"></i>
+            <span>النشر الدولي</span>
+        </a>
+        <a href="#" class="col-4">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>اتصل بنا</span>
+        </a>
+        <div class="col-12 d-flex align-items-center justify-content-center gap-2 icons">
+            <a href="#">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="#">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="#">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        </div>
+        <div class="col-12">
+            <p class=" text-gray text-center">&copy; {{date('Y')}} Mejsp.com جميع الحقوق محفوظة</p>
+        </div>
+    </div>
+    </div>
+    <span class="mySidebarButton" onclick="openNav()">&#9776;</span>
     <a class="navbar-brand" href="{{url('')}}"><img src="{{asset('assets/images/logo.png')}}"
             alt="مؤسسة الشرق الأوسط للنشر العلمي" title="مؤسسة الشرق الأوسط للنشر العلمي"></a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
@@ -52,8 +114,7 @@
     </div>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item"> <button title="بحث" class="nav-link btn-search"><i
-                        class="fa-solid fa-magnifying-glass"></i></button> </li>
+            
             @if($front_sections['blog'] == 1) <li class="nav-item"> <a class="nav-link" href="{{url('blog')}}"
                     title="المدونة">المدونة</a> </li>@endif
             @if($front_sections['blog_en'] == 1) <li class="nav-item"> <a class="nav-link" href="{{url('en/blog')}}"
@@ -122,12 +183,14 @@
             </style>
             @if (Auth::guard('user')->check())
             <li class="nav-item ml-3">
-                <a class="nav-link btn-main" href="{{userUrl('dashboard')}}">لوحه التحكم</a>
+                <a class="nav-link btn-second" href="{{userUrl('dashboard')}}">لوحه التحكم</a>
             </li>
             @else
-            <li class="nav-item ml-3"> <a class="nav-link btn-main" href="{{url('login')}}" title="المجلات">دخول</a>
+            <li class="nav-item ml-3"> <a class="nav-link btn-second" href="{{url('login')}}" title="المجلات">دخول</a>
             </li>
             @endif
+            <li class="nav-item"> <button title="بحث" class="nav-link btn-search"><i
+                        class="fa-solid fa-magnifying-glass"></i></button> </li>
         </ul>
     </div>
     <div id="div-desktop">
@@ -191,3 +254,78 @@
     </div>
     </div>
 </nav>
+        <button class="chat-toggler" id="chat-toggler">
+            <i class="fa-solid fa-paper-plane"></i>
+        </button>
+        <div class="chat card" id="chat1" style="border-radius: 15px;">
+          <div
+            class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
+            style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+            <p class="mb-0 fw-bold">Live chat</p>
+            <button type="button" id="close-chat" class="text-white">
+                <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="card-body">
+
+            <div class="d-flex flex-row justify-content-start mb-4">
+                
+                <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                <p class="small mb-0">Please click the video
+                    below.</p>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row justify-content-end mb-4">
+                <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+                    <p class="small mb-0">Thank you, I really like your product.</p>
+                </div>
+            </div>
+
+
+            <div class="d-flex flex-row justify-content-end mb-4">
+                <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+                    <p class="small mb-0">Thank you, I really like your product.</p>
+                </div>
+            </div>
+
+
+            <div class="d-flex flex-row justify-content-start mb-4">
+                
+                <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                    <p class="small mb-0">Please click the video
+                    below.
+                    </p>
+                </div>
+            </div>
+
+            
+            <div class="d-flex flex-row justify-content-start mb-4">
+                <div class="ms-3" style="border-radius: 15px;">
+                    <div class="bg-image">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/screenshot1.webp"
+                        style="border-radius: 15px;" alt="video">
+                        <a href="#!">
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row justify-content-start mb-4">
+                <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                    <p class="small mb-0">...</p>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="card-footer">
+            <div class="form-outline d-flex align-items-center justify-content-bertween">
+                <input class="form-control" id="textAreaExample" placeholder="اكتب رسالتك هنا"/>
+                <a href="#" class="send mx-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </a>
+            </div>
+        </div>
+    </div>

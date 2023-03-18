@@ -1,0 +1,203 @@
+#navbar {
+  background-color: #278CC2;
+  border-bottom: 0px;
+  margin-top: 50px;
+}
+
+#navbar .header {
+  height: 50px;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: end;
+  padding: 0 30px;
+}
+
+#navbar .header a,
+#navbar .header select {
+  background-color: transparent;
+  color: #202020;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+#navbar .navbar-brand {
+  background-color: #fff;
+  position: relative;
+  margin: 0;
+  z-index: 9999;
+}
+
+#navbar .navbar-brand::after {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  width: 180px;
+  height: 85px;
+  right: -25px;
+  bottom: -9px;
+  z-index: -2;
+  box-shadow: -32px 15px 26px -4px #5b5b5b4d;
+}
+
+#navbar .navbar-brand::before {
+  content: "";
+  position: absolute;
+  height: 85px;
+  left: -61px;
+  width: 20px;
+  bottom: -9px;
+  background: transparent;
+  border-bottom: 85px solid;
+  border-color: white;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  z-index: -1;
+}
+
+#navbar .img-container {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#navbar .img-container img {
+  object-fit: contain;
+}
+
+#navbar .nav-item .nav-link {
+  color: #fff;
+  transition: .3s;
+}
+
+#navbar .nav-item .nav-link:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+#navbar .nav-item .btn-second {
+  border-radius: 0 !important;
+  box-shadow: 0px 2px 2px #0000008a;
+}
+
+#navbar .nav-item .btn-second:hover {
+  background-color: #278CC2 !important;
+  color: #fff !important;
+}
+
+#navbar .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 9999999;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+#navbar .sidenav .row {
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+#navbar .sidenav .row a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0;
+  border: 1px solid #278cc2;
+  font-size: 18px;
+  transition: .3s;
+}
+
+#navbar .sidenav a:hover {
+  color: #278cc284;
+  border-color: #278cc284;
+}
+
+#navbar .sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 36px;
+  margin-left: 25px;
+}
+
+#navbar .icons {
+  gap: 10px;
+}
+
+#navbar .icons a {
+  border: 0px !important;
+}
+
+#navbar .mySidebarButton {
+  position: absolute;
+  z-index: 1000000;
+  right: 170px;
+  background: #278cc2;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 35px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@media screen and (max-height: 450px) {
+  #navbar .sidenav {
+    padding-top: 15px;
+  }
+
+  #navbar .sidenav a {
+    font-size: 18px;
+  }
+}
+
+
+/* chat area styles  */
+.chat-toggler {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #278CC2;
+  color: #fff;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+}
+
+.chat.card {
+  width: 350px;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  transition: .5s;
+  opacity: 0;
+  z-index: -1;
+}
+
+.chat.card.show {
+  opacity: 1;
+  z-index: 99999;
+}
+
+.chat.card .card-body {
+  height: 375px;
+  overflow-y: auto;
+}

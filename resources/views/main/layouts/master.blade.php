@@ -30,7 +30,8 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/owl_carousel/owl.carousel.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/plugins/owl_carousel/owl.theme.default.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/all.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/plugins/toastr/toastr.min.css') }}" /> @yield('css')
+    <link rel="stylesheet" href="{{ asset('assets/plugins/toastr/toastr.min.css') }}" />
+    @yield('css')
     <style>
         @media(max-width:768px){
             #menu{display: none}
@@ -41,6 +42,8 @@
     @endif
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/global.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/navbar/navbar.css') }}" />
+
     @if (isset($ads))
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8640427261089579"
                 crossorigin="anonymous"></script>
@@ -92,6 +95,21 @@
                 toastr.success("{{ session()->get('deleteMessage') }}");
             </script>
         @endif
+        <script>
+            function openNav() {
+            document.getElementById("mySidenav").style.width = "300px";
+            }
+
+            function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            }
+            $('#chat-toggler').on("click", function () {
+                $(".chat.card").addClass("show")
+            });
+            $('#close-chat').on("click", function () {
+                $(".chat.card").removeClass("show")
+            });
+            </script>
 </body>
 
 </html>
