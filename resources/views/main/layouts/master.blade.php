@@ -104,7 +104,7 @@
             document.getElementById("mySidenav").style.width = "0";
             }
             $('#chat-toggler').on("click", function () {
-                $(".chat.card").addClass("show")
+                $(".chat.card").toggleClass("show")
             });
             $('#close-chat').on("click", function () {
                 $(".chat.card").removeClass("show")

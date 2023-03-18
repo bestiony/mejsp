@@ -32,6 +32,15 @@
   z-index: 9999;
 }
 
+#navbar .navbar-brand .abs-img {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 #navbar .navbar-brand::after {
   content: "";
   position: absolute;
@@ -171,23 +180,27 @@
 
 /* chat area styles  */
 .chat-toggler {
-  width: 50px;
+  gap: 5px;
   height: 50px;
-  border-radius: 50%;
+  padding: 10px 30px;
+  border-radius: 50px;
   background-color: #278CC2;
   color: #fff;
   position: fixed;
   right: 20px;
   bottom: 20px;
   z-index: 999;
+  border: 1px solid #a0a0a0;
 }
 
 .chat.card {
   width: 350px;
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  bottom: 75px;
   transition: .5s;
+  border: none;
+  box-shadow: 0px 5px 10px #7a7a7a59;
   opacity: 0;
   z-index: -1;
 }
@@ -198,6 +211,6 @@
 }
 
 .chat.card .card-body {
-  height: 375px;
+  height: 325px;
   overflow-y: auto;
 }

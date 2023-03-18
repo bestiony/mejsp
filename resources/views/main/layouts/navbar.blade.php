@@ -62,7 +62,9 @@
     </div>
     </div>
     <span class="mySidebarButton" onclick="openNav()">&#9776;</span>
-    <a class="navbar-brand" href="{{url('')}}"><img src="{{asset('assets/images/logo.png')}}"
+    <a class="navbar-brand" href="{{url('')}}">
+    <img src="{{asset('assets/images/notfound-sad.png')}}" alt="" class="abs-img">    
+    <img src="{{asset('assets/images/logo.png')}}"
             alt="مؤسسة الشرق الأوسط للنشر العلمي" title="مؤسسة الشرق الأوسط للنشر العلمي"></a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
         aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"><i
@@ -254,8 +256,9 @@
     </div>
     </div>
 </nav>
-        <button class="chat-toggler" id="chat-toggler">
+        <button class="chat-toggler d-flex align-items-center justify-content-center" id="chat-toggler">
             <i class="fa-solid fa-paper-plane"></i>
+            <span>تواصل معنا</span>
         </button>
         <div class="chat card" id="chat1" style="border-radius: 15px;">
           <div
@@ -299,7 +302,7 @@
                 </div>
             </div>
 
-            
+
             <div class="d-flex flex-row justify-content-start mb-4">
                 <div class="ms-3" style="border-radius: 15px;">
                     <div class="bg-image">
@@ -323,6 +326,9 @@
         <div class="card-footer">
             <div class="form-outline d-flex align-items-center justify-content-bertween">
                 <input class="form-control" id="textAreaExample" placeholder="اكتب رسالتك هنا"/>
+                <a href="#" class="attach mx-2">
+                    <i class="fa-solid fa-paperclip"></i>
+                </a>
                 <a href="#" class="send mx-2">
                     <i class="fa-solid fa-paper-plane"></i>
                 </a>
