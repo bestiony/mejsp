@@ -377,7 +377,7 @@ table{
       <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
       	<tr>
           <td class="bg_white logo" style="padding: 1em 2.5em; text-align: center">
-            <h1><a href="#">صورة اللوجو يضيفه الأدمن</a></h1>
+            <h1><a href="#">   {{ asset('email/'.$details['logo'].'') }}</a></h1>
           </td>
 	      </tr><!-- end tr -->
 			<tr>
@@ -387,8 +387,8 @@ table{
 		            <td class="bg_dark email-section" style="text-align:center;">
 		            	<div class="heading-section heading-section-white">
 		            		<span class="subheading">دعوة للنشر</span>
-		              	<h2>اسم المجلة يضيفه الأدمن</h2>
-		              	<p>نص يضيفه الأدمن</p>
+		              	<h2>{{ $details['journal_name'] }}</h2>
+		              	<p>  {{ $details['text_one'] }}</p>
 		            	<p><a href="https://journals.mejsp.com/u/researches" class="btn btn-primary">تقديم دراسة للنشر</a></p>
 
 		            	</div>
@@ -398,8 +398,8 @@ table{
 		            <td class="bg_white email-section">
 		            	<div class="heading-section" style="text-align: center; padding: 0 30px;">
 		            		<span class="subheading">ISSN</span>
-		              	<h2>نص يضيفه الأدمن</h2>
-		              	<p>نص يضيفه الأدمن</p>
+		              	<h2> {{ $details['text_two'] }}  </h2>
+		              	<p>{{ $details['text_three'] }}</p>
 		            	</div>
 		            	<table>
 		            		<tr>
@@ -579,9 +579,9 @@ table{
                       <td style="text-align: right; padding-left: 5px; padding-right: 5px;">
                       	<h3 class="heading">التواصل</h3>
                       	<ul>
-			<li><span class="text">واتساب</span></a></li>
-			<li><span class="text">تويتر</span></a></li>
-			<li><span class="text">فيسبوك</span></a></li>
+			<li><a href="tel:{{ $details['setting']->whatsapp }}"><span class="text">واتساب</span></a></li>
+			<li><a href="{{ $details['setting']->facebook }}"><span class="text">تويتر</span></a></li>
+			<li><a href="{{ $details['setting']->twitter }}"> <span class="text">فيسبوك</span></a></li>
 			</ul>
                       </td>
                     </tr>

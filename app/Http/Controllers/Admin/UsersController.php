@@ -43,6 +43,7 @@ use App\Models\Subscribers;
 use Session;
 use App\Jobs\SubscriberEmailJob;
 use Carbon\Carbon;
+use App\Models\Settings;
 class UsersController extends Controller
 {
     const PATH = "assets/uploads/user/";
@@ -867,7 +868,8 @@ public  function admin_create_research(){
     public function subscribers()
     {
         $subscribers=Subscribers::get();
-        return view("admin.users.subscribers", compact("subscribers"));
+        $journals = Journals::orderBy("id", 'DESC')->get();
+        return view("admin.users.subscribers", compact("subscribers",'journals'));
     }
 
     public function destroySubscriber(Request $request)
@@ -897,15 +899,26 @@ public  function admin_create_research(){
         return redirect()->back();
     }
 
-    public function SendMail()
+    public function SendMail(Request $request)
     {
-    //    $array= Subscribers::pluck('email')->toArray();
-       $array= ['hosamdahab778@gmail.com'];
+        // dd($request->all());
+       $array= Subscribers::pluck('email')->toArray();
+    //    $array= ['hosamdahab778@gmail.com'];
        $time=Carbon::now();
+       $setting=Settings::first();
+       $logo=$this->UploadFile($request->logo);
        foreach($array as $email){
         $details['email'] =$email;
+        $details['journal_name']=$request->journal_name;
+        $details['text_one']=$request->text_one;
+        $details['text_two']=$request->text_two;
+        $details['text_three']=$request->journal_name;
+        $details['logo']=$logo;
+        $details['setting']=$setting;
         dispatch(new SubscriberEmailJob($details))->delay($time);
         $time=$time->addSeconds(20);
+        Session::flash('message', 'تمت بنجاح');
+        return redirect()->back();
        }
         
     }
@@ -990,7 +1003,21 @@ public  function admin_create_research(){
         return redirect()->back();
     }
 
-
+    function UploadFile($file)
+    {
+        $file_name=time().$file->getClientOriginalName();
+        $file->move('public/email',$file_name);
+        return $file_name;
+         
+    }
     
-    
+    public function AddSubscribers(Request $request)
+    {
+        $emails=explode(",", $request->emails);
+        foreach($emails as $email){
+            Subscribers::updateOrCreate(['email'=>$email],['email'=>$email]);
+        }
+        Session::flash('message', 'تم الاضافة بنجاح');
+        return redirect()->back();
+    }
 }
