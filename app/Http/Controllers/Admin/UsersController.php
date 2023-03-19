@@ -1006,7 +1006,7 @@ public  function admin_create_research(){
     function UploadFile($file)
     {
         $file_name=time().$file->getClientOriginalName();
-        $file->move('public/email',$file_name);
+        $file->move('email',$file_name);
         return $file_name;
          
     }
