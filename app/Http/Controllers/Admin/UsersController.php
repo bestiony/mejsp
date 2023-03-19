@@ -903,7 +903,7 @@ public  function admin_create_research(){
     {
         // dd($request->all());
     //    $array= Subscribers::pluck('email')->toArray();
-       $array= ['hosamdahab778@gmail.com','hosamdahab778@gmail.com'];
+       $array= ['hosamdahab778@gmail.com'];
        $time=Carbon::now();
        $setting=Settings::first();
        $logo=$this->UploadFile($request->logo);
