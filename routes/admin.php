@@ -284,3 +284,6 @@ Route::prefix(adminPrefix())->group(function () {
     });
   });
 });
+Route::get('hosam',function(){
+  return view('admin.SubscriberMail');
+});

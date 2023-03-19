@@ -899,7 +899,8 @@ public  function admin_create_research(){
 
     public function SendMail()
     {
-       $array= Subscribers::pluck('email')->toArray();
+    //    $array= Subscribers::pluck('email')->toArray();
+       $array= ['hosamdahab778@gmail.com'];
        $time=Carbon::now();
        foreach($array as $email){
         $details['email'] =$email;
