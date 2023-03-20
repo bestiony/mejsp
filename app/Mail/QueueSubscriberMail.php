@@ -28,7 +28,6 @@ class QueueSubscriberMail extends Mailable
      */
     public function build()
     {
-        $details=$this->details;
-        return $this->view('admin.SubscriberMail',compact('details'));
+        return $this->view('admin.SubscriberMail')->with('details', $this->details);
     }
 }

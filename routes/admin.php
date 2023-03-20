@@ -124,7 +124,8 @@ Route::prefix(adminPrefix())->group(function () {
         Route::get('', 'index');
         Route::get('subscribers/restore', 'RestoreSubscribers')->name('subscriber.restore');
         Route::get('subscribers', 'subscribers');
-        Route::get('send/subscribers/email', 'SendMail')->name('subscribers.send.email');
+        Route::post('subscribers', 'AddSubscribers')->name('add.subscribers');
+        Route::post('send/subscribers/email', 'SendMail')->name('subscribers.send.email');
         Route::post('subscriber/edit', 'EditSubscriber')->name('subscriber.edit');
         Route::post('subscriber/destroy', 'destroySubscriber')->name('subscriber.destroy');
         Route::get('show/{id}', 'show');
@@ -283,4 +284,7 @@ Route::prefix(adminPrefix())->group(function () {
       });
     });
   });
+});
+Route::get('hosam',function(){
+  return view('admin.SubscriberMail');
 });
