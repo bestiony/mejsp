@@ -232,3 +232,28 @@
   flex-direction: column;
   padding: 10px;
 }
+
+@media (max-width:992px) {
+  #navbar .header {
+    height: 75px;
+  }
+
+  #navbar {
+    margin-top: 75px;
+  }
+}
+
+@media (max-width:575px) {
+  #navbar .mySidebarButton {
+    top: 90px;
+  }
+
+  #navbar .header a,
+  #navbar .header select {
+    font-size: 12px;
+  }
+
+  #navbar .header .d-flex.mr-5 {
+    display: none !important;
+  }
+}

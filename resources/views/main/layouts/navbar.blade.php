@@ -68,7 +68,7 @@
     <img src="{{asset('assets/images/notfound-sad.png')}}" alt="" class="abs-img">    
     <img src="{{asset('assets/images/logo.png')}}"
             alt="مؤسسة الشرق الأوسط للنشر العلمي" title="مؤسسة الشرق الأوسط للنشر العلمي"></a>
-    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+    <button class="navbar-toggler d-lg-none mr-auto" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
         aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"><i
             class="fa-solid fa-list-ul"></i></button>
     <div id="div-mobile">

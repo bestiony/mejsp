@@ -69,7 +69,7 @@
 				src="{{asset('assets/uploads/journals/' . $row->logo)}}"> @else <img width="120" height="37"
 				src="{{asset('assets/images/404-icon.png')}}"> @endif 
          </a> 
-     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"><i class="fa-solid fa-list-ul"></i></button>
+     <button class="navbar-toggler d-lg-none mr-auto" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"><i class="fa-solid fa-list-ul"></i></button>
         <div id="div-mobile">
             @if(Auth::guard('user')->check())
 
