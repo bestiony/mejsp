@@ -8,14 +8,16 @@
             <option value="ar">العربية</option>
             <option value="en">english</option>
         </select>
-        <a href="#">
-            <span>(671) 555-0110</span>
-            <i class="fa-solid fa-mobile"></i>
-        </a>
-        <a href="#">
-            <span>youremail@gmail.com</span>
-            <i class="fa-solid fa-envelope-open-text"></i>
-        </a>
+        <div class="d-flex mr-5">
+            <a href="#" >
+                <span>(671) 555-0110</span>
+                <i class="fa-solid fa-mobile"></i>
+            </a>
+            <a href="#" >
+                <span>youremail@gmail.com</span>
+                <i class="fa-solid fa-envelope-open-text"></i>
+            </a>
+        </div>
     </div>
 
     <div id="mySidenav" class="sidenav">
