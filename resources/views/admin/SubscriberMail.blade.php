@@ -377,7 +377,7 @@ table{
       <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
       	<tr>
           <td class="bg_white logo" style="padding: 1em 2.5em; text-align: center">
-            <img src="{{ asset('email/'.$details['logo'].'') }}" alt="">
+            <img src="{{ env('APP_URL') . '/' .'email/'.$details['logo'].'' }} " alt="">
           </td>
 	      </tr><!-- end tr -->
 			<tr>
@@ -407,7 +407,7 @@ table{
 		            				<table>
 		            					<tr>
 		            						<td>
-		            							<img src="{{ asset('email/bg_2.jpg') }} " width="600" height="" alt="alt_text" border="0" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;" class="g-img">
+		            							<img src="{{ env('APP_URL') . '/' .'email/bg_2.jpg' }}" width="600" height="" alt="alt_text" border="0" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;" class="g-img">
 		            						</td>
 		            					</tr>
 		            				</table>
@@ -439,7 +439,7 @@ table{
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                           <tr>
                             <td style="padding-right: 10px;">
-                              <img src="{{ asset('email/menu-1.jpg') }} " alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
+                              <img src="{{ env('APP_URL') .'/' . 'email/menu-1.jpg' }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
                             </td>
                           </tr>
                           <tr>
@@ -454,7 +454,7 @@ table{
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                           <tr>
                             <td style="padding-left: 10px;">
-                              <img src="{{ asset('email/menu-2.jpg') }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
+                              <img src="{{ env('APP_URL') .'/' . 'email/menu-2.jpg' }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
                             </td>
                           </tr>
                           <tr>
@@ -478,7 +478,7 @@ table{
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                           <tr>
                             <td>
-                              <img src="{{ asset('email/bg_4.jpg') }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
+                              <img src="{{ env('APP_URL') . '/' .'email/bg_4.jpg' }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
                             </td>
                           </tr>
                         </table>
@@ -519,7 +519,7 @@ table{
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                           <tr>
                             <td>
-                              <img src="{{ asset('email/bg_6.jpg') }}"  alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
+                              <img src="{{ env('APP_URL') . '/' .'email/bg_6.jpg' }}"  alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
                             </td>
                           </tr>
                         </table>
@@ -536,7 +536,7 @@ table{
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                           <tr>
                             <td>
-                              <img src="{{ asset('email/bg_5.jpg') }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
+                              <img src="{{ env('APP_URL') .'/' . 'email/bg_5.jpg' }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
                             </td>
                           </tr>
                         </table>
