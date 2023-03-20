@@ -19,47 +19,47 @@
     </div>
 
     <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <div class="row pt-5">
-        <div class="col-12">
-            <div class="img-container">
-                <img src="{{asset('assets/images/logo.png')}}" alt="">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="row pt-5">
+            <div class="col-12">
+                <div class="img-container">
+                    <img src="{{asset('assets/images/logo.png')}}" alt="">
+                </div>
+            </div>
+            <a href="#" class="col-4">
+                <i class="fa-solid fa-house"></i>
+                <span>.header</span>
+            </a>
+            <a href="#" class="col-4">
+                <i class="fa-solid fa-users"></i>
+                <span>المدربين</span>
+            </a>
+            <a href="#" class="col-4"> 
+                <i class="fa-solid fa-book-open"></i>
+                <span>النشر الدولي</span>
+            </a>
+            <a href="#" class="col-4">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>اتصل بنا</span>
+            </a>
+            <div class="col-12 d-flex align-items-center justify-content-center gap-2 icons">
+                <a href="#">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+            </div>
+            <div class="col-12">
+                <p class=" text-gray text-center">&copy; {{date('Y')}} Mejsp.com جميع الحقوق محفوظة</p>
             </div>
         </div>
-        <a href="#" class="col-4">
-            <i class="fa-solid fa-house"></i>
-            <span>.header</span>
-        </a>
-        <a href="#" class="col-4">
-            <i class="fa-solid fa-users"></i>
-            <span>المدربين</span>
-        </a>
-        <a href="#" class="col-4"> 
-            <i class="fa-solid fa-book-open"></i>
-            <span>النشر الدولي</span>
-        </a>
-        <a href="#" class="col-4">
-            <i class="fa-solid fa-paper-plane"></i>
-            <span>اتصل بنا</span>
-        </a>
-        <div class="col-12 d-flex align-items-center justify-content-center gap-2 icons">
-            <a href="#">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="#">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="#">
-                <i class="fa-brands fa-twitter"></i>
-            </a>
-            <a href="#">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
-        </div>
-        <div class="col-12">
-            <p class=" text-gray text-center">&copy; {{date('Y')}} Mejsp.com جميع الحقوق محفوظة</p>
-        </div>
-    </div>
     </div>
     <span class="mySidebarButton" onclick="openNav()">&#9776;</span>
     <a class="navbar-brand" href="{{url('')}}">
@@ -256,11 +256,18 @@
     </div>
     </div>
 </nav>
+
+
         <button class="chat-toggler d-flex align-items-center justify-content-center" id="chat-toggler">
             <i class="fa-solid fa-paper-plane"></i>
             <span>تواصل معنا</span>
         </button>
         <div class="chat card" id="chat1" style="border-radius: 15px;">
+        <form action="" class="login-form">
+            <label for="exampleFormControlInput1" class="form-label mb-3">من فضلك قم بإدخال البريد الالكتروني اولا</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="عنوان البريد الإلكتروني">
+            <button class="btn my-2 btn-outline-primary"type="submit">تأكيد</button>
+        </form>
           <div
             class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
             style="border-top-left-radius: 15px; border-top-right-radius: 15px;">

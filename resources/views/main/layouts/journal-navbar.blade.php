@@ -1,8 +1,72 @@
 <nav dir="rtl" id="navbar" class="navbar navbar-expand-sm navbar-light fixed-top">
+    <div class="header w-100 fixed-top">
+        <a href="#">المدونة</a>
+        <a href="#">اتصل بنا</a>
+        <a href="#">من نحن</a>
+        <a href="#">شروط الاستخدام</a>
+        <select name="languages" id="languages">
+            <option value="ar">العربية</option>
+            <option value="en">english</option>
+        </select>
+        <a href="#">
+            <span>(671) 555-0110</span>
+            <i class="fa-solid fa-mobile"></i>
+        </a>
+        <a href="#">
+            <span>youremail@gmail.com</span>
+            <i class="fa-solid fa-envelope-open-text"></i>
+        </a>
+    </div>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="row pt-5">
+            <div class="col-12">
+                <div class="img-container">
+                    <img src="{{asset('assets/images/logo.png')}}" alt="">
+                </div>
+            </div>
+            <a href="#" class="col-4">
+                <i class="fa-solid fa-house"></i>
+                <span>.header</span>
+            </a>
+            <a href="#" class="col-4">
+                <i class="fa-solid fa-users"></i>
+                <span>المدربين</span>
+            </a>
+            <a href="#" class="col-4"> 
+                <i class="fa-solid fa-book-open"></i>
+                <span>النشر الدولي</span>
+            </a>
+            <a href="#" class="col-4">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>اتصل بنا</span>
+            </a>
+            <div class="col-12 d-flex align-items-center justify-content-center gap-2 icons">
+                <a href="#">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+            </div>
+            <div class="col-12">
+                <p class=" text-gray text-center">&copy; {{date('Y')}} Mejsp.com جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </div>
+    <span class="mySidebarButton" onclick="openNav()">&#9776;</span>
+
 
      <a class="navbar-brand navbar-brand" href="{{url('journal/' . $row->slug)}}">
         @if (checkFile('assets/uploads/journals/' . $row->logo)) <img height="37px" width="119px"
-				src="{{asset('assets/uploads/journals/' . $row->logo)}}"> @else <img height="37px"
+				src="{{asset('assets/uploads/journals/' . $row->logo)}}"> @else <img width="120" height="37"
 				src="{{asset('assets/images/404-icon.png')}}"> @endif 
          </a> 
      <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"><i class="fa-solid fa-list-ul"></i></button>

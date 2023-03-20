@@ -109,6 +109,10 @@
             $('#close-chat').on("click", function () {
                 $(".chat.card").removeClass("show")
             });
+            $(".login-form").on("submit", function (e) {
+                e.preventDefault();
+                $(this).hide();
+            });
             </script>
 </body>
 
