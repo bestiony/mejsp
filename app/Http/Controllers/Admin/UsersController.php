@@ -868,8 +868,24 @@ public  function admin_create_research(){
     public function subscribers()
     {
         $subscribers=Subscribers::get();
-        $journals = Journals::orderBy("id", 'DESC')->get();
-        return view("admin.users.subscribers", compact("subscribers",'journals'));
+        return view("admin.users.subscribers", compact("subscribers"));
+    }
+
+    public function Ajaxsubscribers(Request $request)
+    {
+        $subscribers=Subscribers::when($request->email,function($q) use ($request){
+            $q->where('email', 'like', '%' . $request->email . '%');
+        })->get();
+        $trs='';
+        foreach($subscribers as $subscriber){
+            $trs.='<tr>
+                    <td>'. $subscriber->email. '</td>
+                    <td><button data-email="'. $subscriber->email . '" data-id="'. $subscriber->id . '" class="btn btn-info edit"><i class="fa fa-edit"></i> تعديل</button></td>
+                    <td><button data-id="'. $subscriber->id . '" class="btn btn-danger delete"><i class="fa fa-trash"></i> حذف</button></td>
+                </tr>';
+        }
+
+        return response()->json(['emails'=>$trs]);
     }
 
     public function destroySubscriber(Request $request)
