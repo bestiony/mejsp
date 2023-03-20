@@ -124,6 +124,7 @@ Route::prefix(adminPrefix())->group(function () {
         Route::get('', 'index');
         Route::get('subscribers/restore', 'RestoreSubscribers')->name('subscriber.restore');
         Route::get('subscribers', 'subscribers');
+        Route::get('subscribers/ajax', 'Ajaxsubscribers')->name("subscribers");
         Route::post('subscribers', 'AddSubscribers')->name('add.subscribers');
         Route::post('send/subscribers/email', 'SendMail')->name('subscribers.send.email');
         Route::post('subscriber/edit', 'EditSubscriber')->name('subscriber.edit');

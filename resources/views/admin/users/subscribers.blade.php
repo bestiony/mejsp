@@ -49,9 +49,8 @@
                     <form action="{{ admin_url('users') }}" method="GET">
                         <div class="row">
                             <div class="col-lg-6">
-                                <input type="email" name="search" class="form-control form-control-sm"
-                                    placeholder="ابحث بواسطة البريد الالكتروني"
-                                    value='@isset($_GET['search']) {{ $_GET['search'] }} @endisset' />
+                                <input type="email" name="search" id="search" class="form-control form-control-sm"
+                                    placeholder="ابحث بواسطة البريد الالكتروني"/>
                             </div>
 
                             <div class=" col-lg-2 mt-2 mt-lg-0">
@@ -78,7 +77,7 @@
             @else
                 <div class="col-12 mb-4">
                     <div class="box-white table-responsive">
-                        <table class="table table-striped table-inverse table-bordered mb-0 text-center table-with-avatar">
+                        <table id="customFields" class="table table-striped table-inverse table-bordered mb-0 text-center table-with-avatar">
                             <thead class="thead-inverse">
                                 <tr>
                                     <th>البريد الالكتروني</th>
@@ -239,7 +238,7 @@
 </script>
 <script>
     $('document').ready(function(){
-        $('.edit').on('click',function(){
+        $('#customFields').on('click', '.edit', function() {
             $('#email_btn').val($(this).data('email'));
             $('#id_btn').val($(this).data('id'));
             $('#edit').click();
@@ -247,7 +246,7 @@
     });
 
     $('document').ready(function(){
-        $('.delete').on('click',function(){
+        $('#customFields').on('click', '.delete', function() {
             $('#id_delete_btn').val($(this).data('id'));
             $('#delete').click();
         });
@@ -430,5 +429,50 @@ var tagInput1 = new TagsInput({
     });
     tagInput1.addData()
 
+</script>
+
+<script>
+   
+    function delay(callback, ms) {
+        var timer = 0;
+        return function() {
+            var context = this, args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+            callback.apply(context, args);
+            }, ms || 0);
+        };
+    }
+
+    // $('#search').keyup(delay(function (e) {
+    //     var email=$(this).val();
+    //    $.ajax({
+    //     url:"{{ Route('subscribers') }}",
+    //     type:"get",
+    //     data:{
+    //         'email':email
+    //     },
+    //     success:function(response){
+    //         $('#customFields').empty();
+    //         $("#customFields").append(response.emails);
+    //     }   
+    //    });
+    // }, 1000));
+
+    $('#search').on('keyup',delay(function (e) {
+        var email=$(this).val();
+       $.ajax({
+        url:"{{ Route('subscribers') }}",
+        type:"get",
+        data:{
+            'email':email
+        },
+        success:function(response){
+            $('#customFields').empty();
+            $("#customFields").append(response.emails);
+        }   
+       });
+
+    }, 500));
 </script>
 @endsection
