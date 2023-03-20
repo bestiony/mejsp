@@ -579,9 +579,9 @@ table{
                       <td style="text-align: right; padding-left: 5px; padding-right: 5px;">
                       	<h3 class="heading">التواصل</h3>
                       	<ul>
-			<li><a href="tel:{{ $details['setting']->whatsapp }}"><span class="text">واتساب</span></a></li>
-			<li><a href="{{ $details['setting']->facebook }}"><span class="text">تويتر</span></a></li>
-			<li><a href="{{ $details['setting']->twitter }}"> <span class="text">فيسبوك</span></a></li>
+			<li><a href="https://api.whatsapp.com/send?phone={{ $details['setting']->whatsapp }}&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202."><span class="text">واتساب</span></a></li>
+			<li><a href="{{ $details['setting']->twitter }}"><span class="text">تويتر</span></a></li>
+			<li><a href="{{ $details['setting']->facebook }}"> <span class="text">فيسبوك</span></a></li>
 			</ul>
                       </td>
                     </tr>
