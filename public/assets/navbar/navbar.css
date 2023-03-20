@@ -246,6 +246,7 @@
 @media (max-width:575px) {
   #navbar .mySidebarButton {
     top: 90px;
+    position: fixed;
   }
 
   #navbar .header a,
