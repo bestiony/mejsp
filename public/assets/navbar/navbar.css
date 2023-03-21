@@ -241,12 +241,14 @@
   #navbar {
     margin-top: 75px;
   }
+
+  #navbar .mySidebarButton {
+    top: 90px;
+    position: fixed;
+  }
 }
 
 @media (max-width:575px) {
-  #navbar .mySidebarButton {
-    top: 90px;
-  }
 
   #navbar .header a,
   #navbar .header select {
