@@ -266,9 +266,9 @@
         </button>
         <div class="chat card" id="chat1" style="border-radius: 15px;">
         <form action="" class="login-form">
-            <label for="exampleFormControlInput1" class="form-label mb-3">من فضلك قم بإدخال البريد الالكتروني اولا</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="عنوان البريد الإلكتروني">
-            <button class="btn my-2 btn-outline-primary"type="submit">تأكيد</button>
+            <label for="email" class="form-label mb-3">من فضلك قم بإدخال البريد الالكتروني اولا</label>
+            <input type="email" class="form-control" id="email" placeholder="عنوان البريد الإلكتروني">
+            <button id="confirm_email" class="btn my-2 btn-outline-primary"type="submit">تأكيد</button>
         </form>
           <div
             class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
@@ -278,41 +278,35 @@
                 <i class="fas fa-times"></i>
             </button>
           </div>
-          <div class="card-body">
+          {{-- chat body --}}
+        <div class="card-body" id="CardBody">
 
-            <div class="d-flex flex-row justify-content-start mb-4">
+            @foreach ($user_messages as $user_message)
+                @if ($user_message->sender=='user')
+                <div class="d-flex flex-row justify-content-start mb-4">
                 
-                <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                <p class="small mb-0">Please click the video
-                    below.</p>
+                    <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                        <p class="small mb-0">{{ $user_message->message }}</p>
+                    </div>
                 </div>
-            </div>
+                @endif
+                @if ($user_message->sender=='admin')
+                    <div class="d-flex flex-row justify-content-end mb-4">
+                        <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+                            <p class="small mb-0">{{ $user_message->message }}</p>
+                        </div>
+                    </div>
+                @endif
 
-            <div class="d-flex flex-row justify-content-end mb-4">
-                <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                    <p class="small mb-0">Thank you, I really like your product.</p>
-                </div>
-            </div>
-
-
-            <div class="d-flex flex-row justify-content-end mb-4">
-                <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                    <p class="small mb-0">Thank you, I really like your product.</p>
-                </div>
-            </div>
+            
+            @endforeach
+            
 
 
-            <div class="d-flex flex-row justify-content-start mb-4">
-                
-                <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                    <p class="small mb-0">Please click the video
-                    below.
-                    </p>
-                </div>
-            </div>
+            
 
 
-            <div class="d-flex flex-row justify-content-start mb-4">
+            {{-- <div class="d-flex flex-row justify-content-start mb-4">
                 <div class="ms-3" style="border-radius: 15px;">
                     <div class="bg-image">
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/screenshot1.webp"
@@ -322,16 +316,14 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="d-flex flex-row justify-content-start mb-4">
-                <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                    <p class="small mb-0">...</p>
-                </div>
-            </div>
+          
 
             
         </div>
+
+
         <div class="card-footer">
             <div class="form-outline d-flex align-items-center justify-content-bertween">
                 <input class="form-control" id="textAreaExample" placeholder="اكتب رسالتك هنا"/>

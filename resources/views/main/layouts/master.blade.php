@@ -114,6 +114,60 @@
                 $(this).hide();
             });
             </script>
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+
+    <script>
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+        $('#confirm_email').on('click',function(){
+            var email=$('#email').val();
+            document.cookie = "chat_email="+email+"";
+        });
+
+        $('#textAreaExample').on('keypress',function(e){
+            if (e.which == 13) {
+                var text=$(this).val();
+               var html=`<div class="d-flex flex-row justify-content-start mb-4">
+                            <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                            <p class="small mb-0">${text}</p>
+                            </div>
+                        </div>`
+                $('#CardBody').append(html);
+                $.ajax({
+                    "url":"{{ Route('userSendMessage') }}",
+                    "type":"post",
+                    "data":{
+                        "email":getCookie('chat_email'),
+                        "message":text
+                    },
+                    success:function(response){
+
+                    }
+                });
+                document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
+            }
+        })
+    </script>
+
+<script>
+    Pusher.logToConsole = false;
+
+    var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
+        cluster: 'eu'
+    });
+
+    var channel = pusher.subscribe('support-chat.'+getCookie('chat_email'));
+    console.log(channel);
+    // alert(channel);
+        channel.bind('support-chat-message', function(data) {
+        let message = data.message
+        alert(message);
+
+    });
+</script>
 </body>
 
 </html>
