@@ -153,20 +153,29 @@
     </script>
 
 <script>
+
+// var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
+//     encrypted: true
+// });
+// var email=getCookie('chat_email');
+
+// var channel = pusher.subscribe('support-chat.'+email);
+// console.log(channel);
+// channel.bind('support-chat-message', function(data) {
+   
+
+// });
     Pusher.logToConsole = false;
 
     var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
-        cluster: 'eu'
+        cluster: 'eu',
+        encrypted: true
     });
-
-    var channel = pusher.subscribe('support-chat.'+getCookie('chat_email'));
-    console.log(channel);
-    // alert(channel);
-        channel.bind('support-chat-message', function(data) {
-        let message = data.message
-        alert(message);
-
-    });
+    // var email=getCookie('chat_email');
+    var channel = pusher.subscribe('notification-send');
+channel.bind('App\\Events\\SupportChatEvent', function(data) {
+    alert('dfsgdfgdf');
+});
 </script>
 </body>
 

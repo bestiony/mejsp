@@ -17,6 +17,6 @@ Broadcast::channel('research-chat.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel('support-chat.{email}', function ($email) {
+Broadcast::channel('notification-send', function ($user) {
     return true;
-});
+}); 

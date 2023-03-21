@@ -14,13 +14,12 @@ class SupportChatEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $email;
+    public $username;
     public $message;
-
-    public function __construct($email,$message)
+    public function __construct($username)
     {
-        $this->email = $email;
-        $this->message  = $message;
+        $this->username = $username;
+        $this->message  = "{$username} send you a notification";
     }
 
     /**
@@ -30,10 +29,7 @@ class SupportChatEvent
      */
     public function broadcastOn()
     {
-        return new Channel('support-chat.'.$this->email);
-    }
-    public function broadcastAs()
-    {
-        return 'support-chat-message';
+        //it is a broadcasting channel you need to add this route in channels.php file
+        return ['notification-send'];
     }
 }
