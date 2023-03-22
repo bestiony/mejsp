@@ -132,7 +132,7 @@
             var file=$("#upload-research-file")[0].files;
             console.log(file);
             if (e.which == 13) {
-                if(text!==''|| file!==null){
+                if(text!==''|| !file){
                 var text=$(this).val();
                var html=`<div class="d-flex flex-row justify-content-start mb-4">
                             <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
@@ -145,7 +145,7 @@
                     <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
                         <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
                     </div>`;
-                if(file!==null){
+                if(file){
                     $('#CardBody').append(file_div);
                 }
                 if(text!==''){
@@ -184,7 +184,7 @@
             var file=$("#upload-research-file")[0].files;
             console.log(file);
             var text=$('#textAreaExample').val();
-            if(text!==''|| file!==null){
+            if(text!==''|| !file){
                 
                var html=`<div class="d-flex flex-row justify-content-start mb-4">
                             <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
@@ -196,7 +196,7 @@
                     <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
                         <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
                     </div>`;
-                if(file!==null){
+                if(file){
                     $('#CardBody').append(file_div);
                 }
                 if(text!==''){

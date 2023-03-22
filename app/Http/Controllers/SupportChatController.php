@@ -14,7 +14,7 @@ class SupportChatController extends Controller
     public function userSendMessage(Request $request)
     {
         $admin=Admins::find(1);
-        if($request->file){
+        if($request->hasFile('file')){
             $file_name=$this->UploadFile($request->file);
         }
        $mesage= SupportChat::create([
@@ -51,7 +51,7 @@ class SupportChatController extends Controller
 
     public function adminSendMessage(Request $request)
     {
-        if($request->file){
+        if($request->hasFile('file')){
             $file_name=$this->UploadFile($request->file);
         }
         $mesage= SupportChat::create([
