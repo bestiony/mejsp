@@ -144,12 +144,37 @@
                         "message":text
                     },
                     success:function(response){
-
+                        $('#textAreaExample').val('');
                     }
                 });
                 document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
             }
-        })
+        });
+
+        $('#submit').on('click',function(e){
+        
+                var text=$('#textAreaExample').val();
+                
+               var html=`<div class="d-flex flex-row justify-content-start mb-4">
+                            <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                            <p class="small mb-0">${text}</p>
+                            </div>
+                        </div>`
+                $('#CardBody').append(html);
+                $.ajax({
+                    "url":"{{ Route('userSendMessage') }}",
+                    "type":"post",
+                    "data":{
+                        "email":getCookie('chat_email'),
+                        "message":text
+                    },
+                    success:function(response){
+                        $('#textAreaExample').val('');
+                        
+                    }
+                });
+                document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
+        });
     </script>
 
 

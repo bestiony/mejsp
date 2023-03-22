@@ -115,7 +115,7 @@
             <td align="center" width="600" bgcolor="#FFFFFF" style="border-radius: 5px">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tbody>
-                        <div style="text-align:left; padding:20px ;font-family: 'Cairo', sans-serif;">
+                        <div style="text-align:right; padding:20px ;font-family: 'Cairo', sans-serif;">
                             <div style="text-align: center;"> <img src="{{ env('APP_URL') . env('APP_LOGO') }}"
                                     alt=""> </div>
                             <h2 style="color:#212121">{{ $info['mail_title'] }}    </h2>

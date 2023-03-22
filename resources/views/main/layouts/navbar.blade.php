@@ -332,7 +332,7 @@
                 <a href="#" class="attach mx-2">
                     <i class="fa-solid fa-paperclip"></i>
                 </a>
-                <a href="#" class="send mx-2">
+                <a href="#" id="submit" class="send mx-2">
                     <i class="fa-solid fa-paper-plane"></i>
                 </a>
             </div>
