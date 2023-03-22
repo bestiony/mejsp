@@ -144,14 +144,29 @@
                         "message":text
                     },
                     success:function(response){
-                        
+
                     }
                 });
                 document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
             }
         })
     </script>
-{{-- // var email=getCookie('chat_email'); --}}
+
+
+<script>
+    Pusher.logToConsole = false;
+var email=getCookie('chat_email');
+
+var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
+  cluster: 'eu'
+});
+let userId = "{{auth('user')->user()->id}}"
+var channel = pusher.subscribe('research-chat.'+userId);
+channel.bind('research-chat-message', function(data) {
+  let message = data.message
+  alert(message);
+});
+</script>
 </body>
 
 </html>
