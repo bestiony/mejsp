@@ -412,7 +412,7 @@ var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
   cluster: 'eu'
 });
 
-let userId = "{{ auth('admin')->user()->id }}";
+let userId = 4;
 var channel = pusher.subscribe('research-chat.'+userId);
 channel.bind('research-chat-message', function(data) {
   let message = data.message
