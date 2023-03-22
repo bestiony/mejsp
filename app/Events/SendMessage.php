@@ -16,7 +16,7 @@ class SendMessage implements ShouldBroadcast
 
     public $message;
     public $researcher_id;
-    public $decument;
+    public $file;
     /**
      * Create a new event instance.
      *
