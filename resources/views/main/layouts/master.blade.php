@@ -243,7 +243,7 @@ let userId = email
 var channel = pusher.subscribe('research-chat.'+userId);
 channel.bind('research-chat-message', function(data) {
   let message = data.message
-  let document = data.document
+  let document_file = data.document
   console.log(document);
     var push_html=`<div class="d-flex flex-row justify-content-end mb-4">
                             <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
@@ -256,12 +256,12 @@ channel.bind('research-chat-message', function(data) {
     }
     var push_file_div=`<div class="d-flex flex-row justify-content-end mb-4">
                         <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                            <a download href="{{ asset('email/${document}') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
+                            <a download href="{{ asset('email/${document_file}') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
                         </div>
                     </div>`;
                     
 
-    if(document){
+    if(document_file){
         $('#CardBody').append(push_file_div);
         document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
     }
