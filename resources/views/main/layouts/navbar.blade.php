@@ -310,7 +310,7 @@
                             @elseif ($user_message->document!==NULL)
                                 <div class="d-flex flex-row justify-content-end mb-4">
                                     <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                                        <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
+                                        <a download href="{{ asset('email/'.$user_message->document.'') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a> 
                                     </div>
                                 </div>
                             @endif

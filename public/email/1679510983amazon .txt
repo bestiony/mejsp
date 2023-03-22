@@ -1,3 +1,0 @@
-ssh -i dot.pem ubuntu@3.74.142.33 // .top
-
-ssh ubuntu@3.121.137.242 -i dot.pem //.com
