@@ -185,7 +185,7 @@
             var file=$("#upload-research-file")[0].files;
             console.log(file);
             var text=$('#textAreaExample').val();
-            if(text!==''|| !file){
+            if(text!==''|| file){
                 
                var html=`<div class="d-flex flex-row justify-content-start mb-4">
                             <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">

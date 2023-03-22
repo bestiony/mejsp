@@ -475,6 +475,9 @@ channel.bind('research-chat-message', function(data) {
     if(message!==null){
         $('#chats').append(push_html);
     }
+    if(document_file!==null){
+        $('#chats').append(push_file_div);
+    }
     document.querySelector("#chat-container").scrollTo(0, document.querySelector("#chat-container").scrollHeight);
 
 });
