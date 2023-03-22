@@ -28,6 +28,7 @@ use App\Http\Controllers\InternationalSpecialtiesController;
 use App\Http\Controllers\InternationalPublicationOrdersController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\SupportChatController;
 
 
 Route::middleware(['guest'])->group(function () {
@@ -151,6 +152,8 @@ Route::prefix(adminPrefix())->group(function () {
         //baik
         Route::delete('researches/destroy', 'researches_destroy');
         Route::get('support/chat/{message_id}','ViewSupportChat')->name('ViewSupportChat');
+        Route::post('adminSendMessage',[SupportChatController::class,'adminSendMessage'])->name('adminSendMessage');
+
       });
     });
     Route::controller(DocumentController::class)->prefix('documents')->group(

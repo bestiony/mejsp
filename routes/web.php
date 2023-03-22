@@ -185,4 +185,3 @@ Route::get('u/invoice/my-invoices', [InvoicesController::class, 'user_invoices']
 
 Route::post('userSendMessage',[SupportChatController::class,'userSendMessage'])->name('userSendMessage');
 
-Route::get('adminSendMessage',[SupportChatController::class,'adminSendMessage'])->name('adminSendMessage');

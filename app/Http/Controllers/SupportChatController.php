@@ -13,7 +13,7 @@ class SupportChatController extends Controller
 {
     public function userSendMessage(Request $request)
     {
-        $admin=Admins::find(4);
+        $admin=Admins::find(1);
        $mesage= SupportChat::create([
             'user_email'=>$request->email,
             'message'=>$request->message,
@@ -21,6 +21,7 @@ class SupportChatController extends Controller
             'sender'=>'user',
         ]);
 
+        event(new SendMessage($request->message,$admin->id));
     
         $info = [
             'mail_title' => 'يحاول مستخدم التوصل معك',
@@ -44,8 +45,34 @@ class SupportChatController extends Controller
         // Mail::to($admin->email)->send(new EmailSupportChat($info));
     }
 
-    public function adminSendMessage()
+    public function adminSendMessage(Request $request)
     {
-        event(new SendMessage('test','hosamdahab778@gmail.com'));
+        $mesage= SupportChat::create([
+            'user_email'=>$request->email,
+            'message'=>$request->message,
+            'admin_id'=>auth('admin')->user()->id,
+            'sender'=>'admin',
+        ]);
+        event(new SendMessage($request->message,$request->email));
+        $info = [
+            'mail_title' => 'يحاول الدعم التوصل معك',
+            'mail_details1' => ': نص الرسالة هو',
+            'status'=>5,
+            'mail_details2' => $request->message,
+            'mail_details3' => '',
+            'mail_details4' => '',
+            'mail_details6'=>'',
+            'mail_details7'=>'',
+            'mail_details8'=>'',
+            'mail_details5' => '',
+            'id' => '',
+            'file' =>  '',
+            'journal' => '',
+            'username' => '',
+            'email' =>auth('admin')->user()->email,
+            'subject'=>'التواصل مع مستخدم',
+            'id'=>$mesage->id,
+        ];
+        // Mail::to($admin->email)->send(new EmailSupportChat($info));
     }
 }

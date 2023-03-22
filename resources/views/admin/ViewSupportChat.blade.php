@@ -2,7 +2,6 @@
 @section('title', $pageTitle)
 @section('js')
 
-<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 
 <script>
     
@@ -289,13 +288,23 @@ reader.addEventListener('progress', event => {
                             <div class="card-body p-0" id="chat-container" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px;overflow-y:scroll">
                                 <div class="chat">
                                     <div class="messages" id="chats">
-                                        <div class="time">
+                                        {{-- <div class="time">
                                             Today at 11:41
-                                        </div>
-                                        <div class="message sender">
-                                            السلام عليكم ورحمة الله وبركاته 👋
-                                        </div>
-                                        <div class="message receved">
+                                        </div> --}}
+
+                                        @foreach ($messages as $message)
+                                            @if ($message->sender=='admin')
+                                                <div class="message sender">
+                                                    {{ $message->message }}
+                                                </div>
+                                            @elseif ($message->sender=='user')
+                                                <div class="message receved">
+                                                    {{ $message->message }}
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                        
+                                        {{-- <div class="message receved">
                                             وعليكم السلام ورحمة الله وبركاته
                                         </div>
                                         <div class="message sender">
@@ -306,16 +315,20 @@ reader.addEventListener('progress', event => {
                                         </div>
                                         <div class="message receved">
                                             وانتم بخير بارك الله فيكم
-                                        </div>
-                                        <div class="message sender file">
+                                        </div> --}}
+
+
+                                        {{-- <div class="message sender file">
                                             <i class="fa-solid fa-folder-closed"></i>
-                                        </div>
+                                        </div> --}}
+
+
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer text-muted d-flex justify-content-end align-items-center p-3">
             
-                              <textarea type="text" name="message" required minlength="2" oninput="auto_grow(this)" class="form-control form-control-lg" id="exampleFormControlInput1"
+                              <textarea type="text" name="message" required minlength="2" class="form-control form-control-lg" id="exampleFormControlInput1"
                                 placeholder="ادخل الرسالة"></textarea>
                                 {{-- upload file --}}
                                 
@@ -330,9 +343,9 @@ reader.addEventListener('progress', event => {
                                 <i class="fa fa-align-right mr-3" id="direction-btn" onclick="changeTextDirection(event)" style="font-size: 23px;cursor:pointer;
                                 margin: 0 2px;"></i>
                                 {{-- submit message --}}
-                              <a class="" href="#!" id="submit-msg-btn" onclick="submitMessage(event)"><i class="fas fa-paper-plane" style="font-size: 23px;position: relative;
+                              <button id="submit-msg-btn"><i class="fas fa-paper-plane" style="font-size: 23px;position: relative;
                                 top: 4px;
-                                margin: 0 9px;"></i></a>
+                                margin: 0 9px;"></i></button>
                                 <div class="spinner-border text-primary mr-2 d-none" role="status" id="spin-loader">
                                     <span class="sr-only">Loading...</span>
                                 </div>
@@ -364,7 +377,62 @@ reader.addEventListener('progress', event => {
     window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
 
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
+<script>
+    $('#submit-msg-btn').on('click',function(){
+        document.querySelector("#chats").scrollTo(0, document.querySelector("#chats").scrollHeight);
+      var message=$('#exampleFormControlInput1').val();
+      $('#exampleFormControlInput1').val("");
+      $('#exampleFormControlInput1').attr("disabled","");
+      $('#submit-msg-btn').attr("disabled","");
+      $("#submit-msg-btn svg").removeClass("fa-paper-plane");
+    $("#submit-msg-btn svg").addClass("fa-spinner fa-spin");
+      var html=`<div class="message sender">
+                        ${message}
+                </div>`;
+                
+        $('#chats').append(html);
+        $.ajax({
+            "url":"{{ Route('adminSendMessage') }}",
+            "type":"post",
+            "data":{
+                "_token": "{{ csrf_token() }}",
+                "message":message,
+                "email":"{{ $message_email->user_email }}"
+            },
+            success:function(response){
+                $("#exampleFormControlInput1").removeAttr("disabled");
+                $("#submit-msg-btn").removeAttr("disabled");
+                $("#submit-msg-btn svg").removeClass("fa-spinner fa-spin");
+                $("#submit-msg-btn svg").addClass("fa-paper-plane");
+            }
+
+        });
+
+    });
+</script>
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+
+<script>
+    Pusher.logToConsole = false;
+
+var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
+  cluster: 'eu'
+});
+
+let userId = "{{ auth('admin')->user()->id }}";
+var channel = pusher.subscribe('research-chat.'+userId);
+channel.bind('research-chat-message', function(data) {
+  let message = data.message
+  var push_html=` <div class="message receved">
+                        ${message}
+                    </div>`
+    $('#chats').append(push_html);
+    document.querySelector("#chat-container").scrollTo(0, document.querySelector("#chat-container").scrollHeight);
+
+});
+</script>
 
 
 @endsection
