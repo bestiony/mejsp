@@ -46,7 +46,7 @@ class SupportChatController extends Controller
             'subject'=>'التواصل مع مستخدم',
             'id'=>$mesage->id,
         ];
-        // Mail::to($admin->email)->send(new EmailSupportChat($info));
+        Mail::to($admin->email)->send(new EmailSupportChat($info));
     }
 
     public function adminSendMessage(Request $request)
@@ -81,7 +81,7 @@ class SupportChatController extends Controller
             'subject'=>'التواصل مع مستخدم',
             'id'=>$mesage->id,
         ];
-        // Mail::to($admin->email)->send(new EmailSupportChat($info));
+        Mail::to($request->email)->send(new EmailSupportChat($info));
     }
 
     function UploadFile($file)
