@@ -160,7 +160,9 @@ var email=getCookie('chat_email');
 var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
   cluster: 'eu'
 });
+@if (auth('user')->user())
 let userId = "{{auth('user')->user()->id}}"
+@endif
 var channel = pusher.subscribe('research-chat.'+userId);
 channel.bind('research-chat-message', function(data) {
   let message = data.message
