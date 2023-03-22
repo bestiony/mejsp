@@ -338,7 +338,7 @@
 
         <div class="card-footer">
             <div class="form-outline d-flex align-items-center justify-content-bertween">
-                <input class="form-control" id="textAreaExample" placeholder="اكتب رسالتك هنا"/>
+                <input tybe="file" class="form-control" id="textAreaExample" placeholder="اكتب رسالتك هنا"/>
                 <label for="upload-research-file" class="m-0"  data-mdb-ripple-color="dark">
                     <i class="fa fa-file-upload mr-3" id="file-uploader" style="font-size: 18px;cursor:pointer;
                     margin: 0 2px 6px;position: relative;top: 4px;"></i>           
