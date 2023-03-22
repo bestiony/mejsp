@@ -44,6 +44,8 @@ use Session;
 use App\Jobs\SubscriberEmailJob;
 use Carbon\Carbon;
 use App\Models\Settings;
+use App\Models\SupportChat;
+
 class UsersController extends Controller
 {
     const PATH = "assets/uploads/user/";
@@ -1035,5 +1037,13 @@ public  function admin_create_research(){
         }
         Session::flash('message', 'تم الاضافة بنجاح');
         return redirect()->back();
+    }
+
+    public function ViewSupportChat($id)
+    {
+        $pageTitle='الرسائل';
+        $message_email=SupportChat::find($id);
+        $messages=SupportChat::where('user_email',$message_email->message_email)->get();
+        return view("admin.ViewSupportChat",compact('pageTitle','messages'));
     }
 }

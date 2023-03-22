@@ -150,6 +150,7 @@ Route::prefix(adminPrefix())->group(function () {
         Route::get('chat/{id}', 'chat');
         //baik
         Route::delete('researches/destroy', 'researches_destroy');
+        Route::get('support/chat/{message_id}','ViewSupportChat')->name('ViewSupportChat');
       });
     });
     Route::controller(DocumentController::class)->prefix('documents')->group(
