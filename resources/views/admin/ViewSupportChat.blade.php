@@ -244,6 +244,17 @@ reader.addEventListener('progress', event => {
     background: #333;
     color: white !important;
 }
+.messages .message.file{
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.messages .message.file svg{
+    width: unset !important;
+    font-size: unset !important;
+}
 </style>
 
 
@@ -295,6 +306,9 @@ reader.addEventListener('progress', event => {
                                         </div>
                                         <div class="message receved">
                                             وانتم بخير بارك الله فيكم
+                                        </div>
+                                        <div class="message sender file">
+                                            <i class="fa-solid fa-folder-closed"></i>
                                         </div>
                                     </div>
                                 </div>

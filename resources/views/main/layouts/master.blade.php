@@ -137,7 +137,11 @@
                             </div>
                         </div>`
                 $('#CardBody').append(html);
-                $('#textAreaExample').val("")  // <=============================================================================================
+                $('#textAreaExample').val("");  // <=============================================================================================
+                $("#textAreaExample").attr("disabled","");
+                $("#submit").attr("disabled","");
+                $("#submit svg").removeClass("fa-paper-plane");
+                $("#submit svg").addClass("fa-spinner fa-spin");
                 $.ajax({
                     "url":"{{ Route('userSendMessage') }}",
                     "type":"post",
@@ -147,6 +151,10 @@
                     },
                     success:function(response){
                         $('#textAreaExample').val('');
+                        $("#textAreaExample").removeAttr("disabled");
+                        $("#submit").removeAttr("disabled");
+                        $("#submit svg").removeClass("fa-spinner fa-spin");
+                        $("#submit svg").addClass("fa-paper-plane");
                     }
                 });
                 document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
@@ -163,6 +171,10 @@
                             </div>
                         </div>`
                 $('#CardBody').append(html);
+                $("#textAreaExample").attr("disabled","");
+                $("#submit").attr("disabled","");
+                $("#submit svg").removeClass("fa-paper-plane");
+                $("#submit svg").addClass("fa-spinner fa-spin");
                 $.ajax({
                     "url":"{{ Route('userSendMessage') }}",
                     "type":"post",
@@ -172,7 +184,10 @@
                     },
                     success:function(response){
                         $('#textAreaExample').val('');
-                        
+                        $("#textAreaExample").removeAttr("disabled");
+                        $("#submit").removeAttr("disabled");
+                        $("#submit svg").removeClass("fa-spinner fa-spin");
+                        $("#submit svg").addClass("fa-paper-plane");
                     }
                 });
                 document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);

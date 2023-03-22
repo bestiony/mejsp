@@ -296,8 +296,18 @@
                                 <p class="small mb-0">{{ $user_message->message }}</p>
                             </div>
                         </div>
-                    @endif
-
+                        @endif
+                    <div class="d-flex flex-row justify-content-end mb-4">
+                        <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+                            <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row justify-content-start mb-4">
+                    
+                        <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                            <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
+                        </div>
+                    </div>
                 
                 @endforeach
             @endif
@@ -331,12 +341,12 @@
                 <input class="form-control" id="textAreaExample" placeholder="اكتب رسالتك هنا"/>
                 <label for="upload-research-file" class="m-0"  data-mdb-ripple-color="dark">
                     <i class="fa fa-file-upload mr-3" id="file-uploader" style="font-size: 18px;cursor:pointer;
-                    margin: 0 2px 6px;position: relative;top: 4px;color:#007bff;"></i>           
+                    margin: 0 2px 6px;position: relative;top: 4px;"></i>           
                 </label>
                 <input id="upload-research-file" type="file" name="file" onchange="showUploadedFileName()" class="d-none" accept="*">
-                <a href="#" id="submit" class="send mx-2">
+                <button type="button" href="#" id="submit" class="send mx-2">
                     <i class="fa-solid fa-paper-plane"></i>
-                </a>
+                </button>
             </div>
             <div class="card-footer p-3 d-none" id="file-box">
                 <div class="d-flex justify-content-between mx-3 mb-2 align-items-center" style="font-size: 13px;">
