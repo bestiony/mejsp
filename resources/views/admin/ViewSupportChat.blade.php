@@ -2,7 +2,6 @@
 @section('title', $pageTitle)
 @section('js')
 
-<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 
 <script>
     
@@ -404,6 +403,7 @@ reader.addEventListener('progress', event => {
 
     });
 </script>
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 
 <script>
     Pusher.logToConsole = false;
