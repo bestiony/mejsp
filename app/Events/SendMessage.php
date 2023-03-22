@@ -22,7 +22,7 @@ class SendMessage implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct($message,$researcher_id,$file=NULL)
+    public function __construct($message,$researcher_id,$file='sdad')
     {
         $this->researcher_id = $researcher_id;
         $this->message = $message;
