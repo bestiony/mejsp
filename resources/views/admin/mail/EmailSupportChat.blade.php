@@ -166,6 +166,10 @@
                                 @if($info['status'] == 4 )
                                 <a href="{{ env('APP_URL').'/admin/users/support/chat/'.$info['id'].'' }}" style="margin-top:10px;background-color: #09c; color: #fff; text-decoration: none; padding: 10px; border-radius: 4px; display: block; text-align: center;">عرض الرد</a>
                                 @endif
+
+                                @if($info['status'] == 5 )
+                                <a href="{{ env('APP_URL') }}" style="margin-top:10px;background-color: #09c; color: #fff; text-decoration: none; padding: 10px; border-radius: 4px; display: block; text-align: center;">عرض الرد</a>
+                                @endif
                                
 
 

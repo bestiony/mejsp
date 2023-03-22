@@ -343,9 +343,9 @@ reader.addEventListener('progress', event => {
                                 <i class="fa fa-align-right mr-3" id="direction-btn" onclick="changeTextDirection(event)" style="font-size: 23px;cursor:pointer;
                                 margin: 0 2px;"></i>
                                 {{-- submit message --}}
-                              <a class="" href="#!" id="submit-msg-btn"><i class="fas fa-paper-plane" style="font-size: 23px;position: relative;
+                              <button id="submit-msg-btn"><i class="fas fa-paper-plane" style="font-size: 23px;position: relative;
                                 top: 4px;
-                                margin: 0 9px;"></i></a>
+                                margin: 0 9px;"></i></button>
                                 <div class="spinner-border text-primary mr-2 d-none" role="status" id="spin-loader">
                                     <span class="sr-only">Loading...</span>
                                 </div>
@@ -381,7 +381,13 @@ reader.addEventListener('progress', event => {
 
 <script>
     $('#submit-msg-btn').on('click',function(){
+        document.querySelector("#chats").scrollTo(0, document.querySelector("#chats").scrollHeight);
       var message=$('#exampleFormControlInput1').val();
+      $('#exampleFormControlInput1').val("");
+      $('#exampleFormControlInput1').attr("disabled","");
+      $('#submit-msg-btn').attr("disabled","");
+      $("#submit-msg-btn svg").removeClass("fa-paper-plane");
+    $("#submit-msg-btn svg").addClass("fa-spinner fa-spin");
       var html=`<div class="message sender">
                         ${message}
                 </div>`;
@@ -396,7 +402,10 @@ reader.addEventListener('progress', event => {
                 "email":"{{ $message_email->user_email }}"
             },
             success:function(response){
-                
+                $("#exampleFormControlInput1").removeAttr("disabled");
+                $("#submit-msg-btn").removeAttr("disabled");
+                $("#submit-msg-btn svg").removeClass("fa-spinner fa-spin");
+                $("#submit-msg-btn svg").addClass("fa-paper-plane");
             }
 
         });
@@ -420,7 +429,8 @@ channel.bind('research-chat-message', function(data) {
                         ${message}
                     </div>`
     $('#chats').append(push_html);
-    // document.querySelector("#chats").scrollTo(0, document.querySelector("#chats").scrollHeight);
+    document.querySelector("#chat-container").scrollTo(0, document.querySelector("#chat-container").scrollHeight);
+
 });
 </script>
 

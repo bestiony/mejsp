@@ -297,17 +297,17 @@
                             </div>
                         </div>
                         @endif
-                    <div class="d-flex flex-row justify-content-end mb-4">
+                    {{-- <div class="d-flex flex-row justify-content-end mb-4">
                         <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
                             <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
                         </div>
-                    </div>
-                    <div class="d-flex flex-row justify-content-start mb-4">
+                    </div> --}}
+                    {{-- <div class="d-flex flex-row justify-content-start mb-4">
                     
                         <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
                             <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
                         </div>
-                    </div>
+                    </div> --}}
                 
                 @endforeach
             @endif
