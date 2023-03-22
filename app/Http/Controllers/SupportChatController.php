@@ -44,8 +44,14 @@ class SupportChatController extends Controller
         // Mail::to($admin->email)->send(new EmailSupportChat($info));
     }
 
-    public function adminSendMessage()
+    public function adminSendMessage(Request $request)
     {
-        event(new SendMessage('test','hosamdahab778@gmail.com'));
+        $mesage= SupportChat::create([
+            'user_email'=>$request->email,
+            'message'=>$request->message,
+            'admin_id'=>auth('admin')->user()->id,
+            'sender'=>'user',
+        ]);
+        event(new SendMessage($request->message,$request->email));
     }
 }
