@@ -173,7 +173,7 @@
                         $("#submit").removeAttr("disabled");
                         $("#submit svg").removeClass("fa-spinner fa-spin");
                         $("#submit svg").addClass("fa-paper-plane");
-                        $('#file-box').hide();
+                        $('#file-box').addClass("d-none");
                     }
                 });
                 document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
@@ -223,7 +223,7 @@
                         $("#submit").removeAttr("disabled");
                         $("#submit svg").removeClass("fa-spinner fa-spin");
                         $("#submit svg").addClass("fa-paper-plane");
-                        $('#file-box').hide();
+                        $('#file-box').addClass("d-none");
                     }
                 });
                 document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
