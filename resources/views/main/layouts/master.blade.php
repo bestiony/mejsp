@@ -165,11 +165,11 @@ let userId = email
 var channel = pusher.subscribe('research-chat.'+userId);
 channel.bind('research-chat-message', function(data) {
   let message = data.message
-  var push_html=`<div class="d-flex flex-row justify-content-start mb-4">
-                    <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                        <p class="small mb-0">${message}</p>
-                    </div>
-                </div>`
+  var push_html=`<div class="d-flex flex-row justify-content-end mb-4">
+                            <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+                                <p class="small mb-0">${push_html}</p>
+                            </div>
+                        </div>`
     $('#CardBody').append(push_html);
     document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
 });
