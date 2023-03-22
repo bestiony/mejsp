@@ -145,7 +145,7 @@
                     <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
                         <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
                     </div>`;
-                if(file){
+                if(file.length>0){
                     $('#CardBody').append(file_div);
                 }
                 if(text!==''){
@@ -173,6 +173,7 @@
                         $("#submit").removeAttr("disabled");
                         $("#submit svg").removeClass("fa-spinner fa-spin");
                         $("#submit svg").addClass("fa-paper-plane");
+                        $('#file-box').hide();
                     }
                 });
                 document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
@@ -196,33 +197,33 @@
                     <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
                         <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
                     </div>`;
-                if(file){
+                if(file.length>0){
                     $('#CardBody').append(file_div);
                 }
                 if(text!==''){
                     $('#CardBody').append(html);
                 }
-                $('#CardBody').append(html);
                 $("#textAreaExample").attr("disabled","");
                 $("#submit").attr("disabled","");
                 $("#submit svg").removeClass("fa-paper-plane");
                 $("#submit svg").addClass("fa-spinner fa-spin");
+                var formData = new FormData();
+                formData.append('email', getCookie('chat_email'));
+                formData.append('message', text);
+                formData.append('file', file[0]);
                 $.ajax({
                     "url":"{{ Route('userSendMessage') }}",
                     "type":"post",
-                    "data":{
-                        "email":getCookie('chat_email'),
-                        "message":text,
-                        "file":file,
-                        processData: false,
-                        contentType: false,
-                    },
+                    "data":formData,
+                    processData: false,
+                    contentType: false,
                     success:function(response){
                         $('#textAreaExample').val('');
                         $("#textAreaExample").removeAttr("disabled");
                         $("#submit").removeAttr("disabled");
                         $("#submit svg").removeClass("fa-spinner fa-spin");
                         $("#submit svg").addClass("fa-paper-plane");
+                        $('#file-box').hide();
                     }
                 });
                 document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
@@ -283,7 +284,7 @@ function showUploadedFileName(){
     setTimeout(() => {
     research_input.disabled = false
     // research_label.innerHTML = currentContent;
-    document.querySelector('textarea[name="message"]').scrollIntoView()
+    // document.querySelector('textarea[name="message"]').scrollIntoView()
     }, 2000);
 
 
