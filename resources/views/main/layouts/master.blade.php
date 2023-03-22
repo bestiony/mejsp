@@ -125,6 +125,7 @@
         $('#confirm_email').on('click',function(){
             var email=$('#email').val();
             document.cookie = "chat_email="+email+"";
+            location.reload();
         });
 
         $('#textAreaExample').on('keypress',function(e){
@@ -136,6 +137,7 @@
                             </div>
                         </div>`
                 $('#CardBody').append(html);
+                $('#textAreaExample').val("")  // <=============================================================================================
                 $.ajax({
                     "url":"{{ Route('userSendMessage') }}",
                     "type":"post",
@@ -185,7 +187,7 @@ var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
   cluster: 'eu'
 });
 var email=getCookie('chat_email');
-
+    email?$(".login-form").hide():null;
 let userId = email
 var channel = pusher.subscribe('research-chat.'+userId);
 channel.bind('research-chat-message', function(data) {
@@ -198,6 +200,74 @@ channel.bind('research-chat-message', function(data) {
     $('#CardBody').append(push_html);
     document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
 });
+</script>
+<script>
+    
+        
+// <----------------------------------------------------------- upload file to the chat ------------------------------------------------------------------------->
+
+function showUploadedFileName(){
+    let research_input =document.querySelector('#upload-research-file')
+    let research_file = research_input.files[0];
+    let research_label = document.querySelector('label[for="upload-research-file"]')
+    // let currentContent = research_label.innerHTML;
+    //animation
+    research_input.disabled=true;
+    research_label.innerHTML='<span class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true" style="    vertical-align: -0.325em;"></span>'
+    setTimeout(() => {
+    research_input.disabled = false
+    // research_label.innerHTML = currentContent;
+    document.querySelector('textarea[name="message"]').scrollIntoView()
+    }, 2000);
+
+
+    document.querySelector('#file-name').innerText=research_file.name
+    
+    document.querySelector('#file-box').classList.remove('d-none')
+    const reader = new FileReader()
+
+    reader.addEventListener('load', function(event) {
+        let research_label = document.querySelector('label[for="upload-research-file"]')
+        research_label.innerHTML =`<i class="fa fa-file-upload mr-3" id="file-uploader" style="font-size: 23px;cursor:pointer;
+                                    margin: 0 2px;    position: relative;top: 4px;"></i>`
+    })
+
+    // Files can be read with the readAs[ArrayBuffer|BinaryString|DataURL|Text] methods
+    reader.readAsArrayBuffer(research_file)
+    reader.addEventListener('progress', event => {
+    
+        const percent = Math.round((event.loaded / event.total) * 100)
+            const loadingBar = Array(10)
+                .fill('▒')
+                .map(function(item, index) {
+                    document.querySelector('#upload-progress .progress-bar').style.width=Math.round(percent)+"%"
+                
+                return Math.round(percent / 10) > index ? '█'
+                    : '▒'   
+                } )
+                .join('')
+
+            // document.location.hash = `${loadingBar}(${percent}%)`
+            
+
+    })
+    // reader.readAsBinaryString(research_file)
+    // reader.readAsDataURL(research_file)
+    // reader.readAsText(research_file)
+}
+function removeCurrentFile(){
+    document.querySelector('#upload-research-file').value = '';
+    document.querySelector('#file-box').classList.add('d-none')
+    document.querySelector('#upload-progress .progress-bar').style.width="0%"
+    document.querySelector('#file-name').innerText=''
+    let research_label = document.querySelector('label[for="upload-research-file"]')
+    research_label.innerHTML =`<i class="fa fa-file-upload mr-3" id="file-uploader" style="font-size: 23px;cursor:pointer;
+                                margin: 0 2px;    position: relative;top: 4px;"></i>`
+    
+}
+
+// <----------------------------------------------------------- upload file to the chat ------------------------------------------------------------------------->
+
 </script>
 </body>
 

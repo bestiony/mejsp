@@ -198,6 +198,52 @@ reader.addEventListener('progress', event => {
     margin: 6px;
     font-weight: bold;
 }
+.chat {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    z-index: 2;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    background: white;
+}
+.chat .messages {
+    padding: 1rem;
+    flex-shrink: 2;
+    overflow-y: auto;
+}
+.messages .time {
+    font-size: 0.8rem;
+    background: #EEE;
+    padding: 0.25rem 1rem;
+    border-radius: 2rem;
+    color: #999;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0 auto;
+}
+.messages .message {
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+    margin: 1rem auto 1rem 1rem;
+    background: #FFF;
+    border-radius: 1.125rem 1.125rem 1.125rem 0;
+    min-height: 2.25rem;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    max-width: 66%;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.075), 0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.1);
+}
+    .messages .message.sender {
+    margin: 1rem 1rem 1rem auto;
+    border-radius: 1.125rem 1.125rem 0 1.125rem;
+    background: #333;
+    color: white !important;
+}
 </style>
 
 
@@ -230,9 +276,28 @@ reader.addEventListener('progress', event => {
                              
                             </div>
                             <div class="card-body p-0" id="chat-container" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px;overflow-y:scroll">
-                              
-                  
-                  
+                                <div class="chat">
+                                    <div class="messages" id="chats">
+                                        <div class="time">
+                                            Today at 11:41
+                                        </div>
+                                        <div class="message sender">
+                                            السلام عليكم ورحمة الله وبركاته 👋
+                                        </div>
+                                        <div class="message receved">
+                                            وعليكم السلام ورحمة الله وبركاته
+                                        </div>
+                                        <div class="message sender">
+                                            رمضان كريم وكل عام وانتم بخير
+                                        </div>
+                                        <div class="message sender">
+                                            ينعاد عليكم بالفرح
+                                        </div>
+                                        <div class="message receved">
+                                            وانتم بخير بارك الله فيكم
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-footer text-muted d-flex justify-content-end align-items-center p-3">
             
@@ -245,7 +310,7 @@ reader.addEventListener('progress', event => {
                                 margin: 0 2px;    position: relative;top: 4px;"></i>
                                    
                                   </label>
-                                  <input id="research-file" type="file" name="file" onchange="showFileName()" class="d-none" accept="*"">
+                                  <input id="research-file" type="file" name="file" onchange="showFileName()" class="d-none" accept="*">
 
                                 {{-- direction --}}
                                 <i class="fa fa-align-right mr-3" id="direction-btn" onclick="changeTextDirection(event)" style="font-size: 23px;cursor:pointer;

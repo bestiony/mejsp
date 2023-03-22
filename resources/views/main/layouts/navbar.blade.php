@@ -329,12 +329,28 @@
         <div class="card-footer">
             <div class="form-outline d-flex align-items-center justify-content-bertween">
                 <input class="form-control" id="textAreaExample" placeholder="اكتب رسالتك هنا"/>
-                <a href="#" class="attach mx-2">
-                    <i class="fa-solid fa-paperclip"></i>
-                </a>
+                <label for="upload-research-file" class="m-0"  data-mdb-ripple-color="dark">
+                    <i class="fa fa-file-upload mr-3" id="file-uploader" style="font-size: 18px;cursor:pointer;
+                    margin: 0 2px 6px;position: relative;top: 4px;color:#007bff;"></i>           
+                </label>
+                <input id="upload-research-file" type="file" name="file" onchange="showUploadedFileName()" class="d-none" accept="*">
                 <a href="#" id="submit" class="send mx-2">
                     <i class="fa-solid fa-paper-plane"></i>
                 </a>
+            </div>
+            <div class="card-footer p-3 d-none" id="file-box">
+                <div class="d-flex justify-content-between mx-3 mb-2 align-items-center" style="font-size: 13px;">
+                    <span class="d-block d-md-flex" style="flex: 1">
+                        <span id="file-name" class="mx-2 font-weight-bold">ملف.ييخؤس</span>
+                    </span>
+                    <button id="remove-file" onclick="removeCurrentFile()" class="btn btn-danger btn-sm p-1">
+                        X 
+                        حذف
+                    </button>
+                </div>
+                <div class="progress mx-3" id="upload-progress">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
             </div>
         </div>
     </div>
