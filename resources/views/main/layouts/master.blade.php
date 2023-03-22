@@ -167,7 +167,7 @@ channel.bind('research-chat-message', function(data) {
   let message = data.message
   var push_html=`<div class="d-flex flex-row justify-content-end mb-4">
                             <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                                <p class="small mb-0">${push_html}</p>
+                                <p class="small mb-0">${message}</p>
                             </div>
                         </div>`
     $('#CardBody').append(push_html);
