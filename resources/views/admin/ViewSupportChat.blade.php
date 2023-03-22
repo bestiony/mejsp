@@ -394,7 +394,7 @@ reader.addEventListener('progress', event => {
             "data":{
                 "_token": "{{ csrf_token() }}",
                 "message":message,
-                "email":"{{ $message_email->email }}"
+                "email":"{{ $message_email->user_email }}"
             },
             success:function(response){
                 
