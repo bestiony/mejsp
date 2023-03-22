@@ -245,13 +245,14 @@ channel.bind('research-chat-message', function(data) {
   let message = data.message
   let document = data.document
   console.log(document);
-  var push_html=`<div class="d-flex flex-row justify-content-end mb-4">
+    var push_html=`<div class="d-flex flex-row justify-content-end mb-4">
                             <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
                                 <p class="small mb-0">${message}</p>
                             </div>
                         </div>`
     if(message!==null){
         $('#CardBody').append(push_html);
+        document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
     }
     var push_file_div=`<div class="d-flex flex-row justify-content-end mb-4">
                         <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
@@ -262,8 +263,8 @@ channel.bind('research-chat-message', function(data) {
 
     if(document){
         $('#CardBody').append(push_file_div);
+        document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
     }
-    document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
 });
 </script>
 <script>
