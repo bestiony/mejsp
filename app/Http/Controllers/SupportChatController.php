@@ -51,7 +51,7 @@ class SupportChatController extends Controller
             'user_email'=>$request->email,
             'message'=>$request->message,
             'admin_id'=>auth('admin')->user()->id,
-            'sender'=>'user',
+            'sender'=>'admin',
         ]);
         event(new SendMessage($request->message,$request->email));
         $info = [
