@@ -21,6 +21,7 @@ class SupportChatController extends Controller
             'sender'=>'user',
         ]);
 
+        event(new SendMessage($request->message,$admin->id));
     
         $info = [
             'mail_title' => 'يحاول مستخدم التوصل معك',
@@ -53,5 +54,25 @@ class SupportChatController extends Controller
             'sender'=>'user',
         ]);
         event(new SendMessage($request->message,$request->email));
+        $info = [
+            'mail_title' => 'يحاول مستخدم التوصل معك',
+            'mail_details1' => ': نص الرسالة هو',
+            'status'=>4,
+            'mail_details2' => $request->message,
+            'mail_details3' => '',
+            'mail_details4' => '',
+            'mail_details6'=>'',
+            'mail_details7'=>'',
+            'mail_details8'=>'',
+            'mail_details5' => '',
+            'id' => '',
+            'file' =>  '',
+            'journal' => '',
+            'username' => '',
+            'email' =>$request->email,
+            'subject'=>'التواصل مع مستخدم',
+            'id'=>$mesage->id,
+        ];
+        // Mail::to($admin->email)->send(new EmailSupportChat($info));
     }
 }

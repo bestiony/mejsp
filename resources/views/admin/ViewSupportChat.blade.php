@@ -405,5 +405,24 @@ reader.addEventListener('progress', event => {
     });
 </script>
 
+<script>
+    Pusher.logToConsole = false;
+
+var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
+  cluster: 'eu'
+});
+
+let userId = "{{ auth('admin')->user()->id }}";
+var channel = pusher.subscribe('research-chat.'+userId);
+channel.bind('research-chat-message', function(data) {
+  let message = data.message
+  var push_html=` <div class="message receved">
+                        ${message}
+                    </div>`
+    $('#chats').append(push_html);
+    // document.querySelector("#chats").scrollTo(0, document.querySelector("#chats").scrollHeight);
+});
+</script>
+
 
 @endsection
