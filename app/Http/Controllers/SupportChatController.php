@@ -13,7 +13,7 @@ class SupportChatController extends Controller
 {
     public function userSendMessage(Request $request)
     {
-        $admin=Admins::find(4);
+        $admin=Admins::find(1);
        $mesage= SupportChat::create([
             'user_email'=>$request->email,
             'message'=>$request->message,
