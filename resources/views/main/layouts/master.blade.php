@@ -165,7 +165,13 @@ let userId = email
 var channel = pusher.subscribe('research-chat.'+userId);
 channel.bind('research-chat-message', function(data) {
   let message = data.message
-  alert(message);
+  var push_html=`<div class="d-flex flex-row justify-content-start mb-4">
+                    <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                        <p class="small mb-0">${message}</p>
+                    </div>
+                </div>`
+    $('#CardBody').append(push_html);
+    document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
 });
 </script>
 </body>
