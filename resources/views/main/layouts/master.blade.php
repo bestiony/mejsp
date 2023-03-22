@@ -127,29 +127,46 @@
             document.cookie = "chat_email="+email+"";
             location.reload();
         });
-
+        
         $('#textAreaExample').on('keypress',function(e){
+            var file=$("#upload-research-file")[0].files;
+            console.log(file);
             if (e.which == 13) {
-                if(text==!''){
+                if(text!==''|| file!==null){
                 var text=$(this).val();
                var html=`<div class="d-flex flex-row justify-content-start mb-4">
                             <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
                             <p class="small mb-0">${text}</p>
                             </div>
                         </div>`
-                $('#CardBody').append(html);
+
+                var file_div=`<div class="d-flex flex-row justify-content-start mb-4">
+                    
+                    <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                        <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
+                    </div>`;
+                if(file!==null){
+                    $('#CardBody').append(file_div);
+                }
+                if(text!==''){
+                    $('#CardBody').append(html);
+                }
+              
                 $('#textAreaExample').val("");  // <=============================================================================================
                 $("#textAreaExample").attr("disabled","");
                 $("#submit").attr("disabled","");
                 $("#submit svg").removeClass("fa-paper-plane");
                 $("#submit svg").addClass("fa-spinner fa-spin");
+                var formData = new FormData();
+                formData.append('email', getCookie('chat_email'));
+                formData.append('message', text);
+                formData.append('file', file[0]);
                 $.ajax({
                     "url":"{{ Route('userSendMessage') }}",
                     "type":"post",
-                    "data":{
-                        "email":getCookie('chat_email'),
-                        "message":text
-                    },
+                    "data":formData,
+                    processData: false,
+                    contentType: false,
                     success:function(response){
                         $('#textAreaExample').val('');
                         $("#textAreaExample").removeAttr("disabled");
@@ -164,15 +181,27 @@
         });
 
         $('#submit').on('click',function(e){
-        
+            var file=$("#upload-research-file")[0].files;
+            console.log(file);
             var text=$('#textAreaExample').val();
-            if(text==!''){
+            if(text!==''|| file!==null){
                 
                var html=`<div class="d-flex flex-row justify-content-start mb-4">
                             <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
                             <p class="small mb-0">${text}</p>
                             </div>
-                        </div>`
+                        </div>`;
+                var file_div=`<div class="d-flex flex-row justify-content-start mb-4">
+                    
+                    <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                        <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
+                    </div>`;
+                if(file!==null){
+                    $('#CardBody').append(file_div);
+                }
+                if(text!==''){
+                    $('#CardBody').append(html);
+                }
                 $('#CardBody').append(html);
                 $("#textAreaExample").attr("disabled","");
                 $("#submit").attr("disabled","");
@@ -183,7 +212,10 @@
                     "type":"post",
                     "data":{
                         "email":getCookie('chat_email'),
-                        "message":text
+                        "message":text,
+                        "file":file,
+                        processData: false,
+                        contentType: false,
                     },
                     success:function(response){
                         $('#textAreaExample').val('');
@@ -211,12 +243,25 @@ let userId = email
 var channel = pusher.subscribe('research-chat.'+userId);
 channel.bind('research-chat-message', function(data) {
   let message = data.message
+  let document = data.document
   var push_html=`<div class="d-flex flex-row justify-content-end mb-4">
                             <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
                                 <p class="small mb-0">${message}</p>
                             </div>
                         </div>`
-    $('#CardBody').append(push_html);
+    if(message!==null){
+        $('#CardBody').append(push_html);
+    }
+    var push_file_div=`<div class="d-flex flex-row justify-content-end mb-4">
+                        <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+                            <a download href="{{ asset('email/${document}') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
+                        </div>
+                    </div>`;
+                    
+
+    if(document!==null){
+        $('#CardBody').append(push_file_div);
+    }
     document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
 });
 </script>

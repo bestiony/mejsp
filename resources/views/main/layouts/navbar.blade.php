@@ -283,13 +283,21 @@
             @if (isset($user_messages))
                 @foreach ($user_messages as $user_message)
                     @if ($user_message->sender=='user')
-                    <div class="d-flex flex-row justify-content-start mb-4">
-                    
-                        <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                            <p class="small mb-0">{{ $user_message->message }}</p>
-                        </div>
-                    </div>
+                        @if ($user_message->document==NULL)
+                            <div class="d-flex flex-row justify-content-start mb-4">
+                            
+                                <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                                    <p class="small mb-0">{{ $user_message->message }}</p>
+                                </div>
+                            </div>
+                        @elseif ($user_message->document!==NULL)
+                        
+                            <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                                <a download href="{{ asset('email/'.$user_message->document.'') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a> 
+                            </div>
+                        @endif
                     @endif
+                   
                     @if ($user_message->sender=='admin')
                         <div class="d-flex flex-row justify-content-end mb-4">
                             <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
@@ -338,7 +346,7 @@
 
         <div class="card-footer">
             <div class="form-outline d-flex align-items-center justify-content-bertween">
-                <input tybe="file" class="form-control" id="textAreaExample" placeholder="اكتب رسالتك هنا"/>
+                <input class="form-control" id="textAreaExample" placeholder="اكتب رسالتك هنا"/>
                 <label for="upload-research-file" class="m-0"  data-mdb-ripple-color="dark">
                     <i class="fa fa-file-upload mr-3" id="file-uploader" style="font-size: 18px;cursor:pointer;
                     margin: 0 2px 6px;position: relative;top: 4px;"></i>           
