@@ -260,7 +260,7 @@ channel.bind('research-chat-message', function(data) {
                     </div>`;
                     
 
-    if(!document){
+    if(document){
         $('#CardBody').append(push_file_div);
     }
     // document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
