@@ -463,6 +463,8 @@ var channel = pusher.subscribe('research-chat.'+userId);
 channel.bind('research-chat-message', function(data) {
   let message = data.message
   let document_file = data.document
+  console.log(document_file);
+  console.log(message);
   var push_html=` <div class="message receved">
                         ${message}
                     </div>`
