@@ -20,6 +20,6 @@ class SupportChatController extends Controller
 
     public function adminSendMessage()
     {
-        event(new SendMessage('test',640));
+        event(new SendMessage('test','hosamdahab778@gmail.com'));
     }
 }
