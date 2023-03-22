@@ -244,6 +244,7 @@ var channel = pusher.subscribe('research-chat.'+userId);
 channel.bind('research-chat-message', function(data) {
   let message = data.message
   let document = data.document
+  console.log(document);
   var push_html=`<div class="d-flex flex-row justify-content-end mb-4">
                             <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
                                 <p class="small mb-0">${message}</p>
