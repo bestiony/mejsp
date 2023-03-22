@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SupportChat;
-use App\Events\SupportChatEvent;
 
 class SupportChatController extends Controller
 {
@@ -20,6 +19,6 @@ class SupportChatController extends Controller
 
     public function adminSendMessage()
     {
-        event(new SupportChatEvent('test push'));
+
     }
 }
