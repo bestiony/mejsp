@@ -68,6 +68,6 @@ class AppServiceProvider extends ServiceProvider
         }
         
         
-        
+        view()->share('provider_setting', $setting);
     }
 }

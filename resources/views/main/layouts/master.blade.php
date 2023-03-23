@@ -117,6 +117,9 @@
 <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 
     <script>
+        $(document).ready(function(){
+            document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
+        })
         function getCookie(name) {
             const value = `; ${document.cookie}`;
             const parts = value.split(`; ${name}=`);

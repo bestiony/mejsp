@@ -8,11 +8,11 @@
         </div>
         <div class="d-flex mr-5 mb-2">
             <a href="#" >
-                <span>(671) 555-0110</span>
+                <span>{{ $provider_setting->phone }}</span>
                 <i class="fa-solid fa-mobile"></i>
             </a>
             <a href="#" >
-                <span>youremail@gmail.com</span>
+                <span>{{ $provider_setting->mail }}</span>
                 <i class="fa-solid fa-envelope-open-text"></i>
             </a>
         </div>
