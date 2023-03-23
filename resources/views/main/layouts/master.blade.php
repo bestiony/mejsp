@@ -260,6 +260,9 @@ var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
 var email=getCookie('chat_email');
     email?$(".login-form").hide():null;
 let userId = email
+
+console.log(pusher);
+console.log(email);
 var channel = pusher.subscribe('research-chat.'+userId);
 channel.bind('research-chat-message', function(data) {
   let message = data.message
