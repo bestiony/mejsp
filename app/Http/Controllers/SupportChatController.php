@@ -26,7 +26,7 @@ class SupportChatController extends Controller
                 // 'document'=>$file_name?? NULL
             ]);
     
-            event(new SendMessage($request->message,$admin->id,$file_name??NULL));
+            // event(new SendMessage($request->message,$admin->id,$file_name??NULL));
         }
 
         if(isset($file_name)){
@@ -37,9 +37,9 @@ class SupportChatController extends Controller
                 'sender'=>'user',
                 'document'=>$file_name?? NULL
             ]); 
-            event(new SendMessage($request->message,$admin->id,$file_name??NULL));
 
         }
+        event(new SendMessage($request->message,$admin->id,$file_name??NULL));
     
         $info = [
             'mail_title' => 'يحاول مستخدم التوصل معك',
