@@ -77,10 +77,10 @@ class SupportChatController extends Controller
                 'sender'=>'admin',
                 // 'document'=>$file_name?? NULL
             ]);
-            event(new SendMessage($request->message,$request->email,$file_name??NULL));
+            // event(new SendMessage($request->message,$request->email,$file_name??NULL));
         }
         if(isset($file_name)){
-            $mesage= SupportChat::create([
+            $file_mesage= SupportChat::create([
                 'user_email'=>$request->email,
                 // 'message'=>$request->message,
                 'admin_id'=>auth('admin')->user()->id,

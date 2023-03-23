@@ -413,16 +413,14 @@ reader.addEventListener('progress', event => {
                         ${message}
                 </div>`;
 
-        var file_div=`<div class="message sender file">
-                        <a href="#"> <i class="fa-solid fa-folder-closed"></i></a>
-                    </div>`;
+       
 
         if(message!==''){
             $('#chats').append(html);
         }
-        if(file.length>0){
-            $('#chats').append(file_div);
-        }
+        // if(file.length>0){
+        //     $('#chats').append(file_div);
+        // }
         document.querySelector("#chats").scrollTo(0, document.querySelector("#chats").scrollHeight);
         var formData = new FormData();
         formData.append('email', "{{ $message_email->user_email }}");
@@ -437,6 +435,13 @@ reader.addEventListener('progress', event => {
             processData: false,
             contentType: false,
             success:function(response){
+                if(file.length>0){
+                    var resonse_file_name=response.resonse_file_name;
+                    var file_div=`<div class="message sender file">
+                        <a download href="{{ asset('email/${resonse_file_name}') }}"> <i class="fa-solid fa-folder-closed"></i></a>
+                    </div>`;
+                    $('#chats').append(file_div);
+                }
                 $("#exampleFormControlInput1").removeAttr("disabled");
                 $("#submit-msg-btn").removeAttr("disabled");
                 $("#submit-msg-btn svg").removeClass("fa-spinner fa-spin");
