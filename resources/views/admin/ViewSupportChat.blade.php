@@ -294,13 +294,29 @@ reader.addEventListener('progress', event => {
 
                                         @foreach ($messages as $message)
                                             @if ($message->sender=='admin')
+                                                @if ($message->document==NULL)
                                                 <div class="message sender">
                                                     {{ $message->message }}
                                                 </div>
+
+                                                @elseif ($message->document!==NULL)
+                                                    <div class="message sender file">
+                                                        <a download href="{{ asset('email/'.$message->document.'') }}"> <i class="fa-solid fa-folder-closed"></i></a>
+                                                    </div>
+                                                @endif
+                                               
+
                                             @elseif ($message->sender=='user')
-                                                <div class="message receved">
-                                                    {{ $message->message }}
+                                                @if ($message->document==NULL)
+                                                    <div class="message receved">
+                                                        {{ $message->message }}
+                                                    </div>
+                                                @elseif ($message->document!==NULL)
+                                                <div class="message recever file">
+                                                    <a download href="{{ asset('email/'.$message->document.'') }}"> <i class="fa-solid fa-folder-closed"></i></a>
                                                 </div>
+                                                @endif
+                                                
                                             @endif
                                         @endforeach
                                         
@@ -381,34 +397,55 @@ reader.addEventListener('progress', event => {
 
 <script>
     $('#submit-msg-btn').on('click',function(){
-        document.querySelector("#chats").scrollTo(0, document.querySelector("#chats").scrollHeight);
-      var message=$('#exampleFormControlInput1').val();
-      $('#exampleFormControlInput1').val("");
+
+        
+        var message=$('#exampleFormControlInput1').val();    
+      var file=$("#research-file")[0].files;
+      console.log(message);
+      console.log(file);
+    if(message!==''|| file.length>0){
+        $('#exampleFormControlInput1').val("");
       $('#exampleFormControlInput1').attr("disabled","");
       $('#submit-msg-btn').attr("disabled","");
       $("#submit-msg-btn svg").removeClass("fa-paper-plane");
-    $("#submit-msg-btn svg").addClass("fa-spinner fa-spin");
-      var html=`<div class="message sender">
+        $("#submit-msg-btn svg").addClass("fa-spinner fa-spin");
+        var html=`<div class="message sender">
                         ${message}
                 </div>`;
-                
-        $('#chats').append(html);
+
+        var file_div=`<div class="message sender file">
+                        <a href="#"> <i class="fa-solid fa-folder-closed"></i></a>
+                    </div>`;
+
+        if(message!==''){
+            $('#chats').append(html);
+        }
+        if(file.length>0){
+            $('#chats').append(file_div);
+        }
+        document.querySelector("#chats").scrollTo(0, document.querySelector("#chats").scrollHeight);
+        var formData = new FormData();
+        formData.append('email', "{{ $message_email->user_email }}");
+        formData.append('message', message);
+        formData.append('file', file[0]);
+        formData.append('_token', "{{ csrf_token() }}");
+
         $.ajax({
             "url":"{{ Route('adminSendMessage') }}",
             "type":"post",
-            "data":{
-                "_token": "{{ csrf_token() }}",
-                "message":message,
-                "email":"{{ $message_email->user_email }}"
-            },
+            "data":formData,
+            processData: false,
+            contentType: false,
             success:function(response){
                 $("#exampleFormControlInput1").removeAttr("disabled");
                 $("#submit-msg-btn").removeAttr("disabled");
                 $("#submit-msg-btn svg").removeClass("fa-spinner fa-spin");
                 $("#submit-msg-btn svg").addClass("fa-paper-plane");
+                $('#file-box').addClass("d-none");
             }
 
         });
+    }
 
     });
 </script>
@@ -425,10 +462,22 @@ let userId = "{{ auth('admin')->user()->id }}";
 var channel = pusher.subscribe('research-chat.'+userId);
 channel.bind('research-chat-message', function(data) {
   let message = data.message
+  let document_file = data.file
+  console.log(data);
+  console.log(document_file);
+  console.log(message);
   var push_html=` <div class="message receved">
                         ${message}
                     </div>`
-    $('#chats').append(push_html);
+    var push_file_div=`<div class="message recever file">
+                            <a download href="{{ asset('email/${document_file}') }}"> <i class="fa-solid fa-folder-closed"></i></a>
+                        </div>`;
+    if(message!==null){
+        $('#chats').append(push_html);
+    }
+    if(document_file!==null){
+        $('#chats').append(push_file_div);
+    }
     document.querySelector("#chat-container").scrollTo(0, document.querySelector("#chat-container").scrollHeight);
 
 });

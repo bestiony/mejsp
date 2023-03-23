@@ -1,0 +1,5 @@
+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
+
+git config --global user.email "hosamdahab778@gmail.com"
+
+git config --global user.name "hosamdahab"

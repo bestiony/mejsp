@@ -185,7 +185,7 @@
             var file=$("#upload-research-file")[0].files;
             console.log(file);
             var text=$('#textAreaExample').val();
-            if(text!==''|| !file){
+            if(text!==''|| file){
                 
                var html=`<div class="d-flex flex-row justify-content-start mb-4">
                             <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
@@ -244,8 +244,10 @@ let userId = email
 var channel = pusher.subscribe('research-chat.'+userId);
 channel.bind('research-chat-message', function(data) {
   let message = data.message
-  let document_file = data.document
-  console.log(document);
+  let document_file = data.file
+  console.log(data);
+  console.log(document_file);
+  console.log(message);
     var push_html=`<div class="d-flex flex-row justify-content-end mb-4">
                             <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
                                 <p class="small mb-0">${message}</p>
