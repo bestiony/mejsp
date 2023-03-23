@@ -133,7 +133,6 @@
         
         $('#textAreaExample').on('keypress',function(e){
             var file=$("#upload-research-file")[0].files;
-            console.log(file);
             if (e.which == 13) {
                 if(text!==''|| !file){
                 var text=$(this).val();
@@ -143,17 +142,13 @@
                             </div>
                         </div>`
 
-                var file_div=`<div class="d-flex flex-row justify-content-start mb-4">
-                    
-                    <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                        <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
-                    </div>`;
-                if(file.length>0){
-                    $('#CardBody').append(file_div);
-                }
+               
+
                 if(text!==''){
                     $('#CardBody').append(html);
                 }
+                
+               
               
                 $('#textAreaExample').val("");  // <=============================================================================================
                 $("#textAreaExample").attr("disabled","");
@@ -171,6 +166,16 @@
                     processData: false,
                     contentType: false,
                     success:function(response){
+                        if(file.length>0){
+                            console.log(response);
+                             var resonse_file_name=response.resonse_file_name;
+                            var file_div=`<div class="d-flex flex-row justify-content-start mb-4">
+                                    <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                                        <a download href="{{ asset('email/${resonse_file_name}') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
+                                    </div>
+                                    </div>`;
+                            $('#CardBody').append(file_div);
+                        }
                         $('#textAreaExample').val('');
                         $("#textAreaExample").removeAttr("disabled");
                         $("#submit").removeAttr("disabled");
@@ -195,17 +200,18 @@
                             <p class="small mb-0">${text}</p>
                             </div>
                         </div>`;
-                var file_div=`<div class="d-flex flex-row justify-content-start mb-4">
+                // var file_div=`<div class="d-flex flex-row justify-content-start mb-4">
                     
-                    <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                        <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
-                    </div>`;
-                if(file.length>0){
-                    $('#CardBody').append(file_div);
-                }
+                //     <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                //         <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
+                //     </div>`;
                 if(text!==''){
                     $('#CardBody').append(html);
                 }
+                // if(file.length>0){
+                //     $('#CardBody').append(file_div);
+                // }
+                
                 $("#textAreaExample").attr("disabled","");
                 $("#submit").attr("disabled","");
                 $("#submit svg").removeClass("fa-paper-plane");
@@ -221,6 +227,16 @@
                     processData: false,
                     contentType: false,
                     success:function(response){
+                        if(file.length>0){
+                            console.log(response);
+                             var resonse_file_name=response.resonse_file_name;
+                            var file_div=`<div class="d-flex flex-row justify-content-start mb-4">
+                                    <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                                        <a download href="{{ asset('email/${resonse_file_name}') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
+                                    </div>
+                                    </div>`;
+                            $('#CardBody').append(file_div);
+                        }
                         $('#textAreaExample').val('');
                         $("#textAreaExample").removeAttr("disabled");
                         $("#submit").removeAttr("disabled");
