@@ -1,14 +1,12 @@
 <nav dir="rtl" id="navbar" class="navbar navbar-expand-sm navbar-light fixed-top">
     <div class="header w-100 fixed-top">
-        <a href="#">المدونة</a>
-        <a href="#">اتصل بنا</a>
-        <a href="#">من نحن</a>
-        <a href="#">شروط الاستخدام</a>
-        <select name="languages" id="languages">
-            <option value="ar">العربية</option>
-            <option value="en">english</option>
-        </select>
-        <div class="d-flex mr-5">
+        <div class="d-flex align-items-center mb-2">
+            <a href="#">المدونة</a>
+            <a href="#">اتصل بنا</a>
+            <a href="#">من نحن</a>
+            <a href="#">شروط الاستخدام</a>
+        </div>
+        <div class="d-flex mr-5 mb-2">
             <a href="#" >
                 <span>(671) 555-0110</span>
                 <i class="fa-solid fa-mobile"></i>
@@ -65,13 +63,14 @@
     </div>
     <span class="mySidebarButton" onclick="openNav()">&#9776;</span>
     <a class="navbar-brand" href="{{url('')}}">
-    <img src="{{asset('assets/images/notfound-sad.png')}}" alt="" class="abs-img">    
+    {{-- <img src="{{asset('assets/images/notfound-sad.png')}}" alt="" class="abs-img"> --}}   
     <img src="{{asset('assets/images/logo.png')}}"
-            alt="مؤسسة الشرق الأوسط للنشر العلمي" title="مؤسسة الشرق الأوسط للنشر العلمي"></a>
+            alt="مؤسسة الشرق الأوسط للنشر العلمي" title="مؤسسة الشرق الأوسط للنشر العلمي" width="120" height="40"/>
+        </a>
     <button class="navbar-toggler d-lg-none mr-auto" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
         aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"><i
             class="fa-solid fa-list-ul"></i></button>
-    <div id="div-mobile">
+    <div id="div-mobile" class="mr-4 mr-lg-1">
         @if(Auth::guard('user')->check())
 
         <span class="badge badge-notify">{{Auth::guard('user')->user()->unreadNotifications ->count()}}</span>
@@ -193,7 +192,7 @@
             <li class="nav-item ml-3"> <a class="nav-link btn-second" href="{{url('login')}}" title="المجلات">دخول</a>
             </li>
             @endif
-            <li class="nav-item"> <button title="بحث" class="nav-link btn-search"><i
+            <li class="nav-item" style="padding: 0 0px 0 15px;"> <button title="بحث" class="nav-link btn-search"><i
                         class="fa-solid fa-magnifying-glass"></i></button> </li>
         </ul>
     </div>
@@ -273,7 +272,10 @@
           <div
             class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
             style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
-            <p class="mb-0 fw-bold">Live chat</p>
+            <div class="d-flex flex-column">
+                <p class="mb-0 fw-bold mb-2">مؤسسة الشرق الأوسط للنشر العلمي</p>
+                <p class="mb-0" style="font-size: 12px;color: #eaea00;font-weight: 400;">عادة ما يتم الرد في غضون خمس دقائق</p>
+            </div> 
             <button type="button" id="close-chat" class="text-white">
                 <i class="fas fa-times"></i>
             </button>

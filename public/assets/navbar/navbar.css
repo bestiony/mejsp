@@ -108,10 +108,23 @@
   z-index: 9999999;
   top: 0;
   right: 0;
-  background-color: #fff;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
+  background: #FFFFFF;
+}
+
+#navbar .sidenav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: url("./world-map-png-35418.png");
+  background-repeat: no-repeat;
+  opacity: .25;
+  background-size: cover;
 }
 
 #navbar .sidenav .row {
@@ -250,6 +263,28 @@
 
 @media (max-width:575px) {
 
+  #navbar {
+    margin-top: 0;
+  }
+
+  #navbar .header {
+    display: none;
+  }
+
+  #navbar .mySidebarButton {
+    top: 15px;
+  }
+
+  .chat.card {
+    width: 100%;
+    right: 0;
+  }
+
+  .chat.card .card-body {
+    height: 350px;
+  }
+
+  /* 
   #navbar .header a,
   #navbar .header select {
     font-size: 12px;
@@ -257,5 +292,5 @@
 
   #navbar .header .d-flex.mr-5 {
     display: none !important;
-  }
+  } */
 }

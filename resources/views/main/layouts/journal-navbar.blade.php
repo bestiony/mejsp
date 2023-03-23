@@ -1,21 +1,22 @@
 <nav dir="rtl" id="navbar" class="navbar navbar-expand-sm navbar-light fixed-top">
     <div class="header w-100 fixed-top">
-        <a href="#">المدونة</a>
-        <a href="#">اتصل بنا</a>
-        <a href="#">من نحن</a>
-        <a href="#">شروط الاستخدام</a>
-        <select name="languages" id="languages">
-            <option value="ar">العربية</option>
-            <option value="en">english</option>
-        </select>
-        <a href="#">
-            <span>(671) 555-0110</span>
-            <i class="fa-solid fa-mobile"></i>
-        </a>
-        <a href="#">
-            <span>youremail@gmail.com</span>
-            <i class="fa-solid fa-envelope-open-text"></i>
-        </a>
+        <div class="d-flex align-items-center mb-2">
+            <a href="#">المدونة</a>
+            <a href="#">اتصل بنا</a>
+            <a href="#">من نحن</a>
+            <a href="#">شروط الاستخدام</a>
+        </div>
+        
+        <div class="d-flex mr-5">
+            <a href="#" >
+                <span>(671) 555-0110</span>
+                <i class="fa-solid fa-mobile"></i>
+            </a>
+            <a href="#" >
+                <span>youremail@gmail.com</span>
+                <i class="fa-solid fa-envelope-open-text"></i>
+            </a>
+        </div>
     </div>
 
     <div id="mySidenav" class="sidenav">
@@ -65,12 +66,12 @@
 
 
      <a class="navbar-brand navbar-brand" href="{{url('journal/' . $row->slug)}}">
-        @if (checkFile('assets/uploads/journals/' . $row->logo)) <img height="37px" width="119px"
-				src="{{asset('assets/uploads/journals/' . $row->logo)}}"> @else <img width="120" height="37"
+        @if (checkFile('assets/uploads/journals/' . $row->logo)) <img width="120" height="40"
+				src="{{asset('assets/uploads/journals/' . $row->logo)}}"> @else <img width="120" height="40"
 				src="{{asset('assets/images/404-icon.png')}}"> @endif 
          </a> 
      <button class="navbar-toggler d-lg-none mr-auto" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"><i class="fa-solid fa-list-ul"></i></button>
-        <div id="div-mobile">
+        <div id="div-mobile" class="mr-4 mr-lg-1">
             @if(Auth::guard('user')->check())
 
             <span class="badge badge-notify badge-notify-journal">{{Auth::guard('user')->user()->unreadNotifications ->count()}}</span>
