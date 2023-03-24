@@ -26,7 +26,7 @@ class SupportChatController extends Controller
                 // 'document'=>$file_name?? NULL
             ]);
     
-            event(new SendMessage($request->message,$admin->id,$file_name??NULL));
+            // event(new SendMessage($request->message,$admin->id,$file_name??NULL));
         }
 
         if(isset($file_name)){
@@ -37,7 +37,6 @@ class SupportChatController extends Controller
                 'sender'=>'user',
                 'document'=>$file_name?? NULL
             ]); 
-            event(new SendMessage($request->message,$admin->id,$file_name??NULL));
 
         }
     
@@ -60,6 +59,8 @@ class SupportChatController extends Controller
             'subject'=>'التواصل مع مستخدم',
             'id'=>$mesage->id ?? $file_mesage->id,
         ];
+        event(new SendMessage($request->message,$admin->id,$file_name??NULL));
+
         // Mail::to($admin->email)->send(new EmailSupportChat($info));
         return response()->json(['resonse_file_name'=>$file_mesage->document?? NULL]);
     }
@@ -77,7 +78,7 @@ class SupportChatController extends Controller
                 'sender'=>'admin',
                 // 'document'=>$file_name?? NULL
             ]);
-            event(new SendMessage($request->message,$request->email,$file_name??NULL));
+            // event(new SendMessage($request->message,$request->email,$file_name??NULL));
         }
         if(isset($file_name)){
             $file_mesage= SupportChat::create([
@@ -87,7 +88,6 @@ class SupportChatController extends Controller
                 'sender'=>'admin',
                 'document'=>$file_name?? NULL
             ]);
-            event(new SendMessage($request->message,$request->email,$file_name??NULL));
         }
         $info = [
             'mail_title' => 'يحاول الدعم التوصل معك',
@@ -108,6 +108,8 @@ class SupportChatController extends Controller
             'subject'=>'التواصل مع مستخدم',
             'id'=>$mesage->id ?? $file_mesage->id,
         ];
+        event(new SendMessage($request->message,$request->email,$file_name??NULL));
+
         // Mail::to($request->email)->send(new EmailSupportChat($info));
          return response()->json(['resonse_file_name'=>$file_mesage->document?? NULL]);
     }
