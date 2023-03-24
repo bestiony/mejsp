@@ -20,7 +20,7 @@
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="row pt-5">
+        <div class="row pt-3">
             <div class="col-12">
                 <div class="img-container">
                     <img src="{{asset('assets/images/logo.png')}}" alt="">
