@@ -1,7 +1,6 @@
 <nav dir="rtl" id="navbar" class="navbar navbar-expand-sm navbar-light fixed-top">
     <div class="header w-100 fixed-top justify-content-between">
         <div class="d-flex align-items-center mb-2">
-            <a href="#">المدونة</a>
             <a href="#">اتصل بنا</a>
             <a href="#">من نحن</a>
             <a href="#">شروط الاستخدام</a>
@@ -30,13 +29,10 @@
                 <i class="fa-solid fa-house"></i>
                 <span>.header</span>
             </a>
-            <a href="#" class="col-4">
-                <i class="fa-solid fa-users"></i>
-                <span>المدربين</span>
-            </a>
+
             <a href="#" class="col-4"> 
                 <i class="fa-solid fa-book-open"></i>
-                <span>النشر الدولي</span>
+                <span>SCOPUS</span>
             </a>
             <a href="#" class="col-4">
                 <i class="fa-solid fa-paper-plane"></i>
@@ -226,7 +222,7 @@
                             <span>{!! $notification->data['body'] !!}</span>
                             @if ($notification->data['type'] != 'email_confirmation' )
                             <a href="/u/researches/all" class="small">
-                                الاطلاع على حاله طلبك
+                                الاطلاع على حالة طلبك
                             </a>
                             @else
                             <a href="{{route('submit_new_study')}}" class="small">
