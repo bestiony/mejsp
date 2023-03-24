@@ -61,7 +61,7 @@ class SupportChatController extends Controller
         ];
         event(new SendMessage($request->message,$admin->id,$file_name??NULL));
 
-        // Mail::to($admin->email)->send(new EmailSupportChat($info));
+        Mail::to($admin->email)->send(new EmailSupportChat($info));
         return response()->json(['resonse_file_name'=>$file_mesage->document?? NULL]);
     }
 
@@ -110,7 +110,7 @@ class SupportChatController extends Controller
         ];
         event(new SendMessage($request->message,$request->email,$file_name??NULL));
 
-        // Mail::to($request->email)->send(new EmailSupportChat($info));
+        Mail::to($request->email)->send(new EmailSupportChat($info));
          return response()->json(['resonse_file_name'=>$file_mesage->document?? NULL]);
     }
 
