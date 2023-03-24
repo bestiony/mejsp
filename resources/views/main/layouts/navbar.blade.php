@@ -1,3 +1,43 @@
+<style>
+    #div-desktop {
+        display: none;
+    }
+
+    @media screen and (min-width: 500px) {
+        #div-mobile {
+            display: none;
+        }
+
+        #div-desktop {
+            display: block;
+        }
+    }
+
+    .badge-notify {
+        background: red;
+        /* position: absolute;
+            top: 18px;
+            left: 77px; */
+        margin-right: 1%;
+        border-radius: 50%;
+        color: white;
+
+    }
+
+    .dropdown-menu {
+        max-width: 25rem !important;
+        line-height: 24px;
+        text-align: right;
+        margin-left: 2rem;
+        border-bottom: 3px solid darkred;
+    }
+
+    .dropdown-item {
+        width: 100% !important;
+        white-space: normal !important;
+        display: inherit !important;
+    }
+</style>
 <nav dir="rtl" id="navbar" class="navbar navbar-expand-sm navbar-light fixed-top">
     <div class="header w-100 fixed-top justify-content-between">
         <div class="d-flex align-items-center mb-2">
@@ -116,84 +156,50 @@
         @endif
     </div>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            
-            @if($front_sections['blog'] == 1) <li class="nav-item"> <a class="nav-link" href="{{url('blog')}}"
-                    title="المدونة">المدونة</a> </li>@endif
-            @if($front_sections['blog_en'] == 1) <li class="nav-item"> <a class="nav-link" href="{{url('en/blog')}}"
-                    title="Blog">Blog</a> </li>@endif
-            @if($front_sections['journals'] == 1)
-            <li class="nav-item @if($front_sections['journals'] != 1) d-none @endif"> <a class="nav-link "
-                    href="{{url('journals')}}" title="المجلات">المجلات</a> </li>
-            @endif
-            @if($front_sections['international_conference'] == 1)
-            <li class="nav-item @if($front_sections['international_conference'] != 1) d-none @endif"> <a
-                    class="nav-link btn-second" href="{{userUrl('conference/create')}}"
-                    title="طلب الانضمام لمؤتمر دولي">طلب الانضمام لمؤتمر دولي</a> </li>
-            @endif
-            @if($front_sections['international_publishing'] == 1)
-            <li class="nav-item @if($front_sections['international_publishing'] != 1) d-none @endif"> <a
-                    class="nav-link btn-second" href="{{userUrl('international-publishing/create')}}"
-                    title="النشر الدولي">النشر الدولي</a> </li>
-            @endif
-            @if($front_sections['add_research'] == 1)
-            <li class="nav-item">
-                <a class="nav-link btn-second @if($front_sections['add_research'] != 1) d-none @endif"
-                    href="{{userUrl('researches')}}" title="تقديم دراسة">تقديم دراسة</a>
-            </li>
-            @endif
-
-
-            <style>
-                #div-desktop {
-                    display: none;
-                }
-
-                @media screen and (min-width: 500px) {
-                    #div-mobile {
-                        display: none;
-                    }
-
-                    #div-desktop {
-                        display: block;
-                    }
-                }
-
-                .badge-notify {
-                    background: red;
-                    /* position: absolute;
-                        top: 18px;
-                        left: 77px; */
-                    margin-right: 1%;
-                    border-radius: 50%;
-                    color: white;
-
-                }
-
-                .dropdown-menu {
-                    max-width: 25rem !important;
-                    line-height: 24px;
-                    text-align: right;
-                    margin-left: 2rem;
-                    border-bottom: 3px solid darkred;
-                }
-
-                .dropdown-item {
-                    width: 100% !important;
-                    white-space: normal !important;
-                    display: inherit !important;
-                }
-            </style>
-            @if (Auth::guard('user')->check())
-            <li class="nav-item ml-3">
-                <a class="nav-link btn-second" href="{{userUrl('dashboard')}}">لوحه التحكم</a>
-            </li>
-            @else
-            <li class="nav-item ml-3"> <a class="nav-link btn-second" href="{{url('login')}}" title="المجلات">دخول</a>
-            </li>
-            @endif
-            <li class="nav-item" style="padding: 0 0px 0 15px;"> <button title="بحث" class="nav-link btn-search"><i
+        <ul class="navbar-nav ml-lg-auto mt-2 mt-lg-0">
+            <div class="flex-large">
+                @if($front_sections['blog'] == 1) <li class="nav-item"> <a class="nav-link" href="{{url('blog')}}"
+                        title="المدونة">المدونة</a> </li>@endif
+                @if($front_sections['blog_en'] == 1) <li class="nav-item"> <a class="nav-link" href="{{url('en/blog')}}"
+                        title="Blog">Blog</a> </li>@endif
+                @if($front_sections['journals'] == 1)
+                <li class="nav-item @if($front_sections['journals'] != 1) d-none @endif"> <a class="nav-link "
+                        href="{{url('journals')}}" title="المجلات">المجلات</a> </li>
+                        @endif
+                <li class="nav-item" style="padding: 0 0px 0 15px;"> <button title="بحث" class="nav-link btn-search"><i
                         class="fa-solid fa-magnifying-glass"></i></button> </li>
+            </div>
+
+
+            
+            <div class="flex-large align-items-center ml-1">
+                @if($front_sections['international_conference'] == 1)
+                <li class="nav-item @if($front_sections['international_conference'] != 1) d-none @endif"> <a
+                        class="nav-link btn-second" href="{{userUrl('conference/create')}}"
+                        title="طلب الانضمام لمؤتمر دولي">طلب الانضمام لمؤتمر دولي</a> </li>
+                @endif
+                @if($front_sections['international_publishing'] == 1)
+                <li class="nav-item @if($front_sections['international_publishing'] != 1) d-none @endif"> <a
+                        class="nav-link btn-second" href="{{userUrl('international-publishing/create')}}"
+                        title="النشر الدولي">النشر الدولي</a> </li>
+                @endif
+
+
+                @if($front_sections['add_research'] == 1)
+                <li class="nav-item">
+                    <a class="nav-link btn-second @if($front_sections['add_research'] != 1) d-none @endif"
+                        href="{{userUrl('researches')}}" title="تقديم دراسة">تقديم دراسة</a>
+                </li>
+                @endif
+                @if (Auth::guard('user')->check())
+                <li class="nav-item ml-lg-4">
+                    <a class="nav-link btn-second" href="{{userUrl('dashboard')}}">لوحه التحكم</a>
+                </li>
+                @else
+                <li class="nav-item ml-lg-4"> <a class="nav-link btn-second" href="{{url('login')}}" title="المجلات">دخول</a>
+                </li>
+                @endif
+            </div>
         </ul>
     </div>
     <div id="div-desktop">
