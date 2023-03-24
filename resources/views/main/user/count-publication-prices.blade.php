@@ -1,7 +1,7 @@
 @php
 $removeSpinner='';
 @endphp
-@extends('main.layouts.master') @section('title', 'حساب رسوم النشر') @section('content') <section id="section" class="py-5">
+@extends('main.layouts.master') @section('title', 'حساب رسوم النشر') @section('content') <section id="section" class="py-5 mt-5">
     <div class="container">
         <div class="row">
             <div class="col-12 mb-4">
