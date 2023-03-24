@@ -89,13 +89,14 @@ class SupportChatController extends Controller
                 'document'=>$file_name?? NULL
             ]);
         }
+        $latest_message=SupportChat::where('sender','user')->where('user_email',$request->email)->orderBy('id','desc')->first();
         $info = [
-            'mail_title' => 'يحاول الدعم التوصل معك',
+            'mail_title' => 'تم الرد على استفسارك المرسل لمؤسسة الشرق الأوسط للنشر العلمي',
             'mail_details1' => ': نص الرسالة هو',
             'status'=>5,
             'mail_details2' => $request->message ?? 'ملف مرفق',
-            'mail_details3' => '',
-            'mail_details4' => '',
+            'mail_details3' => ' : ردا علي ',
+            'mail_details4' => $latest_message->message ??  'ملف مرفق',
             'mail_details6'=>'',
             'mail_details7'=>'',
             'mail_details8'=>'',
@@ -105,7 +106,7 @@ class SupportChatController extends Controller
             'journal' => '',
             'username' => '',
             'email' =>auth('admin')->user()->email,
-            'subject'=>'التواصل مع مستخدم',
+            'subject'=>'رد على استفسار',
             'id'=>$mesage->id ?? $file_mesage->id,
         ];
         event(new SendMessage($request->message,$request->email,$file_name??NULL));
