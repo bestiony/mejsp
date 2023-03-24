@@ -23,7 +23,7 @@
         <div class="row pt-5">
             <div class="col-12">
                 <div class="img-container">
-                    <img src="{{asset('assets/images/logo-1.png')}}" alt="">
+                    <img src="{{asset('assets/images/logo.png')}}" alt="">
                 </div>
             </div>
             <a href="#" class="col-4">
