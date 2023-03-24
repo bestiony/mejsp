@@ -1,7 +1,6 @@
 <nav dir="rtl" id="navbar" class="navbar navbar-expand-sm navbar-light fixed-top">
     <div class="header w-100 fixed-top justify-content-between">
         <div class="d-flex align-items-center mb-2">
-            <a href="#">المدونة</a>
             <a href="#">اتصل بنا</a>
             <a href="#">من نحن</a>
             <a href="#">شروط الاستخدام</a>
@@ -31,13 +30,9 @@
                 <i class="fa-solid fa-house"></i>
                 <span>.header</span>
             </a>
-            <a href="#" class="col-4">
-                <i class="fa-solid fa-users"></i>
-                <span>المدربين</span>
-            </a>
             <a href="#" class="col-4"> 
                 <i class="fa-solid fa-book-open"></i>
-                <span>النشر الدولي</span>
+                <span>SCOPUS</span>
             </a>
             <a href="#" class="col-4">
                 <i class="fa-solid fa-paper-plane"></i>
@@ -140,11 +135,11 @@
 						الدولية</a> </li>
 				<li class="nav-item"> <a class="nav-link" href="{{url('services')}}" title="الخدمات">الخدمات</a> </li>
 				<li class="nav-item @if($front_sections['journals'] != 1) d-none @endif""> <a class="nav-link" href="{{url('journals')}}" title="المجلات">المجلات</a> </li>
-				<li class="nav-item"> <a class="nav-link" href="{{url('')}}" title="الرئيسية">{{env('APP_NAME')}}.com <i
-							class="fa-solid fa-house-chimney"></i></a> </li>
+				{{--<li class="nav-item"> <a class="nav-link" href="{{url('')}}" title="الرئيسية">{{env('APP_NAME')}}.com <i
+							class="fa-solid fa-house-chimney"></i></a> </li>--}}
 				<li class="nav-item"> <a class="nav-link btn-second" href="{{userUrl('researches')}}"
-						title="قم بإرسال بحثك">
-						قم بإرسال بحثك</a> </li>
+						title="تقديم دراسة">
+						 تقديم دراسة </a> </li>
 
                 <style>
                     #div-desktop {
@@ -221,7 +216,7 @@
                         <div>
                             <span>{!! $notification->data['body'] !!}</span>
                             <a href="/u/researches/all" class="small">
-                                  الاطلاع على حاله طلبك
+                                  الاطلاع على حالة طلبك
                               </a>
                         </div>
                     </div>
