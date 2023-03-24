@@ -1,5 +1,5 @@
 <nav dir="rtl" id="navbar" class="navbar navbar-expand-sm navbar-light fixed-top">
-    <div class="header w-100 fixed-top">
+    <div class="header w-100 fixed-top justify-content-between">
         <div class="d-flex align-items-center mb-2">
             <a href="#">المدونة</a>
             <a href="#">اتصل بنا</a>
@@ -23,7 +23,7 @@
         <div class="row pt-5">
             <div class="col-12">
                 <div class="img-container">
-                    <img src="{{asset('assets/images/logo.png')}}" alt="">
+                    <img src="{{asset('assets/images/logo-1.png')}}" alt="">
                 </div>
             </div>
             <a href="#" class="col-4">

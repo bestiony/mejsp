@@ -1,7 +1,7 @@
 @extends('main.layouts.master')
 @section('title', 'لوحة التحكم')
 @section('content')
-    <section id="section" class="py-5">
+    <section id="section" class="py-5 mt-5">
         <div class="container">
             <div class="row">
 

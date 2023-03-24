@@ -1,5 +1,5 @@
 <nav dir="rtl" id="navbar" class="navbar navbar-expand-sm navbar-light fixed-top">
-    <div class="header w-100 fixed-top">
+    <div class="header w-100 fixed-top justify-content-between">
         <div class="d-flex align-items-center mb-2">
             <a href="#">المدونة</a>
             <a href="#">اتصل بنا</a>
@@ -142,7 +142,7 @@
 				<li class="nav-item @if($front_sections['journals'] != 1) d-none @endif""> <a class="nav-link" href="{{url('journals')}}" title="المجلات">المجلات</a> </li>
 				<li class="nav-item"> <a class="nav-link" href="{{url('')}}" title="الرئيسية">{{env('APP_NAME')}}.com <i
 							class="fa-solid fa-house-chimney"></i></a> </li>
-				<li class="nav-item"> <a class="nav-link btn-main ml-2" href="{{userUrl('researches')}}"
+				<li class="nav-item"> <a class="nav-link btn-second" href="{{userUrl('researches')}}"
 						title="قم بإرسال بحثك">
 						قم بإرسال بحثك</a> </li>
 
@@ -187,10 +187,10 @@
                     }
                 </style>
                 @if (Auth::guard('user')->check())
-                <li class="nav-item ml-3"> 
-                <a class="nav-link btn-main" href="{{userUrl('dashboard')}}">لوحه التحكم</a> </li>
+                <li class="nav-item ml-4"> 
+                <a class="nav-link btn-second" href="{{userUrl('dashboard')}}">لوحه التحكم</a> </li>
                 @else
-                <li class="nav-item ml-3"> <a class="nav-link btn-main" href="{{url('login')}}" title="المجلات">دخول</a> </li>
+                <li class="nav-item ml-4"> <a class="nav-link btn-second" href="{{url('login')}}" title="المجلات">دخول</a> </li>
                 @endif
             </ul>
         </div>
