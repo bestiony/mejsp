@@ -26,34 +26,38 @@
                     <img src="{{asset('assets/images/logo.png')}}" alt="">
                 </div>
             </div>
-            <a href="#" class="col-4">
+            <a href="https://journals.mejsp.com/?lang=ar" class="col-4">
                 <i class="fa-solid fa-house"></i>
-                <span>.header</span>
+                <span>الرئيسية</span>
             </a>
             <a href="#" class="col-4"> 
                 <i class="fa-solid fa-book-open"></i>
                 <span>SCOPUS</span>
             </a>
-            <a href="#" class="col-4">
+            <a href="#" class="col-4"> 
+                <i class="fa-solid fa-book-open"></i>
+                <span>المجلات</span>
+            </a>
+            {{--<a href="#" class="col-4">
                 <i class="fa-solid fa-paper-plane"></i>
                 <span>اتصل بنا</span>
-            </a>
+            </a>--}}
             <div class="col-12 d-flex align-items-center justify-content-center gap-2 icons">
                 <a href="#">
                     <i class="fa-brands fa-facebook-f"></i>
                 </a>
-                <a href="#">
+                {{--<a href="#">
                     <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="#">
+                </a>--}}
+                <a href="#"
                     <i class="fa-brands fa-twitter"></i>
                 </a>
-                <a href="#">
+                {{--<a href="#">
                     <i class="fa-brands fa-youtube"></i>
-                </a>
+                </a>--}}
             </div>
             <div class="col-12">
-                <p class=" text-gray text-center">&copy; {{date('Y')}} Mejsp.com جميع الحقوق محفوظة</p>
+                <p class=" text-gray text-center">جميع الحقوق محفوظة  {{date('Y')}} Mejsp.com&copy;</p>
             </div>
         </div>
     </div>
@@ -115,27 +119,30 @@
                     <li class="nav-item"> <button title="بحث" class="nav-link btn-search"><i class="fa-solid fa-magnifying-glass"></i></button> </li>
                     <li class="nav-item"> <a class="nav-link {{activeSingleLink('versions')}}"
                             href="{{url('versions/' . $row->slug)}}" title="الإصدارات">الإصدارات</a> </li>
+                    <li class="nav-item"> <a class="nav-link {{activeSingleLink('authors-instructions')}}"
+                            href="{{url('authors-instructions/' . $row->slug)}}" title="شروط النشر">شروط النشر</a> </li>                            
                     <li class="nav-item"> <a class="nav-link {{activeSingleLink('team')}}"
-                            href="{{url('team/' . $row->slug)}}" title="فريق التحرير">فريق التحرير</a> </li>
+                            href="{{url('team/' . $row->slug)}}" title="لجنة التحكيم "> لجنة التحكيم</a> </li>
                     <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="dropdownId"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">التعليمات</a>
-                        <div class="dropdown-menu text-right" aria-labelledby="dropdownId"> <a title="تعليمات للمراجعين "
+                        <div class="dropdown-menu text-right" aria-labelledby="dropdownId"> <a title="تعليمات للمحكمين "
                                 class="dropdown-item {{activeSingleLink('reviewers-instructions')}}"
-                                href="{{url('reviewers-instructions/' . $row->slug)}}">تعليمات للمراجعين</a> <a
-                                title="تعليمات المؤلفين " class="dropdown-item {{activeSingleLink('authors-instructions')}}"
-                                href="{{url('authors-instructions/' . $row->slug)}}">تعليمات المؤلفين</a> <a
+                                href="{{url('reviewers-instructions/' . $row->slug)}}">تعليمات للمحكمين</a> <a
+                                title="شروط النشر  " class="dropdown-item {{activeSingleLink('authors-instructions')}}"
+                                href="{{url('authors-instructions/' . $row->slug)}}">شروط النشر</a> <a
                                 class="dropdown-item {{activeSingleLink('publication-ethics')}}"
-                                href="{{url('publication-ethics/' . $row->slug)}}">شروط وأخلاقيات النشر</a> <a
+                                href="{{url('publication-ethics/' . $row->slug)}}">أخلاقيات النشر</a> <a
                                 class="dropdown-item {{activeSingleLink('how-to-submit-the-article')}}"
                                 href="{{url('how-to-submit-the-article/' . $row->slug)}}">كيفية تقديم المقال</a> <a
                                 class="dropdown-item {{activeSingleLink('publication-price')}}"
                                 href="{{url('publication-price/' . $row->slug)}}">رسوم النشر</a> </div>
                     </li>
                     <li class="nav-item"> <a class="nav-link {{activeSingleLink('international-credits')}}"
-                            href="{{url('international-credits/' . $row->slug)}}" title="تعليمات للمراجعين ">الاعتمادات
+                            href="{{url('international-credits/' . $row->slug)}}" title="تعليمات للمحكمين ">التصنيف الدولي
                             الدولية</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="{{url('services')}}" title="الخدمات">الخدمات</a> </li>
-                    <li class="nav-item @if($front_sections['journals'] != 1) d-none @endif""> <a class="nav-link" href="{{url('journals')}}" title="المجلات">المجلات</a> </li>
+
+                    {{--<li class="nav-item @if($front_sections['journals'] != 1) d-none @endif""> <a class="nav-link" href="{{url('journals')}}" title="المجلات">المجلات</a> </li>--}}
                     {{-- <li class="nav-item"> <a class="nav-link" href="{{url('')}}" title="الرئيسية">{{env('APP_NAME')}}.com <i
                                 class="fa-solid fa-house-chimney"></i></a> </li> --}}
                 </div>
@@ -183,8 +190,8 @@
                 </style>
                 <div class="flex-large ml-1">
                     <li class="nav-item"> <a class="nav-link btn-second" href="{{userUrl('researches')}}"
-                            title="قم بإرسال بحثك">
-                            قم بإرسال بحثك</a> </li>
+                            title="تقديم دراسة  ">
+                             تقديم دراسة </a> </li>
                     @if (Auth::guard('user')->check())
                     <li class="nav-item ml-lg-4"> 
                     <a class="nav-link btn-second" href="{{userUrl('dashboard')}}">لوحه التحكم</a> </li>
