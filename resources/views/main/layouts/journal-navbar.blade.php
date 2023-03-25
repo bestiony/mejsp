@@ -1,19 +1,18 @@
 <nav dir="rtl" id="navbar" class="navbar navbar-expand-sm navbar-light fixed-top">
     <div class="header w-100 fixed-top justify-content-between">
-        <div class="d-flex align-items-center mb-2">
-            <a href="#">المدونة</a>
-            <a href="#">اتصل بنا</a>
+        <div class="d-flex align-items-center mr-5">
+            <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp اتصل بنا</a>
             <a href="#">من نحن</a>
             <a href="#">شروط الاستخدام</a>
         </div>
         
         <div class="d-flex mr-5">
             <a href="#" >
-                <span>(671) 555-0110</span>
+                <span>00201141620172</span>
                 <i class="fa-solid fa-mobile"></i>
             </a>
             <a href="#" >
-                <span>youremail@gmail.com</span>
+                <span>info@mejsp.com</span>
                 <i class="fa-solid fa-envelope-open-text"></i>
             </a>
         </div>
@@ -27,17 +26,14 @@
                     <img src="{{asset('assets/images/logo.png')}}" alt="">
                 </div>
             </div>
-            <a href="#" class="col-4">
-                <i class="fa-solid fa-house"></i>
-                <span>.header</span>
-            </a>
+
             <a href="#" class="col-4">
                 <i class="fa-solid fa-users"></i>
-                <span>المدربين</span>
+                <span> المحكمين</span>
             </a>
             <a href="#" class="col-4"> 
                 <i class="fa-solid fa-book-open"></i>
-                <span>النشر الدولي</span>
+                <span> SCOPUS</span>
             </a>
             <a href="#" class="col-4">
                 <i class="fa-solid fa-paper-plane"></i>
@@ -58,7 +54,7 @@
                 </a>
             </div>
             <div class="col-12">
-                <p class=" text-gray text-center">&copy; {{date('Y')}} Mejsp.com جميع الحقوق محفوظة</p>
+                <p class=" text-gray text-center">  جميع الحقوق محفوظة&copy; {{date('Y')}} Mejsp.com</p>
             </div>
         </div>
     </div>
@@ -115,8 +111,8 @@
             @endif
         </div>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item"> <button title="بحث" class="nav-link btn-search"><i class="fa-solid fa-magnifying-glass"></i></button> </li>
+            <ul class="navbar-nav mr-5 mt-2 mt-lg-0">
+                <li class="nav-item"> <button title="بحث" class="nav-link btn-search">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp<i class="fa-solid fa-magnifying-glass"></i></button> </li>
 				<li class="nav-item"> <a class="nav-link {{activeSingleLink('versions')}}"
 						href="{{url('versions/' . $row->slug)}}" title="الإصدارات">الإصدارات</a> </li>
 				<li class="nav-item"> <a class="nav-link {{activeSingleLink('team')}}"
@@ -139,9 +135,9 @@
 						href="{{url('international-credits/' . $row->slug)}}" title="تعليمات للمراجعين ">الاعتمادات
 						الدولية</a> </li>
 				<li class="nav-item"> <a class="nav-link" href="{{url('services')}}" title="الخدمات">الخدمات</a> </li>
-				<li class="nav-item @if($front_sections['journals'] != 1) d-none @endif""> <a class="nav-link" href="{{url('journals')}}" title="المجلات">المجلات</a> </li>
-				<li class="nav-item"> <a class="nav-link" href="{{url('')}}" title="الرئيسية">{{env('APP_NAME')}}.com <i
-							class="fa-solid fa-house-chimney"></i></a> </li>
+				<li class="nav-item @if($front_sections['journals'] != 1) d-none @endif""> <a class="nav-link" href="{{url('journals')}}" title="المجلات">المجلات &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> </li>
+				{{--<li class="nav-item"> <a class="nav-link" href="{{url('')}}" title="الرئيسية">{{env('APP_NAME')}}.com <i
+							class="fa-solid fa-house-chimney"></i></a> </li>--}}
 				<li class="nav-item"> <a class="nav-link btn-second" href="{{userUrl('researches')}}"
 						title="قم بإرسال بحثك">
 						قم بإرسال بحثك</a> </li>
