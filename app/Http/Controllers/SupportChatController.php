@@ -8,7 +8,7 @@ use App\Events\SendMessage;
 use App\Models\Admin\Admins;
 use App\Mail\EmailSupportChat;
 use Illuminate\Support\Facades\Mail;
-
+use DB;
 class SupportChatController extends Controller
 {
     public function userSendMessage(Request $request)
@@ -122,4 +122,18 @@ class SupportChatController extends Controller
         return $file_name;
          
     }
+
+    public function SupportChat()
+    {
+        $emails=SupportChat::select('user_email')->groupBy('user_email')->get();
+        return view("admin.users.chat-emails",compact('emails'));
+    }
+
+    public function OpenChat($email){
+       $id= SupportChat::where('user_email',$email)->select('id')->first();
+       return redirect()->route('ViewSupportChat',$id);
+    }
+
+    
+
 }

@@ -268,6 +268,16 @@
                 ];
             @endphp
             <x-aside :details="$users" />
+
+            @php
+            $users = [
+                'name' => 'رسائل التواصل معنا',
+                'icon' => '<i class="fa-solid fa-users"></i>',
+                'link' => 'users/supportchat',
+            ];
+        @endphp
+        <x-aside :details="$users" />
+
             <!-- End Users -->
             @php
                 $users = [
