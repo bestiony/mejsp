@@ -869,7 +869,7 @@ public  function admin_create_research(){
 
     public function subscribers()
     {
-        $subscribers=Subscribers::get();
+        $subscribers=Subscribers::orderBy('id','desc')->get();
         return view("admin.users.subscribers", compact("subscribers"));
     }
 

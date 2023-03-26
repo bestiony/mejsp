@@ -14,6 +14,23 @@
   padding: 0 30px;
 }
 
+@media(min-width:1024px) {
+  #navbar .header .d-flex.align-items-center {
+    margin-right: 180px;
+  }
+
+  .flex-large {
+    display: flex;
+  }
+
+  #navbar .navbar-nav {
+    margin-right: 75px;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+}
+
 #navbar .header a,
 #navbar .header select {
   background-color: transparent;
@@ -258,6 +275,7 @@
 @media (max-width:992px) {
   #navbar .header {
     height: 75px;
+    font-size: 14px;
   }
 
   #navbar {

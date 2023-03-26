@@ -1,17 +1,57 @@
+<style>
+    #div-desktop {
+        display: none;
+    }
+
+    @media screen and (min-width: 500px) {
+        #div-mobile {
+            display: none;
+        }
+
+        #div-desktop {
+            display: block;
+        }
+    }
+
+    .badge-notify {
+        background: red;
+        /* position: absolute;
+            top: 18px;
+            left: 77px; */
+        margin-right: 1%;
+        border-radius: 50%;
+        color: white;
+
+    }
+
+    .dropdown-menu {
+        max-width: 25rem !important;
+        line-height: 24px;
+        text-align: right;
+        margin-left: 2rem;
+        border-bottom: 3px solid darkred;
+    }
+
+    .dropdown-item {
+        width: 100% !important;
+        white-space: normal !important;
+        display: inherit !important;
+    }
+</style>
 <nav dir="rtl" id="navbar" class="navbar navbar-expand-sm navbar-light fixed-top">
     <div class="header w-100 fixed-top justify-content-between">
         <div class="d-flex align-items-center mb-2">
-            <a href="#">المدونة</a>
             <a href="#">اتصل بنا</a>
             <a href="#">من نحن</a>
             <a href="#">شروط الاستخدام</a>
+            <a href="https://journals.mejsp.com/faqs">الأسئلة الشائعة </a>
         </div>
-        <div class="d-flex mr-5 mb-2">
-            <a href="#" >
+        <div class="d-flex mr-5">
+            <a href="https://api.whatsapp.com/send?phone=2{{$provider_setting->phone}}"  >
                 <span>{{ $provider_setting->phone }}</span>
-                <i class="fa-solid fa-mobile"></i>
+                <i class="fa-brands fa-whatsapp"></i>
             </a>
-            <a href="#" >
+            <a href="mailto:{{$provider_setting->mail}}" >
                 <span>{{ $provider_setting->mail }}</span>
                 <i class="fa-solid fa-envelope-open-text"></i>
             </a>
@@ -20,44 +60,36 @@
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="row pt-5">
+        <div class="row pt-3">
             <div class="col-12">
                 <div class="img-container">
                     <img src="{{asset('assets/images/logo.png')}}" alt="">
                 </div>
             </div>
             <a href="#" class="col-4">
-                <i class="fa-solid fa-house"></i>
-                <span>.header</span>
+                <i class="fa-solid fa-user-edit"></i>
+                <span> المحكمين</span>
             </a>
-            <a href="#" class="col-4">
-                <i class="fa-solid fa-users"></i>
-                <span>المدربين</span>
-            </a>
-            <a href="#" class="col-4"> 
-                <i class="fa-solid fa-book-open"></i>
-                <span>النشر الدولي</span>
-            </a>
-            <a href="#" class="col-4">
-                <i class="fa-solid fa-paper-plane"></i>
-                <span>اتصل بنا</span>
+            <a href="https://journals.mejsp.com/u/count-publication-prices" class="col-4">
+                <i class="fa-solid fa-dollar-sign"></i>
+                <span> رسوم النشر</span>
             </a>
             <div class="col-12 d-flex align-items-center justify-content-center gap-2 icons">
                 <a href="#">
                     <i class="fa-brands fa-facebook-f"></i>
                 </a>
-                <a href="#">
-                    <i class="fa-brands fa-instagram"></i>
+                <a href="https://api.whatsapp.com/send?phone=201141620172">
+                    <i class="fa-brands fa-whatsapp"></i>
                 </a>
-                <a href="#">
+                {{--<a href="#">
                     <i class="fa-brands fa-twitter"></i>
-                </a>
-                <a href="#">
+                </a>--}}
+                {{--<a href="#">
                     <i class="fa-brands fa-youtube"></i>
-                </a>
+                </a>--}}
             </div>
             <div class="col-12">
-                <p class=" text-gray text-center">&copy; {{date('Y')}} Mejsp.com جميع الحقوق محفوظة</p>
+                <p class=" text-gray text-center">  جميع الحقوق محفوظة &copy; {{date('Y')}} Mejsp.com</p>
             </div>
         </div>
     </div>
@@ -116,84 +148,58 @@
         @endif
     </div>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            
-            @if($front_sections['blog'] == 1) <li class="nav-item"> <a class="nav-link" href="{{url('blog')}}"
-                    title="المدونة">المدونة</a> </li>@endif
-            @if($front_sections['blog_en'] == 1) <li class="nav-item"> <a class="nav-link" href="{{url('en/blog')}}"
-                    title="Blog">Blog</a> </li>@endif
-            @if($front_sections['journals'] == 1)
-            <li class="nav-item @if($front_sections['journals'] != 1) d-none @endif"> <a class="nav-link "
-                    href="{{url('journals')}}" title="المجلات">المجلات</a> </li>
-            @endif
-            @if($front_sections['international_conference'] == 1)
-            <li class="nav-item @if($front_sections['international_conference'] != 1) d-none @endif"> <a
-                    class="nav-link btn-second" href="{{userUrl('conference/create')}}"
-                    title="طلب الانضمام لمؤتمر دولي">طلب الانضمام لمؤتمر دولي</a> </li>
-            @endif
-            @if($front_sections['international_publishing'] == 1)
-            <li class="nav-item @if($front_sections['international_publishing'] != 1) d-none @endif"> <a
-                    class="nav-link btn-second" href="{{userUrl('international-publishing/create')}}"
-                    title="النشر الدولي">النشر الدولي</a> </li>
-            @endif
-            @if($front_sections['add_research'] == 1)
-            <li class="nav-item">
-                <a class="nav-link btn-second @if($front_sections['add_research'] != 1) d-none @endif"
-                    href="{{userUrl('researches')}}" title="تقديم دراسة">تقديم دراسة</a>
-            </li>
-            @endif
-
-
-            <style>
-                #div-desktop {
-                    display: none;
-                }
-
-                @media screen and (min-width: 500px) {
-                    #div-mobile {
-                        display: none;
-                    }
-
-                    #div-desktop {
-                        display: block;
-                    }
-                }
-
-                .badge-notify {
-                    background: red;
-                    /* position: absolute;
-                        top: 18px;
-                        left: 77px; */
-                    margin-right: 1%;
-                    border-radius: 50%;
-                    color: white;
-
-                }
-
-                .dropdown-menu {
-                    max-width: 25rem !important;
-                    line-height: 24px;
-                    text-align: right;
-                    margin-left: 2rem;
-                    border-bottom: 3px solid darkred;
-                }
-
-                .dropdown-item {
-                    width: 100% !important;
-                    white-space: normal !important;
-                    display: inherit !important;
-                }
-            </style>
-            @if (Auth::guard('user')->check())
-            <li class="nav-item ml-3">
-                <a class="nav-link btn-second" href="{{userUrl('dashboard')}}">لوحه التحكم</a>
-            </li>
-            @else
-            <li class="nav-item ml-3"> <a class="nav-link btn-second" href="{{url('login')}}" title="المجلات">دخول</a>
-            </li>
-            @endif
-            <li class="nav-item" style="padding: 0 0px 0 15px;"> <button title="بحث" class="nav-link btn-search"><i
+        <ul class="navbar-nav ml-lg-auto mt-2 mt-lg-0">
+            <div class="flex-large">
+                @if($front_sections['blog'] == 1) <li class="nav-item"> <a class="nav-link" href="{{url('blog')}}"
+                        title="المدونة">المدونة</a> </li>@endif
+                @if($front_sections['blog_en'] == 1) <li class="nav-item"> <a class="nav-link" href="{{url('en/blog')}}"
+                        title="Blog">Blog</a> </li>@endif
+                @if($front_sections['journals'] == 1)
+                <li class="nav-item @if($front_sections['journals'] != 1) d-none @endif"> <a class="nav-link "
+                        href="{{url('journals')}}" title="المجلات">المجلات</a> </li>
+                        @endif
+                <li class="nav-item"> <a class="nav-link "
+                        href="#" title="المؤتمرات الدولية">المؤتمرات الدولية</a> </li>
+                <li class="nav-item"> <a class="nav-link "
+                        href="{{url('services')}}" title="الخدمات">الخدمات</a> </li>
+                <li class="nav-item" style="padding: 0 0px 0 15px;"> <button title="بحث" class="nav-link btn-search"><i
                         class="fa-solid fa-magnifying-glass"></i></button> </li>
+            </div>
+
+
+            
+            <div class="flex-large align-items-center ml-1">
+                @if($front_sections['international_conference'] == 1)
+                <li class="nav-item @if($front_sections['international_conference'] != 1) d-none @endif"> <a
+                        class="nav-link btn-second" href="{{userUrl('conference/create')}}"
+                        title=" المؤتمرات الدولية  ">   المؤتمرات الدولية</a> </li>
+                @endif
+                @if($front_sections['international_publishing'] == 1)
+                <li class="nav-item @if($front_sections['international_publishing'] != 1) d-none @endif"> <a
+                        class="nav-link btn-second" href="{{userUrl('international-publishing/create')}}"
+                        title="SCOPUS "> SCOPUS</a> </li>
+                @endif
+                @if($front_sections['international_publishing'] == 1)
+                <li class="nav-item @if($front_sections['international_publishing'] != 1) d-none @endif"> <a
+                        class="nav-link btn-second" href="{{userUrl('international-publishing/create')}}"
+                        title=" WOS (ISI)"> WOS (ISI)</a> </li>
+                @endif
+
+                @if($front_sections['add_research'] == 1)
+                <li class="nav-item">
+                    <a class="nav-link btn-second @if($front_sections['add_research'] != 1) d-none @endif"
+                        href="{{userUrl('researches')}}" title="تقديم دراسة">تقديم دراسة</a>
+                </li>
+                @endif
+                @if (Auth::guard('user')->check())
+                <li class="nav-item ml-lg-4">
+                    <a class="nav-link btn-second" href="{{userUrl('dashboard')}}">لوحه التحكم</a>
+                </li>
+                @else
+                <li class="nav-item ml-lg-4"> <a class="nav-link btn-second" href="{{url('login')}}" title="المجلات">دخول</a>
+                </li>
+                @endif
+            </div>
         </ul>
     </div>
     <div id="div-desktop">
@@ -226,7 +232,7 @@
                             <span>{!! $notification->data['body'] !!}</span>
                             @if ($notification->data['type'] != 'email_confirmation' )
                             <a href="/u/researches/all" class="small">
-                                الاطلاع على حاله طلبك
+                                الاطلاع على حالة طلبك
                             </a>
                             @else
                             <a href="{{route('submit_new_study')}}" class="small">
@@ -265,7 +271,7 @@
         </button>
         <div class="chat card" id="chat1" style="border-radius: 15px;">
         <form action="" class="login-form">
-            <label for="email" class="form-label mb-3">من فضلك قم بإدخال البريد الالكتروني اولا</label>
+            <label for="email" class="form-label mb-3">من فضلك قم بإدخال بريدك الإلكتروني </label>
             <input type="email" class="form-control" id="email" placeholder="عنوان البريد الإلكتروني">
             <button id="confirm_email" class="btn my-2 btn-outline-primary"type="submit">تأكيد</button>
         </form>
@@ -274,7 +280,7 @@
             style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
             <div class="d-flex flex-column">
                 <p class="mb-0 fw-bold mb-2">مؤسسة الشرق الأوسط للنشر العلمي</p>
-                <p class="mb-0" style="font-size: 12px;color: #eaea00;font-weight: 400;">عادة ما يتم الرد في غضون خمس دقائق</p>
+                <p class="mb-0" style="font-size: 12px;color: #eaea00;font-weight: 400;">عادةً ما يتم الرد في غضون خمس دقائق</p>
             </div> 
             <button type="button" id="close-chat" class="text-white">
                 <i class="fas fa-times"></i>
@@ -377,8 +383,7 @@
                         <span id="file-name" class="mx-2 font-weight-bold">ملف.ييخؤس</span>
                     </span>
                     <button id="remove-file" onclick="removeCurrentFile()" class="btn btn-danger btn-sm p-1">
-                        X 
-                        حذف
+                        X
                     </button>
                 </div>
                 <div class="progress mx-3" id="upload-progress">

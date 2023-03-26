@@ -153,6 +153,8 @@ Route::prefix(adminPrefix())->group(function () {
         Route::delete('researches/destroy', 'researches_destroy');
         Route::get('support/chat/{message_id}','ViewSupportChat')->name('ViewSupportChat');
         Route::post('adminSendMessage',[SupportChatController::class,'adminSendMessage'])->name('adminSendMessage');
+        Route::get('supportchat',[SupportChatController::class,'SupportChat'])->name('supportchat');
+        Route::get('OpenChat/{email}',[SupportChatController::class,'OpenChat'])->name('OpenChat');
 
       });
     });

@@ -22,7 +22,7 @@
                               
                                 <a href="{{ userUrl('conference/create') }}" class=" text-dark ">
                                     <i class="fa-solid fa-file-circle-plus fa-2x"></i>
-                                    <h6 class=" text-center mt-3 mb-0">طلب الانضمام لمؤتمر دولي</h6>
+                                    <h6 class=" text-center mt-3 mb-0"> المؤتمرات الدولية  </h6>
                                 </a>
                              
                             </div>
@@ -33,7 +33,17 @@
                             <div class="box-white text-center">
                                 <a href="{{ userUrl('international-publishing/create') }}" class=" text-dark">
                                     <i class="fa-solid fa-bullhorn fa-2x"></i>
-                                    <h6 class=" text-center mt-3 mb-0">طلب نشر دولي جديد</h6>
+                                    <h6 class=" text-center mt-3 mb-0">SCOPUS   </h6>
+                                </a>
+                            </div>
+                        </div><!-- Col -->
+                        @endif
+                        @if($front_sections['international_publishing'] == 1) 
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="box-white text-center">
+                                <a href="{{ userUrl('international-publishing/create') }}" class=" text-dark">
+                                    <i class="fa-solid fa-bullhorn fa-2x"></i>
+                                    <h6 class=" text-center mt-3 mb-0">WOS (ISI)   </h6>
                                 </a>
                             </div>
                         </div><!-- Col -->
@@ -44,7 +54,7 @@
                             <div class="box-white text-center">
                                 <a href="{{ userUrl('researches') }}" class=" text-dark">
                                     <i class="fa-solid fa-file-word fa-2x"></i>
-                                    <h6 class=" text-center mt-3 mb-0">ارسال بحثك</h6>
+                                    <h6 class=" text-center mt-3 mb-0">تقديم دراسة </h6>
                                 </a>
                             </div>
                         </div><!-- Col -->
@@ -54,7 +64,7 @@
                             <div class="box-white text-center">
                                 <a href="{{ userUrl('settings') }}" class=" text-dark">
                                     <i class="fa-solid fa-user-gear fa-2x"></i>
-                                    <h6 class=" text-center mt-3 mb-0">الاعدادات</h6>
+                                    <h6 class=" text-center mt-3 mb-0">الإعدادات</h6>
                                 </a>
                             </div>
                         </div><!-- Col -->
@@ -72,7 +82,7 @@
                             <div class="box-white text-center">
                                 <a href="{{ userUrl('researches/all') }}" class=" text-dark">
                                     <i class="fa-solid fa-file-word fa-2x"></i>
-                                    <h6 class=" text-center mt-3 mb-0"> عرض الطلبات</h6>
+                                    <h6 class=" text-center mt-3 mb-0"> طلباتك</h6>
                                 </a>
                             </div>
                         </div><!-- Col -->
