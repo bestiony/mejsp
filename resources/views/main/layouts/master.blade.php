@@ -30,7 +30,8 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/owl_carousel/owl.carousel.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/plugins/owl_carousel/owl.theme.default.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/all.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/plugins/toastr/toastr.min.css') }}" /> @yield('css')
+    <link rel="stylesheet" href="{{ asset('assets/plugins/toastr/toastr.min.css') }}" />
+    @yield('css')
     <style>
         @media(max-width:768px){
             #menu{display: none}
@@ -41,6 +42,8 @@
     @endif
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/global.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/navbar/navbar.css') }}" />
+
     @if (isset($ads))
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8640427261089579"
                 crossorigin="anonymous"></script>
@@ -92,6 +95,308 @@
                 toastr.success("{{ session()->get('deleteMessage') }}");
             </script>
         @endif
+        <script>
+            function openNav() {
+            document.getElementById("mySidenav").style.width = "300px";
+            }
+
+            function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            }
+            $('#chat-toggler').on("click", function () {
+                $(".chat.card").toggleClass("show")
+            });
+            $('#close-chat').on("click", function () {
+                $(".chat.card").removeClass("show")
+            });
+            $(".login-form").on("submit", function (e) {
+                e.preventDefault();
+                $(this).hide();
+            });
+            
+            </script>
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+
+    <script>
+        function validURL(str) {
+                var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+                    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+                    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+                    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+                return !!pattern.test(str);
+        }
+        $(window).on('load', function () {
+            $(".customedClass").each(function () {
+                if(validURL($(this).text())){
+                    $(this).css("color", "blue");
+                    $(this).attr("href", $(this).text());
+                }
+            })
+        })
+        $(document).ready(function(){
+            document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
+        })
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+        $('#confirm_email').on('click',function(){
+            var email=$('#email').val();
+            document.cookie = "chat_email="+email+"";
+            location.reload();
+        });
+        
+        $('#textAreaExample').on('keypress',function(e){
+            
+            var file=$("#upload-research-file")[0].files;
+            if (e.which == 13) {
+                if(text!==''|| !file){
+                var text=$(this).val();
+                var html=`<div class="d-flex flex-row justify-content-start mb-4">
+                            <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                            <p class="small mb-0">${text}</p>
+                            </div>
+                        </div>`
+                var inkerTag= `<div class="d-flex flex-row justify-content-start mb-4">
+                            <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                            <a href="${text}" class="small mb-0">${text}</a>
+                            </div>
+                        </div>`
+                if(text!==''){
+                    validURL(text) ?
+                    $('#CardBody').append(inkerTag):
+                    $('#CardBody').append(html);
+                }
+                
+               
+              
+                $('#textAreaExample').val("");  // <=============================================================================================
+                $("#textAreaExample").attr("disabled","");
+                $("#submit").attr("disabled","");
+                $("#submit svg").removeClass("fa-paper-plane");
+                $("#submit svg").addClass("fa-spinner fa-spin");
+                var formData = new FormData();
+                formData.append('email', getCookie('chat_email'));
+                formData.append('message', text);
+                formData.append('file', file[0]);
+                $.ajax({
+                    "url":"{{ Route('userSendMessage') }}",
+                    "type":"post",
+                    "data":formData,
+                    processData: false,
+                    contentType: false,
+                    success:function(response){
+                        if(file.length>0){
+                            console.log(response);
+                             var resonse_file_name=response.resonse_file_name;
+                            var file_div=`<div class="d-flex flex-row justify-content-start mb-4">
+                                    <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                                        <a download href="{{ asset('email/${resonse_file_name}') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
+                                    </div>
+                                    </div>`;
+                            $('#CardBody').append(file_div);
+                        }
+                        $('#textAreaExample').val('');
+                        $("#textAreaExample").removeAttr("disabled");
+                        $("#submit").removeAttr("disabled");
+                        $("#submit svg").removeClass("fa-spinner fa-spin");
+                        $("#submit svg").addClass("fa-paper-plane");
+                        $('#file-box').addClass("d-none");
+                    }
+                });
+                document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
+            }
+            }
+        });
+
+        $('#submit').on('click',function(e){
+            var file=$("#upload-research-file")[0].files;
+            console.log(file);
+            var text=$('#textAreaExample').val();
+            if(text!==''|| file){
+                
+               var html=`<div class="d-flex flex-row justify-content-start mb-4">
+                            <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                            <p class="small mb-0">${text}</p>
+                            </div>
+                        </div>`;
+               var inkerTag=`<div class="d-flex flex-row justify-content-start mb-4">
+                            <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                            <a href="${text}" class="small mb-0">${text}</a>
+                            </div>
+                        </div>`;
+                // var file_div=`<div class="d-flex flex-row justify-content-start mb-4">
+                    
+                //     <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                //         <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
+                //     </div>`;
+                if(text!==''){
+                    validURL(text) ?
+                    $('#CardBody').append(inkerTag):
+                    $('#CardBody').append(html);
+                }
+                // if(file.length>0){
+                //     $('#CardBody').append(file_div);
+                // }
+                
+                $("#textAreaExample").attr("disabled","");
+                $("#submit").attr("disabled","");
+                $("#submit svg").removeClass("fa-paper-plane");
+                $("#submit svg").addClass("fa-spinner fa-spin");
+                var formData = new FormData();
+                formData.append('email', getCookie('chat_email'));
+                formData.append('message', text);
+                formData.append('file', file[0]);
+                $.ajax({
+                    "url":"{{ Route('userSendMessage') }}",
+                    "type":"post",
+                    "data":formData,
+                    processData: false,
+                    contentType: false,
+                    success:function(response){
+                        if(file.length>0){
+                            console.log(response);
+                             var resonse_file_name=response.resonse_file_name;
+                            var file_div=`<div class="d-flex flex-row justify-content-start mb-4">
+                                    <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                                        <a download href="{{ asset('email/${resonse_file_name}') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
+                                    </div>
+                                    </div>`;
+                            $('#CardBody').append(file_div);
+                        }
+                        $('#textAreaExample').val('');
+                        $("#textAreaExample").removeAttr("disabled");
+                        $("#submit").removeAttr("disabled");
+                        $("#submit svg").removeClass("fa-spinner fa-spin");
+                        $("#submit svg").addClass("fa-paper-plane");
+                        $('#file-box').addClass("d-none");
+                    }
+                });
+                document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
+            }
+        });
+    </script>
+
+
+<script>
+    Pusher.logToConsole = false;
+
+var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
+  cluster: 'eu'
+});
+var email=getCookie('chat_email');
+    email?$(".login-form").hide():null;
+let userId = email
+
+console.log(pusher);
+console.log(email);
+var channel = pusher.subscribe('research-chat.'+userId);
+channel.bind('research-chat-message', function(data) {
+    let message = data.message
+    let document_file = data.file
+    console.log(data);
+    console.log(document_file);
+    console.log(message);
+    var push_html=`<div class="d-flex flex-row justify-content-end mb-4">
+                            <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+                                <p class="small mb-0">${message}</p>
+                            </div>
+                        </div>`
+    var push_ankerTag=`<div class="d-flex flex-row justify-content-end mb-4">
+                            <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+                                <a href="${message}" class="small mb-0">${message}</a>
+                            </div>
+                        </div>`
+    if(message!==null){
+        validURL(message) ?
+        $('#CardBody').append(push_ankerTag):
+        $('#CardBody').append(push_html);
+        document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
+    }
+    var push_file_div=`<div class="d-flex flex-row justify-content-end mb-4">
+                        <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+                            <a download href="{{ asset('email/${document_file}') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
+                        </div>
+                    </div>`;
+                    
+
+    if(document_file){
+        $('#CardBody').append(push_file_div);
+        document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
+    }
+});
+</script>
+<script>
+    
+        
+// <----------------------------------------------------------- upload file to the chat ------------------------------------------------------------------------->
+
+function showUploadedFileName(){
+    let research_input =document.querySelector('#upload-research-file')
+    let research_file = research_input.files[0];
+    let research_label = document.querySelector('label[for="upload-research-file"]')
+    // let currentContent = research_label.innerHTML;
+    //animation
+    research_input.disabled=true;
+    research_label.innerHTML='<span class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true" style="    vertical-align: -0.325em;"></span>'
+    setTimeout(() => {
+    research_input.disabled = false
+    // research_label.innerHTML = currentContent;
+    // document.querySelector('textarea[name="message"]').scrollIntoView()
+    }, 2000);
+
+
+    document.querySelector('#file-name').innerText=research_file.name
+    
+    document.querySelector('#file-box').classList.remove('d-none')
+    const reader = new FileReader()
+
+    reader.addEventListener('load', function(event) {
+        let research_label = document.querySelector('label[for="upload-research-file"]')
+        research_label.innerHTML =`<i class="fa fa-file-upload mr-3" id="file-uploader" style="font-size: 23px;cursor:pointer;
+                                    margin: 0 2px;    position: relative;top: 4px;"></i>`
+    })
+
+    // Files can be read with the readAs[ArrayBuffer|BinaryString|DataURL|Text] methods
+    reader.readAsArrayBuffer(research_file)
+    reader.addEventListener('progress', event => {
+    
+        const percent = Math.round((event.loaded / event.total) * 100)
+            const loadingBar = Array(10)
+                .fill('▒')
+                .map(function(item, index) {
+                    document.querySelector('#upload-progress .progress-bar').style.width=Math.round(percent)+"%"
+                
+                return Math.round(percent / 10) > index ? '█'
+                    : '▒'   
+                } )
+                .join('')
+
+            // document.location.hash = `${loadingBar}(${percent}%)`
+            
+
+    })
+    // reader.readAsBinaryString(research_file)
+    // reader.readAsDataURL(research_file)
+    // reader.readAsText(research_file)
+}
+function removeCurrentFile(){
+    document.querySelector('#upload-research-file').value = '';
+    document.querySelector('#file-box').classList.add('d-none')
+    document.querySelector('#upload-progress .progress-bar').style.width="0%"
+    document.querySelector('#file-name').innerText=''
+    let research_label = document.querySelector('label[for="upload-research-file"]')
+    research_label.innerHTML =`<i class="fa fa-file-upload mr-3" id="file-uploader" style="font-size: 23px;cursor:pointer;
+                                margin: 0 2px;    position: relative;top: 4px;"></i>`
+    
+}
+
+// <----------------------------------------------------------- upload file to the chat ------------------------------------------------------------------------->
+
+</script>
 </body>
 
 </html>

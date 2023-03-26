@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Settings;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use App\Models\SupportChat;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -56,6 +57,17 @@ class AppServiceProvider extends ServiceProvider
             'front_sections'=>$front_sections,
             'study_submition_sections'=>$study_submition_sections,
         ]);
+
+        // dd(request()->cookie('chat_email'));
+       $cookie= request()->cookie('chat_email');
+        if(isset($cookie)){
+
+            $user_messages=SupportChat::where('user_email',$cookie)->get();
+            
+            view()->share('user_messages', $user_messages);
+        }
         
+        
+        view()->share('provider_setting', $setting);
     }
 }

@@ -21,6 +21,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\JournalsResearchesController;
 use App\Http\Controllers\InternationalPublicationOrdersController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
+use App\Http\Controllers\SupportChatController;
 
 Route::middleware(['guest'])->group(function () {
     Route::prefix('login')->group(function () {
@@ -180,3 +181,7 @@ Route::prefix('invoice')->group(function () {
     Route::get('read-now/{type}/{noti}/{id?}', [InternationalPublicationOrdersController::class, 'readNotificationConferenceRequest'])->name('read-now');
 });
 Route::get('u/invoice/my-invoices', [InvoicesController::class, 'user_invoices'])->name('my-invoices');
+
+
+Route::post('userSendMessage',[SupportChatController::class,'userSendMessage'])->name('userSendMessage');
+

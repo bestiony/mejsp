@@ -2,7 +2,7 @@
 @section('title', $pageTitle)
 @section('content')
 
-    <section id="section" class="py-5">
+    <section id="section" class="py-5 mt-5">
         <div class="container">
             <div class="row">
 
@@ -33,6 +33,12 @@
                                 <div class="px-3 mb-3">
                                     <span class=" float-right text-secondary">سعر طلب النشر</span>
                                     <span class=" float-left">${{ $row->journal->price }}</span>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div class="px-3 mb-3">
+                                    <span class=" float-right text-secondary">عنوان البحث</span>
+                                    <span class=" float-left">{{ $row->title }}</span>
                                     <div class="clearfix"></div>
                                 </div>
                                 <!---->

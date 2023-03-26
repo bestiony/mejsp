@@ -14,14 +14,20 @@
             </li>
             @if($front_sections['international_conference'] == 1) 
             <li class="{{ activeLink(userPrefix() . '/conference/create') }}"><a
-                    href="{{ userUrl('conference/create') }}"><i class="fa-solid fa-file-circle-plus"></i> طلب الانضمام لمؤتمر دولي</a>
+                    href="{{ userUrl('conference/create') }}"><i class="fa-solid fa-file-circle-plus"></i>    المؤتمرات الدولية</a>
             </li>
             @endif
 
             @if($front_sections['international_publishing'] == 1) 
             <li class="{{ activeLink(userPrefix() . '/international-publishing/create') }}"><a
-                    href="{{ userUrl('international-publishing/create') }}"><i class="fa-solid fa-bullhorn"></i> النشر
-                    الدولي</a>
+                    href="{{ userUrl('international-publishing/create') }}"><i class="fa-solid fa-bullhorn"></i> 
+                    SCOPUS</a>
+            </li>
+            @endif
+            @if($front_sections['international_publishing'] == 1) 
+            <li class="{{ activeLink(userPrefix() . '/international-publishing/create') }}"><a
+                    href="{{ userUrl('international-publishing/create') }}"><i class="fa-solid fa-bullhorn"></i> 
+                    WOS (ISI) </a>
             </li>
             @endif
 
@@ -29,13 +35,13 @@
             <li class="{{ activeLink(userPrefix() . '/researches') }}"><a href="{{ userUrl('researches') }}"><i class="fa-solid fa-file-word"></i> تقديم دراسة</a>
             </li>
             @endif
-            <li class="{{ activeLink(userPrefix() . '/documents') }}"><a href="{{ userUrl('documents') }}"><i class="fa-solid fa-file-lines"></i>مستنداتك</a>
+            <li class="{{ activeLink(userPrefix() . '/documents') }}"><a href="{{ userUrl('documents') }}"><i class="fa-solid fa-file-lines"></i> مستنداتك </a>
             </li>
-            <li class="{{ activeLink(userPrefix() . '/researches/all') }}"><a href="{{ userUrl('researches/all') }}"><i class="fa-solid fa-file-word"></i> عرض الطلبات </a>
+            <li class="{{ activeLink(userPrefix() . '/researches/all') }}"><a href="{{ userUrl('researches/all') }}"><i class="fa-solid fa-file-word"></i>  طلباتك </a>
             </li>
             <li class="{{ activeLink(userPrefix() . '/count-publication-prices') }}"><a href="{{ userUrl('count-publication-prices') }}"><i class="fa-solid fa-money-bill"></i> حساب رسوم النشر  </a>
             </li>
-            <li class="{{ activeLink(userPrefix() . '/invoice/my-invoices') }}"><a href="{{ userUrl('invoice/my-invoices') }}"><i class="fa-solid fa-file-invoice-dollar"></i> فواتيري  </a>
+            <li class="{{ activeLink(userPrefix() . '/invoice/my-invoices') }}"><a href="{{ userUrl('invoice/my-invoices') }}"><i class="fa-solid fa-file-invoice-dollar"></i> فواتيرك  </a>
             </li>
             <li class="{{ activeLink(userPrefix() . '/researches/chats/old-chats') }}"><a href="{{ userUrl('researches/chats/old-chats') }}"><i class="fa-solid fa-message"></i> محادثاتي السابقة  </a>
             </li>
@@ -43,7 +49,7 @@
             <hr>
             <li
                 class="@if (getAuth('user', 'qualification') == null && getAuth('user', 'country_code') == null) {{ 'bg-danger shadow' }} @endif mb-0 {{ activeLink(userPrefix() . '/settings') }}">
-                <a href="{{ userUrl('settings') }}"><i class="fas fa-cog"></i> الاعدادات</a>
+                <a href="{{ userUrl('settings') }}"><i class="fas fa-cog"></i> الإعدادات</a>
             </li>
             <hr>
             <li><a href="{{ url(userPrefix() . '/logout') }}"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
