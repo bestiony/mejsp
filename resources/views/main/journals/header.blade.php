@@ -6,7 +6,7 @@
 </button>
 <div class="chat card" id="chat1" style="border-radius: 15px;">
 <form action="" class="login-form">
-    <label for="email" class="form-label mb-3">من فضلك قم بإدخال البريد الالكتروني اولا</label>
+    <label for="email" class="form-label mb-3">من فضلك قم بإدخال البريد الإلكتروني </label>
     <input type="email" class="form-control" id="email" placeholder="عنوان البريد الإلكتروني">
     <button id="confirm_email" class="btn my-2 btn-outline-primary"type="submit">تأكيد</button>
 </form>
@@ -15,7 +15,7 @@
     style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
     <div class="d-flex flex-column">
         <p class="mb-0 fw-bold mb-2">مؤسسة الشرق الأوسط للنشر العلمي</p>
-        <p class="mb-0" style="font-size: 12px;color: #eaea00;font-weight: 400;">عادة ما يتم الرد في غضون خمس دقائق</p>
+        <p class="mb-0" style="font-size: 12px;color: #eaea00;font-weight: 400;">عادةً ما يتم الرد في غضون خمس دقائق</p>
     </div> 
     <button type="button" id="close-chat" class="text-white">
         <i class="fas fa-times"></i>
