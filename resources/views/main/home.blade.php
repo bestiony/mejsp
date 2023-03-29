@@ -6,7 +6,7 @@
                 <div class="title">
                     <h1 class="w-100 text-center"> مؤسسة الشرق الأوسط للنشر العلمي </h1>
                 </div><button class="btn-search text-white">هل تبحث عن شيء ؟ <span class=" text font-weight-bold">ابحث
-                        الان</span></button>
+                        الآن</span></button>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
                                 <p class=" text-secondary">{{ Str::limit($jour->meta_desc, 95) }}</p>
                             </div>
                         </a> </div>
-                @endforeach
+                    @endforeach
             </div>
         </div>
     </div>

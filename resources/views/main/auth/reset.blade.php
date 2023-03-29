@@ -11,7 +11,7 @@
     <!-- main style -->
     <link rel="stylesheet" href="{{ asset('admin-assets/css/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin-assets/css/global.css') }}" />
-    <title>إعادة تعين كلمة السر</title>
+    <title>إعادة تعيين كلمة السر</title>
 </head>
 
 <body>

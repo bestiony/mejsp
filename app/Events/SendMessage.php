@@ -16,15 +16,17 @@ class SendMessage implements ShouldBroadcast
 
     public $message;
     public $researcher_id;
+    public $file;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($message,$researcher_id)
+    public function __construct($message,$researcher_id,$file=NULL)
     {
         $this->researcher_id = $researcher_id;
         $this->message = $message;
+        $this->file = $file;
     }
 
     /**

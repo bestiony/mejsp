@@ -2,7 +2,7 @@
 @extends('main.layouts.master')
 @section('title', 'المحادثات')
 @section('content')
-    <section id="section" class="py-5">
+    <section id="section" class="py-5 mt-5">
         <div class="container-fluid">
             <div class="row">
 

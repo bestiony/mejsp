@@ -30,10 +30,9 @@ class FilterResearches extends Command
     {
         $data = UsersController::filter_users_researches();
         $this->info('the command was successful');
-        $this->line(count($data['deleted']). ' researches were deleted');
-        $this->line(count($data['updated']). ' researches were updated to next phase');
-        $this->line('it took '.$data['duration'] . ' seconds'
-    );
+        $this->line(count($data['deleted']) . ' researches were deleted');
+        $this->line(count($data['updated']) . ' researches were updated to next phase');
+        $this->line('it took ' . $data['duration'] . ' seconds');
         return 0;
     }
 }

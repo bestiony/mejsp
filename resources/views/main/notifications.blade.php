@@ -32,7 +32,7 @@
                                    <p class="text-muted"><i class="fa-regular fa-clock"></i> {{$notification->created_at->diffforhumans()}}</p>
                              @if($notification->data['type'] =="post" || $notification->data['type'] =="chat")
                                 <a href="{{ userUrl('chat/'.$notification->data['id'])}}" class="mr-4">
-                                  الاطلاع على حاله طلبك
+                                  الاطلاع على حالة طلبك
                                 </a>
                                 @elseif($notification->data['type'] == 'researche' || $notification->data['type'] =="approve")
                                 <a href="{{route('current_user_researches',['id'=>$notification->data['id']])}}" class="mr-4">
@@ -49,7 +49,7 @@
                                 @else
 
                                 <a href="/u/researches/all" class="mr-4">
-                                  الاطلاع على حاله طلبك
+                                  الاطلاع على حالة طلبك
                                 </a>
 
                                 @endif
@@ -66,7 +66,7 @@
                                    <p class="text-muted"><i class="fa-regular fa-clock"></i> {{$notification->created_at->diffforhumans()}}</p>
                                    @if ($notification->data['type'] != 'email_confirmation' )
                               <a href="/u/researches/all" class="mr-4 ">
-                                  الاطلاع على حاله طلبك
+                                  الاطلاع على حالة طلبك
                               </a>
                               @endif
                                <p class="mr-4 text-muted">

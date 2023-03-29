@@ -11,7 +11,7 @@
                 <div class="col-md-4">
                     <div class="box-white">
                         <div class="section-title mb-4">
-                            <h5>تسجيل حساب</h5>
+                            <h5>إنشاء حساب</h5>
                         </div>
                         <form id="form-register" action="{{ url('register/create') }}" class="sign-form widget-form "
                             method="POST">
@@ -27,7 +27,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="البريد الالكتروني" name="email"
+                                <input type="text" class="form-control" placeholder="البريد الإلكتروني" name="email"
                                     value="{{ old('email') }}" required />
                                 @error('email')
                                     <div class="alert-error">{{ $message }}</div>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subscribers extends Model
 {
-    use HasFactory;
+    // use HasFactory;
 
     public $table   = 'subscribers';
     public $guarded = [];

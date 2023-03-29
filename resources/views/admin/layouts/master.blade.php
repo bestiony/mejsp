@@ -87,6 +87,14 @@
     <script src="{{ asset('admin-assets/js/main.js') }}?v<?php echo time(); ?>"></script>
     <script src="{{ asset('admin-assets/js/requests.js') }}?v<?php echo time(); ?>"></script>
     <script src="{{ asset('admin-assets/js/plugin.js') }}?v<?php echo time(); ?>"></script>
+    @if (Session::has('message'))
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        
+                Swal.fire('{{ Session::get("message") }}')
+        
+        </script>
+    @endif
     @yield('js')
 
 </body>

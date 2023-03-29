@@ -36,52 +36,52 @@ let message = data.message
 
 
 let messageContent = '';
-if(message.user_id == 1){
- messageContent = `         <div class="py-1 px-3">
-                                        <div class="d-flex flex-row justify-content-start">
-                                          <div class=" ml-3 user-img">
-                                            <img src="{{asset('admin-assets/images/default-profile-image.png')}}" alt="avatar 2">
-                                          </div>
-                                          <div>
-                                            <p class="ms-3 m-0 rounded-3 user-name">أنت</p>
-                                            <p class="small ms-3 m-0 rounded-3 text-muted date"><i class="fa fa-clock fa-regular ml-1"></i>${parseLocalTime(message.created_at)}</p>
-                                          </div>
-      
+    if(message.user_id == 1){
+    messageContent = `         <div class="py-1 px-3">
+                                            <div class="d-flex flex-row justify-content-start">
+                                            <div class=" ml-3 user-img">
+                                                <img src="{{asset('admin-assets/images/default-profile-image.png')}}" alt="avatar 2">
+                                            </div>
+                                            <div>
+                                                <p class="ms-3 m-0 rounded-3 user-name">أنت</p>
+                                                <p class="small ms-3 m-0 rounded-3 text-muted date"><i class="fa fa-clock fa-regular ml-1"></i>${parseLocalTime(message.created_at)}</p>
+                                            </div>
+        
+                                            </div>
+                                            <div class="chat-item">
+                                            <p class="p-1 ms-3 mb-1 rounded-3 ${!isRTL(message.message) ? `text-left` : ''}" style="background-color: #f5f6f7;">${message.message}</p>
+                                            </p>
+                                            ${message.file !="" ? 
+                                            `<a href="${message.file}" class="mb-1 small" target="_blank"> الملف المرفق</a>`
+                                                    : ''
+                                            }
+                                            
+                                            </div>
                                         </div>
-                                        <div class="chat-item">
-                                          <p class="p-1 ms-3 mb-1 rounded-3 ${!isRTL(message.message) ? `text-left` : ''}" style="background-color: #f5f6f7;">${message.message}</p>
-                                          </p>
-                                          ${message.file !="" ? 
-                                          `<a href="${message.file}" class="mb-1 small" target="_blank"> الملف المرفق</a>`
-                                                : ''
-                                        }
-                                          
+                                        <hr>`
+    }else{
+    messageContent = `          <div class="py-1 px-3">
+                                            <div class="d-flex flex-row justify-content-end pt-1">
+                                            <div>
+                                                <a href="{{ adminUrl('users/show/'.$user_researches->user->id)}}"><p class="ms-3 m-0 rounded-3 user-name">{{ $user_researches->user->name }} </p></a>
+                                                <p class="small ms-3 m-0 rounded-3 text-muted date">${parseLocalTime(message.created_at)}</p>
+                                            </div>
+                                            <div class="user-img mr-2">
+                                                <img src="{{asset('assets/images/defualt-avatar.png')}}" alt="avatar 1" >
+                                            </div>
+                                            
+                                            </div>
+                                            <div class="chat-item">
+                                            <p class="p-1 me-3 mb-1 text-white rounded-3 bg-primary ${!isRTL(message.message) ? `text-left` : ''}">${message.message}</p>
+                                            ${message.file !="" ? 
+                                                    `<a href="${message.file}" class="mb-1 small" target="_blank"> الملف المرفق</a>`
+                                                    : ''
+                                                }
+                                            
+                                            </div>
                                         </div>
-                                    </div>
-                                    <hr>`
-}else{
-messageContent = `          <div class="py-1 px-3">
-                                        <div class="d-flex flex-row justify-content-end pt-1">
-                                          <div>
-                                            <a href="{{ adminUrl('users/show/'.$user_researches->user->id)}}"><p class="ms-3 m-0 rounded-3 user-name">{{ $user_researches->user->name }} </p></a>
-                                            <p class="small ms-3 m-0 rounded-3 text-muted date">${parseLocalTime(message.created_at)}</p>
-                                          </div>
-                                          <div class="user-img mr-2">
-                                            <img src="{{asset('assets/images/defualt-avatar.png')}}" alt="avatar 1" >
-                                          </div>
-                                         
-                                        </div>
-                                        <div class="chat-item">
-                                          <p class="p-1 me-3 mb-1 text-white rounded-3 bg-primary ${!isRTL(message.message) ? `text-left` : ''}">${message.message}</p>
-                                          ${message.file !="" ? 
-                                                `<a href="${message.file}" class="mb-1 small" target="_blank"> الملف المرفق</a>`
-                                                : ''
-                                             }
-                                          
-                                          </div>
-                                    </div>
-                                    <hr>`
-}
+                                        <hr>`
+    }
 document.querySelector('#chat-container').innerHTML+=messageContent;
 $("#chat-container").scrollTop($("#chat-container")[0].scrollHeight);
 // /stop loader
