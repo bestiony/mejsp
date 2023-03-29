@@ -1,13 +1,13 @@
 <div class="box-white mb-3">
 
     <div class="mb-3">
-        <span class="float-right text-secondary">النشر الدولى</span>
+        <span class="float-right text-secondary">SCOPUS/WOS(ISI) </span>
         <span class="float-left">{{ $details['journal_name'] }}</span>
         <div class="clearfix"></div>
     </div><!-- name -->
 
     <div class="mb-3">
-        <span class="float-right text-secondary">ثمن النشر</span>
+        <span class="float-right text-secondary"> رسوم النشر</span>
         <span class="float-left">${{ $details['journal_price'] }}</span>
         <div class="clearfix"></div>
     </div><!-- price -->
