@@ -13,7 +13,7 @@
 
 
     <div class="mb-3">
-        <span class="float-right text-secondary">قيمة المبلغ</span>
+        <span class="float-right text-secondary">القيمة </span>
         <span class="float-left">${{ $details['amount'] }}</span>
         <div class="clearfix"></div>
     </div><!-- end -->
