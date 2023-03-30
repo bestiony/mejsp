@@ -173,7 +173,7 @@
 
 
 
-                $('#textAreaExample').val("");  
+                $('#textAreaExample').val("");
                 $("#textAreaExample").attr("disabled","");
                 $("#submit").attr("disabled","");
                 $("#submit svg").removeClass("fa-paper-plane");
@@ -183,7 +183,7 @@
                 formData.append('message', text);
                 formData.append('file', file[0]);
                 $.ajax({
-                    "url":"{{ Route('userSendMessage') }}",
+                    "url":"{{ route('userSendMessage') }}",
                     "type":"post",
                     "data":formData,
                     processData: false,
