@@ -1055,14 +1055,19 @@ class UsersController extends Controller
 
     }
 
+    public function newSubscriberForm()
+    {
+        return view("admin.users.new-subscriber");
+    }
+
     public function AddSubscribers(Request $request)
     {
-        $emails = explode(",", $request->emails);
+        $emails = explode("\r\n", $request->emails);
         foreach ($emails as $email) {
             Subscribers::updateOrCreate(['email' => $email], ['email' => $email]);
         }
         Session::flash('message', 'تم الاضافة بنجاح');
-        return redirect()->back();
+        return redirect()->route('subscribers-list');
     }
 
     public function ViewSupportChat($id)
