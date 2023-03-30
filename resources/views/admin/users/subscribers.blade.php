@@ -46,22 +46,27 @@
 
             <div class="col-12 mb-3">
                 <div class="box-white">
-                    <form action="{{ admin_url('users') }}" method="GET">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <input type="email" name="search" id="search" class="form-control form-control-sm"
-                                    placeholder="ابحث بواسطة البريد الالكتروني"/>
-                            </div>
-                            <div class=" col-lg-2 mt-2 mt-lg-0">
-                                <button  type="button" data-toggle="modal" data-target="#exampleModal3" class="btn btn-light btn-block border">اضافة مشتركين</button>
-                            </div>
-                            <div class=" col-lg-2 mt-2 mt-lg-0">
-                                {{-- href="{{ route('subscribers.send.email') }}" --}}
-                                <button type="button" class="btn btn-light btn-block border" data-toggle="modal" data-target="#exampleModal">ارسال</button>
-                                {{-- <button data-toggle="modal" data-target="#exampleModal" class="btn btn-light" >ارسال</button> --}}
-                            </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form action="{{ admin_url('users') }}" method="GET">
+                                <input
+                                    type="email"
+                                    name="search"
+                                    id="search"
+                                    class="form-control form-control-sm"
+                                    placeholder="ابحث بواسطة البريد الالكتروني"
+                                />
+                            </form>
                         </div>
-                    </form>
+                        <div class="col-lg-3 mt-2 mt-lg-0">
+                            <button type="button" data-toggle="modal" data-target="#exampleModal3" class="btn btn-light btn-block border">اضافة مشتركين</button>
+                        </div>
+                        <div class="col-lg-3 mt-2 mt-lg-0">
+                            <a href="{{ route('email-form') }}" class="btn btn-light btn-block border">
+                                ارسال إيميل
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             @if (count($subscribers) == 0)

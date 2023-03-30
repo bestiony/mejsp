@@ -128,7 +128,7 @@ Route::prefix(adminPrefix())->group(function () {
         // Subscribers
         Route::get('subscribers', 'subscribers');
         Route::post('subscribers', 'AddSubscribers')->name('add.subscribers');
-        Route::get('subscribers/email', 'emailSubscriberForm');
+        Route::get('subscribers/email', 'emailSubscriberForm')->name('email-form');
         Route::post('send/subscribers/email', 'SendMail')->name('subscribers.send.email');
         Route::get('subscribers/ajax', 'Ajaxsubscribers')->name("subscribers");
         Route::get('subscribers/remove/{email}', 'RemoveSubscribers');

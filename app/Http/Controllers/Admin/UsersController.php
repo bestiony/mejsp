@@ -891,9 +891,9 @@ class UsersController extends Controller
         return view("admin.users.subscribers", compact("subscribers"));
     }
 
-    public function emailSubscriberForm(Subscribers $subscriber)
+    public function emailSubscriberForm()
     {
-        return view("admin.users.email", compact("subscriber"));
+        return view("admin.users.email");
     }
 
     public function Ajaxsubscribers(Request $request)
