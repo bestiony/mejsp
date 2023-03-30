@@ -52,10 +52,6 @@
                                 <input type="email" name="search" id="search" class="form-control form-control-sm"
                                     placeholder="ابحث بواسطة البريد الالكتروني"/>
                             </div>
-
-                            <div class=" col-lg-2 mt-2 mt-lg-0">
-                                <a href="{{ route('subscriber.restore') }}" class="btn btn-light btn-block border">إعادة تعيين</a>
-                            </div>
                             <div class=" col-lg-2 mt-2 mt-lg-0">
                                 <button  type="button" data-toggle="modal" data-target="#exampleModal3" class="btn btn-light btn-block border">اضافة مشتركين</button>
                             </div>

@@ -929,17 +929,6 @@ class UsersController extends Controller
         return redirect()->back();
     }
 
-    public function RestoreSubscribers()
-    {
-        // Subscribers::truncate();
-        $emails = User::pluck('email')->toArray();
-        foreach ($emails as $email) {
-            Subscribers::updateOrCreate(['email' => $email], ['email' => $email]);
-        }
-        Session::flash('message', 'تم اعادة التعين بنجاح');
-        return redirect()->back();
-    }
-
     public function SendMail(Request $request)
     {
         $array = [$request->name_of_email];
