@@ -17,11 +17,6 @@
                     </div>
 
                     <div class="form-group col-6">
-                        <label for="email_sender">الاميل الي هيتم الارسال منه</label>
-                        <input class="form-control" name="email_sender" type="email">
-                    </div>
-
-                    <div class="form-group col-6">
                         <label for="name_of_email">اسم الاميل</label>
                         <input class="form-control" name="name_of_email" type="text">
                     </div>
