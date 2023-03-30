@@ -36,7 +36,7 @@
 
             <div class="col-xl-6">
                 <div class="box-white p-0">
-                    <h5 class="mb-0 border-bottom pb-3 pt-3 px-3">محتوي الرسالة</h5>
+                    <h5 class="mb-0 border-bottom pb-3 pt-3 px-3">محتوى الرسالة</h5>
                     <div class="p-3">
                         <p>{{ $msg->message }}</p>
                     </div>

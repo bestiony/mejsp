@@ -28,7 +28,7 @@
 
 
                     <div class="form-group">
-                        <label class="required">محتوي السؤال</label>
+                        <label class="required">محتوى السؤال</label>
                         <textarea name="content" class=" form-control editor" cols="30" rows="10">{{ $row->content }}</textarea>
                     </div><!-- End -->
 

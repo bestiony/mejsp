@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'اضافة مقال')
+@section('title', 'إضافة مقال')
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}" />
 @endsection
@@ -7,7 +7,7 @@
 
     <div class="links-bar">
         <a href="{{ admin_url('articles') }}">المقالات</a>
-        <a href="{{ admin_url('article/create') }}">اضافة مقالة</a>
+        <a href="{{ admin_url('article/create') }}">إضافة مقالة</a>
     </div><!-- End Bar Links -->
 
     <div id="all-articles" class="row">
@@ -36,7 +36,7 @@
 
                             <div class="form-group">
                                 <input type="checkbox" name="show_in_chat" class=""  />
-                                <label>الآظهار في صفحة المحادثة</label>
+                                <label>الإظهار في صفحة المحادثة</label>
                             </div><!-- End -->
 
                             <div class="form-group">
@@ -52,7 +52,7 @@
                     <div class="col-lg-3">
                         <div class="box-white px-0">
 
-                            <h5 class="px-3">اعدادات الSEO للمقالة</h5>
+                            <h5 class="px-3">إعدادات الSEO للمقالة</h5>
                             <hr>
                             <div class="px-3">
 

@@ -1,9 +1,9 @@
 @extends('admin.layouts.master')
-@section('title', 'الاعتمادات الدولية')
+@section('title', 'التصميف الدولي ')
 @section('content')
 
     <div class="links-bar my-4 ">
-        <h4>الاعتمادات الدولية</h4>
+        <h4>التصنيف الدولي </h4>
     </div><!-- End Bar Links -->
 
     @if (session()->has('success'))
@@ -40,7 +40,7 @@
 
 
 
-                    <button type="submit" class="btn-main">اضافة</button>
+                    <button type="submit" class="btn-main">إضافة</button>
 
 
                 </form>
