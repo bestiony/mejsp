@@ -173,7 +173,7 @@
 
 
 
-                $('#textAreaExample').val("");  // <=============================================================================================
+                $('#textAreaExample').val("");  
                 $("#textAreaExample").attr("disabled","");
                 $("#submit").attr("disabled","");
                 $("#submit svg").removeClass("fa-paper-plane");
