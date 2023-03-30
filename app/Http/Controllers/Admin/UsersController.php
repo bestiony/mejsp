@@ -37,8 +37,14 @@ use App\Notifications\ResearcheReject;
 use App\Notifications\ResearcheApprove;
 use App\Models\InternationalPublicationOrders;
 use App\Notifications\AdminConfirmedUserEmail;
+use App\Mail\AdminRefusedInternationalPublicationOrderEmail;
 use App\Notifications\ResearcheResponse;
-
+use App\Models\Subscribers;
+use Session;
+use App\Jobs\SubscriberEmailJob;
+use Carbon\Carbon;
+use App\Models\Settings;
+use App\Models\SupportChat;
 
 class UsersController extends Controller
 {
@@ -90,12 +96,12 @@ class UsersController extends Controller
                 Notification::send($user, new AdminConfirmedUserEmail($requestData));
 
 
-            
+
         }
         return back();
 
     }
-    
+
     public function update_status(Request $request)
     {
         $id = $request->id;
@@ -136,7 +142,7 @@ class UsersController extends Controller
 
     public function researches()
     {
-        
+
         $rows = UsersResearches::with([
             'journal' => function ($q) {
                 $q->select("id", 'name');
@@ -161,7 +167,7 @@ class UsersController extends Controller
         $pageTitle = 'أبحاث المستخدمين';
         return view("admin.user-researches.all", compact('researches','pageTitle'));
     }
-    
+
     public function user_researches_cat($id)
     {
         $researches = UsersResearches::where('status',$id)->with([
@@ -188,9 +194,9 @@ class UsersController extends Controller
         $pageTitle = 'تفاصيل البحث';
         return view("admin.user-researches.details", compact('research','pageTitle'));
     }
-    
-    
-    
+
+
+
     public function edit_researches($value,$id)
     {
         $user_researche = UsersResearches::find($id);
@@ -200,11 +206,11 @@ class UsersController extends Controller
         $user_in = $user_researche->user->id;
         $user_name = $user_researche->user->name;
         $user_researche->update();
-        
+
         //Subject for email
-        
+
         $etat="";
-        
+
         $researches = UsersResearches::with([
             'journal' => function ($q) {
                 $q->select("id", 'name');
@@ -212,7 +218,7 @@ class UsersController extends Controller
                 $q->select("id", 'email','name','phone');
             }
         ])->orderBy("id", 'DESC')->paginate('5');
-        
+
         if($value == 1 || $value ==2){
             $etat="تحويل الدراسة للمراجعة";
             $info=[
@@ -233,7 +239,7 @@ class UsersController extends Controller
                 'status'=>$value,
                 ];
             $user = User::where('id', $user_in)->first();
-           
+
             $requestData = [
                 'id' => $id,
                 'user_id' => $user_in,
@@ -262,7 +268,7 @@ class UsersController extends Controller
                 'status'=>$value,
                 ];
             $user = User::where('id', $user_in)->first();
-        
+
             $requestData = [
                 'id' => $id,
                 'user_id' =>$user_in,
@@ -272,7 +278,7 @@ class UsersController extends Controller
                 ',
             ];
             Notification::send($user, new ResearcheApprove($requestData));
-            // send inviues 
+            // send inviues
             if ($invoice) {
             $item = $invoice->items;
             $invo = new Invoices();
@@ -312,8 +318,8 @@ class UsersController extends Controller
                 'status'=>3,
                 'link'=>    url('invoice/' . Crypt::encryptString($invo->id))
                 ];
-                
-                
+
+
            $mail= Mail::to($user_email)->send(new ResiveOrderMail($info,$etat));
            if($mail){
                $id_send=$user_researche->id;
@@ -342,7 +348,7 @@ class UsersController extends Controller
                 'status'=>$value,
                 ];
              $user = User::where('id', $user_in)->first();
- 
+
             $requestData = [
                 'id' => $id,
                 'user_id' => $user_in,
@@ -383,22 +389,22 @@ class UsersController extends Controller
                 ];
                 Notification::send($user, new ResearcheEdit($requestData));
         }
-        
-            
+
+
         $user_email = $user_researche->user->email;
 
         if($value != 5 && $value!=3){
             Mail::to($user_email)->send(new ResiveOrderMail($info,$etat));
         }
-        
+
         $pageTitle = 'أبحاث المستخدمين';
         return redirect()->back()->with('researches',$researches)->with('pageTitle',$pageTitle);
-        
+
     }
-    
+
     public static function user_researches_destroy(Request $request, $inside_call = false)
     {
-      
+
         $id = $request->id;
         $row = UsersResearches::find($id);
 
@@ -410,17 +416,17 @@ class UsersController extends Controller
             'user_name' => $user->name,
             'type' => 'delete',
             'body' => 'نعتذر، تم حذف دراستك بعنوان '.$row->title .' بسبب '.$request->reason.'
-            لا تتردد بإرسال أعمالك البحثية مستقبلا 
+            لا تتردد بإرسال أعمالك البحثية مستقبلا
             ',
         ];
-       
+
 
 
         if (!empty($row)) {
             Invoices::where('users_researches_id', $row->id)->delete();
             deleteFile(public_path("assets/uploads/users-researches/"), $row->file);
-        
-            
+
+
                 $etat="إشعار بحذف طلب النشر";
                 $info=[
                     'id'=>'',
@@ -439,13 +445,13 @@ class UsersController extends Controller
                     ];
                 $row->delete();
                 Mail::to($user->email)->send(new DeleteResearchReason($info,$etat));
-                
+
                 Notification::send($user, new ResearchDelete($requestData));
                 return response()->json([
                     'message' => 'deleted'
                 ]);
-            
-            
+
+
 
            if(!$inside_call){
                 $request->session()->flash("success", 'تم  الحذف بنجاح');
@@ -455,18 +461,18 @@ class UsersController extends Controller
             }
         }
     }
-    
-    // chat  
+
+    // chat
     public function chat($id, Request $request){
         $user_researches = UsersResearches::findOrFail($id);
-        
+
         if ($request->notification_id) {
             $noti = DB::table('notifications')->where('id', $request->notification_id)->update(['read_at' => NOW()]);
 
         }
-   
+
             $messages = Message::where('research_id',$id)->get();
-        
+
             foreach($messages as $item){
                 $item->a_show = 1;
                 $item->update();
@@ -478,22 +484,22 @@ class UsersController extends Controller
                 return view("admin.user-researches.chat", compact('messages','pageTitle','research_id','user_researches'));
 
             }else{
-                return view("admin.user-researches.closed_chat", compact('messages','pageTitle','research_id','user_researches')); 
+                return view("admin.user-researches.closed_chat", compact('messages','pageTitle','research_id','user_researches'));
             }
-        
 
-        
+
+
     }
-    
+
     public function send_facture(request $request){
-        
+
         $request->validate([
         'link'=>'required|url'
         ]);
-        
+
         $user_researche = UsersResearches::where('id',$request->research_id)->first();
-        
-          
+
+
             $user_email = $user_researche->user->email;
             $etat="قبول الدراسة للنشر";
             $info=[
@@ -514,39 +520,39 @@ class UsersController extends Controller
                 'status'=>3,
                 'link'=>$request->link
                 ];
-                
-                
+
+
            $mail= Mail::to($user_email)->send(new ResiveOrderMail($info,$etat));
            if($mail){
                $id_send=$user_researche->id;
                $success="تم ارسال الفاتورة بنجاح";
                return back()->with(compact('success','id_send'));
            }
-        
+
     }
-    
+
     public function chat_store(request $request){
-        
+
         $request->validate([
         'message'=>'max:1500',
         'file'=>'mimes:doc,docx,pdf,jpg,png,jpeg',
         ]);
-        
+
         // get File
         $file =$request->file;
-        
+
         //get Host Webiste
         $host = $request->getSchemeAndHttpHost();
-        
+
         $message = new Message;
         $message->message = nl2br($request->message);
         $message->research_id = $request->research_id;
         $message->a_show = 1;
         $message->u_show = 0;
         $message->user_id = 1;
-        
-        //verify requests File 
-        
+
+        //verify requests File
+
         if(!empty($file)){
         $new_file =random_int(100000, 999999)."_".time().$file->getClientOriginalName();
         $message->file=$host."/admin-assets/uploads/chats_pictures/".$new_file;
@@ -554,17 +560,17 @@ class UsersController extends Controller
         $new_file="";
         $message->file=$new_file;
         }
-        
+
         $user_researches = UsersResearches::where('id',$request->research_id)->first();
         $user_in = $user_researches->user->id;
 
-        
+
         $research = UsersResearches::where('id',$message->research_id)->pluck('user_id')->first();
 
         $user_email = User::where('id',$research)->pluck('email')->first();
-        
+
         $etat="تعديل مطلوب في الدراسة";
-    
+
          $info=[
                 'id'=>$request->research_id,
                 'mail_title'=> 'وردك رد من المراجع',
@@ -582,7 +588,7 @@ class UsersController extends Controller
                 'email'=>$user_researches->user->email,
                 'status'=>7,
                 ];
-                
+
 
         if($message->save())
         {
@@ -601,7 +607,7 @@ class UsersController extends Controller
                 // $file->move("admin-assets/uploads/chats_pictures",$new_file);
                 upload($file,"admin-assets/uploads/chats_pictures/",$new_file);
             }
-            
+
             Mail::to($user_email)->send(new ResiveOrderMail($info,$etat));
             //send message pusher
             event(new SendMessage($message,$user_in));
@@ -612,10 +618,10 @@ class UsersController extends Controller
         $pageTitle = 'الرسائل ';
         return redirect()->back()->with('messages',$messages)->with('pageTitle',$pageTitle)->with('research_id',$research_id);
     }
-    
-    
-    
-    
+
+
+
+
     //baik
 
 
@@ -625,6 +631,10 @@ class UsersController extends Controller
         $row = User::find($id);
         if (!empty($row)) {
             deleteFile(self::PATH, $row->image);
+            $subscription = Subscribers::where('email', $row->email)->first();
+            if ($subscription){
+                $subscription->delete();
+            }
             $row->delete();
         }
         return back();
@@ -633,14 +643,14 @@ class UsersController extends Controller
 
     public function researches_destroy(Request $request)
     {
-        
+
         $id = $request->id;
         $row = UsersResearches::find($id);
         if (!empty($row)) {
             deleteFile(public_path("assets/uploads/users-researches/"), $row->file);
             $row->delete();
         }
-        
+
     }
     public function admin_edit_research($id){
         $types = [
@@ -658,7 +668,7 @@ class UsersController extends Controller
         $keywords = [];
         if($research->keywords){
             $keywords = explode(",", $research->keywords);
-           
+
         }
         $pageTitle = 'تعديل البحث';
         return view("admin.user-researches.edit", compact('research','pageTitle','journals','keywords','types'));
@@ -711,7 +721,7 @@ class UsersController extends Controller
             $research->invoice->journal_id = $request->journal;
             $research->invoice->save();
         }
-        
+
         $requestData = [
             'id' => $id,
             'user_id' => $user->id,
@@ -731,8 +741,8 @@ class UsersController extends Controller
             'form' => false,
         ]);
     }
-    
-    
+
+
     public static function filter_users_researches(){
         /*
             get all unpaid invoices that are linked to a research
@@ -860,6 +870,200 @@ public  function admin_create_research(){
             'form' => false,
         ]);
     }
-    
-    
+
+    public function subscribers()
+    {
+        $subscribers=Subscribers::orderBy('id','desc')->get();
+        return view("admin.users.subscribers", compact("subscribers"));
+    }
+
+    public function Ajaxsubscribers(Request $request)
+    {
+        $subscribers=Subscribers::when($request->email,function($q) use ($request){
+            $q->where('email', 'like', '%' . $request->email . '%');
+        })->get();
+        $trs='';
+        foreach($subscribers as $subscriber){
+            $trs.='<tr>
+                    <td>'. $subscriber->email. '</td>
+                    <td><button data-email="'. $subscriber->email . '" data-id="'. $subscriber->id . '" class="btn btn-info edit"><i class="fa fa-edit"></i> تعديل</button></td>
+                    <td><button data-id="'. $subscriber->id . '" class="btn btn-danger delete"><i class="fa fa-trash"></i> حذف</button></td>
+                </tr>';
+        }
+
+        return response()->json(['emails'=>$trs]);
+    }
+
+    public function destroySubscriber(Request $request)
+    {
+        Subscribers::findorfail($request->id)->delete();
+        Session::flash('message', 'تم الحذف بنجاح');
+        return redirect()->back();
+
+    }
+
+    public function EditSubscriber(Request $request)
+    {
+        $row= Subscribers::findorfail($request->id);
+        $row->update($request->only('email'));
+        Session::flash('message', 'تم التعديل بنجاح');
+        return redirect()->back();
+    }
+
+    public function RestoreSubscribers()
+    {
+        // Subscribers::truncate();
+        $emails=User::pluck('email')->toArray();
+        foreach($emails as $email){
+            Subscribers::updateOrCreate(['email'=>$email],['email'=>$email]);
+        }
+        Session::flash('message', 'تم اعادة التعين بنجاح');
+        return redirect()->back();
+    }
+
+    public function SendMail(Request $request)
+    {
+        // dd($request->all());
+    //    $array= Subscribers::pluck('email')->toArray();
+       $array= ['hosamdahab778@gmail.com'];
+       $time=Carbon::now();
+       $setting=Settings::first();
+       $logo=$this->UploadFile($request->logo);
+       foreach($array as $email){
+        $details['email'] =$email;
+        $details['journal_name']=$request->journal_name;
+        $details['text_one']=$request->text_one;
+        $details['text_two']=$request->text_two;
+        $details['text_three']=$request->journal_name;
+        $details['logo']=$logo;
+        $details['setting']=$setting;
+        $details['email_sender']=$request->email_sender;
+        $details['name_of_email']=$request->name_of_email;
+        $details['subject']=$request->subject;
+        $details['publication_terms']=$request->publication_terms;
+        $details['judgement_comity']=$request->judgement_comity;
+
+
+
+        dispatch(new SubscriberEmailJob($details))->delay($time);
+        $time=$time->addSeconds(20);
+        Session::flash('message', 'تمت بنجاح');
+        return redirect()->back();
+       }
+
+    }
+
+    public function RemoveSubscribers($email){
+        Subscribers::where('email',$email)->first()->delete();
+        Session::flash('message', 'تمت بنجاح');
+        return redirect('/');
+    }
+
+    public function RefusedInternationalPublicationOrders(Request $request)
+    {
+        $row=InternationalPublicationOrders::findorfail($request->international_order_id);
+        $row->update(['status'=>$request->status,'reason_to_refused'=>$request->reason_to_refused]);
+        // Invoices::create(['email'=>$row->user->email,'payment_response'=>$row->payment_response,'ending'=>$this->endTime(),'sent_reminder'=>1]);
+        $requestData = [
+            'id' => $row->user->id,
+            'user_id' =>$row->user->id,
+            'user_name' => $row->user->name,
+            'type'=>'',
+            'body' => ' تم رفض طلب النشر العام الخاص بيك للاسباب التالية'. $request->reason_to_refused.'',
+        ];
+
+        $info = [
+            'mail_title' => 'Publication request rejected',
+            'mail_details1' => 'Dear '.$row->user->name.'',
+            'status'=>1,
+            'mail_details2' => 'We regret to inform you that the review committee rejected your submission
+            which has a reference number #'.$row->id.'',
+            'mail_details3' => 'For the study entitled " '.$row->title.'"',
+            'mail_details4' => 'the reason of refuse:"'.$request->reason_to_refused.'"',
+            'mail_details5' => 'Do not hesitate to submit your future studies for publication in the journal',
+            'mail_details6'=>'',
+            'mail_details7'=>'',
+            'mail_details8'=>'',
+            'id' => '',
+            'file' =>  asset(self::PATH . $row->file),
+            'journal' => $row->journal->name,
+            'username' => $row->user->name,
+            'email' =>$row->user->email,
+            'subject'=>'Publication Rejection',
+            'id'=>$row->id,
+            'from_email'=>'editor@journals.mejsp.com'
+        ];
+
+        Mail::to($row->user->email)->send(new AdminRefusedInternationalPublicationOrderEmail($info));
+        Notification::send($row->user, new ResearcheReject($requestData));
+        Session::flash('message', 'تم رفض الطلب بنجاح');
+        return redirect()->back();
+    }
+
+    public function AcceptInternationalPublicationOrders(Request $request)
+    {
+        $row=InternationalPublicationOrders::findorfail($request->international_order_id);
+        $row->update(['status'=>$request->status]);
+       $invoice= Invoices::create(['email'=>$row->user->email,'payment_response'=>$row->payment_response,'ending'=>$this->endTime(),'sent_reminder'=>1]);
+       InvoiceItems::create(['price'=>$row->journal->price,'service_name'=>'رسوم نشر','invoice_id'=>$invoice->id]);
+        $requestData = [
+            'id' => $row->user->id,
+            'user_id' =>$row->user->id,
+            'user_name' => $row->user->name,
+            'type' => 'refused',
+            'body' => 'تم قبول طلب النشر الخاص بك',
+        ];
+
+        $info = [
+            'mail_title' => 'Acceptance of the study for publication',
+            'mail_details1' => 'Dear '.$row->user->name.'',
+            'status'=>2,
+            'mail_details2' => 'The review committee has approved the publication of your study.',
+            'mail_details3' => 'Study Title " '.$row->title.'"',
+            'mail_details4' => 'Requisition reference number:"#'.$row->id.'"',
+            'mail_details6'=>'1- Approving the publication acceptance certificate.',
+            'mail_details7'=>'2- Scheduling the study within the next issue of the journal.',
+            'mail_details8'=>'To complete the procedures, arbitration and publication fees must be paid using a bank card (Visa or Master Card) by clicking on the (Pay Publication Fees) button.',
+            'mail_details5' => 'The following procedures for publication are:-',
+            'id' => '',
+            'file' =>  asset(self::PATH . $row->file),
+            'journal' => $row->journal->name,
+            'username' => $row->user->name,
+            'email' =>$row->user->email,
+            'subject'=>'Publication Acceptance',
+            'id'=>$row->id,
+            'from_email'=>'editor@journals.mejsp.com'
+        ];
+        Mail::to($row->user->email)->send(new AdminRefusedInternationalPublicationOrderEmail($info));
+        Notification::send($row->user, new ResearcheReject($requestData));
+        Session::flash('message', 'تم قبول الطلب بنجاح');
+        return redirect()->back();
+    }
+
+    function UploadFile($file)
+    {
+        $file_name=time().$file->getClientOriginalName();
+        $file->move('email',$file_name);
+        return $file_name;
+
+    }
+
+    public function AddSubscribers(Request $request)
+    {
+        $emails=explode(",", $request->emails);
+        foreach($emails as $email){
+            Subscribers::updateOrCreate(['email'=>$email],['email'=>$email]);
+        }
+        Session::flash('message', 'تم الاضافة بنجاح');
+        return redirect()->back();
+    }
+
+    public function ViewSupportChat($id)
+    {
+        $pageTitle='الرسائل';
+        $message_email=SupportChat::find($id);
+        $messages=SupportChat::where('user_email',$message_email->user_email)->get();
+        // dd(auth('admin')->user());
+        return view("admin.ViewSupportChat",compact('pageTitle','messages','message_email'));
+    }
 }

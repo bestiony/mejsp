@@ -28,6 +28,7 @@ use App\Http\Controllers\InternationalSpecialtiesController;
 use App\Http\Controllers\InternationalPublicationOrdersController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\SupportChatController;
 
 
 Route::middleware(['guest'])->group(function () {
@@ -122,12 +123,23 @@ Route::prefix(adminPrefix())->group(function () {
         Route::get('user-researches/create', 'admin_create_research')->name('admin_create_research');
         Route::post('admin-user-researches/store', 'admin_store_research')->name('admin_store_research');
         Route::get('', 'index');
+        Route::get('subscribers/restore', 'RestoreSubscribers')->name('subscriber.restore');
+        Route::get('subscribers', 'subscribers');
+        Route::get('subscribers/ajax', 'Ajaxsubscribers')->name("subscribers");
+        Route::post('subscribers', 'AddSubscribers')->name('add.subscribers');
+        Route::get('subscribers/remove/{email}', 'RemoveSubscribers');
+        Route::post('send/subscribers/email', 'SendMail')->name('subscribers.send.email');
+        Route::post('subscriber/edit', 'EditSubscriber')->name('subscriber.edit');
+        Route::post('subscriber/destroy', 'destroySubscriber')->name('subscriber.destroy');
         Route::get('show/{id}', 'show');
         Route::get('admin_verifies_user/{id}', 'admin_verifies_user');
         Route::post('status', 'update_status');
         Route::delete('delete', 'destroy');
         Route::get('researches', 'researches');
         Route::post('send_link_facture/', 'send_facture')->name('send_facture');
+        Route::post('refuse/international_publication_orders','RefusedInternationalPublicationOrders')->name('ChangeInternationalPublicationOrders');
+        Route::post('accept/international_publication_orders','AcceptInternationalPublicationOrders')->name('AcceptInternationalPublicationOrders');
+
         // baik
         Route::get('user-researches', 'user_researches')->name('admin_user_researches');
         Route::get('user-researches/{id}', 'user_researches_cat');
@@ -140,6 +152,11 @@ Route::prefix(adminPrefix())->group(function () {
         Route::get('chat/{id}', 'chat');
         //baik
         Route::delete('researches/destroy', 'researches_destroy');
+        Route::get('support/chat/{message_id}','ViewSupportChat')->name('ViewSupportChat');
+        Route::post('adminSendMessage',[SupportChatController::class,'adminSendMessage'])->name('adminSendMessage');
+        Route::get('supportchat',[SupportChatController::class,'SupportChat'])->name('supportchat');
+        Route::get('OpenChat/{email}',[SupportChatController::class,'OpenChat'])->name('OpenChat');
+
       });
     });
     Route::controller(DocumentController::class)->prefix('documents')->group(
@@ -275,4 +292,7 @@ Route::prefix(adminPrefix())->group(function () {
       });
     });
   });
+});
+Route::get('hosam',function(){
+  return view('admin.SubscriberMail');
 });

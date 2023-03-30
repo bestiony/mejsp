@@ -21,6 +21,10 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\JournalsResearchesController;
 use App\Http\Controllers\InternationalPublicationOrdersController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
+use App\Http\Controllers\SupportChatController;
+
+Route::get('email-verification/{token}', [UsersController::class, 'email_verification'])->name('confirm_email_verification_token');
+
 
 Route::get('email-verification/{token}', [UsersController::class, 'email_verification'])->name('confirm_email_verification_token');
 
@@ -183,3 +187,7 @@ Route::prefix('invoice')->group(function () {
     Route::get('read-now/{type}/{noti}/{id?}', [InternationalPublicationOrdersController::class, 'readNotificationConferenceRequest'])->name('read-now');
 });
 Route::get('u/invoice/my-invoices', [InvoicesController::class, 'user_invoices'])->name('my-invoices');
+
+
+Route::post('userSendMessage',[SupportChatController::class,'userSendMessage'])->name('userSendMessage');
+

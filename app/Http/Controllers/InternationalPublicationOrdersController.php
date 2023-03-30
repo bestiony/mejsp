@@ -15,6 +15,7 @@ use App\Models\Admin\Admins;
 use App\Notifications\InternationalRequest;
 use App\Notifications\RecivedOrder;
 use Notification;
+use App\Mail\AdminRefusedInternationalPublicationOrderEmail;
 
 class InternationalPublicationOrdersController extends Controller
 {
@@ -74,7 +75,7 @@ class InternationalPublicationOrdersController extends Controller
         }
         $request->validate(['type' => 'required', 'specialty' => "required", 'journal' => "required|in:" . implode(",", $jourIDs), 'file' => 'required|mimes:docx,doc', 'desc' => 'nullable|max:3000',]);
         $fileName = randomName() . '.' . $request->file->extension();
-        $insert = InternationalPublicationOrders::create(['journal_id' => $request->journal, 'file' => $fileName, 'desc' => $request->desc, 'user_id' => getAuth('user', 'id'),]);
+        $insert = InternationalPublicationOrders::create(['title'=>$request->title,'journal_id' => $request->journal, 'file' => $fileName, 'desc' => $request->desc, 'user_id' => getAuth('user', 'id'),]);
 
         if ($insert->save()) {
 
@@ -91,6 +92,26 @@ class InternationalPublicationOrdersController extends Controller
             Notification::send($admin, new InternationalRequest($requestData));
             
         }
+        $info = [
+            'mail_title' => 'Your study has been received',
+            'mail_details1' => 'We have received a request to publish your study entitled: "'.$insert->title.'"',
+            'status'=>3,
+            'mail_details2' => 'Submitted for publication in the journal: "'.$insert->journal->name.'"',
+            'mail_details3' => 'The application has been registered with a number: #'.$insert->id.'',
+            'mail_details4' => 'We will inform you of any updates',
+            'mail_details5' => 'Be sure to log in to your account periodically to check the status of the application',
+            'mail_details6'=>'',
+            'mail_details7'=>'',
+            'mail_details8'=>'',
+            'id' => '',
+            'file' =>  asset(self::PATH . $insert->file),
+            'journal' => $insert->journal->name,
+            'username' => $insert->user->name,
+            'email' =>$insert->user->email,
+            'subject'=>'Confirm receipt of the study',
+            'id'=>$insert->id,
+        ];
+        Mail::to(Auth::guard('user')->user()->email)->send(new AdminRefusedInternationalPublicationOrderEmail($info));
 
             upload($request->file, self::PATH, $fileName);
             $jourRow = DB::table('international_journals')->select("name", 'price')->where("id", $insert->journal_id)->first();

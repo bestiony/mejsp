@@ -2,7 +2,7 @@
 @section('title', $pageTitle)
 @section('content')
 
-    <section id="section" class="py-5">
+    <section id="section" class="py-5 mt-5">
         <div class="container">
             <div class="row">
 
@@ -103,6 +103,11 @@
                                                 يتم
                                                 قبولها</small>
                                         </div><!-- file -->
+
+                                        <div class="form-group">
+                                            <label>عنوان البحث</label>
+                                            <input required type="text" name="title" class="form-control">
+                                        </div>
 
                                         <div class="form-group">
                                             <label>ملاحظات</label>

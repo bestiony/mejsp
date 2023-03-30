@@ -1,6 +1,6 @@
 <div class="row mb-4">
     <div class="col-12">
-        <h4 class="mb-4">احدث المقالات</h4>
+        <h4 class="mb-4">أحدث المقالات</h4>
     </div>
     @foreach ($articles as $art)
         <div class="col-12 mb-2" @if(strlen($art->title) == strlen(utf8_decode($art->title))) style="direction:ltr;text-align:left !important" @endif>
