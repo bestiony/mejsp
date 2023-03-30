@@ -59,7 +59,9 @@
                             </form>
                         </div>
                         <div class="col-lg-3 mt-2 mt-lg-0">
-                            <button type="button" data-toggle="modal" data-target="#exampleModal3" class="btn btn-light btn-block border">اضافة مشتركين</button>
+                            <a href="{{ route('new-subscriber-form') }}" class="btn btn-light btn-block border">
+                                اضافة مشتركين
+                            </a>
                         </div>
                         <div class="col-lg-3 mt-2 mt-lg-0">
                             <a href="{{ route('email-form') }}" class="btn btn-light btn-block border">
