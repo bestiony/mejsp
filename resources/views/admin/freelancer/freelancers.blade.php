@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'الكاتبون')
+@section('title', 'الكتاب')
 @section('content')
 
     <div class=" mt-4 mb-3 ">
@@ -105,7 +105,7 @@
 
 
                             <div class="send-message toast-title" data-id="{{ $row->id }}" data-toggle="tooltip"
-                                data-placement="top" title="ارسال رسالة">
+                                data-placement="top" title="إرسال رسالة">
                                 <button type="button" data-toggle="modal" data-target="#send-message-modal"><i
                                         class="far fa-envelope"></i></button>
                             </div><!-- Send Message -->

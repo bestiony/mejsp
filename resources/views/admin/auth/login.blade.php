@@ -34,7 +34,7 @@
                         @csrf
 
                         <div class="form-group text-right">
-                            <label>كلمه السر</label>
+                            <label>كلمة المرور</label>
                             <input type="password" name="password" class="form-control text-right">
                         </div>
 
@@ -43,7 +43,7 @@
                     </form>
                 </div>
                 <div class=" text-right mt-3">
-                    <a href="{{ adminUrl("forget-password") }}">هل نسيت كلمة السر ؟</a>
+                    <a href="{{ adminUrl("forget-password") }}">هل نسيت كلمة المرور ؟</a>
                 </div>
             </div>
         </div>

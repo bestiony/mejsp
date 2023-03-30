@@ -1,9 +1,9 @@
 @extends('admin.layouts.master')
-@section('title', 'طلبات النشر الدولي')
+@section('title', 'طلبات النشر في SCOPUS/WOS(ISI)')
 @section('content')
 
     <div class="links-bar my-4 ">
-        <h4>طلبات النشر الدولي</h4>
+        <h4>طلبات النشر في SCOPUS/WOS (ISI)</h4>
     </div><!-- End Bar Links -->
 
     <div class="result"></div>
@@ -23,12 +23,12 @@
                         <table class="table table-striped table-inverse table-bordered mb-0 text-center table-with-avatar">
                             <thead class="thead-inverse">
                                 <tr>
-                                    <th>النشر الدولى</th>
-                                    <th>ثمن النشر</th>
+                                    <th>النشر في SCOPUS/WOS (ISI)</th>
+                                    <th>رسوم النشر</th>
                                     <th>حالة الدفع</th>
-                                    <th>تاريخ الحجز</th>
+                                    <th>تاريخ التقديم</th>
                                     <th>طلب بواسطة</th>
-                                    <th>تفاصيل اكثر</th>
+                                    <th>تفاصيل أكثر</th>
                                     <th>الحذف</th>
                                 </tr>
                             </thead>

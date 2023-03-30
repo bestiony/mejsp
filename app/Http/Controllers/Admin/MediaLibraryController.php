@@ -34,7 +34,7 @@ class MediaLibraryController extends Controller
 
 
         if (count($request->image) > 10) {
-            echo "<div class='box-error'>الحد الاقصي للرفع 10 صور</div>";
+            echo "<div class='box-error'>الحد الأقصى للرفع 10 صور</div>";
         } else {
 
             for ($i = 0; $i < count($request->image); $i++) {
@@ -62,7 +62,7 @@ class MediaLibraryController extends Controller
                             image($img, self::PATH, $newImgName, 800, 600);
                         }
                     } else {
-                        echo "<div class='box-error'> حجم  <b>" . $imgName . "</b> ضخم جدا الحد الاقصي 8 ميجابايت</div>";
+                        echo "<div class='box-error'> حجم  <b>" . $imgName . "</b> الملف كبير جداً الحد الأقصى 8 ميجابايت</div>";
                     }
                 } else {
                     echo "<div class='box-error'> امتداد  <b>" . $imgName . "</b> غير مسموح به</div>";

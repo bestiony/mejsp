@@ -31,7 +31,7 @@ class ResearchesController extends Controller
 
     public function index()
     {
-        $pageTitle = 'ابحاثي';
+        $pageTitle = 'دراساتك';
         $researches = UsersResearches::with(['journal' => function ($q) {
             $q->select('id', 'name');
         }])->where('user_id', getAuth('user', 'id'))->orderBy("id", 'DESC')->get();
@@ -40,7 +40,7 @@ class ResearchesController extends Controller
 
     public function show($id)
     {
-        $pageTitle = 'تفاصيل البحث';
+        $pageTitle = 'تفاصيل الدراسة';
         $research_details = UsersResearches::with(['journal' => function ($q) {
             $q->select('id', 'name');
         }])->orderBy("id", 'DESC')->where('user_id', getAuth('user', 'id'))->find($id);
@@ -52,7 +52,7 @@ class ResearchesController extends Controller
 
 public function create()
     {
-        $pageTitle = 'ارسال بحثك';
+        $pageTitle = 'تقديم طلب نشر ';
         $journals = Journals::select("name", 'id')->where('is_enabled',true)->get();
 
         // $setting = Settings::first();
@@ -153,7 +153,7 @@ public function create()
                 'user_id' => getAuth('user', 'id'),
                 'user_name' => getAuth('user', 'name'),
                 'type' => 'researche',
-                'body' => 'تم استلام طلب النشر الخاص بك، هو الآن قيد المراجعة، سنبلغك بأخر مستجدات الطلب، يرجى الحرص على الدخول للوحة التحكم الخاصة بك دوريا للاطلاع على حالة طلبك'
+                'body' => 'تم استلام طلب النشر الخاص بك، هو الآن قيد المراجعة، سنبلغك بأخر مستجدات الطلب، يرجى الحرص على الدخول للوحة التحكم الخاصة بك دورياً للاطلاع على حالة طلبك'
             ];
 
             Notification::send($user, new ResearcheResponse($requestData));
@@ -175,7 +175,7 @@ public function create()
             $info = [
                 'mail_title' => 'تم استلام دراستك',
                 'mail_details1' => 'تلقينا طلب نشر دراستك',
-                'mail_details2' => 'سوف نبلغك باي مستجدات',
+                'mail_details2' => 'سوف نبلغك بأي مستجدات',
                 'mail_details3' => 'احرص على الدخول لحسابك دورياً لتفقد حالة الطلب',
                 'mail_details4' => '',
                 'mail_details5' => '',
@@ -196,16 +196,16 @@ public function create()
                 Mail::to($email)->send(new NotificationsResearchesMail($info));
             }
 
-            Mail::to($user_email)->send(new ResiveOrderMail($info, "تأكيد استلام الدراسة"));
-            $pageTitle = 'تأكيد استلام الطلب';
-            $request->session()->flash('successMsg', 'تم استلام الطلب بنجاح');
+            Mail::to($user_email)->send(new ResiveOrderMail($info, "تأكيد استلام طلب النشر"));
+            $pageTitle = 'تأكيد استلام طلب النشر';
+            $request->session()->flash('successMsg', 'تم استلام طلب النشر بنجاح');
 
             // return view("main.user.researches.success",compact('pageTitle', 'insert'));
             return response([
                 'status' => true,
                 'redirect_to_success_page'=>true,
                 'order_id'=>$insert->id,
-                'message' => 'تم ارسال بحثك بنجاح', 'form' => 'reset',
+                'message' => 'تم إرسال طلب النشر بنجاح', 'form' => 'reset',
             ]);
         }
     }
@@ -214,7 +214,7 @@ public function create()
     {
         $row = UsersResearches::where("user_id", getAuth('user', 'id'))->find($id);
         if (!empty($row)) {
-            $pageTitle = 'تعديل بحثك';
+            $pageTitle = 'تعديل دراستك';
             $journals = Journals::where('is_enabled',true)->select("name", 'id')->get();
             return view("main.user.researches.edit", compact('pageTitle', 'journals', 'row'));
         } else {
@@ -291,7 +291,7 @@ public function create()
                 foreach (DB::table('received_emails')->select("email")->get() as $email) {
                     Mail::to($email)->send(new UpdateOrderMail($info,$etat));
                 }
-                return response(['status' => true, 'message' => 'تم ارسال بحثك بنجاح',]);
+                return response(['status' => true, 'message' => 'تم إرسال طلب النشر بنجاح',]);
             }
         }
     }
@@ -355,7 +355,7 @@ public function create()
     }
     public function old_chats()
     {
-        $pageTitle = 'محادثاتي السابقة';
+        $pageTitle = 'محادثاتك السابقة';
         $researches = UsersResearches::with(['journal' => function ($q) {
             $q->select('id', 'name');
         }])->where('user_id', getAuth('user', 'id'))->orderBy("id", 'DESC')->get();

@@ -16,11 +16,11 @@
                             <tr>
                                 <th>#</th>
                                 <th>نوع الشهادة</th>
-                                <th>عنوان البحث</th>
+                                <th>عنوان الدراسة</th>
                                 <th>طلب بواسطة</th>
                                 <th>حالة الدفع</th>
                                 <th>الشهادة</th>
-                                <th>تفاصيل اكثر</th>
+                                <th>تفاصيل أكثر</th>
                                 <th>الحذف</th>
 
                             </tr>
@@ -64,7 +64,7 @@
                                             <input type="hidden" name="id" value="{{ Crypt::encryptString($row->id) }}">
                                             <input type="hidden" name="email"
                                                 value="{{ Crypt::encryptString($row->user->email) }}">
-                                            <button type="submit" class="btn btn-light border btn-sm">ارسل الشهادة</button>
+                                            <button type="submit" class="btn btn-light border btn-sm">أرسل الشهادة</button>
                                         </form>
                                     </td>
 
