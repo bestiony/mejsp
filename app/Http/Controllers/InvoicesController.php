@@ -327,14 +327,12 @@ class InvoicesController extends Controller
             $info['mail_details3'] = 'ونظراً لتميز دراستك فقد تم خفض الرسوم بنسبة '. (- $discounts[$reminder]*100) .'% الآن';
             $info['mail_details4'] = 'تعتمد شهادة قبول النشر في اليوم التالي لسداد الرسوم';
             $info['mail_details5'] = 'يدون بالشهادة موعد النشر على الموقع الإلكتروني';
+            $info['note'] =  '(تنتهي صلاحية التخفيض خلال 72 ساعة) ';
 
             $do_send = true;
 
         }
-        if ($reminder == '5'){
-            $info['note'] =  '(تنتهي صلاحية التخفيض خلال 72 ساعة) ';
-
-        }
+        
         if($do_send){
             $mail = Mail::to($user->email)->send(new ResiveOrderMail($info, $etat));
             if($mail){

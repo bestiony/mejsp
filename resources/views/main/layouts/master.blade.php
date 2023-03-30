@@ -113,7 +113,7 @@
                 e.preventDefault();
                 $(this).hide();
             });
-            
+
             </script>
 <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 
@@ -148,9 +148,9 @@
             document.cookie = "chat_email="+email+"";
             location.reload();
         });
-        
+
         $('#textAreaExample').on('keypress',function(e){
-            
+
             var file=$("#upload-research-file")[0].files;
             if (e.which == 13) {
                 if(text!==''|| !file){
@@ -170,9 +170,9 @@
                     $('#CardBody').append(inkerTag):
                     $('#CardBody').append(html);
                 }
-                
-               
-              
+
+
+
                 $('#textAreaExample').val("");  // <=============================================================================================
                 $("#textAreaExample").attr("disabled","");
                 $("#submit").attr("disabled","");
@@ -217,7 +217,7 @@
             console.log(file);
             var text=$('#textAreaExample').val();
             if(text!==''|| file){
-                
+
                var html=`<div class="d-flex flex-row justify-content-start mb-4">
                             <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
                             <p class="small mb-0">${text}</p>
@@ -229,7 +229,7 @@
                             </div>
                         </div>`;
                 // var file_div=`<div class="d-flex flex-row justify-content-start mb-4">
-                    
+
                 //     <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
                 //         <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
                 //     </div>`;
@@ -241,7 +241,7 @@
                 // if(file.length>0){
                 //     $('#CardBody').append(file_div);
                 // }
-                
+
                 $("#textAreaExample").attr("disabled","");
                 $("#submit").attr("disabled","");
                 $("#submit svg").removeClass("fa-paper-plane");
@@ -289,7 +289,9 @@ var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
 });
 var email=getCookie('chat_email');
     email?$(".login-form").hide():null;
-let userId = email
+    if(!userId){
+        let userId = email
+    }
 
 console.log(pusher);
 console.log(email);
@@ -321,7 +323,7 @@ channel.bind('research-chat-message', function(data) {
                             <a download href="{{ asset('email/${document_file}') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
                         </div>
                     </div>`;
-                    
+
 
     if(document_file){
         $('#CardBody').append(push_file_div);
@@ -330,8 +332,8 @@ channel.bind('research-chat-message', function(data) {
 });
 </script>
 <script>
-    
-        
+
+
 // <----------------------------------------------------------- upload file to the chat ------------------------------------------------------------------------->
 
 function showUploadedFileName(){
@@ -350,7 +352,7 @@ function showUploadedFileName(){
 
 
     document.querySelector('#file-name').innerText=research_file.name
-    
+
     document.querySelector('#file-box').classList.remove('d-none')
     const reader = new FileReader()
 
@@ -363,20 +365,20 @@ function showUploadedFileName(){
     // Files can be read with the readAs[ArrayBuffer|BinaryString|DataURL|Text] methods
     reader.readAsArrayBuffer(research_file)
     reader.addEventListener('progress', event => {
-    
+
         const percent = Math.round((event.loaded / event.total) * 100)
             const loadingBar = Array(10)
                 .fill('▒')
                 .map(function(item, index) {
                     document.querySelector('#upload-progress .progress-bar').style.width=Math.round(percent)+"%"
-                
+
                 return Math.round(percent / 10) > index ? '█'
-                    : '▒'   
+                    : '▒'
                 } )
                 .join('')
 
             // document.location.hash = `${loadingBar}(${percent}%)`
-            
+
 
     })
     // reader.readAsBinaryString(research_file)
@@ -391,7 +393,7 @@ function removeCurrentFile(){
     let research_label = document.querySelector('label[for="upload-research-file"]')
     research_label.innerHTML =`<i class="fa fa-file-upload mr-3" id="file-uploader" style="font-size: 23px;cursor:pointer;
                                 margin: 0 2px;    position: relative;top: 4px;"></i>`
-    
+
 }
 
 // <----------------------------------------------------------- upload file to the chat ------------------------------------------------------------------------->
