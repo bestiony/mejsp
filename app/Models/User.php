@@ -38,7 +38,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Conferences::class, 'user_id', 'id');
     }
-    
+
 
 
     public function getPayment()

@@ -12,26 +12,26 @@
             <li class="{{ activeLink(userPrefix() . '/dashboard') }}"><a href="{{ userUrl('dashboard') }}">
                     <i class="fas fa-columns"></i> لوحة التحكم</a>
             </li>
-            @if($front_sections['international_conference'] == 1) 
+            @if($front_sections['international_conference'] == 1)
             <li class="{{ activeLink(userPrefix() . '/conference/create') }}"><a
                     href="{{ userUrl('conference/create') }}"><i class="fa-solid fa-file-circle-plus"></i>    المؤتمرات الدولية</a>
             </li>
             @endif
 
-            @if($front_sections['international_publishing'] == 1) 
+            @if($front_sections['international_publishing'] == 1)
             <li class="{{ activeLink(userPrefix() . '/international-publishing/create') }}"><a
-                    href="{{ userUrl('international-publishing/create') }}"><i class="fa-solid fa-bullhorn"></i> 
+                    href="{{ userUrl('international-publishing/create') }}"><i class="fa-solid fa-bullhorn"></i>
                     SCOPUS</a>
             </li>
             @endif
-            @if($front_sections['international_publishing'] == 1) 
+            @if($front_sections['international_publishing'] == 1)
             <li class="{{ activeLink(userPrefix() . '/international-publishing/create') }}"><a
-                    href="{{ userUrl('international-publishing/create') }}"><i class="fa-solid fa-bullhorn"></i> 
+                    href="{{ userUrl('international-publishing/create') }}"><i class="fa-solid fa-bullhorn"></i>
                     WOS (ISI) </a>
             </li>
             @endif
 
-            @if($front_sections['add_research'] == 1) 
+            @if($front_sections['add_research'] == 1)
             <li class="{{ activeLink(userPrefix() . '/researches') }}"><a href="{{ userUrl('researches') }}"><i class="fa-solid fa-file-word"></i> تقديم دراسة</a>
             </li>
             @endif
@@ -70,3 +70,4 @@
         </form>
     </div>
 @endif
+
