@@ -124,21 +124,25 @@ Route::prefix(adminPrefix())->group(function () {
         Route::post('admin-user-researches/store', 'admin_store_research')->name('admin_store_research');
         Route::get('', 'index');
         Route::get('subscribers/restore', 'RestoreSubscribers')->name('subscriber.restore');
+
+        // Subscribers
         Route::get('subscribers', 'subscribers');
-        Route::get('subscribers/ajax', 'Ajaxsubscribers')->name("subscribers");
         Route::post('subscribers', 'AddSubscribers')->name('add.subscribers');
-        Route::get('subscribers/remove/{email}', 'RemoveSubscribers');
+        Route::get('subscribers/email', 'emailSubscriberForm');
         Route::post('send/subscribers/email', 'SendMail')->name('subscribers.send.email');
+        Route::get('subscribers/ajax', 'Ajaxsubscribers')->name("subscribers");
+        Route::get('subscribers/remove/{email}', 'RemoveSubscribers');
         Route::post('subscriber/edit', 'EditSubscriber')->name('subscriber.edit');
         Route::post('subscriber/destroy', 'destroySubscriber')->name('subscriber.destroy');
+
         Route::get('show/{id}', 'show');
         Route::get('admin_verifies_user/{id}', 'admin_verifies_user');
         Route::post('status', 'update_status');
         Route::delete('delete', 'destroy');
         Route::get('researches', 'researches');
         Route::post('send_link_facture/', 'send_facture')->name('send_facture');
-        Route::post('refuse/international_publication_orders','RefusedInternationalPublicationOrders')->name('ChangeInternationalPublicationOrders');
-        Route::post('accept/international_publication_orders','AcceptInternationalPublicationOrders')->name('AcceptInternationalPublicationOrders');
+        Route::post('refuse/international_publication_orders', 'RefusedInternationalPublicationOrders')->name('ChangeInternationalPublicationOrders');
+        Route::post('accept/international_publication_orders', 'AcceptInternationalPublicationOrders')->name('AcceptInternationalPublicationOrders');
 
         // baik
         Route::get('user-researches', 'user_researches')->name('admin_user_researches');
@@ -152,22 +156,22 @@ Route::prefix(adminPrefix())->group(function () {
         Route::get('chat/{id}', 'chat');
         //baik
         Route::delete('researches/destroy', 'researches_destroy');
-        Route::get('support/chat/{message_id}','ViewSupportChat')->name('ViewSupportChat');
-        Route::post('adminSendMessage',[SupportChatController::class,'adminSendMessage'])->name('adminSendMessage');
-        Route::get('supportchat',[SupportChatController::class,'SupportChat'])->name('supportchat');
-        Route::get('OpenChat/{email}',[SupportChatController::class,'OpenChat'])->name('OpenChat');
+        Route::get('support/chat/{message_id}', 'ViewSupportChat')->name('ViewSupportChat');
+        Route::post('adminSendMessage', [SupportChatController::class, 'adminSendMessage'])->name('adminSendMessage');
+        Route::get('supportchat', [SupportChatController::class, 'SupportChat'])->name('supportchat');
+        Route::get('OpenChat/{email}', [SupportChatController::class, 'OpenChat'])->name('OpenChat');
 
       });
     });
     Route::controller(DocumentController::class)->prefix('documents')->group(
-    function () {
+      function () {
         Route::get('', 'index')->name('admin.documents');
         Route::post('store', 'store')->name('admin.store_documents');
         Route::post('delete_document', 'destroy')->name('admin.delete_document');
         Route::post('update_document', 'update')->name('admin.update_document');
         Route::post('get_user_researches', 'get_user_researches')->name('admin.get_user_researches');
         Route::post('get_documents', 'get_documents')->name('admin.get_documents');
-    }
+      }
     );
     Route::prefix('journals')->group(function () {
       Route::controller(JournalsController::class)->group(function () {
@@ -293,6 +297,6 @@ Route::prefix(adminPrefix())->group(function () {
     });
   });
 });
-Route::get('hosam',function(){
+Route::get('hosam', function () {
   return view('admin.SubscriberMail');
 });
