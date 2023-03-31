@@ -58,14 +58,19 @@
                                 />
                             </form>
                         </div>
-                        <div class="col-lg-3 mt-2 mt-lg-0">
+                        <div class="col-lg-2 mt-2 mt-lg-0">
                             <a href="{{ route('new-subscriber-form') }}" class="btn btn-light btn-block border">
                                 اضافة مشتركين
                             </a>
                         </div>
-                        <div class="col-lg-3 mt-2 mt-lg-0">
+                        <div class="col-lg-2 mt-2 mt-lg-0">
+                            <button type="button" data-toggle="modal" data-target="#testEmailModal" class="btn btn-light btn-block border">
+                                إرسال إيميل تجريبي
+                            </button>
+                        </div>
+                        <div class="col-lg-2 mt-2 mt-lg-0">
                             <a href="{{ route('email-form') }}" class="btn btn-light btn-block border">
-                                ارسال إيميل
+                                ارسال إيميل للجميع
                             </a>
                         </div>
                     </div>
@@ -189,32 +194,33 @@
     </div>
 </form>
 
-<form action="{{ Route('add.subscribers') }}" method="post" enctype="multipart/form-data">
-    @csrf
-    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<form action="" method="post" enctype="multipart/form-data"> @csrf
+    <div class="modal fade" id="testEmailModal" tabindex="-1" role="dialog" aria-labelledby="testEmailModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">المشتركين</h5>
-           
-            </div>
-            <div class="modal-body">
-                
-
-                <div class="form-group">
-                    <label for=""> اضافة المشتركين</label>
-                    <input type="text" name="emails" id="tag-input1">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="testEmailModal">أرسل إيميل للتجربة</h5>
                 </div>
-                
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="emails">اضافة المستلمين</label>
+                        <textarea class="form-control" name="emails" rows="3"></textarea>
+                        <small id="emailsHelpBlock" class="form-text text-muted">
+                            للإرسال لعدة إيميلات قم بإضافة إيميل واحد في كل سطر
+                        </small>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">غلق</button>
+                    <button type="submit" class="btn btn-primary">إرسال</button>
+                </div>
             </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">غلق</button>
-            <button type="submit" class="btn btn-primary">حفظ</button>
-            </div>
-        </div>
         </div>
     </div>
 </form>
+
 <form action="{{ Route('subscriber.edit') }}" method="post">
 <!-- Modal -->
     <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label" aria-hidden="true">
