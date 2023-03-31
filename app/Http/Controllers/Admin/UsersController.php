@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\ResearchesController;
+use App\Jobs\SubscriberTestEmailJob;
 use DB;
 use Auth;
 use Crypt;
@@ -949,13 +950,25 @@ class UsersController extends Controller
             $details['publication_terms'] = $request->publication_terms;
             $details['judgement_comity'] = $request->judgement_comity;
 
-
-
             dispatch(new SubscriberEmailJob($details))->delay($time);
             $time = $time->addSeconds(20);
             Session::flash('message', 'تمت بنجاح');
             return redirect()->back();
         }
+
+    }
+
+    public function SendTestMail(Request $request)
+    {
+        $array = explode("\r\n", $request->emails);
+        $time = Carbon::now();
+        foreach ($array as $email) {
+            $time = $time->addSeconds(30);
+            dispatch(new SubscriberTestEmailJob($email))->delay($time);
+        }
+
+        \Illuminate\Support\Facades\Session::flash('message', 'تمت بنجاح');
+        return redirect()->back();
 
     }
 

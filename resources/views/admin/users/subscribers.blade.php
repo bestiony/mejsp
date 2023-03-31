@@ -194,7 +194,7 @@
     </div>
 </form>
 
-<form action="" method="post" enctype="multipart/form-data"> @csrf
+<form action="{{ route('send-test-email') }}" method="post" enctype="multipart/form-data"> @csrf
     <div class="modal fade" id="testEmailModal" tabindex="-1" role="dialog" aria-labelledby="testEmailModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
