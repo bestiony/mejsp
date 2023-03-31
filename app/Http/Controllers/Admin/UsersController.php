@@ -8,6 +8,7 @@ use DB;
 use Auth;
 use Crypt;
 use Exception;
+use Illuminate\Support\Facades\Session;
 use Notification;
 use App\Models\Chat;
 use App\Models\User;
@@ -42,7 +43,6 @@ use App\Notifications\AdminConfirmedUserEmail;
 use App\Mail\AdminRefusedInternationalPublicationOrderEmail;
 use App\Notifications\ResearcheResponse;
 use App\Models\Subscribers;
-use Session;
 use App\Jobs\SubscriberEmailJob;
 use Carbon\Carbon;
 use App\Models\Settings;
@@ -932,7 +932,7 @@ class UsersController extends Controller
 
     public function SendMail(Request $request)
     {
-        $array = [$request->name_of_email];
+        $array= Subscribers::pluck('email')->toArray();
         $time = Carbon::now();
         $setting = Settings::first();
         $logo = $this->UploadFile($request->logo);
@@ -952,9 +952,10 @@ class UsersController extends Controller
 
             dispatch(new SubscriberEmailJob($details))->delay($time);
             $time = $time->addSeconds(20);
-            Session::flash('message', 'تمت بنجاح');
-            return redirect()->back();
         }
+
+        Session::flash('message', 'تمت بنجاح');
+        return redirect()->back();
 
     }
 
@@ -967,7 +968,7 @@ class UsersController extends Controller
             dispatch(new SubscriberTestEmailJob($email))->delay($time);
         }
 
-        \Illuminate\Support\Facades\Session::flash('message', 'تمت بنجاح');
+        Session::flash('message', 'تمت بنجاح');
         return redirect()->back();
 
     }
