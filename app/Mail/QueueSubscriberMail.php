@@ -30,7 +30,7 @@ class QueueSubscriberMail extends Mailable
     {
         $address = config("mail.from.address");
         $subject=$this->details['subject'];
-        $from_email=$this->details['email_sender'];
+        // $from_email=$this->details['email_sender'];
         $name = $this->details['name_of_email'];
         return $this->subject($subject)->view('admin.SubscriberMail')->from($address, $name)->with('details', $this->details);
     }

@@ -34,7 +34,9 @@ class Kernel extends ConsoleKernel
         // ->withoutOverlapping()
         // ->everyFiveMinutes();
         
-
+        $schedule->command('queue:work --stop-when-empty')
+        ->everyMinute()
+        ->withoutOverlapping();
     }
 
     /**
