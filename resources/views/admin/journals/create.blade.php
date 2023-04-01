@@ -44,7 +44,7 @@
                                     <div class="form-group">
                                         <label class="required">الرؤية واهداف المجلة</label>
                                         <textarea name="brief_desc" cols="30" rows="4" class="form-control" required></textarea>
-                                        <small class=" text-muted">قم بكتابة وصف سريع وملخص عن الاهداف الاساسية والرؤية
+                                        <small class=" text-muted">قم بكتابة وصف سريع وملخص عن الأهداف الأساسية والرؤية
                                             للمجلة</small>
                                     </div><!-- brief_desc -->
 
@@ -54,21 +54,21 @@
 
                                 <div class="px-3">
                                     <div class="form-group">
-                                        <label>تعليمات المراجعين</label>
+                                        <label>قواعد للمحكمين </label>
                                         <textarea name="reviewers_instructions" cols="30" rows="4" class="form-control editor"></textarea>
                                     </div>
                                 </div><!-- reviewers_instructions -->
 
                                 <div class="px-3">
                                     <div class="form-group">
-                                        <label>تعليمات المؤلفين</label>
+                                        <label>شروط النشر </label>
                                         <textarea name="authors_instructions" cols="30" rows="4" class="form-control editor"></textarea>
                                     </div>
                                 </div><!-- authors_instructions   -->
 
                                 <div class="px-3">
                                     <div class="form-group">
-                                        <label>اخلاقيات النشر</label>
+                                        <label>أخلاقيات النشر</label>
                                         <textarea name="ethics" cols="30" rows="4" class="form-control editor"></textarea>
                                     </div>
                                 </div><!-- ethics  -->
@@ -94,7 +94,7 @@
                         <div class="col-12 mb-4">
                             <div class="box-white px-0">
 
-                                <h5 class="px-3 font-weight-bold">اعدادات ال SEO</h5><!-- Box Name -->
+                                <h5 class="px-3 font-weight-bold">إعدادات ال SEO</h5><!-- Box Name -->
                                 <hr><!-- HR -->
                                 <div class="px-3">
 
@@ -117,12 +117,12 @@
                         <div class="col-12 mb-3">
                             <div class="box-white px-0">
 
-                                <h5 class="px-3 font-weight-bold">معلومات اساسية</h5><!-- Box Name -->
+                                <h5 class="px-3 font-weight-bold">معلومات أساسية</h5><!-- Box Name -->
                                 <hr><!-- HR -->
                                 <div class="px-3">
 
                                     <div class="form-group">
-                                        <label>عامل التأثير ( Impact Factor )</label>
+                                        <label>معامل التأثير ( Impact Factor )</label>
                                         <input type="text" name="impact" class="form-control">
                                     </div><!-- impact   -->
 
@@ -132,10 +132,10 @@
                                     </div><!-- issn -->
 
                                     {{-- <div class="form-group mb-0">
-                                        <label>الاصدار القادم للمجلة</label>
+                                        <label>الإصدار القادم للمجلة</label>
                                         <input type="text" name="next_version" class="form-control">
                                     </div><!-- next_version --> --}}
-                                    <label>الاصدار القادم للمجلة</label>
+                                    <label>الإصدار القادم للمجلة</label>
 
                                     <div class="row">
 
@@ -216,7 +216,7 @@
 
 
                                     <div class="form-group">
-                                        <label class="required">البريد الالكتروني</label>
+                                        <label class="required">البريد الإلكتروني</label>
                                         <input type="email" name="email" class="form-control" required />
                                     </div><!-- email -->
 

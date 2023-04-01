@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'المستخدمين')
+@section('title', 'المشتركين')
 @section('css')
 <style>
     .tags-input-wrapper{
@@ -50,19 +50,19 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <input type="email" name="search" id="search" class="form-control form-control-sm"
-                                    placeholder="ابحث بواسطة البريد الالكتروني"/>
+                                    placeholder="ابحث بواسطة البريد الإلكتروني"/>
                             </div>
 
                             <div class=" col-lg-2 mt-2 mt-lg-0">
                                 <a href="{{ route('subscriber.restore') }}" class="btn btn-light btn-block border">إعادة تعيين</a>
                             </div>
                             <div class=" col-lg-2 mt-2 mt-lg-0">
-                                <button  type="button" data-toggle="modal" data-target="#exampleModal3" class="btn btn-light btn-block border">اضافة مشتركين</button>
+                                <button  type="button" data-toggle="modal" data-target="#exampleModal3" class="btn btn-light btn-block border">إضافة مشتركين</button>
                             </div>
                             <div class=" col-lg-2 mt-2 mt-lg-0">
                                 {{-- href="{{ route('subscribers.send.email') }}" --}}
-                                <button type="button" class="btn btn-light btn-block border" data-toggle="modal" data-target="#exampleModal">ارسال</button>
-                                {{-- <button data-toggle="modal" data-target="#exampleModal" class="btn btn-light" >ارسال</button> --}}
+                                <button type="button" class="btn btn-light btn-block border" data-toggle="modal" data-target="#exampleModal"> إنشاء حملة</button>
+                                {{-- <button data-toggle="modal" data-target="#exampleModal" class="btn btn-light" >إنشاء حملة </button> --}}
                             </div>
                         </div>
                     </form>
@@ -80,7 +80,7 @@
                         <table id="customFields" class="table table-striped table-inverse table-bordered mb-0 text-center table-with-avatar">
                             <thead class="thead-inverse">
                                 <tr>
-                                    <th>البريد الالكتروني</th>
+                                    <th>البريد الإلكتروني</th>
                                     <th>التعديل</th>
                                     <th>الحذف</th>
                                    
@@ -125,34 +125,34 @@
                     </div>
 
                     <div class="form-group col-6">
-                        <label for="">الاميل الي هيتم الارسال منه</label>
+                        <label for="">البريد الإلكتروني الذي سيتم منه الإرسال </label>
                         <input class="form-control" name="email_sender" type="email">
                         
                     </div>
 
 
                     <div class="form-group col-6">
-                        <label for="">اسم الاميل</label>
+                        <label for="">اسم البريد الإلكتروني</label>
                         <input class="form-control" name="name_of_email" type="text">
                     </div>
 
                     <div class="form-group col-6">
-                        <label for=""> subject</label>
+                        <label for=""> الموضوع</label>
                         <input class="form-control" name="subject" type="text">
                     </div>
 
                     <div class="form-group col-6">
-                        <label for=""> شروط النشر</label>
+                        <label for=""> رابط شروط النشر</label>
                         <input class="form-control" name="publication_terms" type="text">
                     </div>
 
                     <div class="form-group col-6">
-                        <label for="">لجنة التحكيم</label>
+                        <label for="">رابط لجنة التحكيم</label>
                         <input class="form-control" name="judgement_comity" type="text">
                     </div>
 
                     {{-- <div class="form-group col-6">
-                        <label for=""> subject</label>
+                        <label for=""> الموضوع</label>
                         <input class="form-control" name="subject" type="text">
                     </div> --}}
 
@@ -164,22 +164,22 @@
                     </div>
 
                     <div class="form-group col-6">
-                        <label for="">النص الاول</label>
+                        <label for="">النص تحت اسم المجلة</label>
                         <input class="form-control" type="text" name="text_one">
                     </div>
                     <div class="form-group col-6">
-                        <label for="">النص الثاني</label>
+                        <label for="">ISSN </label>
                         <input class="form-control" type="text" name="text_two" >
                     </div>
                     <div class="form-group col-6">
-                        <label for="">النص الثالث</label>
+                        <label for="">النص تحت الISSN</label>
                         <input class="form-control" type="text" name="text_three" >
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="submit" class="btn btn-primary"> إرسال</button>
             </div>
         </div>
         </div>
@@ -199,14 +199,14 @@
                 
 
                 <div class="form-group">
-                    <label for=""> اضافة المشتركين</label>
+                    <label for=""> إضافة المشتركين</label>
                     <input type="text" name="emails" id="tag-input1">
                 </div>
                 
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">غلق</button>
-            <button type="submit" class="btn btn-primary">حفظ</button>
+            <button type="submit" class="btn btn-primary">إضافة</button>
             </div>
         </div>
         </div>
@@ -252,7 +252,7 @@
                 </button> --}}
                 </div>
                 <div class="modal-body">
-                        <h3>هل انت متاكد من الحذف</h3>
+                        <h3>هل أنت متاكد من الحذف؟</h3>
                         <input id="id_delete_btn" name="id" type="hidden">
                 </div>
                 <div class="modal-footer">

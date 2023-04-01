@@ -51,7 +51,7 @@
                         <table id="customFields" class="table table-striped table-inverse table-bordered mb-0 text-center table-with-avatar">
                             <thead class="thead-inverse">
                                 <tr>
-                                    <th>البريد الالكتروني</th>
+                                    <th>البريد الإلكتروني</th>
                                     <th>التعديل</th>
                                     
                                 </tr>
@@ -60,7 +60,7 @@
                                 @foreach ($emails as $row)
                                     <tr>
                                         <td>{{ $row->user_email }}</td>
-                                        <td><a href="{{ Route('OpenChat',$row->user_email) }}" class="btn btn-info"> فتح الشات</a></td>
+                                        <td><a href="{{ Route('OpenChat',$row->user_email) }}" class="btn btn-info"> فتح المحادثة</a></td>
                                         
                                     </tr>
                                 @endforeach

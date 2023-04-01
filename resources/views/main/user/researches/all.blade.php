@@ -67,7 +67,7 @@
                                         <hr>
 {{-- 
                                         <div class="mx-3 mb-2 mt-3 d-flex  align-items-center">
-                                            <span class=" float-right text-secondary" style="min-width: 93px;">عنوان البحث  : </span>
+                                            <span class=" float-right text-secondary" style="min-width: 93px;">عنوان الدراسة  : </span>
                                             <a href="{{route('current_user_researches',['id'=>$row->id])}}" class="mx-3 font-weight-bold
                                                 @if(preg_match("/^[\w\d\s.,-]*$/", $row->title))
                                                 text-left
@@ -77,7 +77,7 @@
                                         </div> --}}
                                         <div class="row m-0 px-3 mb-3">
                                             <div class="col-4 p-0 " style="line-height: 2">
-                                                <h6 class="m-0">عنوان البحث</h6>
+                                                <h6 class="m-0">عنوان الدراسة</h6>
                                             </div>
                                             <div class="col-8  pl-2  font-weight-bold">
                                                 <a href="{{route('current_user_researches',['id'=>$row->id])}}">{{ $row->title }}</a>
@@ -109,7 +109,7 @@
                         @else
                             <div class="col-lg-12 mb-4">
                                 <div class="box-white py-5">
-                                    <h5 class=" text-center">لا توجد ابحاث</h5>
+                                    <h5 class=" text-center">لا توجد نتائج</h5>
                                 </div>
                             </div>
                         @endif

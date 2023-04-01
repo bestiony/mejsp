@@ -64,7 +64,7 @@
                                 <div class="py-1  px-3">
                                 <div class="d-flex flex-row justify-content-end pt-1">
                                   <div>
-                                    <p class="ms-3 m-0 rounded-3 user-name">المراجع</p>
+                                    <p class="ms-3 m-0 rounded-3 user-name">المحكم</p>
                                     <p class="small ms-3 m-0 rounded-3 text-muted date">${parseLocalTime(message.created_at)}</p>
                                   </div>
                                   <div class="user-img">
@@ -161,7 +161,7 @@
                 },
                 fail: function(xhr, textStatus, errorThrown) {
                     alert('request failed');
-                    console.log('فشل اللارسال');
+                    console.log('فشل الإرسال');
                 },
                 error: function(result) {
                     $("#file-error").removeClass("d-none").text(result.responseJSON.message);
@@ -284,7 +284,7 @@
                                 if (result.message == 'ok') {
                                     swal.stopLoading();
                                     swal.close();
-                                    swal("طلب حذف الدراسة", "تم ارسال الطلب بنجاح",
+                                    swal("طلب حذف الدراسة", "تم إرسال الطلب بنجاح",
                                         "success");
 
                                 }
@@ -293,7 +293,7 @@
                     })
                     .catch(err => {
                         if (err) {
-                            swal("خطأ داخلي!", "حصل خطأ أثناء الارسال يرجى إعادة المحاولة مرة أخرى",
+                            swal("خطأ داخلي!", "حصل خطأ أثناء الإرسال يرجى إعادة المحاولة مرة أخرى",
                                 "error");
                         } else {
                             swal.stopLoading();
@@ -560,7 +560,7 @@
                                 </div>
                                 <div class="row m-0 mb-2">
                                     <div class="col-4 p-0 " style="line-height: 2">
-                                        <h6 class="m-0">تاريخ آخر تحديث</h6>
+                                        <h6 class="m-0">تاريخ أخر تحديث</h6>
                                     </div>
                                     <div class="col-8 text-muted pl-2">
                                         {{ Carbon\Carbon::parse($user_researches->updated_at)->format('d-m-Y') }}
@@ -582,7 +582,7 @@
                                 <h5 class="mb-0">الرسائل</h5>
                                 <label for="research-file" class="btn btn-info btn-sm" data-mdb-ripple-color="dark">
                                     <i class="fa fa-file-upload ml-2"></i>
-                                    ارفاق تعديل الدراسة
+                                    إرفاق تعديل الدراسة
                                 </label>
                                 <input id="research-file" type="file" name="file" onchange="showFileName()"
                                     class="d-none" accept=".docx,.doc"">
@@ -626,7 +626,7 @@
                                             <div class="py-1 px-3">
                                                 <div class="d-flex flex-row justify-content-end pt-1">
                                                     <div>
-                                                        <p class="ms-3 m-0 rounded-3 user-name">المراجع</p>
+                                                        <p class="ms-3 m-0 rounded-3 user-name">المحكم</p>
                                                         <p class="small ms-3 m-0 rounded-3 text-muted date">
                                                             {{ parseTime($row->created_at) }}</p>
                                                     </div>
@@ -658,7 +658,7 @@
                             <div class="card-footer text-muted d-flex justify-content-end align-items-center p-3">
 
                                 <textarea type="text" name="message" required minlength="2" oninput="auto_grow(this)"
-                                    class="form-control form-control-lg" id="exampleFormControlInput1" placeholder="ادخل الرسالة"></textarea>
+                                    class="form-control form-control-lg" id="exampleFormControlInput1" placeholder="أدخل الرسالة"></textarea>
                                 <input type="hidden" name="research_id" value="{{ $research_id }}">
 
                                 {{-- direction --}}
@@ -736,7 +736,7 @@
                                 <div class="mt-3 mr-2 message-r" style="">
 
                                     <p class="msg px-3 py-2" style="background:#444;border-radius:10px;max-width:80%;color:white;margin-bottom:1px !important">
-                                        <small style="boder-bottom:2px solid white;font-size:10px"> المراجع </small><br>
+                                        <small style="boder-bottom:2px solid white;font-size:10px"> المحكم </small><br>
                                         {!! $row->message !!}
 
                                     <br>
@@ -778,7 +778,7 @@
 
                                     <div class=" mt-2 col-sm-12 col-lg-4 float-left">
                                         <input name="file" style="background:none !important" type="file" class="form-control">
-                                        <input type="submit" class="mt-2 btn btn-info" value="ارسال الرسالة">
+                                        <input type="submit" class="mt-2 btn btn-info" value="إرسال الرسالة">
                                     </div>
                                 </form>
                             </div>
@@ -840,7 +840,7 @@
                                 </div>
                                 <div class="row m-0 mb-2">
                                     <div class="col-4 p-0 " style="line-height: 2">
-                                        <h6 class="m-0">تاريخ آخر تحديث</h6>
+                                        <h6 class="m-0">تاريخ أخر تحديث</h6>
                                     </div>
                                     <div class="col-8 text-muted pl-2">
                                         {{ Carbon\Carbon::parse($user_researches->updated_at)->format('d-m-Y') }}
@@ -921,7 +921,7 @@
                   <h5 class="mb-0">الرسائل</h5>
                   <button type="button" class="btn btn-info btn-sm" data-mdb-ripple-color="dark">
                     <i class="fa fa-file-upload ml-2"></i>
-                    ارفاق تعديل الدراسة
+                    إرفاق تعديل الدراسة
                   </button>
                 </div>
                 <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px;overflow:scroll">
@@ -943,7 +943,7 @@
                             <p class="p-1 me-3 mb-1 text-white rounded-3 bg-primary">{!! $row->message !!}</p>
                             <p class="small me-3 mb-3 rounded-3 text-muted d-flex justify-content-end">{{ parseTime($row->created_at) }}</p>
                             </div>
-                            <div class="user-name">المراجع</div>
+                            <div class="user-name">المحكم</div>
                         </div>
                       @endif
                     @endforeach
@@ -955,7 +955,7 @@
                 <div class="card-footer text-muted d-flex justify-content-end align-items-center p-3">
 
                   <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1"
-                    placeholder="ادخل الرسالة">
+                    placeholder="أدخل الرسالة">
 
                   <a class="ms-3" href="#!"><i class="fas fa-paper-plane" style="font-size: 23px;
                     margin: 0 9px;"></i></a>

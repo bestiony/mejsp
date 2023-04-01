@@ -17,7 +17,7 @@
                         <div class="row">
                             <div class="col-lg-10">
                                 <input type="email" name="search" class="form-control form-control-sm"
-                                    placeholder="ابحث بواسطة البريد الالكتروني"
+                                    placeholder="ابحث بواسطة البريد الإلكتروني"
                                     value='@isset($_GET['search']) {{ $_GET['search'] }} @endisset' />
                             </div>
 
@@ -41,8 +41,8 @@
                             <thead class="thead-inverse">
                                 <tr>
                                     <th>الاسم</th>
-                                    <th>البريد الالكتروني</th>
-                                    <th>تأكيد البريد </th>
+                                    <th>البريد الإلكتروني</th>
+                                    <th>تأكيد البريد الإلكتروني </th>
                                     <th>رقم الهاتف</th>
                                     {{-- <th>المؤهل</th> --}}
                                     <th>تفاصيل اكثر</th>
@@ -55,7 +55,7 @@
                                         <td>{{ $row->email }}
                                             {{-- @if ($row->email_verified_at != null)
                                                 <span class="toast-title text-success" data-toggle="tooltip"
-                                                    data-placement="top" title="تم تأكيد البريد">
+                                                    data-placement="top" title="تم تأكيد البريد الإلكتروني">
 
                                                     <span class="text-success"><i
                                                             class="fa-solid fa-circle-check"></i></span>
@@ -65,12 +65,12 @@
                                         <td style="width: 150px">
                                             @if ($row->email_verified_at != null)
                                                 <span class="toast-title text-success" data-toggle="tooltip"
-                                                    data-placement="top" title="تم التحقق من البريد">
+                                                    data-placement="top" title="تم التحقق من البريد الإلكتروني">
                                                     <i class="fa-solid fa-circle-check"></i>
                                                 </span><!-- Email Veric.... -->
                                             @else
                                                 <span class="toast-title text-danger" data-toggle="tooltip" data-placement="top"
-                                                    title=" لم يتم التحقق من البريد">
+                                                    title=" لم يتم التحقق من البريد الإلكتروني">
                                                     <i class="fa-solid fa-circle-xmark"></i>
                                                     <a class="btn btn-primary btn-sm" href="{{adminUrl('users/admin_verifies_user/'.$row->id)}}" class="text-dark">التأكيد الآن</a>
                                                 </span><!-- Email Veric.... -->
