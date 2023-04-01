@@ -70,27 +70,27 @@ class UsersController extends Controller
         ], [
             // Name
             'name.required' => 'هذا الحقل مطلوب',
-            'name.max' => 'يجب ان لا يتعدي الاسم 100 حرف',
+            'name.max' => 'يجب ألا يتعدى الاسم 100 حرف',
             'name.regex' => 'صيغة الاسم غير صحيحة',
             // email
             'email.required' => 'هذا الحقل مطلوب',
-            'email.unique' => 'البريد الالكتروني تم استخدامة من قبل',
-            'email.max' => 'يجب ان لا يتعدي الاسم 200 حرف',
-            'email.regex' => 'صيغة البريد الالكتروني غير صحيحة',
+            'email.unique' => 'البريد الإلكتروني تم استخدامه من قبل',
+            'email.max' => 'يجب ألا يتعدى الاسم 200 حرف',
+            'email.regex' => 'صيغة البريد الإلكتروني غير صحيحة',
             // phone
             'phone.required' => 'هذا الحقل مطلوب',
             'phone.regex' => 'صيغة رقم الهاتف غير صحيحة',
-            'phone.unique' => 'رقم الهاتف تم استخدامة من قبل',
+            'phone.unique' => 'رقم الهاتف تم استخدامه من قبل',
             // password
             'password.required' => 'هذا الحقل مطلوب',
-            'password.min' => 'يجب ان لا يقل عن 6 احرف',
-            'password.max' => 'يجب ان لا يتعدي عن 255 حرف',
+            'password.min' => 'يجب ألا يقل عن 6 أحرف',
+            'password.max' => 'يجب ألا يتعدى عن 255 حرف',
             // qualification
             'qualification.required' => 'هذا الحقل مطلوب',
-            'qualification.max' => 'يجب ان لا يتعدي الاسم 150 حرف',
+            'qualification.max' => 'يجب ألا يتعدى الاسم 150 حرف',
             // country_code
             'country_code.required' => 'هذا الحقل مطلوب',
-            'country_code.regex' => 'صيغة كود الدوله غير صحيحة',
+            'country_code.regex' => 'صيغة كود الدولة غير صحيحة',
         ]);
 
         // Get Row For Update
@@ -153,9 +153,9 @@ class UsersController extends Controller
                 "link" => route('confirm_email_verification_token',['token'=> Crypt::encryptString($id)] )
             ];
             Mail::to($email)->send(new EmailVerificationMail($data));
-            $request->session()->flash('success_email_verification', 'تم ارسال رسالة تأكيد الي حسابك الالكتروني');
+            $request->session()->flash('success_email_verification', 'تم إرسال رسالة تأكيد إلى بريدك الإلكتروني');
         } else {
-            $request->session()->flash('success_email_verification', 'تم  تأكيد حسابك الالكتروني من قبل');
+            $request->session()->flash('success_email_verification', 'تم  تأكيد بريدك الإلكتروني من قبل');
         }
         return back();
     }
@@ -284,7 +284,7 @@ class UsersController extends Controller
         $info=[
                 'id'=>$request->research_id,
                 'mail_title'=> 'رد من المؤلف',
-                'mail_details1'=> 'قام المؤلف بالرد على تعليقات المراجع.',
+                'mail_details1'=> 'قام المؤلف بالرد على تعليقات المحكم',
                 'mail_details2'=> '',
                 'mail_details3'=> '',
                 'mail_details4'=> '',
@@ -308,7 +308,7 @@ class UsersController extends Controller
                 'user_name' => $user_researches->user->name,
                 'type' => 'chat',
                 'body' => 'بخصوص طلب نشر الدراسة بعنوان '.$user_researches->title .
-                ' وردك تعليقات
+                ' وردك رد من المؤلف
                 ',
             ];
             foreach($admins as $admin) {
@@ -333,7 +333,7 @@ class UsersController extends Controller
         // return redirect()->back()->with('messages',$messages)->with('pageTitle',$pageTitle)->with('research_id',$research_id);
 
         return response([
-            'message' => 'تم ارسال الرسالة بنجاح',
+            'message' => 'تم إرسال الرسالة بنجاح',
             'status' => 'success'
         ],200);
     }
@@ -394,7 +394,7 @@ class UsersController extends Controller
         . $request->default_page_count
         . ' صفحة في  ' . $journal->journal->name
         . ' سوف يكلفك مبلغ : '
-        . ' ' .$price . ' (دولار أمريكي)';
+        . ' ' .$price . 'دولار أمريكي';
         Session::flash('message', $message);
         return redirect()->back()->with('default_page_count', $request->default_page_count);
 

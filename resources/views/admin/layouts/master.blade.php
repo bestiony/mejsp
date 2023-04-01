@@ -41,7 +41,7 @@
 
     @include('admin.layouts.navbar')
     @include('admin.layouts.aside')
-    
+
     <?php
         }
     ?>
@@ -90,9 +90,9 @@
     @if (Session::has('message'))
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        
+
                 Swal.fire('{{ Session::get("message") }}')
-        
+
         </script>
     @endif
     @yield('js')

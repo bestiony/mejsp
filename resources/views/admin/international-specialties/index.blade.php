@@ -41,7 +41,7 @@
 
 
                         <div class="form-group">
-                            <label class="required">النشر الدولى</label>
+                            <label class="required">التصنيف الدولى</label>
                             <select name="type" class=" form-control">
                                 <option disabled selected></option>
                                 @foreach ($types as $ty)
@@ -53,7 +53,7 @@
                             @error('type')
                                 <div class=" alert-error">{{ $message }}</div>
                             @enderror
-                            <small class="text-muted">اذا كان لا يتوفر نوع النشر الدولي المطلوب يمكنك اضافة نوع جديد من
+                            <small class="text-muted">إذا كان لا يتوفر التصنيف المطلوب يمكنك إضافته
                                 <a href="{{ adminUrl('international-publishing/types-of-publication') }}">هنا</a></small>
                         </div>
 
@@ -67,7 +67,7 @@
                             <input type="hidden" name="id"
                                 value="@empty(!$row) {{ $row->id }} @endempty" />
 
-                            <small class="text-muted">نوع النشر الدولي يستخدم في تنظيم التخصصات والمجلات الخاص فقط
+                            <small class="text-muted">التصنيف يستخدم في تنظيم التخصصات والمجلات الخاصة فقط
                                 بالنشر الدولي</small>
                         </div>
 
@@ -86,7 +86,7 @@
                         <thead class="thead-inverse">
                             <tr>
                                 <th>التخصص</th>
-                                <th>نوع النشر الدولى</th>
+                                <th> التصنيف الدولى</th>
                                 <th>التعديل</th>
                                 <th>الحذف</th>
                             </tr>

@@ -26,6 +26,9 @@ use App\Http\Controllers\SupportChatController;
 Route::get('email-verification/{token}', [UsersController::class, 'email_verification'])->name('confirm_email_verification_token');
 
 
+Route::get('email-verification/{token}', [UsersController::class, 'email_verification'])->name('confirm_email_verification_token');
+
+
 Route::middleware(['guest'])->group(function () {
     Route::prefix('login')->group(function () {
         Route::controller(LoginController::class)->group(function () {

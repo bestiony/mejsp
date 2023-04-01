@@ -102,7 +102,7 @@ class DocumentController extends Controller
         return response([
             'status' => true,
             'redirect_to_success_page' => true,
-            'message' => 'تم اضافة الوثيقة بنجاح',
+            'message' => 'تم إضافة الوثيقة بنجاح',
             'document_id' => $document->id,
             'close_modal' => true,
             'modal' => 'add-document-modal',

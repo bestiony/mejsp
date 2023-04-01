@@ -50,7 +50,7 @@ class InvoicesController extends Controller
     // chenck if invoice exist
     $Invoice = InvoiceJournal::where('journal_id', $request->journal_id)->first();
     if ($Invoice) {
-        return response(['status' => true, 'message' => 'تم اضافة فاتورة بالفعل لهذه المجله', 'form' => 'reset', 'redirect' => false,]);
+        return response(['status' => true, 'message' => 'تم إضافة فاتورة بالفعل لهذه المجلة', 'form' => 'reset', 'redirect' => false,]);
     }
     $request->validate(['journal_id' => 'required', 'price' => 'required',]);
     $journal = Journals::findOrFail($request->journal_id);
@@ -83,7 +83,7 @@ class InvoicesController extends Controller
         Mail::to($request->email)->send(new InvoicesCheckoutMail($info));
 
       }
-      return response(['status' => true, 'message' => 'تم اضافة الفاتورة بنجاح', 'form' => 'reset', 'redirect' => true, 'to' => adminUrl("invoices"),]);
+      return response(['status' => true, 'message' => 'تم إضافة الفاتورة بنجاح', 'form' => 'reset', 'redirect' => true, 'to' => adminUrl("invoices"),]);
     }
   }
 
@@ -219,7 +219,7 @@ class InvoicesController extends Controller
     if (!empty($row)) {
       $row->ending = $this->endTime();
       $row->save();
-      $request->session()->flash('successMessage', 'تم اعادة تنشيط الفاتورة بنجاح');
+      $request->session()->flash('successMessage', 'تم إعادة تنشيط الفاتورة بنجاح');
     }
     return back();
   }
@@ -250,11 +250,11 @@ class InvoicesController extends Controller
         $result =  self::admin_send_reminder($research_id, $reminder);
         if($result){
             $id_send = $research_id;
-            $reminder_success="تم ارسال التذكير  ".$reminder."  بنجاح ";
+            $reminder_success="تم إرسال التذكير  ".$reminder."  بنجاح ";
             return back()->with(compact('reminder_success','id_send'));
         } else{
             $id_send = $research_id;
-            $reminder_fail="خطأ في ارسال التذكير";
+            $reminder_fail="خطأ في إرسال التذكير";
             return back()->with(compact('reminder_fail','id_send'));
         }
 
@@ -300,9 +300,9 @@ class InvoicesController extends Controller
 
         if ($reminder == '1' || $reminder == '2') {
             $info['id'] = '';
-            $info['mail_title'] = 'تهانينا!';
+            $info['mail_title'] = 'مرحباً';
             $info['mail_details1'] = 'وافقت لجنة المراجعة على نشر دراستك';
-            $info['mail_details2'] = 'الإجراءات التالية للنشر هي:-';
+            $info['mail_details2'] = 'الإجراءات التالية للنشر هي';
             $info['mail_details3'] = '١- اعتماد شهادة قبول النشر';
             $info['mail_details4'] = '٢- جدولة الدراسة ضمن الإصدار التالي للمجلة';
             $info['mail_details5'] = 'لإتمام الإجراءات يجب سداد رسوم التحكيم والنشر باستخدام الفيزا أو الماستر كارد أو الباي بال';
@@ -310,7 +310,7 @@ class InvoicesController extends Controller
             $do_send = true;
         } elseif($reminder == '3') {
             $info['id'] = '';
-            $info['mail_title'] = 'تهانينا!';
+            $info['mail_title'] = 'مرحباً';
             $info['mail_details1'] = 'بعد المراجعة لدراستك، فقد تبين صلاحيتها واستيفاءها للشروط المطلوبة';
             $info['mail_details2'] = 'يرجى سداد رسوم النشر لاستكمال الإجراءات';
             $info['mail_details3'] = 'تعتمد شهادة قبول النشر في اليوم التالي لسداد الرسوم';
@@ -321,20 +321,18 @@ class InvoicesController extends Controller
 
         }elseif($reminder == '4' || $reminder == '5') {
             $info['id'] = '';
-            $info['mail_title'] = 'تهانينا!';
+            $info['mail_title'] = 'مرحباً';
             $info['mail_details1'] = 'بعد المراجعة لدراستك، فقد تبين صلاحيتها واستيفاءها للشروط المطلوبة';
             $info['mail_details2'] = 'يرجى سداد رسوم النشر لاستكمال الإجراءات';
             $info['mail_details3'] = 'ونظراً لتميز دراستك فقد تم خفض الرسوم بنسبة '. (- $discounts[$reminder]*100) .'% الآن';
             $info['mail_details4'] = 'تعتمد شهادة قبول النشر في اليوم التالي لسداد الرسوم';
             $info['mail_details5'] = 'يدون بالشهادة موعد النشر على الموقع الإلكتروني';
+            $info['note'] =  '(تنتهي صلاحية التخفيض خلال 72 ساعة) ';
 
             $do_send = true;
 
         }
-        if ($reminder == '5'){
-            $info['note'] =  '(تنتهي صلاحية التخفيض خلال 72 ساعة) ';
-
-        }
+        
         if($do_send){
             $mail = Mail::to($user->email)->send(new ResiveOrderMail($info, $etat));
             if($mail){

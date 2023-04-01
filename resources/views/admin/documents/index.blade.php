@@ -44,7 +44,7 @@
                                 search-link="{{route('admin.get_documents')}}" id="search_by_mail" data-width="100%"
                                 name="search" class="selectpicker form-control search_select" data-live-search="true"
                                 required>
-                                <option>ابحث بواسطة البريد الالكتروني</option>
+                                <option>ابحث بواسطة البريد الإلكتروني</option>
                                 @foreach($users as $user)
                                 <option value="{{$user->id}}">{{$user->email}}</option>
                                 @endforeach
@@ -55,7 +55,7 @@
                         </div><!-- type -->
                         {{-- <div class="col-lg-8">
                             <input type="email" name="search" class="form-control form-control-sm"
-                                placeholder="ابحث بواسطة البريد الالكتروني" value='@isset($_GET[' search']) {{
+                                placeholder="ابحث بواسطة البريد الإلكتروني" value='@isset($_GET[' search']) {{
                                 $_GET['search'] }} @endisset' />
                         </div> --}}
 
@@ -65,7 +65,7 @@
                         </div>
                         <div class=" col-lg-2 mt-2 mt-lg-0">
                             <a data-toggle="modal" data-target="#add-document-modal" href="#"
-                                class="btn btn-primary btn-block border">اضافة وثيقة</a>
+                                class="btn btn-primary btn-block border">إضافة وثيقة</a>
                         </div>
 
 
@@ -79,7 +79,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-                                <h5 class="modal-title" id="exampleModalLabel">اضافة مستند جديد</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">إضافة مستند جديد</h5>
                             </div>
                             <div class="modal-body">
                                 <div class="box-white" style="border: none; padding: 0px;">
@@ -89,7 +89,7 @@
                                         @csrf
                                         <div class="result"></div>
                                         <div class="form-group">
-                                            <label class="required">البريد الالكتروني للعميل</label>
+                                            <label class="required">البريد الإلكتروني للعميل</label>
                                             <div class="form-group col-12-sm ">
 
                                                 <select get_researches_link="{{route('admin.get_user_researches')}}"
@@ -107,7 +107,7 @@
 
                                         </div><!-- type -->
                                         <div class="form-group">
-                                            <label class="required">البحث الخاص بالعميل</label>
+                                            <label class="required">الدراسة الخاصة بالمؤلف</label>
                                             <div class="form-group col-12-sm ">
 
                                                 <select id="user_researches" data-width="100%" name="user_research"
@@ -120,7 +120,7 @@
                                         </div><!-- type -->
 
                                         <div class="form-group">
-                                            <label class="required">اسم الوثيقة</label>
+                                            <label class="required">عنوان الوثيقة</label>
                                             <input type="text" name="document_name" class="form-control" required>
                                         </div><!-- title -->
                                         <div class="form-group">
@@ -134,7 +134,7 @@
                                                 class="form-control" required>
                                         </div><!-- title -->
                                         <hr>
-                                        <button type="submit" class="btn-main btn-block">اضافة الوثيقة</button>
+                                        <button type="submit" class="btn-main btn-block">إضافة الوثيقة</button>
 
                                     </form><!-- End Form -->
                                 </div>
@@ -166,7 +166,7 @@
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">
-                                            <label class="required">البريد الالكتروني للعميل</label>
+                                            <label class="required">البريد الإلكتروني للمؤلف</label>
                                             <div class="form-group col-12-sm ">
 
                                                 <select get_researches_link="{{route('admin.get_user_researches')}}"
@@ -184,7 +184,7 @@
 
                                         </div><!-- type -->
                                         <div class="form-group">
-                                            <label class="required">البحث الخاص بالعميل</label>
+                                            <label class="required">الدراسة الخاصة بالمؤلف</label>
                                             <div class="form-group col-12-sm ">
 
                                                 <select id="edit_user_researches" name="new_user_research"
@@ -242,7 +242,7 @@
                         <tr>
                             <th>الاسم</th>
                             <th class="d-none d-sm-table-cell">اسم المستخدم</th>
-                            <th>عنوان البحث</th>
+                            <th>عنوان الدراسة</th>
                             <th class="d-none d-sm-table-cell">pdf</th>
                             <th>png</th>
                             <th></th>

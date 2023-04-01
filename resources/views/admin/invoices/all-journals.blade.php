@@ -23,10 +23,10 @@
                     <thead class="thead-inverse">
                         <tr>
                             <th>رقم الفاتورة</th>
-                             <th>المجله</th>
-                            <th>اجمالي السعر</th>
+                             <th>المجلة</th>
+                            <th>إجمالي الرسوم</th>
                             <th>عدد الصفحات الافتراضية</th>
-                            <th>سعر الصفحة الاضافية </th>
+                            <th>سعر الصفحة الإضافية </th>
                             <th>تعديل</th>
                         </tr>
                     </thead>
@@ -61,7 +61,7 @@
                 </table>
             </div>
             <div class=" mb-5 d-none">
-                <a href="{{ adminUrl('invoices/create-journals') }}" class="btn-main">اضافة فاتورة</a>
+                <a href="{{ adminUrl('invoices/create-journals') }}" class="btn-main">إضافة فاتورة</a>
             </div>
         </div>
 

@@ -60,4 +60,14 @@
             </div>
         </div>
     </div>
-</section> @endsection
+</section>
+@if (Session::has('message'))
+    @section('js')
+        <script>
+            toastr.options.timeOut = 2000;
+            toastr.options.progressBar = true;
+            toastr.success("{{Session::get('message')}}")
+        </script>
+    @endsection
+@endif
+@endsection

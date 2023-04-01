@@ -48,7 +48,7 @@
                     <div class="col-lg-3">
                         <div class="box-white px-0">
 
-                            <h5 class="px-3">اعدادات الSEO للمقالة</h5>
+                            <h5 class="px-3">إعدادات الSEO للمقالة</h5>
                             <hr>
                             <div class="px-3">
 
