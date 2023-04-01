@@ -989,7 +989,7 @@ class UsersController extends Controller
 
 
             dispatch(new SubscriberEmailJob($details))->delay($time);
-            $time = $time->addSeconds(20);
+            $time = $time->addSeconds(30);
         }
 
         Session::flash('message', 'تمت بنجاح');
@@ -1115,11 +1115,21 @@ class UsersController extends Controller
     public function AddSubscribers(Request $request)
     {
         $emails = explode("\r\n", $request->emails);
+        $successful = [];
+        $failed = [];
+
         foreach ($emails as $email) {
-            Subscribers::updateOrCreate(['email' => $email], ['email' => $email]);
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                array_push($failed, $email);
+            } else {
+                Subscribers::updateOrCreate(['email' => $email], ['email' => $email]);
+                array_push($successful, $email);
+            }
         }
-        Session::flash('message', 'تمت الإضافة بنجاح');
-        return redirect()->back();
+        Session::flash('message', 'تم الاضافة بنجاح');
+        Session::flash('successful', $successful);
+        Session::flash('failed', $failed);
+        return redirect()->route('subscribers-list');
     }
 
     public function ViewSupportChat($id)
