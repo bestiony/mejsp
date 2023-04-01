@@ -280,7 +280,26 @@
 
 <script>
 @if (Session::has('message'))
-        Swal.fire('{{ Session::get("message") }}')
+    Swal.fire('{{ Session::get("message") }}', `
+        <h4>
+            <span>الإضافات الناجحة: {{ count(Session::get("successful")) }}</span>
+            <span>الإضافات الفاشلة: {{ count(Session::get("failed")) }}</span>
+        </h4>
+        <table class="table">
+            @foreach (Session::get("successful") as $item)
+                <tr class="text-right">
+                    <td>{{ $item }}</td>
+                    <td><i class="fa-solid fa-check" /></td>
+                </tr>
+            @endforeach
+            @foreach (Session::get("failed") as $item)
+                <tr class="text-right">
+                    <td>{{ $item }}</td>
+                    <td><i class="fa-solid fa-close" /></td>
+                </tr>
+            @endforeach
+        </table>
+    `)
 @endif
 </script>
 <script>
