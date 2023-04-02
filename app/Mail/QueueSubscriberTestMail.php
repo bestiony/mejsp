@@ -7,18 +7,17 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class QueueSubscriberMail extends Mailable
+class QueueSubscriberTestMail extends Mailable
 {
     use Queueable, SerializesModels;
-    protected $details;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct()
     {
-        $this->details = $details;
     }
 
     /**
@@ -29,9 +28,9 @@ class QueueSubscriberMail extends Mailable
     public function build()
     {
         $address = config("mail.from.address");
-        $subject=$this->details['subject'];
+        $subject= "Test Email";
         // $from_email=$this->details['email_sender'];
-        $name = $this->details['name_of_email'];
-        return $this->subject($subject)->view('admin.SubscriberMail')->from($address, $name)->with('details', $this->details);
+        $name = "Name of test email";
+        return $this->subject($subject)->view('admin.SubscriberTestMail')->from($address, $name);
     }
 }

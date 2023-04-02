@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'المشتركين')
+@section('title', 'المستخدمين')
 @section('css')
 <style>
     .tags-input-wrapper{
@@ -46,26 +46,34 @@
 
             <div class="col-12 mb-3">
                 <div class="box-white">
-                    <form action="{{ admin_url('users') }}" method="GET">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <input type="email" name="search" id="search" class="form-control form-control-sm"
-                                    placeholder="ابحث بواسطة البريد الإلكتروني"/>
-                            </div>
-
-                            <div class=" col-lg-2 mt-2 mt-lg-0">
-                                <a href="{{ route('subscriber.restore') }}" class="btn btn-light btn-block border">إعادة تعيين</a>
-                            </div>
-                            <div class=" col-lg-2 mt-2 mt-lg-0">
-                                <button  type="button" data-toggle="modal" data-target="#exampleModal3" class="btn btn-light btn-block border">إضافة مشتركين</button>
-                            </div>
-                            <div class=" col-lg-2 mt-2 mt-lg-0">
-                                {{-- href="{{ route('subscribers.send.email') }}" --}}
-                                <button type="button" class="btn btn-light btn-block border" data-toggle="modal" data-target="#exampleModal"> إنشاء حملة</button>
-                                {{-- <button data-toggle="modal" data-target="#exampleModal" class="btn btn-light" >إنشاء حملة </button> --}}
-                            </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form action="{{ admin_url('users') }}" method="GET">
+                                <input
+                                    type="email"
+                                    name="search"
+                                    id="search"
+                                    class="form-control form-control-sm"
+                                    placeholder="ابحث بواسطة البريد الإلكتروني"
+                                />
+                            </form>
                         </div>
-                    </form>
+                        <div class="col-lg-2 mt-2 mt-lg-0">
+                            <a href="{{ route('new-subscriber-form') }}" class="btn btn-light btn-block border">
+                                إضافة مشتركين
+                            </a>
+                        </div>
+                        <div class="col-lg-2 mt-2 mt-lg-0">
+                            <button type="button" data-toggle="modal" data-target="#testEmailModal" class="btn btn-light btn-block border">
+                                إرسال بريد إلكتروني تجريبي
+                            </button>
+                        </div>
+                        <div class="col-lg-2 mt-2 mt-lg-0">
+                            <a href="{{ route('email-form') }}" class="btn btn-light btn-block border">
+                                إنشاء حملة  
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             @if (count($subscribers) == 0)
@@ -125,7 +133,7 @@
                     </div>
 
                     <div class="form-group col-6">
-                        <label for="">البريد الإلكتروني الذي سيتم منه الإرسال </label>
+                        <label for="">البريد الإلكتروني الذي سيتم منه الإرسال</label>
                         <input class="form-control" name="email_sender" type="email">
                         
                     </div>
@@ -137,7 +145,7 @@
                     </div>
 
                     <div class="form-group col-6">
-                        <label for=""> الموضوع</label>
+                        <label for=""> subject</label>
                         <input class="form-control" name="subject" type="text">
                     </div>
 
@@ -152,7 +160,7 @@
                     </div>
 
                     {{-- <div class="form-group col-6">
-                        <label for=""> الموضوع</label>
+                        <label for="">subject</label>
                         <input class="form-control" name="subject" type="text">
                     </div> --}}
 
@@ -168,50 +176,51 @@
                         <input class="form-control" type="text" name="text_one">
                     </div>
                     <div class="form-group col-6">
-                        <label for="">ISSN </label>
+                        <label for="">ISSN</label>
                         <input class="form-control" type="text" name="text_two" >
                     </div>
                     <div class="form-group col-6">
-                        <label for="">النص تحت الISSN</label>
+                        <label for="">النص تحت ISSN</label>
                         <input class="form-control" type="text" name="text_three" >
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary"> إرسال</button>
+            <button type="submit" class="btn btn-primary">إرسال</button>
             </div>
         </div>
         </div>
     </div>
 </form>
 
-<form action="{{ Route('add.subscribers') }}" method="post" enctype="multipart/form-data">
-    @csrf
-    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<form action="{{ route('send-test-email') }}" method="post" enctype="multipart/form-data"> @csrf
+    <div class="modal fade" id="testEmailModal" tabindex="-1" role="dialog" aria-labelledby="testEmailModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">المشتركين</h5>
-           
-            </div>
-            <div class="modal-body">
-                
-
-                <div class="form-group">
-                    <label for=""> إضافة المشتركين</label>
-                    <input type="text" name="emails" id="tag-input1">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="testEmailModal">إرسال بريد إلكتروني تجريبي</h5>
                 </div>
-                
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="emails">إضافة المستلمين</label>
+                        <textarea class="form-control" name="emails" rows="3"></textarea>
+                        <small id="emailsHelpBlock" class="form-text text-muted">
+                            للإرسال لأكثر من حساب قم بإضافة بريد إلكتروني واحد في كل سطر
+                        </small>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">غلق</button>
+                    <button type="submit" class="btn btn-primary">إرسال</button>
+                </div>
             </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">غلق</button>
-            <button type="submit" class="btn btn-primary">إضافة</button>
-            </div>
-        </div>
         </div>
     </div>
 </form>
+
 <form action="{{ Route('subscriber.edit') }}" method="post">
 <!-- Modal -->
     <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label" aria-hidden="true">
@@ -271,7 +280,26 @@
 
 <script>
 @if (Session::has('message'))
-        Swal.fire('{{ Session::get("message") }}')
+    Swal.fire('{{ Session::get("message") }}', `
+        <h4>
+            <span>الإضافات الناجحة: {{ count(Session::get("successful")) }}</span>
+            <span>الإضافات الفاشلة: {{ count(Session::get("failed")) }}</span>
+        </h4>
+        <table class="table">
+            @foreach (Session::get("successful") as $item)
+                <tr class="text-right">
+                    <td>{{ $item }}</td>
+                    <td><i class="fa-solid fa-check" /></td>
+                </tr>
+            @endforeach
+            @foreach (Session::get("failed") as $item)
+                <tr class="text-right">
+                    <td>{{ $item }}</td>
+                    <td><i class="fa-solid fa-close" /></td>
+                </tr>
+            @endforeach
+        </table>
+    `)
 @endif
 </script>
 <script>
