@@ -1074,16 +1074,16 @@ class UsersController extends Controller
         ];
 
         $info = [
-            'mail_title' => 'Acceptance of the study for publication',
+            'mail_title' => 'Article Acceptance',
             'mail_details1' => 'Dear ' . $row->user->name . '',
             'status' => 2,
             'mail_details2' => 'The review committee has approved the publication of your study.',
             'mail_details3' => 'Study Title " ' . $row->title . '"',
             'mail_details4' => 'Requisition reference number:"#' . $row->id . '"',
+            'mail_details5' => 'The following procedures for publication are:-',
             'mail_details6' => '1- Approving the publication acceptance certificate.',
             'mail_details7' => '2- Scheduling the study within the next issue of the journal.',
             'mail_details8' => 'To complete the procedures, arbitration and publication fees must be paid using a bank card (Visa or Master Card) by clicking on the (Pay Publication Fees) button.',
-            'mail_details5' => 'The following procedures for publication are:-',
             'id' => '',
             'file' => asset(self::PATH . $row->file),
             'journal' => $row->journal->name,
