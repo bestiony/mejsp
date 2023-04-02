@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'المستخدمين')
+@section('title', 'Support')
 @section('css')
 <style>
     .tags-input-wrapper{
@@ -36,7 +36,7 @@
 @section('content')
 
     <div class="links-bar my-4 ">
-        {{-- <h4>المشتركين</h4> --}}
+        <h4>المحادثات</h4>
     </div><!-- End Bar Links -->
 
     <div class="result"></div>
@@ -52,7 +52,7 @@
                             <thead class="thead-inverse">
                                 <tr>
                                     <th>البريد الإلكتروني</th>
-                                    <th>التعديل</th>
+                                    <th>فتح المحادثة</th>
                                     
                                 </tr>
                             </thead>

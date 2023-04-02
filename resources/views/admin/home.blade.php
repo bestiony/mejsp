@@ -4,7 +4,7 @@
 
     <div class="links-bar">
         <h4>لوحة التحكم</h4>
-    </div>
+    </div><!-- End Bar Links -->
 
     <div class="links-bar">
         <h5>إحصاءات </h5>
@@ -15,7 +15,31 @@
 
 
             <!-- Start Counts --->
+            
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
+                <div class="statistics bg-dark p-3 rounded">
 
+                    <h5>المدفوعات</h5><!-- Name -->
+                    <h3>{{ DB::table('payments')->SUM('amount') }} دولار</h3><!-- Count -->
+                    <div class="box-icon">
+                        <i class="fa-solid fa-dollar"></i>
+                    </div><!-- Icon -->
+
+                </div><!-- statistics -->
+            </div><!-- Col Doctors -->
+            
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
+                <div class="statistics bg-dark p-3 rounded">
+
+                    <h5>الفواتير</h5><!-- Name -->
+                    <h3>{{ DB::table('invoices')->count('payment_response') }} </h3><!-- Count -->
+                    <div class="box-icon">
+                        <i class="fa-solid fa-dollar"></i>
+                    </div><!-- Icon -->
+
+                </div><!-- statistics -->
+            </div><!-- Col Doctors -->
+            
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
                 <div class="statistics bg-dark p-3 rounded">
 
