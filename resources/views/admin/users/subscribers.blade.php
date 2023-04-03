@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-lg-2 mt-2 mt-lg-0">
                             <a href="{{ route('email-form') }}" class="btn btn-light btn-block border">
-                                إنشاء حملة  
+                                إنشاء حملة
                             </a>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                                     <th>البريد الإلكتروني</th>
                                     <th>التعديل</th>
                                     <th>الحذف</th>
-                                   
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -121,12 +121,12 @@
         <div class="modal-content">
             <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">المشتركين</h5>
-           
+
             </div>
             <div class="modal-body">
                 <div class="row">
 
-                    
+
                     <div class="form-group col-6">
                         <label for="">اللوجو</label>
                         <input class="form-control" type="file" name="logo" >
@@ -135,7 +135,7 @@
                     <div class="form-group col-6">
                         <label for="">البريد الإلكتروني الذي سيتم منه الإرسال</label>
                         <input class="form-control" name="email_sender" type="email">
-                        
+
                     </div>
 
 
@@ -168,7 +168,7 @@
                     <div class="form-group col-6">
                         <label for="">اسم المجلة</label>
                         <input class="form-control" name="journal_name" type="text">
-                        
+
                     </div>
 
                     <div class="form-group col-6">
@@ -337,7 +337,7 @@ TagsInput.prototype.init = function(opts){
 
     if(this.initialized)
         this.destroy();
-        
+
     if(!(this.orignal_input = document.getElementById(this.options.selector)) ){
         console.error("tags-input couldn't find an element with the specified ID");
         return this;
@@ -368,7 +368,7 @@ TagsInput.prototype.addTag = function(string){
 
     var closeIcon = document.createElement('a');
     closeIcon.innerHTML = '&times;';
-    
+
     // delete the tag when icon is clicked
     closeIcon.addEventListener('click' , function(e){
         e.preventDefault();
@@ -402,7 +402,7 @@ TagsInput.prototype.anyErrors = function(string){
         console.log('max tags limit reached');
         return true;
     }
-    
+
     if(!this.options.duplicate && this.arr.indexOf(string) != -1 ){
         console.log('duplicate found " '+string+' " ')
         return true;
@@ -411,10 +411,10 @@ TagsInput.prototype.anyErrors = function(string){
     return false;
 }
 
-// Add tags programmatically 
+// Add tags programmatically
 TagsInput.prototype.addData = function(array){
     var plugin = this;
-    
+
     array.forEach(function(string){
         plugin.addTag(string);
     })
@@ -433,11 +433,11 @@ TagsInput.prototype.destroy = function(){
 
     delete this.orignal_input;
     var self = this;
-    
+
     Object.keys(this).forEach(function(key){
         if(self[key] instanceof HTMLElement)
             self[key].remove();
-        
+
         if(key != 'options')
             delete self[key];
     });
@@ -456,12 +456,12 @@ function init(tags){
 // initialize the Events
 function initEvents(tags){
     tags.wrapper.addEventListener('click' ,function(){
-        tags.input.focus();           
+        tags.input.focus();
     });
-    
+
 
     tags.input.addEventListener('keydown' , function(e){
-        var str = tags.input.value.trim(); 
+        var str = tags.input.value.trim();
 
         if( !!(~[9 , 13 , 188].indexOf( e.keyCode ))  )
         {
@@ -498,7 +498,7 @@ var tagInput1 = new TagsInput({
 </script>
 
 <script>
-   
+
     function delay(callback, ms) {
         var timer = 0;
         return function() {
@@ -521,7 +521,7 @@ var tagInput1 = new TagsInput({
     //     success:function(response){
     //         $('#customFields').empty();
     //         $("#customFields").append(response.emails);
-    //     }   
+    //     }
     //    });
     // }, 1000));
 
@@ -536,7 +536,7 @@ var tagInput1 = new TagsInput({
         success:function(response){
             $('#customFields').empty();
             $("#customFields").append(response.emails);
-        }   
+        }
        });
 
     }, 500));
