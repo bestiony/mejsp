@@ -28,7 +28,7 @@
                     <div class="row">
                         <div class="col-12 mb-3">
                             <h5 class=" float-right"></h5>
-                            <a href="{{ userUrl('researches') }}" class="btn-main float-left">بحث
+                            <a href="{{ userUrl('researches') }}" class="btn-main float-left">تقديم طلب نشر
                                 جديد</a>
                         </div>
                             
@@ -38,7 +38,7 @@
                                 @endphp
                                 <div class="col-lg-12 mb-4">
                                     <div class="box-white px-0">
-                                        <h6 class=" px-3 float-right mt-1">التفاصيل </h6>
+                                        <h6 class=" px-3 float-right mt-1">تفاصيل الطلب </h6>
                                         <div class="controls">
                                             @if ($research_details->status == 1)
                                                 <a href="#" class="status btn btn-warning"> قيد المعالجة </a>
@@ -65,7 +65,7 @@
                                         <hr>
 
                                         <div class="mx-3 mb-2 mt-3 d-flex  align-items-center">
-                                            <span class=" float-right text-secondary" style="min-width: 93px;">عنوان البحث  : </span>
+                                            <span class=" float-right text-secondary" style="min-width: 93px;">عنوان الدراسة</span>
                                             <a href="{{route('current_user_researches',['id'=>$research_details->id])}}" class="mx-3 font-weight-bold
                                                 @if(preg_match("/^[\w\d\s.,-]*$/", $research_details->title))
                                                 text-left
@@ -74,7 +74,7 @@
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="mx-3 mb-2 mt-3 d-flex  align-items-center">
-                                            <span class=" float-right text-secondary" style="min-width: 93px;">المؤلف  : </span>
+                                            <span class=" float-right text-secondary" style="min-width: 93px;">اسم المؤلف</span>
                                             <span class="mx-3 font-weight-bold
                                                 @if(preg_match("/^[\w\d\s.,-]*$/", $research_details->user->name))
                                                 text-left
@@ -83,20 +83,20 @@
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="px-3 mb-1 my-4  d-flex justify-content-start">
-                                            <span class="bolld float-right text-secondary" style="min-width: 93px;">تاريخ الارسال :</span>
-                                            <span class="mx-3 font-weight-bold ">{{parseTime($research_details->created_at)}}</span>
+                                            <span class="bolld float-right text-secondary" style="min-width: 93px;">تاريخ الإرسال</span>
+                                            <span class="mx-3 font-weight-bold ">{{($research_details->created_at)}}</span>
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="px-3 mb-1 my-4  d-flex justify-content-start">
-                                            <span class="bolld float-right text-secondary" style="min-width: 93px;">تاريخ آخر تحديث :</span>
-                                            <span class="mx-3 font-weight-bold ">{{parseTime($research_details->updated_at)}}</span>
+                                            <span class="bolld float-right text-secondary" style="min-width: 93px;">تاريخ أخر تحديث</span>
+                                            <span class="mx-3 font-weight-bold ">{{($research_details->updated_at)}}</span>
                                             <div class="clearfix"></div>
                                         </div>
                                         <!---->
 
 
                                         <div class="mx-3 mb-2 mt-3 d-flex  align-items-center">
-                                            <span class=" float-right text-secondary" style="min-width: 93px;">نوع البحث : </span>
+                                            <span class=" float-right text-secondary" style="min-width: 93px;">نوع النشر</span>
                                             <span class="  float-left mx-3">
                                                 @if ($research_details->type == 0)
                                                     {{ 'مفتوح المصدر' }}
@@ -107,18 +107,8 @@
                                             <div class="clearfix"></div>
                                         </div>
 
-
-                                        <!---->
                                         <div class="mx-3 mb-2 mt-3 d-flex  align-items-center">
-                                            <span class=" float-right text-secondary" style="min-width: 93px;">تاريخ الارسال : </span>
-                                            <span class=" float-left  mx-3">{{ parseTime($research_details->created_at) }}</span>
-                                            <div class="clearfix"></div>
-                                        </div>
-
-
-                                        <!---->
-                                        <div class="mx-3 mb-2 mt-3 d-flex  align-items-center">
-                                            <span class=" float-right text-secondary" style="min-width: 93px;">المجلة : </span>
+                                            <span class=" float-right text-secondary" style="min-width: 93px;">المجلة</span>
                                             <span class=" float-left mx-3
                                                 @if(preg_match("/^[\w\d\s.,-]*$/", $research_details->user->name))
                                                 text-left
@@ -126,6 +116,12 @@
                                                 " >{{ $research_details->journal ? $research_details->journal->name : 'لم تختر مجلة بعد' }}</span>
                                             <div class="clearfix"></div>
                                         </div>
+                                        
+                                        {{-<div class="px-3 mb-1 my-4  d-flex justify-content-start">
+                                            <span class="bolld float-right text-secondary" style="min-width: 93px;">تحميل آخر تحديث للدراسة تم تقديمه للمجلة</span>
+                                            <a class="mx-3 font-weight-bold " >تحميل</a>
+                                            <div class="clearfix"></div>
+                                        </div>--}
                                         <!---->
 
 
