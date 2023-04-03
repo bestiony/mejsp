@@ -43,10 +43,14 @@
             </li>
             <li class="{{ activeLink(userPrefix() . '/invoice/my-invoices') }}"><a href="{{ userUrl('invoice/my-invoices') }}"><i class="fa-solid fa-file-invoice-dollar"></i> فواتيرك  </a>
             </li>
-            <li class="{{ activeLink(userPrefix() . '/researches/chats/old-chats') }}"><a href="{{ userUrl('researches/chats/old-chats') }}"><i class="fa-solid fa-message"></i> محادثاتي السابقة  </a>
+            <li class="{{ activeLink(userPrefix() . '/researches/chats/old-chats') }}"><a href="{{ userUrl('researches/chats/old-chats') }}"><i class="fa-solid fa-message"></i> محادثاتك السابقة  </a>
             </li>
 
             <hr>
+            {{--<li
+                class="@if (getAuth('user', 'qualification') == null && getAuth('user', 'country_code') == null) {{ 'bg-danger shadow' }} @endif mb-0 {{ activeLink(userPrefix() . '/profile') }}">
+                <a href="{{ userUrl('profile') }}"><i class="fas fa-cog"></i> البيانات الشخصية</a>
+            </li>--}}
             <li
                 class="@if (getAuth('user', 'qualification') == null && getAuth('user', 'country_code') == null) {{ 'bg-danger shadow' }} @endif mb-0 {{ activeLink(userPrefix() . '/settings') }}">
                 <a href="{{ userUrl('settings') }}"><i class="fas fa-cog"></i> الإعدادات</a>
