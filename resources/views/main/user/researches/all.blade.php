@@ -41,8 +41,8 @@
                                 @endphp
                                 <div class="col-lg-12 mb-4">
                                     <div class="box-white px-0">
-                                        <h6 class=" px-3 float-right mt-1">التفاصيل </h6>
-                                        <div class="controls">
+                                        <h6 class=" px-3 float-right mt-1">تفاصيل الطلب </h6>
+                                        <div class="controls ">
                                             @if ($row->status == 1)
                                                 <a href="#" class="status btn btn-warning"> قيد المعالجة </a>
                                             @elseif ($row->status == 2)
@@ -67,7 +67,7 @@
                                         <hr>
 {{-- 
                                         <div class="mx-3 mb-2 mt-3 d-flex  align-items-center">
-                                            <span class=" float-right text-secondary" style="min-width: 93px;">عنوان الدراسة  : </span>
+                                            <span class=" float-right text-secondary" style="min-width: 93px;">عنوان الدراسة</span>
                                             <a href="{{route('current_user_researches',['id'=>$row->id])}}" class="mx-3 font-weight-bold
                                                 @if(preg_match("/^[\w\d\s.,-]*$/", $row->title))
                                                 text-left
@@ -75,17 +75,17 @@
                                                 ">{{$row->title}}</a>
                                             <div class="clearfix"></div>
                                         </div> --}}
-                                        <div class="row m-0 px-3 mb-3">
+                                        <div class="row m-0 px-3 mb-3 " >
                                             <div class="col-4 p-0 " style="line-height: 2">
                                                 <h6 class="m-0">عنوان الدراسة</h6>
                                             </div>
-                                            <div class="col-8  pl-2  font-weight-bold">
+                                            <div class="col-8  pl-2  font-weight-bold " >
                                                 <a href="{{route('current_user_researches',['id'=>$row->id])}}">{{ $row->title }}</a>
                                             </div>
                                         </div>
                                         <div class="row m-0 px-3 mb-3">
                                             <div class="col-4 p-0 " style="line-height: 2">
-                                                <h6 class="m-0">المؤلف</h6>
+                                                <h6 class="m-0">اسم المؤلف</h6>
                                             </div>
                                             <div class="col-8  pl-2 font-weight-bold" >
                                                 {{$row->user->name}}
@@ -96,7 +96,7 @@
                                                 <h6 class="m-0">تاريخ الإرسال</h6>
                                             </div>
                                             <div class="col-8  pl-2 font-weight-bold" >
-                                                {{parseTime($row->created_at)}}
+                                            {{ date('Y-m-d',strtotime($row->created_at)) }}
                                             </div>
                                         </div>
                                         
