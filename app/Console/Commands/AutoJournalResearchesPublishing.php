@@ -37,19 +37,19 @@ class AutoJournalResearchesPublishing extends Command
 
         $this->info('start of research auto pubish666.');
         $journals = DB::table('journals')->whereDate('next_version',date('Y-m-d'))->get();
+   
         foreach ($journals as $journal) {
-
+    
             $new_version_exists = Versions::where('journal_id',$journal->id)
             ->where('year',date('Y'))
             ->where('month',date('m'))
             ->where('day',date('d'))
             ->first();
-
+ 
             if(!$new_version_exists && strtotime($journal->next_version) && (date('Y-m-d',strtotime($journal->next_version)) == date('Y-m-d')))
             {
                 //get date of last version
                 $next_version_name = $journal->next_version_name;
-
                 $last_version =  Versions::where('journal_id',$journal->id)
                                         ->whereDate('created_at','<',date('Y-m-d'))
                                         ->latest()
@@ -64,11 +64,11 @@ class AutoJournalResearchesPublishing extends Command
                         'year' => date('Y'),
                         'month' =>  date('m'),
                         'journal_id' => $journal->id,
-                        'day' =>  date('d')
+                        'day' =>  date('d')   
                     ]);
-                    $last_version_month = is_numeric($last_version->month) ? $last_version->month : array_search($last_version->month, $months) + 1;
-                    $last_version_publish_date = date('Y-m-d',strtotime($last_version->year.'-'.$last_version_month.'-'.$last_version->day));
-
+        
+                    $last_version_publish_date = date('Y-m-d',strtotime($last_version->year.'-'.(array_search($last_version->month,$months)+1).'-'.$last_version->day));
+                
                     if($last_version_publish_date){
                     $paid_researches_invoices = Invoices::whereNotNull('paid_at')
                                                         ->whereBetween(DB::raw('DATE(paid_at)'), array($last_version_publish_date, date('Y-m-d')))
@@ -76,13 +76,7 @@ class AutoJournalResearchesPublishing extends Command
                                                         ->where('journal_id',$journal->id)
                                                         ->pluck('users_researches_id')
                                                         ->toArray();
-                        /** this is for debuggin purposes */
-                    // if($journal->id = 2){
-
-                    //     $this->info(implode("-" ,$paid_researches_invoices));
-                    //     return 0;
-                    // }
-
+                                                
                     foreach ($paid_researches_invoices as $research_id) {
                         $user_research = UsersResearches::with('user')->find($research_id);
                         if($user_research)
@@ -100,11 +94,11 @@ class AutoJournalResearchesPublishing extends Command
                         }
 
                     }
-
+                    
                         DB::table('journals')->where('slug',$journal->slug)->update(['next_version_name' => '']);
-
+                
                     }
             }
         }
-    }
+    } 
 }

@@ -23,12 +23,6 @@ use App\Http\Controllers\InternationalPublicationOrdersController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
 use App\Http\Controllers\SupportChatController;
 
-Route::get('email-verification/{token}', [UsersController::class, 'email_verification'])->name('confirm_email_verification_token');
-
-
-Route::get('email-verification/{token}', [UsersController::class, 'email_verification'])->name('confirm_email_verification_token');
-
-
 Route::middleware(['guest'])->group(function () {
     Route::prefix('login')->group(function () {
         Route::controller(LoginController::class)->group(function () {
@@ -69,7 +63,7 @@ Route::middleware(['UserAuth'])->group(function () {
             Route::post('profile/update', 'update');
             Route::post('update/profile-image', 'update_profile_image');
             Route::post('email-verification', 'send_email_verification');
-            // Route::get('email-verification/{token}', 'email_verification');
+            Route::get('email-verification/{token}', 'email_verification');
             Route::post('chat/store', 'chat_store');
             Route::get('chat/{id}', 'chat');
             Route::get('count-publication-prices', 'countPublicationPrices');
@@ -128,7 +122,7 @@ Route::middleware(['UserAuth'])->group(function () {
 
     });
 });
-Route::get('/', [HomeController::class, 'index'])->name('home_page');
+Route::get('/', [HomeController::class, 'index']);
 Route::get("faqs", [FaqController::class, 'show']);
 Route::get("services", [ServicesController::class, 'show']);
 Route::get("search", [HomeController::class, 'search']);

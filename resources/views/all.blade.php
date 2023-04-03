@@ -70,7 +70,7 @@
                                     </div>
 
                                     <div class="px-3 mb-1">
-                                        <span class="bolld float-right text-secondary">عنوان الدراسة</span>
+                                        <span class="bolld float-right text-secondary">عنوان البحث</span>
                                         <span class=" float-left">{{ $row->title }}</span>
                                         <div class="clearfix"></div>
                                     </div>
@@ -155,7 +155,7 @@
                                     </div>
                                     
                                     <div class="px-3 mb-1">
-                                        <span class="bolld float-right text-secondary">نوع النشر</span>
+                                        <span class="bolld float-right text-secondary">نوع البحث</span>
                                         <span class=" float-left">
                                             @if ($row->type == 0)
                                                 {{ 'مفتوح المصدر' }}
@@ -167,28 +167,28 @@
                                     </div>
                                     
                                     <div class="px-3 mb-1">
-                                        <span class="bolld float-right text-secondary">تاريخ الإرسال  </span>
+                                        <span class="bolld float-right text-secondary">تاريخ الارسال  </span>
                                         <span class=" float-left">{{ parseTime($row->created_at) }}</span>
                                         <div class="clearfix"></div>
                                     </div>
                                     
                                     <div class="px-3 mb-1">
                                         <span class="bolld float-right text-secondary">المجلة </span>
-                                        <span class=" float-left">{{ $row->journal ? $row->journal->name : 'تم حذف المجلة' }}</span>
+                                        <span class=" float-left">{{ $row->journal ? $row->journal->name : 'تم حذف المجله' }}</span>
                                         <div class="clearfix"></div>
                                     </div>
                                     
                                     <hr>
                                     
                                     <!--<a href="" class="mx-3 mb-1 btn btn-info status" type="button" data-toggle="collapse" data-target="#collapseExample{{ $row->id }}" aria-expanded="false" aria-controls="collapseExample{{ $row->id }}">-->
-                                    <!--    ملخص الدراسة-->
+                                    <!--    ملخص البحث-->
                                     <!--</a>-->
                                     
 
 
                                             <a data-toggle="collapse" data-target="#collapseExample{{ $row->id }}" aria-expanded="false" aria-controls="collapseExample{{ $row->id }}" target="__blank"
                                                 href="{{ asset('assets/uploads/users-researches/' . $row->file) }}"
-                                                class="btn btn-info status"> ملخص الدراسة</a>
+                                                class="btn btn-info status"> ملخص البحث</a>
                                     
                                     
                                         @if (checkFile('assets/uploads/users-researches/' . $row->file))
@@ -306,7 +306,7 @@
             @else
                 <div class="col-lg-8">
                     <div class="box-white py-5">
-                        <h5 class=" text-center">لم يتم العثور علي أي دراسة !</h5>
+                        <h5 class=" text-center">لم يتم العثور علي ابحاث !</h5>
                     </div>
                 </div>
             @endif

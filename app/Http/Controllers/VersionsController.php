@@ -44,8 +44,8 @@ class VersionsController extends Controller
     public function index(Versions $db)
     {
         // Page Title
-        $pageTitle  = "الإصدارات";
-        $buttonText = "إضافة الإصدار";
+        $pageTitle  = "الاصدارات";
+        $buttonText = "اضافة الإصدار";
         $buttonStyle = "btn-main";
         $formUrl = adminUrl("versions/store");
 
@@ -107,14 +107,14 @@ class VersionsController extends Controller
             if ($insert->save()) {
                 return response([
                     'status'  => true,
-                    'message' => 'تمت إضافة الإصدار بنجاح',
+                    'message' => 'تم اضافة الاصدار بنجاح',
                     "form"    => 'reset'
                 ]);
             }
         } else {
             return response([
                 'status'  => 'alert',
-                'message' => 'لقد تم إضافة نفس الإصدار من قبل لنفس المجلة',
+                'message' => 'لقد تم اضافة نفس الاصدار من قبل لنفس المجلة',
             ]);
         }
     }
@@ -141,7 +141,7 @@ class VersionsController extends Controller
                 if ($row->save()) {
                     return response([
                         'status'  => true,
-                        'message' => 'تم تحديث الإصدار بنجاح',
+                        'message' => 'تم تحديث الاصدار بنجاح',
                     ]);
                 }
             } else {
@@ -153,7 +153,7 @@ class VersionsController extends Controller
         } else {
             return response([
                 'status'  => 'alert',
-                'message' => 'لقد تم إضافة نفس الإصدار من قبل لنفس المجلة',
+                'message' => 'لقد تم اضافة نفس الاصدار من قبل لنفس المجلة',
             ]);
         }
     }
@@ -165,7 +165,7 @@ class VersionsController extends Controller
             $row = Versions::find($id);
             if (!empty($row)) {
                 $row->delete();
-                $request->session()->flash('statusMsg', 'تم حذف الإصدار بنجاح');
+                $request->session()->flash('statusMsg', 'تم حذف الاصدار بنجاح');
             }
         } catch (DecryptException $e) {
             return back();

@@ -23,12 +23,12 @@
                     <thead class="thead-inverse">
                         <tr>
                             <th>رقم الفاتورة</th>
-                            <th>البريد الإلكتروني</th>
-                            <th>إجمالي الرسوم (قبل الضريبة)</th>
+                            <th>البريد الالكتروني</th>
+                            <th>اجمالي السعر</th>
                             <th>حالة الدفع</th>
                             <th>تحديد كمدفوعة</th>
                             <th>تعديل</th>
-                            <th>فتح الفاتورة</th>
+                            <th>فتح الرابط</th>
                             <th>حالة الفاتورة</th>
                             <th>الحذف</th>
                         </tr>
@@ -123,7 +123,7 @@
                 </table>
             </div>
             <div class=" mb-5 d-none">
-                <a href="{{ adminUrl('invoices/create') }}" class="btn-main">إضافة فاتورة</a>
+                <a href="{{ adminUrl('invoices/create') }}" class="btn-main">اضافة فاتورة</a>
             </div>
         </div>
 

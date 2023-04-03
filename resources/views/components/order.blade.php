@@ -7,14 +7,14 @@
     </div><!-- name -->
 
     <div class="mb-3">
-        <span class="float-right text-secondary">السعر </span>
+        <span class="float-right text-secondary">سعر المؤتمر</span>
         <span class="float-left">${{ $details['price'] }}</span>
         <div class="clearfix"></div>
     </div><!-- price -->
 
 
     <div class="mb-3">
-        <span class="float-right text-secondary">عنوان الدراسة</span>
+        <span class="float-right text-secondary">عنوان البحث</span>
         <span class="float-left">
             @if ($details['research_title'] == null)
                 {{ 'لا يوجد' }}

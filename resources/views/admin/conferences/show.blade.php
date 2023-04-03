@@ -78,7 +78,7 @@
                             </div><!-- name -->
 
                             <div class="mb-3">
-                                <span class="float-right text-secondary">البريد الإلكتروني</span>
+                                <span class="float-right text-secondary">البريد الالكتروني</span>
                                 <span class="float-left">{{ $conf->user->email }}</span>
                                 <div class="clearfix"></div>
                             </div><!-- email -->

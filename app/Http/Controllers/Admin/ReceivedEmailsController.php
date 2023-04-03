@@ -22,7 +22,7 @@ class ReceivedEmailsController extends Controller
         ]);
 
         if ($insert->save()) {
-            $request->session()->flash("success", "تم إضافة البيانات بنجاح");
+            $request->session()->flash("success", "تم اضافة البيانات بنجاح");
             return back();
         }
     }

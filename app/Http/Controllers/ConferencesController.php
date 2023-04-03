@@ -45,7 +45,7 @@ class ConferencesController extends Controller
             $conf = $conferences->first();
             $info = ['username' => $conf->user->name, 'link' => url("download-my-certificate/" . Crypt::encryptString($id)),];
             Mail::to($conf->user->email)->send(new SendCertificateMail($info));
-            return response(['status' => true, 'message' => 'تم إرسال الشهادة بنجاح',]);
+            return response(['status' => true, 'message' => 'تم ارسال الشهادة بنجاح',]);
         } catch (DecryptException $e) {
         }
     }
@@ -81,7 +81,7 @@ class ConferencesController extends Controller
                 'user_id' => getAuth('user', 'id'),
                 'user_name' => getAuth('user', 'name'),
                 'type' => 'conference',
-                'body' => ' لديك  طلب انضمام لمؤتمر دولي جديد',
+                'body' => ' لديك  طلب الانضمام لمؤتمر دولي جديد',
             ];
             Notification::send($admin, new ConferenceRequest($requestData));
             
@@ -91,7 +91,7 @@ class ConferencesController extends Controller
             foreach (DB::table('received_emails')->select("email")->get() as $email) {
                 Mail::to($email)->send(new NotificationsConferencesMail($info));
             }
-            return response(['status' => true, 'message' => 'تم إرسال طلبك بنجاح، سوف يتم تحويلك إلى صفحة الدفع', 'form' => 'reset', 'redirect' => true, 'to' => userUrl('conference/checkout/' . $insert->id),]);
+            return response(['status' => true, 'message' => 'تم ارسال طلبك بنجاح , سوف يتم تحويلك الي صفحة الدفع', 'form' => 'reset', 'redirect' => true, 'to' => userUrl('conference/checkout/' . $insert->id),]);
         }
         return back();
     }
@@ -120,7 +120,7 @@ class ConferencesController extends Controller
             $category = $request->category;
             $research_title = $request->research_title;
             $upd = $row->update(["category" => $category, "research_title" => $research_title,]);
-            return response(['status' => true, 'message' => 'تم تحديث طلبك بنجاح، سوف يتم تحويلك إلى صفحة الدفع', 'form' => 'reset', 'redirect' => true, 'to' => userUrl('conference/checkout/' . $row_first->id),]);
+            return response(['status' => true, 'message' => 'تم تحديث طلبك بنجاح , سوف يتم تحويلك الي صفحة الدفع', 'form' => 'reset', 'redirect' => true, 'to' => userUrl('conference/checkout/' . $row_first->id),]);
         }
     }
     public function destroy(Request $request)

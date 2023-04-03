@@ -321,11 +321,3 @@
     display: none !important;
   } */
 }
-
-.customedClass {
-  color: #292929;
-}
-
-.customedClass:hover {
-  color: #292929;
-}

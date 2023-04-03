@@ -35,7 +35,7 @@
                     <hr>
                     <form class="px-3" action="" method="GET">
                         <div class="form-group">
-                            <label>عنوان الدراسة</label>
+                            <label>عنوان البحث</label>
                             <input type="text" name="title"
                                 value="@isset($_GET['title']) {{ trim($_GET['title']) }} @endisset"
                                 class="form-control">
@@ -54,7 +54,7 @@
                         </div><!-- journal -->
 
                         <div class="form-group">
-                            <label>اختر الإصدار</label>
+                            <label>اختر الاصدار</label>
                             <select id="select-version" name="version" class="form-control">
                                 <option selected></option>
                                 @foreach ($versions as $ver)
@@ -154,7 +154,7 @@
             @else
                 <div class="col-lg-8">
                     <div class="box-white py-5">
-                        <h5 class=" text-center">لم يتم العثور علي نتائج !</h5>
+                        <h5 class=" text-center">لم يتم العثور علي ابحاث !</h5>
                     </div>
                 </div>
             @endif

@@ -181,7 +181,7 @@ function userUrl($url)
  */
 function notHaveData()
 {
-    return 'لا توجد بيانات للعرض حتى الآن !';
+    return 'لا توجد بيانات للعرض حتى الان !';
 }
 
 

@@ -67,7 +67,7 @@ class JournalsController extends Controller
             $invioce_journal = new InvoiceJournal();
             $invioce_journal->journal_id = $insert->id;
             $invioce_journal->save();
-            return response(['status' => true, 'message' => 'تم إضافة المجلة بنجاح', 'form' => 'reset']);
+            return response(['status' => true, 'message' => 'تم اضافة المجلة بنجاح', 'form' => 'reset']);
         }
     }
     public function edit($id)

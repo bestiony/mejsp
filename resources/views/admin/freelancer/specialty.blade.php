@@ -33,14 +33,14 @@
                     <form action="{{ adminUrl('freelancers/specialty/store') }}" method="POST">
 
                         <div class="form-group">
-                            <label> التخصص</label>
+                            <label>اسم التخصص</label>
                             <input type="text" name="name" class="form-control" required>
                             @error('name')
                                 <div class="alert-error">{{ $message }}</div>
                             @enderror
                         </div>
                         @csrf
-                        <button type="submit" class=" btn-main">إضافة</button>
+                        <button type="submit" class=" btn-main">اضافة</button>
 
                     </form>
                 </div>

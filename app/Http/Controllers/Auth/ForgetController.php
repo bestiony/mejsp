@@ -27,7 +27,7 @@ class ForgetController extends Controller
         $email = $request->email;
         $fetchRow = User::select('email', 'verified_code', 'id')->where("email", $email)->first();
         if(!$fetchRow){
-             $request->session()->flash("error", ' البريد الإلكتروني غير موجود رجاء التأكد مرة أخرى');
+             $request->session()->flash("error", 'هذا البريد غير موجود رجاء التاكد مرة اخري');
             return back();
         }
         $email = $fetchRow->email;
@@ -37,10 +37,10 @@ class ForgetController extends Controller
         if (!empty($email)) {
             $info = ["link" => url("reset-password/" . Crypt::encryptString($email)), 'code' => $code];
             Mail::to($email)->send(new ResetMail($info));
-            $request->session()->flash("message", 'ستصلك رسالة علي بريدك الإلكتروني خلال ثوان');
+            $request->session()->flash("message", 'سيصلك بريد علي حسابك خلال ثوان');
             return back();
         } else {
-            $request->session()->flash("error", ' البريد الإلكتروني غير موجود رجاء التأكد مرة أخرى');
+            $request->session()->flash("error", 'هذا البريد غير موجود رجاء التاكد مرة اخري');
             return back();
         }
     }
@@ -70,15 +70,15 @@ class ForgetController extends Controller
                         return redirect('login');
                     }
                 } else {
-                    $request->session()->flash("error", 'يرجى التحقق من الكود المرفق في الرسالة التي وصلتك على بريدك الإلكتروني');
+                    $request->session()->flash("error", 'يرجي التحقق من الكود المرفق في البريد');
                     return back();
                 }
             } else {
-                $request->session()->flash("error", 'خطأ يرجى التحقق من الإيميل وإعادة المحاولة');
+                $request->session()->flash("error", 'خطأ يرجي التحقق من البريد واعادة المحاولة');
                 return back();
             }
         } catch (DecryptException $e) {
-            $request->session()->flash("error", 'خطأ في تحديث البيانات حاول مرة أخرى');
+            $request->session()->flash("error", 'خطأ في تحديث البيانات حاول مرة اخري');
             return back();
         }
     }

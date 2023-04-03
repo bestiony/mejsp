@@ -11,7 +11,7 @@
     <!-- main style -->
     <link rel="stylesheet" href="{{ asset('admin-assets/css/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin-assets/css/global.css') }}" />
-    <title>إعادة تعيين كلمة المرور</title>
+    <title>إعادة تعين كلمة السر</title>
 </head>
 
 <body>
@@ -49,7 +49,7 @@
                         @csrf
 
                         <div class="form-group text-right">
-                            <label>كلمه المرور الجديدة</label>
+                            <label>كلمه السر الجديدة</label>
                             <input type="password" name="password" class="form-control text-right" required>
                             @error('password')
                                 <div class="alert-error">{{ $message }}</div>

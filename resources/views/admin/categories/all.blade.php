@@ -6,7 +6,7 @@
         <h4 class=" float-right">الشهادات</h4>
         <!-- Button trigger modal -->
         <button type="button" class="btn-main float-left mb-0 btn-sm" data-toggle="modal" data-target="#model-add-category">
-            إضافة شهادة
+            اضافة شهادة
         </button>
         <div class="clearfix"></div>
     </div><!-- End Bar Links -->
@@ -69,7 +69,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title"> إضافة شهادة جديدة</h5>
+                        <h5 class="modal-title"> اضافة شهادة جديدة</h5>
                     </div>
                     <div class="modal-body">
                         @csrf
@@ -81,13 +81,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="required">السعر بالدولار </label>
+                            <label class="required">السعر ( بالدولار )</label>
                             <input type="number" name="price" class="form-control" required />
                         </div>
 
                         <div class="form-group mb-1">
                             <input type="checkbox" name="without_research" id="without_research" />
-                            <label class="required mr-1" for="without_research">يلزم تقديم دراسة ؟</label>
+                            <label class="required mr-1" for="without_research">يلزم تقديم بحث ؟</label>
                         </div>
 
                     </div>
@@ -118,13 +118,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="required">السعر بالدولار </label>
+                            <label class="required">السعر ( بالدولار )</label>
                             <input type="number" id="price" name="price" class="form-control" required />
                         </div>
                         
                         <div class="form-group mb-1">
                             <input type="checkbox" name="without_research" id="update_without_research"  />
-                            <label class="required mr-1" for="update_without_research">يلزم تقديم دراسة ؟</label>
+                            <label class="required mr-1" for="update_without_research">يلزم تقديم بحث ؟</label>
                         </div>
 
 

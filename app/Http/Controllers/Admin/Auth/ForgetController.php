@@ -30,10 +30,10 @@ class ForgetController extends Controller
         if (!empty($email)) {
             $info = ["link" => admin_url("reset-password/" . Crypt::encryptString($email)), 'code' => $code];
             Mail::to($email)->send(new ResetMail($info));
-            $request->session()->flash("message", 'ستصلك رسالة على بريدك الإلكتروني خلال ثوان');
+            $request->session()->flash("message", 'سيصلك بريد علي حسابك خلال ثوان');
             return back();
         } else {
-            $request->session()->flash("error", 'هذا البريد غير موجود رجاء التأكد مرة أخرى');
+            $request->session()->flash("error", 'هذا البريد غير موجود رجاء التاكد مرة اخري');
             return back();
         }
     }
@@ -61,15 +61,15 @@ class ForgetController extends Controller
                         return redirect()->to('/' . adminPrefix());
                     }
                 } else {
-                    $request->session()->flash("error", 'يرجى التحقق من الكود المرفق في البريد');
+                    $request->session()->flash("error", 'يرجي التحقق من الكود المرفق في البريد');
                     return back();
                 }
             } else {
-                $request->session()->flash("error", 'خطأ يرجي التحقق من البريد وإعادة المحاولة');
+                $request->session()->flash("error", 'خطأ يرجي التحقق من البريد واعادة المحاولة');
                 return back();
             }
         } catch (DecryptException $e) {
-            $request->session()->flash("error", 'خطأ في تحديث البيانات حاول مرة أخرى');
+            $request->session()->flash("error", 'خطأ في تحديث البيانات حاول مرة اخري');
             return back();
         }
     }

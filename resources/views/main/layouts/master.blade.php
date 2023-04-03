@@ -113,28 +113,10 @@
                 e.preventDefault();
                 $(this).hide();
             });
-
             </script>
 <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 
     <script>
-        function validURL(str) {
-                var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-                    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-                    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-                    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-                return !!pattern.test(str);
-        }
-        $(window).on('load', function () {
-            $(".customedClass").each(function () {
-                if(validURL($(this).text())){
-                    $(this).css("color", "blue");
-                    $(this).attr("href", $(this).text());
-                }
-            })
-        })
         $(document).ready(function(){
             document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
         })
@@ -148,32 +130,27 @@
             document.cookie = "chat_email="+email+"";
             location.reload();
         });
-
+        
         $('#textAreaExample').on('keypress',function(e){
-
             var file=$("#upload-research-file")[0].files;
             if (e.which == 13) {
                 if(text!==''|| !file){
                 var text=$(this).val();
-                var html=`<div class="d-flex flex-row justify-content-start mb-4">
+               var html=`<div class="d-flex flex-row justify-content-start mb-4">
                             <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
                             <p class="small mb-0">${text}</p>
                             </div>
                         </div>`
-                var inkerTag= `<div class="d-flex flex-row justify-content-start mb-4">
-                            <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                            <a href="${text}" class="small mb-0">${text}</a>
-                            </div>
-                        </div>`
+
+               
+
                 if(text!==''){
-                    validURL(text) ?
-                    $('#CardBody').append(inkerTag):
                     $('#CardBody').append(html);
                 }
-
-
-
-                $('#textAreaExample').val("");
+                
+               
+              
+                $('#textAreaExample').val("");  // <=============================================================================================
                 $("#textAreaExample").attr("disabled","");
                 $("#submit").attr("disabled","");
                 $("#submit svg").removeClass("fa-paper-plane");
@@ -183,7 +160,7 @@
                 formData.append('message', text);
                 formData.append('file', file[0]);
                 $.ajax({
-                    "url":"{{ route('userSendMessage') }}",
+                    "url":"{{ Route('userSendMessage') }}",
                     "type":"post",
                     "data":formData,
                     processData: false,
@@ -217,31 +194,24 @@
             console.log(file);
             var text=$('#textAreaExample').val();
             if(text!==''|| file){
-
+                
                var html=`<div class="d-flex flex-row justify-content-start mb-4">
                             <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
                             <p class="small mb-0">${text}</p>
                             </div>
                         </div>`;
-               var inkerTag=`<div class="d-flex flex-row justify-content-start mb-4">
-                            <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                            <a href="${text}" class="small mb-0">${text}</a>
-                            </div>
-                        </div>`;
                 // var file_div=`<div class="d-flex flex-row justify-content-start mb-4">
-
+                    
                 //     <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
                 //         <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
                 //     </div>`;
                 if(text!==''){
-                    validURL(text) ?
-                    $('#CardBody').append(inkerTag):
                     $('#CardBody').append(html);
                 }
                 // if(file.length>0){
                 //     $('#CardBody').append(file_div);
                 // }
-
+                
                 $("#textAreaExample").attr("disabled","");
                 $("#submit").attr("disabled","");
                 $("#submit svg").removeClass("fa-paper-plane");
@@ -289,32 +259,23 @@ var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
 });
 var email=getCookie('chat_email');
     email?$(".login-form").hide():null;
-    if(!userId){
-        let userId = email
-    }
+let userId = email
 
 console.log(pusher);
 console.log(email);
 var channel = pusher.subscribe('research-chat.'+userId);
 channel.bind('research-chat-message', function(data) {
-    let message = data.message
-    let document_file = data.file
-    console.log(data);
-    console.log(document_file);
-    console.log(message);
+  let message = data.message
+  let document_file = data.file
+  console.log(data);
+  console.log(document_file);
+  console.log(message);
     var push_html=`<div class="d-flex flex-row justify-content-end mb-4">
                             <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
                                 <p class="small mb-0">${message}</p>
                             </div>
                         </div>`
-    var push_ankerTag=`<div class="d-flex flex-row justify-content-end mb-4">
-                            <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                                <a href="${message}" class="small mb-0">${message}</a>
-                            </div>
-                        </div>`
     if(message!==null){
-        validURL(message) ?
-        $('#CardBody').append(push_ankerTag):
         $('#CardBody').append(push_html);
         document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
     }
@@ -323,7 +284,7 @@ channel.bind('research-chat-message', function(data) {
                             <a download href="{{ asset('email/${document_file}') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
                         </div>
                     </div>`;
-
+                    
 
     if(document_file){
         $('#CardBody').append(push_file_div);
@@ -332,8 +293,8 @@ channel.bind('research-chat-message', function(data) {
 });
 </script>
 <script>
-
-
+    
+        
 // <----------------------------------------------------------- upload file to the chat ------------------------------------------------------------------------->
 
 function showUploadedFileName(){
@@ -352,7 +313,7 @@ function showUploadedFileName(){
 
 
     document.querySelector('#file-name').innerText=research_file.name
-
+    
     document.querySelector('#file-box').classList.remove('d-none')
     const reader = new FileReader()
 
@@ -365,20 +326,20 @@ function showUploadedFileName(){
     // Files can be read with the readAs[ArrayBuffer|BinaryString|DataURL|Text] methods
     reader.readAsArrayBuffer(research_file)
     reader.addEventListener('progress', event => {
-
+    
         const percent = Math.round((event.loaded / event.total) * 100)
             const loadingBar = Array(10)
                 .fill('▒')
                 .map(function(item, index) {
                     document.querySelector('#upload-progress .progress-bar').style.width=Math.round(percent)+"%"
-
+                
                 return Math.round(percent / 10) > index ? '█'
-                    : '▒'
+                    : '▒'   
                 } )
                 .join('')
 
             // document.location.hash = `${loadingBar}(${percent}%)`
-
+            
 
     })
     // reader.readAsBinaryString(research_file)
@@ -393,7 +354,7 @@ function removeCurrentFile(){
     let research_label = document.querySelector('label[for="upload-research-file"]')
     research_label.innerHTML =`<i class="fa fa-file-upload mr-3" id="file-uploader" style="font-size: 23px;cursor:pointer;
                                 margin: 0 2px;    position: relative;top: 4px;"></i>`
-
+    
 }
 
 // <----------------------------------------------------------- upload file to the chat ------------------------------------------------------------------------->

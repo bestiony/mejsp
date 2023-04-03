@@ -35,7 +35,7 @@
                             </div>
 
                             <p class="form-group text-center"> ليس لديك حساب ؟
-                                <a href="{{ url('register') }}" class="btn-link">إنشاء حساب </a>
+                                <a href="{{ url('register') }}" class="btn-link">انشئ واحد</a>
                             </p>
 
                         </form>

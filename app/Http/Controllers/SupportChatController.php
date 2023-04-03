@@ -41,8 +41,8 @@ class SupportChatController extends Controller
         }
     
         $info = [
-            'mail_title' => 'استفسار من زائر ',
-            'mail_details1' => ': نص الرسالة ',
+            'mail_title' => 'يحاول مستخدم التوصل معك',
+            'mail_details1' => ': نص الرسالة هو',
             'status'=>4,
             'mail_details2' => $request->message ?? 'ملف مرفق',
             'mail_details3' => '',
@@ -56,7 +56,7 @@ class SupportChatController extends Controller
             'journal' => '',
             'username' => '',
             'email' =>$request->email,
-            'subject'=>'التواصل مع زائر',
+            'subject'=>'التواصل مع مستخدم',
             'id'=>$mesage->id ?? $file_mesage->id,
         ];
         event(new SendMessage($request->message,$admin->id,$file_name??NULL));
@@ -92,10 +92,10 @@ class SupportChatController extends Controller
         $latest_message=SupportChat::where('sender','user')->where('user_email',$request->email)->orderBy('id','desc')->first();
         $info = [
             'mail_title' => 'تم الرد على استفسارك المرسل لمؤسسة الشرق الأوسط للنشر العلمي',
-            'mail_details1' => ': نص الرسالة ',
+            'mail_details1' => ': نص الرسالة هو',
             'status'=>5,
             'mail_details2' => $request->message ?? 'ملف مرفق',
-            'mail_details3' => ' : رداً على ',
+            'mail_details3' => ' : ردا علي ',
             'mail_details4' => $latest_message->message ??  'ملف مرفق',
             'mail_details6'=>'',
             'mail_details7'=>'',

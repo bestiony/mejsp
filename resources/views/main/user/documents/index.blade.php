@@ -55,7 +55,7 @@
                                         <div class="mb-2 mt-3 d-flex  align-items-center">
                                             <i class="fa-solid fa-book-open-reader bg-success rounded mx-1"
                                                 style="padding: 0.7rem;"> </i>
-                                            <span class=" font-weight-bold user-name" style="min-width: 120px;"> عنوان الدراسة
+                                            <span class=" font-weight-bold user-name" style="min-width: 120px;"> عنوان البحث
                                                 : </span>
                                             <span class=" font-weight-bold user-name">{{ $row->research->title }}</span>
                                             <span
@@ -75,7 +75,7 @@
                                         </div>
                                         <div class=" mb-1 my-4  d-flex justify-content-start d-sm-none">
                                             <span class="mr-5 bolld float-right text-secondary"
-                                                style="min-width: 120px;">تاريخ الإرسال
+                                                style="min-width: 120px;">تاريخ الارسال
                                                 :</span>
                                             <span class="">2023-02-08</span>
                                             <div class="clearfix"></div>

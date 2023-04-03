@@ -34,7 +34,6 @@ class SubscriberEmailJob implements ShouldQueue
     public function handle()
     {
         $email = new QueueSubscriberMail($this->details);
-        
         Mail::to($this->details['email'])->send($email);
     }
 }

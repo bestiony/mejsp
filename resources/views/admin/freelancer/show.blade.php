@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="links-bar">
-        <a href="{{ admin_url('freelancers') }}">الكتاب</a>
+        <a href="{{ admin_url('freelancers') }}">الكاتبون</a>
         <a href="{{ admin_url('freelancer/show/' . $row->id) }}">{{ $row->name }}</a>
     </div><!-- End Bar Links -->
 
@@ -47,7 +47,7 @@
 
 
                         <div class="send-message toast-title" data-id="{{ $row->id }}" data-toggle="tooltip"
-                            data-placement="top" title="إرسال رسالة">
+                            data-placement="top" title="ارسال رسالة">
                             <button type="button" data-toggle="modal" data-target="#send-message-modal"><i
                                     class="far fa-envelope"></i></button>
                         </div><!-- Send Message -->
@@ -207,7 +207,7 @@
                         <div class=" box-white px-0 mb-4">
                             @if ($balance->status == 0)
                                 <div class="px-3">
-                                    <span class="float-right">طلب سحب أرباح</span>
+                                    <span class="float-right">طلب سحب ارباح</span>
                                     <div class="clearfix"></div>
                                 </div>
                                 <hr>
@@ -263,14 +263,14 @@
                                             <input type="hidden" name="balance_id" value="{{ $balance->id }}" required>
                                             <input type="hidden" name="id" value="{{ $row->id }}" required>
 
-                                            <button type="submit" class="btn btn-primary btn-sm"> إتمام التحويل</button>
+                                            <button type="submit" class="btn btn-primary btn-sm"> اتمام التحويل</button>
                                         </form>
                                     </span>
                                     <div class="clearfix"></div>
                                 </div>
                             @else
                                 <div class="px-3">
-                                    <span class="float-right">طلب سحب أرباح</span>
+                                    <span class="float-right">طلب سحب ارباح</span>
                                     <div class="clearfix"></div>
                                 </div>
                                 <hr>

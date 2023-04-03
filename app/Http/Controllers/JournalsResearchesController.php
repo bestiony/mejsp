@@ -64,7 +64,7 @@ class JournalsResearchesController extends Controller
     }
     public function create()
     {
-        $pageTitle = 'نشر دراسة ';
+        $pageTitle = 'اضافة بحث جديد';
         $journals = Journals::orderBy("id", "DESC")->select("name", "id")->get();
         return view("admin.journals-researches.create", compact('pageTitle', "journals"));
     }
@@ -80,14 +80,14 @@ class JournalsResearchesController extends Controller
             if ($request->file) {
                 move_uploaded_file($file->getRealPath(), public_path(self::PATH . $fileName));
             }
-            return response(['status' => true, 'message' => 'تم نشر الدراسة بنجاح', "form" => 'reset']);
+            return response(['status' => true, 'message' => 'تم اضافة البحث بنجاح', "form" => 'reset']);
         }
     }
     public function edit($id)
     {
         $row = JournalsResearches::find($id);
         if (!empty($row)) {
-            $pageTitle = 'تعديل دراسة';
+            $pageTitle = 'تعديل بحث';
             $journals = Journals::orderBy("id", "DESC")->select("name", "id")->get();
             $versions = Versions::select('id', 'version', "year", "old_version", "day", "month")->where("journal_id", $row->journal_id)->orderBy('id', 'DESC')->get();
             return view("admin.journals-researches.edit", compact('pageTitle', "journals", 'row', 'versions'));
@@ -115,10 +115,10 @@ class JournalsResearchesController extends Controller
                 if ($request->hasFile('file')) {
                     move_uploaded_file($file->getRealPath(), public_path(self::PATH . $fileName));
                 }
-                return response(['status' => true, 'message' => 'تم تحديث الدراسة بنجاح',]);
+                return response(['status' => true, 'message' => 'تم تحديث البحث بنجاح',]);
             }
         } else {
-            return response(['status' => "notfound", 'message' => 'هذه البيانات ليست موجودة في النظام']);
+            return response(['status' => "notfound", 'message' => 'هذه البيانات ليست موجود في النظام']);
         }
     }
     public function destroy(Request $request)

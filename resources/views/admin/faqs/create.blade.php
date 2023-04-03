@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'إضافة جديد')
+@section('title', 'اضافة جديد')
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}" />
 @endsection
@@ -7,7 +7,7 @@
 
     <div class="links-bar">
         <a href="{{ admin_url('faqs') }}">الأسئلة الشائعة</a>
-        <a href="{{ admin_url('faqs/create') }}">إضافة جديد</a>
+        <a href="{{ admin_url('faqs/create') }}">اضافة جديد</a>
     </div><!-- End Bar Links -->
 
     <div class="row justify-content-center">
@@ -27,7 +27,7 @@
 
 
                     <div class="form-group">
-                        <label class="required">محتوى السؤال</label>
+                        <label class="required">محتوي السؤال</label>
                         <textarea name="content" class=" form-control editor" cols="30" rows="10"></textarea>
                     </div><!-- End -->
 

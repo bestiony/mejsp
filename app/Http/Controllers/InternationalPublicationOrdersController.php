@@ -44,14 +44,14 @@ class InternationalPublicationOrdersController extends Controller
 
     public function index()
     {
-        $pageTitle = 'طلبات النشر SCOPUS/WOS (ISI)';
+        $pageTitle = 'طلبات النشر الدولي';
         $rows = InternationalPublicationOrders::with(['journal'])->where("user_id", getAuth('user', 'id'))->orderBy('id', 'DESC')->get();
         return view("main.user.international-publishing.all", compact('pageTitle', 'rows'));
     }
 
     public function create()
     {
-        $pageTitle = 'طلب نشر SCOPUS/WOS(ISI) ';
+        $pageTitle = 'طلب نشر دولي جديد';
         $types = InternationalTypes::orderBy("id", 'DESC')->get();
         return view("main.user.international-publishing.create", compact('pageTitle', 'types'));
     }
@@ -87,7 +87,7 @@ class InternationalPublicationOrdersController extends Controller
                 'user_id' => getAuth('user', 'id'),
                 'user_name' => getAuth('user', 'name'),
                 'type' => 'post',
-                'body' => ' لديك  طلب نشر SCOPUS/WOS(ISI) ',
+                'body' => ' لديك  طلب نشر دولي جديد',
             ];
             Notification::send($admin, new InternationalRequest($requestData));
             
@@ -119,7 +119,7 @@ class InternationalPublicationOrdersController extends Controller
             foreach (DB::table('received_emails')->select("email")->get() as $email) {
                 Mail::to($email)->send(new NotificationsInternationalPublishingMail($info));
             }
-            return response(['status' => true, 'message' => 'تم إرسال طلبك بنجاح، سوف يتم تحويلك إلى صفحة دفع رسوم النشر', 'form' => 'reset', 'redirect' => true, 'to' => userUrl('international-publishing/checkout/' . $insert->id),]);
+            return response(['status' => true, 'message' => 'تم ارسال طلبك بنجاح , سوف يتم تحويلك الي صفحة الدفع', 'form' => 'reset', 'redirect' => true, 'to' => userUrl('international-publishing/checkout/' . $insert->id),]);
         }
     }
 
@@ -158,7 +158,7 @@ class InternationalPublicationOrdersController extends Controller
     {
         $row = InternationalPublicationOrders::with(['journal'])->where("id", $id)->where('user_id', getAuth('user', 'id'))->where("payment_response", "0")->first();
         if (!empty($row)) {
-            $pageTitle = 'تعديل طلب نشر SCOPUS/WOS(ISI) ';
+            $pageTitle = 'تعديل طلب نشر دولي جديد';
             $spec = InternationalSpecialties::orderBy("id", 'DESC')->where("id", $row->journal->specialty_id)->first();
             $types = InternationalTypes::orderBy("id", 'DESC')->get();
             $specialty = InternationalSpecialties::orderBy("id", 'DESC')->where("type_id", $spec->type_id)->get();
@@ -192,7 +192,7 @@ class InternationalPublicationOrdersController extends Controller
                 if ($request->hasFile("file")) {
                     upload($request->file, self::PATH, $fileName);
                 }
-                return response(['status' => true, 'message' => 'تم تحديث طلبك بنجاح، سوف يتم تحويلك إلى صفحة دفع رسوم النشر', 'redirect' => true, 'to' => userUrl('international-publishing/checkout/' . $row->id),]);
+                return response(['status' => true, 'message' => 'تم تحديث طلبك بنجاح , سوف يتم تحويلك الي صفحة الدفع', 'redirect' => true, 'to' => userUrl('international-publishing/checkout/' . $row->id),]);
             }
         } else {
             return back();

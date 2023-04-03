@@ -153,7 +153,7 @@ $pageTitleText = '';
                                     @if (preg_match('/[a-zA-z]/', $row->title))
                                     <small>More details will be added soon.</small>
                                     @else
-                                        <small>سيتم إضافة المزيد من التفاصيل قريباً</small>
+                                        <small>سيتم إضافة المزيد من التفاصيل قريبا</small>
                                         @endif
                                     @endif
                                 @else 
@@ -187,7 +187,7 @@ $pageTitleText = '';
                                 @if (preg_match('/[a-zA-z]/', $row->title))
                                 <small>More details will be added soon.</small>
                                 @else
-                                    <small>سيتم إضافة المزيد من التفاصيل قريباً</small>
+                                    <small>سيتم إضافة المزيد من التفاصيل قريبا</small>
                                     @endif
                                 @endif
 

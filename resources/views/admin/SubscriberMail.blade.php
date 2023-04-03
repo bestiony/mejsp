@@ -593,10 +593,9 @@ table{
                       <td style="text-align: right; padding-left: 10px;">
                       	<h3 class="heading">روابط مفيدة</h3>
                       	<ul>
-					                <li><a href="#">{{ $details['email_sender'] }}</a></li>
-					                {{-- <li><a href="#">البريد الإلكتروني</a></li> --}}
-					                <li><a href="{{ $details['publication_terms'] }}">شروط النشر</a></li>
-							<li><a href="{{ $details['publication_terms'] }}">لجنة التحكيم</a></li>
+					                <li><a href="#">البريد الإلكتروني</a></li>
+					                <li><a href="#">شروط النشر</a></li>
+							<li><a href="#">لجنة التحكيم</a></li>
 					                </ul>
                       </td>
                     </tr>
@@ -623,7 +622,7 @@ table{
                   <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                     <tr>
                       <td style="text-align: right; padding-left: 5px; padding-right: 5px;">
-                      	<p><a href="{{ env('APP_URL') . '/admin/users/subscribers/remove/' . $details['email'] }}" style="color: rgba(255,255,255,.4);">إلغاء الاشتراك بالنشرة الإخبارية</a></p>
+                      	<p><a href="#" style="color: rgba(255,255,255,.4);">إلغاء الاشتراك بالنشرة الإخبارية</a></p>
                       </td>
                     </tr>
                   </table>

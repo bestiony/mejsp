@@ -52,7 +52,7 @@ class SettingsController extends Controller
             $request->validate($validate);
             $insert = Settings::create($data);
             if ($insert->save()) {
-                $request->session()->flash("success", "تم إضافة البيانات بنجاح");
+                $request->session()->flash("success", "تم اضافة البيانات بنجاح");
                 return back();
             }
         } else {
@@ -99,7 +99,7 @@ class SettingsController extends Controller
               ]);
   
               if ($insert->save()) {
-                  $request->session()->flash("success", "تم إضافة البريد الإلكتروني بنجاح");
+                  $request->session()->flash("success", "تم اضافة البريد بنجاح");
                   return back();
               }
           } else {
@@ -124,7 +124,7 @@ class SettingsController extends Controller
               $social->mail = $request->mail;
   
               if ($social->save()) {
-                  $request->session()->flash("success", "تم تحديث البريد الإلكتروني بنجاح");
+                  $request->session()->flash("success", "تم تحديث البريد بنجاح");
                   return back();
               }
           } else {
@@ -152,7 +152,7 @@ class SettingsController extends Controller
               ]);
   
               if ($insert->save()) {
-                  $request->session()->flash("success", "تم إضافة رقم الهاتف بنجاح");
+                  $request->session()->flash("success", "تم اضافة رقم الهاتف بنجاح");
                   return back();
               }
           } else {

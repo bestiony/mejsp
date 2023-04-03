@@ -34,21 +34,21 @@ class RegisterController extends Controller
         $errors_translations =[
             // Name
             'name.required' => 'هذا الحقل مطلوب',
-            'name.max' => 'يجب ألا يتعدى الاسم 100 حرف',
+            'name.max' => 'يجب ان لا يتعدي الاسم 100 حرف',
             'name.regex' => 'صيغة الاسم غير صحيحة',
             // email
             'email.required' => 'هذا الحقل مطلوب',
-            'email.unique' => 'البريد الإلكتروني تم استخدامه من قبل',
-            'email.max' => 'يجب ألا يتعدى الاسم 200 حرف',
-            'email.regex' => 'صيغة البريد الإلكتروني غير صحيحة',
+            'email.unique' => 'البريد الالكتروني تم استخدامة من قبل',
+            'email.max' => 'يجب ان لا يتعدي الاسم 200 حرف',
+            'email.regex' => 'صيغة البريد الالكتروني غير صحيحة',
             // phone
             'phone.required' => 'هذا الحقل مطلوب',
             'phone.regex' => 'صيغة رقم الهاتف غير صحيحة',
-            'phone.unique' => 'رقم الهاتف تم استخدامه من قبل',
+            'phone.unique' => 'رقم الهاتف تم استخدامة من قبل',
             // password
             'password.required' => 'هذا الحقل مطلوب',
-            'password.min' => 'يجب ألا يقل عن 6 أحرف',
-            'password.max' => 'يجب ألا يتعدى عن 255 حرف',
+            'password.min' => 'يجب ان لا يقل عن 6 احرف',
+            'password.max' => 'يجب ان لا يتعدي عن 255 حرف',
         ];
 
         if($front_sections['signup_phone'] == 1){

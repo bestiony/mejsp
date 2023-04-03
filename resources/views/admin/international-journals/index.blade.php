@@ -39,7 +39,7 @@
                         action="{{ $formUrl }}" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">
-                            <label class="required">النشر في SCOPUS/WOS (ISI)</label>
+                            <label class="required">النشر الدولى</label>
                             <select name="type" id="select-type" class=" form-control" required>
                                 <option disabled selected></option>
                                 @foreach ($types as $ty)

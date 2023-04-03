@@ -80,7 +80,7 @@ class AdminController extends Controller
                 }
                 $response = [
                     'status'  => true,
-                    'message' => 'تم إضافة المشرف بنجاح',
+                    'message' => 'تم اضافة المشرف بنجاج',
                     'form'    => 'reset'
                 ];
                 return response($response);
@@ -233,7 +233,7 @@ class AdminController extends Controller
                             }
                             $response = [
                                 'status'  => true,
-                                'message' => 'تم تعديل المشرف بنجاح'
+                                'message' => 'تم تعديل المشرف بنجاج'
                             ];
                             return response($response);
                         }

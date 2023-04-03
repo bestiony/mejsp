@@ -37,7 +37,7 @@
 
                             
                             <div class="form-group">
-                                <label class=" required">محتوى المقالة</label>
+                                <label class=" required">محتوي المقالة</label>
                                 <textarea name="content" cols="30" rows="10" class="form-control editor" required>{{ $row->content }}</textarea>
                             </div><!-- content -->
 
@@ -49,7 +49,7 @@
                     <div class="col-lg-3">
                         <div class="box-white px-0">
 
-                            <h5 class="px-3">إعدادات الSEO للمقالة</h5>
+                            <h5 class="px-3">اعدادات الSEO للمقالة</h5>
                             <hr>
                             <div class="px-3">
 

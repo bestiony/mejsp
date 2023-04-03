@@ -67,7 +67,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title">إضافة دولة جديدة</h5>
+                        <h5 class="modal-title">اضافة دولة جديدة</h5>
                     </div>
                     <div class="modal-body">
                         @csrf

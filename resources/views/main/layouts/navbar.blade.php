@@ -38,7 +38,7 @@
         display: inherit !important;
     }
 </style>
-<nav dir="rtl" id="navbar"  class="navbar navbar-expand-sm navbar-light fixed-top">
+<nav dir="rtl" id="navbar" class="navbar navbar-expand-sm navbar-light fixed-top">
     <div class="header w-100 fixed-top justify-content-between">
         <div class="d-flex align-items-center mb-2">
             <a href="#">اتصل بنا</a>
@@ -95,7 +95,7 @@
     </div>
     <span class="mySidebarButton" onclick="openNav()">&#9776;</span>
     <a class="navbar-brand" href="{{url('')}}">
-    {{-- <img src="{{asset('assets/images/notfound-sad.png')}}" alt="" class="abs-img"> --}}
+    {{-- <img src="{{asset('assets/images/notfound-sad.png')}}" alt="" class="abs-img"> --}}   
     <img src="{{asset('assets/images/logo.png')}}"
             alt="مؤسسة الشرق الأوسط للنشر العلمي" title="مؤسسة الشرق الأوسط للنشر العلمي" width="120" height="40"/>
         </a>
@@ -167,7 +167,7 @@
             </div>
 
 
-
+            
             <div class="flex-large align-items-center ml-1">
                 @if($front_sections['international_conference'] == 1)
                 <li class="nav-item @if($front_sections['international_conference'] != 1) d-none @endif"> <a
@@ -281,7 +281,7 @@
             <div class="d-flex flex-column">
                 <p class="mb-0 fw-bold mb-2">مؤسسة الشرق الأوسط للنشر العلمي</p>
                 <p class="mb-0" style="font-size: 12px;color: #eaea00;font-weight: 400;">عادةً ما يتم الرد في غضون خمس دقائق</p>
-            </div>
+            </div> 
             <button type="button" id="close-chat" class="text-white">
                 <i class="fas fa-times"></i>
             </button>
@@ -293,36 +293,36 @@
                     @if ($user_message->sender=='user')
                         @if ($user_message->document==NULL)
                             <div class="d-flex flex-row justify-content-start mb-4">
-
+                            
                                 <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                                    <a class="small mb-0 customedClass">{{ $user_message->message }}</a>
+                                    <p class="small mb-0">{{ $user_message->message }}</p>
                                 </div>
                             </div>
                         @elseif ($user_message->document!==NULL)
                             <div class="d-flex flex-row justify-content-start mb-4">
                                 <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                                    <a download href="{{ asset('email/'.$user_message->document.'') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
+                                    <a download href="{{ asset('email/'.$user_message->document.'') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a> 
                                 </div>
                             </div>
                         @endif
                     @endif
-
+                   
                     @if ($user_message->sender=='admin')
-
+                    
                             @if ($user_message->document==NULL)
                                 <div class="d-flex flex-row justify-content-end mb-4">
-                                    <div  class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                                        <a class="small mb-0 customedClass">{{ $user_message->message }}</a>
+                                    <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+                                        <p class="small mb-0">{{ $user_message->message }}</p>
                                     </div>
                                 </div>
                             @elseif ($user_message->document!==NULL)
                                 <div class="d-flex flex-row justify-content-end mb-4">
                                     <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                                        <a download href="{{ asset('email/'.$user_message->document.'') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
+                                        <a download href="{{ asset('email/'.$user_message->document.'') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a> 
                                     </div>
                                 </div>
                             @endif
-
+                       
 
 
                     @endif
@@ -332,19 +332,19 @@
                         </div>
                     </div> --}}
                     {{-- <div class="d-flex flex-row justify-content-start mb-4">
-
+                    
                         <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
                             <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
                         </div>
                     </div> --}}
-
+                
                 @endforeach
             @endif
+           
+            
 
 
-
-
-
+            
 
 
             {{-- <div class="d-flex flex-row justify-content-start mb-4">
@@ -359,9 +359,9 @@
                 </div>
             </div> --}}
 
+          
 
-
-
+            
         </div>
 
 
@@ -370,7 +370,7 @@
                 <input class="form-control" id="textAreaExample" placeholder="اكتب رسالتك هنا"/>
                 <label for="upload-research-file" class="m-0"  data-mdb-ripple-color="dark">
                     <i class="fa fa-file-upload mr-3" id="file-uploader" style="font-size: 18px;cursor:pointer;
-                    margin: 0 2px 6px;position: relative;top: 4px;"></i>
+                    margin: 0 2px 6px;position: relative;top: 4px;"></i>           
                 </label>
                 <input id="upload-research-file" type="file" name="file" onchange="showUploadedFileName()" class="d-none" accept="*">
                 <button type="button" href="#" id="submit" class="send mx-2">

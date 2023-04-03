@@ -26,7 +26,7 @@ class LoginController extends Controller
         if (Auth::guard("user")->attempt(["email" => $email, "password" => $pass], true)) {
 
             if (getAuth('user', 'status') == 0) {
-                $request->session()->flash("auth_error_message", 'تم حظر هذا الحساب من المنصة راجع الدعم الفني');
+                $request->session()->flash("auth_error_message", 'تم حظر هذا الحساب من المنصة');
                 Auth::guard('user')->logout();
                 return back();
             } else {

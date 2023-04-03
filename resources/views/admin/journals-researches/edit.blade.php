@@ -86,7 +86,7 @@
                         </div><!-- author_name -->
 
                         <div class="form-group">
-                            <label class="required">عنوان الدراسة</label>
+                            <label class="required">عنوان البحث</label>
                             <input type="text" name="title" class="form-control" value="{{ $row->title }}" required />
                         </div><!-- title -->
 
@@ -98,10 +98,10 @@
 
 
                         <div class="form-group">
-                            <label>سعر الدراسة ( بالدولار )</label>
+                            <label>سعر البحث ( بالدولار )</label>
                             <input type="number" step="any" name="price" class="form-control"
                                 value="{{ $row->price }}" />
-                            <small class=" text-muted">إذا كانت الدراسة مجانية اترك حقل السعر فارغ</small>
+                            <small class=" text-muted">اذا كان البحث مجاني اترك حقل السعر فارغ</small>
                         </div><!-- price -->
                         <div class="form-group"">
                             <label class="">الكلمات المفتاحية ( يرجى كتابة الكلمة والضغط على زر Enter )</label>
@@ -122,7 +122,7 @@
                         </div><!-- keywords -->
                         <input type="hidden" name="keywords_final" id="keywords_final" value="{{$row->keywords}}">
 
-                        <button type="submit" class=" btn-main">تحديث الدراسة</button>
+                        <button type="submit" class=" btn-main">تحديث البحث</button>
 
                     </form>
                 </div>

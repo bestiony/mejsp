@@ -41,7 +41,7 @@
 
                       
                         <div class="form-group">
-                            <label class="required"> التصنيف الدولى</label>
+                            <label class="required">نوع النشر الدولى</label>
                             <input type="text" name="type" class="form-control"
                                 value="@empty(!$row) {{ $row->type }} @endempty">
                             @error('type')
@@ -50,7 +50,7 @@
                             <input type="hidden" name="id"
                                 value="@empty(!$row) {{ $row->id }} @endempty" />
 
-                            <small class="text-muted">نوع التصنيف الدولي يستخدم في تنظيم التخصصات والمجلات الخاصة فقط
+                            <small class="text-muted">نوع النشر الدولي يستخدم في تنظيم التخصصات والمجلات الخاص فقط
                                 بالنشر الدولي</small>
                         </div>
                         @csrf
@@ -67,7 +67,7 @@
                     <table class="table table-striped table-inverse table-bordered text-center mb-0">
                         <thead class="thead-inverse">
                             <tr>
-                                <th> التصنيف الدولى</th>
+                                <th>نوع النشر الدولى</th>
                                 <th>التعديل</th>
                                 <th>الحذف</th>
                             </tr>

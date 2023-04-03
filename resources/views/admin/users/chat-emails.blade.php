@@ -309,3 +309,6 @@ var tagInput1 = new TagsInput({
     }, 500));
 </script>
 @endsection
+            <div class="col-12">
+                {{ $articles->onEachSide(5)->links() }}
+            </div>

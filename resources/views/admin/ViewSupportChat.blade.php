@@ -296,9 +296,7 @@ reader.addEventListener('progress', event => {
                                             @if ($message->sender=='admin')
                                                 @if ($message->document==NULL)
                                                 <div class="message sender">
-                                                    <a class="customedClass">
-                                                        {{ $message->message }}
-                                                    </a>
+                                                    {{ $message->message }}
                                                 </div>
 
                                                 @elseif ($message->document!==NULL)
@@ -311,9 +309,7 @@ reader.addEventListener('progress', event => {
                                             @elseif ($message->sender=='user')
                                                 @if ($message->document==NULL)
                                                     <div class="message receved">
-                                                        <a class="customedClass">
-                                                            {{ $message->message }}
-                                                        </a>
+                                                        {{ $message->message }}
                                                     </div>
                                                 @elseif ($message->document!==NULL)
                                                 <div class="message recever file">
@@ -461,23 +457,6 @@ reader.addEventListener('progress', event => {
 <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 
 <script>
-function validURL(str) {
-            var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-                '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-                '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-                '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-                '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-                '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-            return !!pattern.test(str);
-    }
-    $(window).on('load', function () {
-        $(".customedClass").each(function () {
-            if(validURL($(this).text())){
-                $(this).css("color", "blue");
-                $(this).attr("href", $(this).text());
-            }
-        })
-    })
     Pusher.logToConsole = false;
 
 var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
@@ -495,18 +474,10 @@ channel.bind('research-chat-message', function(data) {
   var push_html=` <div class="message receved">
                         ${message}
                     </div>`
-  var push_ankerTag=` <div class="message receved">
-                        <a href="${message}">
-                        ${message}
-                        </a>
-                    </div>`
     var push_file_div=`<div class="message recever file">
                             <a download href="{{ asset('email/${document_file}') }}"> <i class="fa-solid fa-folder-closed"></i></a>
                         </div>`;
     if(message!==null){
-        validURL(message)?
-        $('#chats').append(push_ankerTag)
-        :
         $('#chats').append(push_html);
     }
     if(document_file!==null){

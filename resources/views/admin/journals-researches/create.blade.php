@@ -17,7 +17,7 @@
 @section('content')
 
     <div class="links-bar">
-        <a href="{{ admin_url('researches') }}">الأوراق العلمية</a>
+        <a href="{{ admin_url('researches') }}">الابحاث</a>
         <a  href="{{ admin_url('researches/create') }}">{{ $pageTitle }}</a>
     </div><!-- End Bar Links -->
 
@@ -43,7 +43,7 @@
                         </div><!-- journal -->
 
                         <div class="form-group">
-                            <label class="required">اختر الإصدار</label>
+                            <label class="required">اختر الاصدار</label>
                             <select id="select-version" name="version" class="form-control" required>
                                 <option selected disabled></option>
                             </select>
@@ -60,7 +60,7 @@
                         </div><!-- author_name -->
 
                         <div class="form-group">
-                            <label class="required">عنوان الدراسة</label>
+                            <label class="required">عنوان البحث</label>
                             <input type="text" name="title" class="form-control" required />
                         </div><!-- title -->
 
@@ -74,7 +74,7 @@
                         <div class="form-group">
                             <label>سعر البحث ( بالدولار )</label>
                             <input type="number" step="any" name="price" class="form-control" />
-                            <small class=" text-muted">إذا كانت الدراسة مجانية اترك حقل السعر فارغ</small>
+                            <small class=" text-muted">اذا كان البحث مجاني اترك حقل السعر فارغ</small>
                         </div><!-- price -->
                         <div class="form-group"">
                             <label class="required" id="keywords-notice">الكلمات المفتاحية ( يرجى كتابة الكلمة والضغط على زر Enter )</label>

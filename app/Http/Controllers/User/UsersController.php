@@ -70,27 +70,27 @@ class UsersController extends Controller
         ], [
             // Name
             'name.required' => 'هذا الحقل مطلوب',
-            'name.max' => 'يجب ألا يتعدى الاسم 100 حرف',
+            'name.max' => 'يجب ان لا يتعدي الاسم 100 حرف',
             'name.regex' => 'صيغة الاسم غير صحيحة',
             // email
             'email.required' => 'هذا الحقل مطلوب',
-            'email.unique' => 'البريد الإلكتروني تم استخدامه من قبل',
-            'email.max' => 'يجب ألا يتعدى الاسم 200 حرف',
-            'email.regex' => 'صيغة البريد الإلكتروني غير صحيحة',
+            'email.unique' => 'البريد الالكتروني تم استخدامة من قبل',
+            'email.max' => 'يجب ان لا يتعدي الاسم 200 حرف',
+            'email.regex' => 'صيغة البريد الالكتروني غير صحيحة',
             // phone
             'phone.required' => 'هذا الحقل مطلوب',
             'phone.regex' => 'صيغة رقم الهاتف غير صحيحة',
-            'phone.unique' => 'رقم الهاتف تم استخدامه من قبل',
+            'phone.unique' => 'رقم الهاتف تم استخدامة من قبل',
             // password
             'password.required' => 'هذا الحقل مطلوب',
-            'password.min' => 'يجب ألا يقل عن 6 أحرف',
-            'password.max' => 'يجب ألا يتعدى عن 255 حرف',
+            'password.min' => 'يجب ان لا يقل عن 6 احرف',
+            'password.max' => 'يجب ان لا يتعدي عن 255 حرف',
             // qualification
             'qualification.required' => 'هذا الحقل مطلوب',
-            'qualification.max' => 'يجب ألا يتعدى الاسم 150 حرف',
+            'qualification.max' => 'يجب ان لا يتعدي الاسم 150 حرف',
             // country_code
             'country_code.required' => 'هذا الحقل مطلوب',
-            'country_code.regex' => 'صيغة كود الدولة غير صحيحة',
+            'country_code.regex' => 'صيغة كود الدوله غير صحيحة',
         ]);
 
         // Get Row For Update
@@ -150,49 +150,47 @@ class UsersController extends Controller
 
         if (!empty($row)) {
             $data = [
-                "link" => route('confirm_email_verification_token',['token'=> Crypt::encryptString($id)] )
+                "link" => userUrl("email-verification/" . Crypt::encryptString($id))
             ];
             Mail::to($email)->send(new EmailVerificationMail($data));
-            $request->session()->flash('success_email_verification', 'تم إرسال رسالة تأكيد إلى بريدك الإلكتروني');
+            $request->session()->flash('success_email_verification', 'تم ارسال رسالة تأكيد الي حسابك الالكتروني');
         } else {
-            $request->session()->flash('success_email_verification', 'تم  تأكيد بريدك الإلكتروني من قبل');
+            $request->session()->flash('success_email_verification', 'تم  تأكيد حسابك الالكتروني من قبل');
         }
         return back();
     }
 
-    public function email_verification(Request $request )
+    public function email_verification($token)
     {
-        // $id = getAuth('user', 'id');
-        // $id_token = request()->segment(3);
+        $id = getAuth('user', 'id');
+        $id_token = request()->segment(3);
 
 
         try {
-            $id = Crypt::decryptString($request->token);
+            $id_token = Crypt::decryptString($id_token);
 
-            // if ($id == $id) {
+            if ($id_token == $id) {
                 $row = User::where("id", $id)->whereNull("email_verified_at")->first();
                 if (!empty($row)) {
                     $row->email_verified_at = now();
                     $row->save();
                 }
-            // }
+            }
+        } catch (DecryptException $e) {
         }
-        catch (DecryptException $e) {
-        }
-        $request->session()->flash('تم تأكيد إيمايلك بنجاح');
-        return redirect()->route('home_page')->with('message', 'تم تأكيد إيمايلك بنجاح');
+        return redirect(userUrl("dashboard"));
     }
-
+    
     //baik
-
+    
     public function chat($id){
         $services = Services::where('show_in_chat',1)->inRandomOrder()->take(3)->get();
         $articles = Articles::where('show_in_chat',1)->inRandomOrder()->select('title','slug')->take(4)->get();
         $user_researches = UsersResearches::with('user')->where('id',$id)->first();
-
-
+        
+            
             $auth_id = Auth::guard('user')->user()->id;
-
+        
             if($user_researches->user_id == $auth_id){
                 $messages = Message::where('research_id',$id)->get();
                 foreach($messages as $item){
@@ -207,45 +205,45 @@ class UsersController extends Controller
                 }
                 else
                 {
-                    return view("main.user.researches.closed_chat", compact('messages','pageTitle','research_id','user_researches','services','articles'));
+                    return view("main.user.researches.closed_chat", compact('messages','pageTitle','research_id','user_researches','services','articles'));   
                 }
 
         }else{
             return redirect('/u/dashboard');
             //abort(404);
         }
-
-
-
-
+    
+        
+        
+        
     }
-
+    
     public function chat_store(request $request){
-
+        
         $request->validate([
         'message'=>'max:1500',
         'file'=>'mimes:doc,docx',
         ]);
-
+        
         $auth_id = Auth::guard('user')->user()->id;
-
+        
         // get File
         $file =$request->file;
-
+        
         //get Host Webiste
         $host = $request->getSchemeAndHttpHost();
-
-
+    
+        
         $message = new Message;
         $message->message =nl2br($request->message);
         $message->research_id = $request->research_id;
         $message->a_show = 0;
         $message->u_show = 1;
-
+        
         $message->user_id = $auth_id ;
-
-        //verify requests File
-
+        
+        //verify requests File 
+        
         if(!empty($file)){
         $new_file =$auth_id."_".time().$file->getClientOriginalName();
         $message->file=$host."/admin-assets/uploads/chats_pictures/".$new_file;
@@ -253,12 +251,12 @@ class UsersController extends Controller
         $new_file="";
         $message->file=$new_file;
         }
-
+        
         $user_researches = UsersResearches::where('id',$request->research_id)->first();
         /*
             this code was replacing the orginal code of the research with the one posted
             in the messages every time the user sends a message
-            update:: nevermind. it is necessary keep it
+            update:: nevermind. it is necessary keep it 
         */
         $fileName = $user_researches->file;
         if (!empty($file)) {
@@ -278,13 +276,13 @@ class UsersController extends Controller
             // $user_researches->file =$fileName;
             // $user_researches->save();
         }
-
+   
         $user_in = $user_researches->user->id;
 
         $info=[
                 'id'=>$request->research_id,
                 'mail_title'=> 'رد من المؤلف',
-                'mail_details1'=> 'قام المؤلف بالرد على تعليقات المحكم',
+                'mail_details1'=> 'قام المؤلف بالرد على تعليقات المراجع.',
                 'mail_details2'=> '',
                 'mail_details3'=> '',
                 'mail_details4'=> '',
@@ -298,8 +296,8 @@ class UsersController extends Controller
                 'email'=>$user_researches->user->email,
                 'status'=>6,
                 ];
-
-
+                
+        
         if($message->save()){
             $admins = Admins::get();
             $requestData = [
@@ -308,13 +306,13 @@ class UsersController extends Controller
                 'user_name' => $user_researches->user->name,
                 'type' => 'chat',
                 'body' => 'بخصوص طلب نشر الدراسة بعنوان '.$user_researches->title .
-                ' وردك رد من المؤلف
+                ' وردك تعليقات  
                 ',
             ];
             foreach($admins as $admin) {
                 Notification::send($admin, new EditChat($requestData));
             }
-
+         
             // if(!empty($file)){
             //     // $file->move("admin-assets/uploads/chats_pictures",$new_file);
             //     upload($file,"admin-assets/uploads/chats_pictures/",$new_file);
@@ -324,16 +322,16 @@ class UsersController extends Controller
                 Mail::to($email)->send(new ResiveOrderMail($info,"تم الرد من المؤلف"));
             }
             event(new SendMessage($message,$user_in));
-
+            
         }
 
         // $messages = Message::where('research_id',$request->research_id)->get();
         // $research_id = $request->research_id;
         // $pageTitle = 'الرسائل ';
         // return redirect()->back()->with('messages',$messages)->with('pageTitle',$pageTitle)->with('research_id',$research_id);
-
+        
         return response([
-            'message' => 'تم إرسال الرسالة بنجاح',
+            'message' => 'تم ارسال الرسالة بنجاح',
             'status' => 'success'
         ],200);
     }
@@ -390,13 +388,13 @@ class UsersController extends Controller
             $price = $main_price;
         }
         $price = $price + ($price * 5)/100;
-        $message = ' نشر عدد '
+        $message = ' نشر عدد ' 
         . $request->default_page_count
-        . ' صفحة في  ' . $journal->journal->name
-        . ' سوف يكلفك مبلغ : '
-        . ' ' .$price . 'دولار أمريكي';
-        Session::flash('message', $message);
+        . ' صفحة في  ' . $journal->journal->name 
+        . ' سوف يكلفك مبلغ : ' 
+        . ' ' .$price . ' (دولار أمريكي)';
+        Session::flash('message', $message); 
         return redirect()->back()->with('default_page_count', $request->default_page_count);
-
+        
     }
 }

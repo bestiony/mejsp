@@ -1,9 +1,9 @@
 @extends('admin.layouts.master')
-@section('title', 'طلب نشر في SCOPUS/WOS (ISI)')
+@section('title', 'طلب نشر دولي')
 @section('content')
 
     <div class="links-bar my-4 ">
-        <a href="{{ adminUrl('international-publishing/orders') }}">طلب نشر في SCOPUS/WOS (ISI)</a>
+        <a href="{{ adminUrl('international-publishing/orders') }}">طلب نشر دولي</a>
         <a href="">عرض تفاصيل الطلب</a>
     </div><!-- End Bar Links -->
 
@@ -86,7 +86,7 @@
                             </div><!-- name -->
 
                             <div class="mb-3">
-                                <span class="float-right text-secondary">البريد الإلكتروني</span>
+                                <span class="float-right text-secondary">البريد الالكتروني</span>
                                 <span class="float-left">{{ $intr->user->email }}</span>
                                 <div class="clearfix"></div>
                             </div><!-- email -->
@@ -148,7 +148,7 @@
                 
                     
                     <div class="form-group">
-                        <h3>هل أنت متاكد من قبول الطلب ؟</h3>
+                        <h3>هل انت متاكد من قبول الطلب ؟</h3>
                     <input type="hidden" name="international_order_id" value="{{ $intr->id }}">
                     <input type="hidden" name="status" value="1">
                     </div>
