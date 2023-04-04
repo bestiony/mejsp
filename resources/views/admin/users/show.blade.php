@@ -64,8 +64,7 @@
                                     <td>{{ parseTime($row->created_at) }}</td>
                                     <td>
 
-                                        <form class="d-inline-block" action="{{ adminUrl('users/status') }}"
-                                            method="POST">
+                                        <form class="d-inline-block" action="{{ adminUrl('users/status') }}" method="POST">
                                             @csrf
                                             <input type="hidden" value="{{ $row->id }}" name="id">
                                             @if ($row->status == 1)
@@ -177,8 +176,8 @@
                                         </td>
 
                                         <td>
-                                            <form class="d-inline-block delete" action="{{ adminUrl('users/researches/destroy') }}"
-                                                method="POST">
+                                            <form class="d-inline-block delete"
+                                                action="{{ adminUrl('users/researches/destroy') }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="hidden" value="{{ $re->id }}" name="id">
@@ -229,7 +228,6 @@
             </div><!-- Row -->
         </div><!-- Grid 2 -->
 
-
         <div class="col-lg-4 mb-4">
             <h6 class="mb-3">النشر الدولي</h6>
             <div class="row">
@@ -244,6 +242,7 @@
                                 'file' => $intr->file,
                                 'desc' => $intr->desc,
                                 'id' => $intr->id,
+                                'status'=> $intr->status,
                             ];
                         @endphp
                         <x-inter-orders :details="$data" />

@@ -24,7 +24,6 @@
         </span>
         <div class="clearfix"></div>
     </div><!-- ReSearch Title -->
-
     <div class="mb-3">
         <span class="float-right text-secondary">حالة الدفع</span>
         @if ($details['payment_response'] > 0)
