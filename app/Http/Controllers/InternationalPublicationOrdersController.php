@@ -1,4 +1,6 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 use App\Models\Payment;
 use App\Models\User;
@@ -75,49 +77,55 @@ class InternationalPublicationOrdersController extends Controller
         }
         $request->validate(['type' => 'required', 'specialty' => "required", 'journal' => "required|in:" . implode(",", $jourIDs), 'file' => 'required|mimes:docx,doc', 'desc' => 'nullable|max:3000',]);
         $fileName = randomName() . '.' . $request->file->extension();
-        $insert = InternationalPublicationOrders::create(['title'=>$request->title,'journal_id' => $request->journal, 'file' => $fileName, 'desc' => $request->desc, 'user_id' => getAuth('user', 'id'),]);
+        $insert = InternationalPublicationOrders::create(['title' => $request->title, 'journal_id' => $request->journal, 'file' => $fileName, 'desc' => $request->desc, 'user_id' => getAuth('user', 'id'),]);
 
         if ($insert->save()) {
 
             $admins = Admins::all();
             foreach ($admins as $admin) {
 
-            $requestData = [
+                $requestData = [
+                    'id' => $insert->id,
+                    'user_id' => getAuth('user', 'id'),
+                    'user_name' => getAuth('user', 'name'),
+                    'type' => 'post',
+                    'body' => ' لديك  طلب نشر SCOPUS/WOS(ISI) ',
+                ];
+                Notification::send($admin, new InternationalRequest($requestData));
+            }
+            $info = [
+                'mail_title' => 'Your study has been received',
+                'mail_details1' => 'We have received a request to publish your study entitled: "' . $insert->title . '"',
+                'status' => 3,
+                'mail_details2' => 'Submitted for publication in the journal: "' . $insert->journal->name . '"',
+                'mail_details3' => 'The application has been registered with a number: #' . $insert->id . '',
+                'mail_details4' => 'We will inform you of any updates',
+                'mail_details5' => 'Be sure to log in to your account periodically to check the status of the application',
+                'mail_details6' => '',
+                'mail_details7' => '',
+                'mail_details8' => '',
+                'id' => '',
+                'file' =>  asset(self::PATH . $insert->file),
+                'journal' => $insert->journal->name,
+                'username' => $insert->user->name,
+                'email' => $insert->user->email,
+                'subject' => 'Confirm receipt of the study',
                 'id' => $insert->id,
-                'user_id' => getAuth('user', 'id'),
-                'user_name' => getAuth('user', 'name'),
-                'type' => 'post',
-                'body' => ' لديك  طلب نشر SCOPUS/WOS(ISI) ',
             ];
-            Notification::send($admin, new InternationalRequest($requestData));
-            
-        }
-        $info = [
-            'mail_title' => 'Your study has been received',
-            'mail_details1' => 'We have received a request to publish your study entitled: "'.$insert->title.'"',
-            'status'=>3,
-            'mail_details2' => 'Submitted for publication in the journal: "'.$insert->journal->name.'"',
-            'mail_details3' => 'The application has been registered with a number: #'.$insert->id.'',
-            'mail_details4' => 'We will inform you of any updates',
-            'mail_details5' => 'Be sure to log in to your account periodically to check the status of the application',
-            'mail_details6'=>'',
-            'mail_details7'=>'',
-            'mail_details8'=>'',
-            'id' => '',
-            'file' =>  asset(self::PATH . $insert->file),
-            'journal' => $insert->journal->name,
-            'username' => $insert->user->name,
-            'email' =>$insert->user->email,
-            'subject'=>'Confirm receipt of the study',
-            'id'=>$insert->id,
-        ];
-        Mail::to(Auth::guard('user')->user()->email)->send(new AdminRefusedInternationalPublicationOrderEmail($info));
+            Mail::mailer('internaltional')->to(Auth::guard('user')->user()->email)->send(new AdminRefusedInternationalPublicationOrderEmail($info));
 
             upload($request->file, self::PATH, $fileName);
             $jourRow = DB::table('international_journals')->select("name", 'price')->where("id", $insert->journal_id)->first();
-            $info = ['journal' => $jourRow->name, 'price' => $jourRow->price, 'file' => asset("assets/uploads/international-publication-orders/" . $fileName), 'username' => getAuth('user', 'name'), 'email' => getAuth('user', 'email'),];
+            $info = [
+                'journal' => $jourRow->name,
+                'price' => $jourRow->price,
+                'file' => asset("assets/uploads/international-publication-orders/" . $fileName),
+                'username' => getAuth('user', 'name'),
+                'email' => getAuth('user', 'email'),
+                'subject' => 'طلب نشر دولي جديد',
+            ];
             foreach (DB::table('received_emails')->select("email")->get() as $email) {
-                Mail::to($email)->send(new NotificationsInternationalPublishingMail($info));
+                Mail::mailer('internaltional')->to($email)->send(new NotificationsInternationalPublishingMail($info));
             }
             return response(['status' => true, 'message' => 'تم إرسال طلبك بنجاح، سوف يتم تحويلك إلى صفحة دفع رسوم النشر', 'form' => 'reset', 'redirect' => true, 'to' => userUrl('international-publishing/checkout/' . $insert->id),]);
         }
@@ -125,34 +133,29 @@ class InternationalPublicationOrdersController extends Controller
 
     public function readNotification($id)
     {
-       $noti = DB::table('notifications')->where('id',$id)->update(['read_at'=>now()]);
-       $noti = DB::table('notifications')->where('id',$id)->first();
-    // dd(json_decode($noti->data));
-       if(json_decode($noti->data)->type == 'researche'){
-        return redirect('/u/researches/all');
-       }elseif (json_decode($noti->data)->type == 'chat') {
-        return  redirect('u/chat/'.json_decode($noti->data)->id);
-       }
+        $noti = DB::table('notifications')->where('id', $id)->update(['read_at' => now()]);
+        $noti = DB::table('notifications')->where('id', $id)->first();
+        // dd(json_decode($noti->data));
+        if (json_decode($noti->data)->type == 'researche') {
+            return redirect('/u/researches/all');
+        } elseif (json_decode($noti->data)->type == 'chat') {
+            return  redirect('u/chat/' . json_decode($noti->data)->id);
+        }
         return redirect()->back();
     }
 
-    public function readNotificationConferenceRequest($type,$noti,$id)
+    public function readNotificationConferenceRequest($type, $noti, $id)
     {
-        DB::table('notifications')->where('notifiable_type','App\Models\Admin\Admins')->update(['read_at'=>now()]);
+        DB::table('notifications')->where('notifiable_type', 'App\Models\Admin\Admins')->update(['read_at' => now()]);
         if ($type == 'conference') {
             return redirect(adminUrl('conference/show/' . $id));
-        }
-        elseif ($type == 'post') {
+        } elseif ($type == 'post') {
             return  redirect(adminUrl('international-publishing/orders/show/' . $id));
-
-        }
-        elseif ($type == 'researche') {
+        } elseif ($type == 'researche') {
             return  redirect(adminUrl('users/user-researches/'));
+        } elseif ($type == 'chat') {
+            return  redirect('admin/users/chat/' . $noti . '/' . $id);
         }
-        elseif ($type == 'chat') {
-            return  redirect('admin/users/chat/'.$noti.'/'.$id);
-        }
-
     }
     public function edit($id)
     {

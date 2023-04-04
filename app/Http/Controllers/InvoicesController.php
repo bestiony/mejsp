@@ -332,7 +332,7 @@ class InvoicesController extends Controller
             $do_send = true;
 
         }
-        
+
         if($do_send){
             $mail = Mail::to($user->email)->send(new ResiveOrderMail($info, $etat));
             if($mail){

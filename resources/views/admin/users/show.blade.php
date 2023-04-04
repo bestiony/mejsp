@@ -18,7 +18,6 @@
 
     <div class="result"></div>
 
-
     <div class="row">
 
         <div class="col-12 mb-4">

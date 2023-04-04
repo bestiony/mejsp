@@ -1053,7 +1053,7 @@ class UsersController extends Controller
             'from_email' => 'editor@journals.mejsp.com'
         ];
 
-        Mail::to($row->user->email)->send(new AdminRefusedInternationalPublicationOrderEmail($info));
+        Mail::mailer('internaltional')->to($row->user->email)->send(new AdminRefusedInternationalPublicationOrderEmail($info));
         Notification::send($row->user, new ResearcheReject($requestData));
         Session::flash('message', 'تم رفض الطلب بنجاح');
         return redirect()->back();
@@ -1094,7 +1094,7 @@ class UsersController extends Controller
             'id' => $row->id,
             'from_email' => 'editor@journals.mejsp.com'
         ];
-        Mail::to($row->user->email)->send(new AdminRefusedInternationalPublicationOrderEmail($info));
+        Mail::mailer('internaltional')->to($row->user->email)->send(new AdminRefusedInternationalPublicationOrderEmail($info));
         Notification::send($row->user, new ResearcheReject($requestData));
         Session::flash('message', 'تم قبول الطلب بنجاح');
         return redirect()->back();

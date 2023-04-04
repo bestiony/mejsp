@@ -42,6 +42,17 @@ return [
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
+            'from_email'=> env('MAIL_FROM_EMAIL')
+        ],
+        'internaltional' => [
+            'transport' => 'smtp',
+            'host' => env('INTERNATIONAL_MAIL_HOST', 'smtp.mailgun.org'),
+            'port' => env('INTERNATIONAL_MAIL_PORT', 587),
+            'encryption' => env('INTERNATIONAL_MAIL_ENCRYPTION', 'tls'),
+            'username' => env('INTERNATIONAL_MAIL_USERNAME'),
+            'password' => env('INTERNATIONAL_MAIL_PASSWORD'),
+            'timeout' => null,
+            'from_email' => env('INTERNATIONAL_FROM_EMAIL')
         ],
 
         'ses' => [

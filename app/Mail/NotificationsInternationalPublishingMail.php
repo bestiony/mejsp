@@ -31,7 +31,9 @@ class NotificationsInternationalPublishingMail extends Mailable
      */
     public function build()
     {
-        return $this->subject(env("APP_NAME") . ' - Notifications')->view('admin.mail.NotificationsInternationalPublishingMail');
+        $address = env('INTERNATIONAL_FROM_EMAIL');
+        $subject = $this->info['subject'];
+        return $this->subject($subject)->view('admin.mail.NotificationsInternationalPublishingMail')->from($address);
     }
 
 
