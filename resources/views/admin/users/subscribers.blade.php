@@ -31,10 +31,19 @@
     display: inline-block;
     cursor: pointer;
 }
+.alert-box.message p{
+	text-align: center;
+    background-color: #b6ebaf;
+    color: #fff;}
 </style>
 @endsection
 @section('content')
 
+	<div class="alert-box message">
+			@if (session('added'))
+				<p> تم إضافة {{count(session('added')['successful'])}} إيميل بنجاح  فشل إضافة {{count(session('added')['failed'])}} إيميل</p>
+			@endif
+	</div>
     <div class="links-bar my-4 ">
         <h4>المشتركين</h4>
     </div><!-- End Bar Links -->
@@ -59,9 +68,11 @@
                             </form>
                         </div>
                         <div class="col-lg-2 mt-2 mt-lg-0">
-                            <a href="{{ route('new-subscriber-form') }}" class="btn btn-light btn-block border">
+						<button id="add" data-toggle="modal" data-target="#exampleModal3" class="btn btn-light btn-block border add">
+							<i class="fa fa-add"></i>
                                 إضافة مشتركين
-                            </a>
+                        </button>
+							
                         </div>
                         <div class="col-lg-2 mt-2 mt-lg-0">
                             <button type="button" data-toggle="modal" data-target="#testEmailModal" class="btn btn-light btn-block border">
@@ -76,6 +87,7 @@
                     </div>
                 </div>
             </div>
+			
             @if (count($subscribers) == 0)
                 <div class="col-12">
                     <div class="box-white py-5">
@@ -246,6 +258,31 @@
     </div>
 </form>
 
+<form method="post" enctype="multipart/form-data">
+<!-- Modal -->
+    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModal3Label">إضافة مشتركين</h5>
+            {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button> --}}
+            </div>
+            <div class="modal-body">
+                    @csrf
+                    <label for="emails">اكتب بريد إلكتروني واحد في كل سطر</label>
+					<!-- <input class="form-control" name="emails" type="text"> -->
+					<textarea class="form-control" id="emails" name="emails" rows="10"></textarea>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">غلق</button>
+            <button type="submit" class="btn btn-primary">إضافة</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</form>
 
 
 <form action="{{ Route('subscriber.destroy') }}" method="post">
@@ -320,6 +357,7 @@
 @endif
 </script>
 <script>
+	
     $('document').ready(function(){
         $('#customFields').on('click', '.edit', function() {
             $('#email_btn').val($(this).data('email'));
@@ -328,6 +366,7 @@
         });
     });
 
+	
     $('document').ready(function(){
         $('#customFields').on('click', '.delete', function() {
             $('#id_delete_btn').val($(this).data('id'));
@@ -557,5 +596,20 @@ var tagInput1 = new TagsInput({
        });
 
     }, 500));
+	
+	$('#add').click(function(){
+
+		var emails = $('#emails').val();
+		$.ajax({
+			url:"{{ Route('add.subscribers') }}",
+			type:"post",
+			data:{
+				'emails':emails
+			},
+			success:function(response){
+				$('div.flash-message').html(response.successful);
+			}
+		})
+	});
 </script>
 @endsection
