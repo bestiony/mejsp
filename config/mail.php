@@ -42,7 +42,7 @@ return [
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
-            'from_email'=> env('MAIL_FROM_EMAIL')
+            'from_email'=> env('MAIL_FROM_ADDRESS')
         ],
         'internaltional' => [
             'transport' => 'smtp',
@@ -52,7 +52,7 @@ return [
             'username' => env('INTERNATIONAL_MAIL_USERNAME'),
             'password' => env('INTERNATIONAL_MAIL_PASSWORD'),
             'timeout' => null,
-            'from_email' => env('INTERNATIONAL_FROM_EMAIL')
+            'from_email' => env('INTERNATIONAL_FROM_ADDRESS')
         ],
 
         'ses' => [
