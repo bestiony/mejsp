@@ -54,23 +54,23 @@
                                     name="search"
                                     id="search"
                                     class="form-control form-control-sm"
-                                    placeholder="ابحث بواسطة البريد الالكتروني"
+                                    placeholder="ابحث بواسطة البريد الإلكتروني"
                                 />
                             </form>
                         </div>
                         <div class="col-lg-2 mt-2 mt-lg-0">
                             <a href="{{ route('new-subscriber-form') }}" class="btn btn-light btn-block border">
-                                اضافة مشتركين
+                                إضافة مشتركين
                             </a>
                         </div>
                         <div class="col-lg-2 mt-2 mt-lg-0">
                             <button type="button" data-toggle="modal" data-target="#testEmailModal" class="btn btn-light btn-block border">
-                                إرسال إيميل تجريبي
+                                إرسال بريد إلكتروني تجريبي
                             </button>
                         </div>
                         <div class="col-lg-2 mt-2 mt-lg-0">
                             <a href="{{ route('email-form') }}" class="btn btn-light btn-block border">
-                                ارسال إيميل للجميع
+                                إنشاء حملة
                             </a>
                         </div>
                     </div>
@@ -88,10 +88,10 @@
                         <table id="customFields" class="table table-striped table-inverse table-bordered mb-0 text-center table-with-avatar">
                             <thead class="thead-inverse">
                                 <tr>
-                                    <th>البريد الالكتروني</th>
+                                    <th>البريد الإلكتروني</th>
                                     <th>التعديل</th>
                                     <th>الحذف</th>
-                                   
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -121,26 +121,26 @@
         <div class="modal-content">
             <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">المشتركين</h5>
-           
+
             </div>
             <div class="modal-body">
                 <div class="row">
 
-                    
+
                     <div class="form-group col-6">
                         <label for="">اللوجو</label>
                         <input class="form-control" type="file" name="logo" >
                     </div>
 
                     <div class="form-group col-6">
-                        <label for="">الاميل الي هيتم الارسال منه</label>
+                        <label for="">البريد الإلكتروني الذي سيتم منه الإرسال</label>
                         <input class="form-control" name="email_sender" type="email">
-                        
+
                     </div>
 
 
                     <div class="form-group col-6">
-                        <label for="">اسم الاميل</label>
+                        <label for="">اسم البريد الإلكتروني</label>
                         <input class="form-control" name="name_of_email" type="text">
                     </div>
 
@@ -150,17 +150,17 @@
                     </div>
 
                     <div class="form-group col-6">
-                        <label for=""> شروط النشر</label>
+                        <label for=""> رابط شروط النشر</label>
                         <input class="form-control" name="publication_terms" type="text">
                     </div>
 
                     <div class="form-group col-6">
-                        <label for="">لجنة التحكيم</label>
+                        <label for="">رابط لجنة التحكيم</label>
                         <input class="form-control" name="judgement_comity" type="text">
                     </div>
 
                     {{-- <div class="form-group col-6">
-                        <label for=""> subject</label>
+                        <label for="">subject</label>
                         <input class="form-control" name="subject" type="text">
                     </div> --}}
 
@@ -168,26 +168,26 @@
                     <div class="form-group col-6">
                         <label for="">اسم المجلة</label>
                         <input class="form-control" name="journal_name" type="text">
-                        
+
                     </div>
 
                     <div class="form-group col-6">
-                        <label for="">النص الاول</label>
+                        <label for="">النص تحت اسم المجلة</label>
                         <input class="form-control" type="text" name="text_one">
                     </div>
                     <div class="form-group col-6">
-                        <label for="">النص الثاني</label>
+                        <label for="">ISSN</label>
                         <input class="form-control" type="text" name="text_two" >
                     </div>
                     <div class="form-group col-6">
-                        <label for="">النص الثالث</label>
+                        <label for="">النص تحت ISSN</label>
                         <input class="form-control" type="text" name="text_three" >
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="submit" class="btn btn-primary">إرسال</button>
             </div>
         </div>
         </div>
@@ -199,15 +199,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="testEmailModal">أرسل إيميل للتجربة</h5>
+                    <h5 class="modal-title" id="testEmailModal">إرسال بريد إلكتروني تجريبي</h5>
                 </div>
 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="emails">اضافة المستلمين</label>
+                        <label for="emails">إضافة المستلمين</label>
                         <textarea class="form-control" name="emails" rows="3"></textarea>
                         <small id="emailsHelpBlock" class="form-text text-muted">
-                            للإرسال لعدة إيميلات قم بإضافة إيميل واحد في كل سطر
+                            للإرسال لأكثر من حساب قم بإضافة بريد إلكتروني واحد في كل سطر
                         </small>
                     </div>
                 </div>
@@ -261,7 +261,7 @@
                 </button> --}}
                 </div>
                 <div class="modal-body">
-                        <h3>هل انت متاكد من الحذف</h3>
+                        <h3>هل أنت متاكد من الحذف؟</h3>
                         <input id="id_delete_btn" name="id" type="hidden">
                 </div>
                 <div class="modal-footer">
@@ -337,7 +337,7 @@ TagsInput.prototype.init = function(opts){
 
     if(this.initialized)
         this.destroy();
-        
+
     if(!(this.orignal_input = document.getElementById(this.options.selector)) ){
         console.error("tags-input couldn't find an element with the specified ID");
         return this;
@@ -368,7 +368,7 @@ TagsInput.prototype.addTag = function(string){
 
     var closeIcon = document.createElement('a');
     closeIcon.innerHTML = '&times;';
-    
+
     // delete the tag when icon is clicked
     closeIcon.addEventListener('click' , function(e){
         e.preventDefault();
@@ -402,7 +402,7 @@ TagsInput.prototype.anyErrors = function(string){
         console.log('max tags limit reached');
         return true;
     }
-    
+
     if(!this.options.duplicate && this.arr.indexOf(string) != -1 ){
         console.log('duplicate found " '+string+' " ')
         return true;
@@ -411,10 +411,10 @@ TagsInput.prototype.anyErrors = function(string){
     return false;
 }
 
-// Add tags programmatically 
+// Add tags programmatically
 TagsInput.prototype.addData = function(array){
     var plugin = this;
-    
+
     array.forEach(function(string){
         plugin.addTag(string);
     })
@@ -433,11 +433,11 @@ TagsInput.prototype.destroy = function(){
 
     delete this.orignal_input;
     var self = this;
-    
+
     Object.keys(this).forEach(function(key){
         if(self[key] instanceof HTMLElement)
             self[key].remove();
-        
+
         if(key != 'options')
             delete self[key];
     });
@@ -456,12 +456,12 @@ function init(tags){
 // initialize the Events
 function initEvents(tags){
     tags.wrapper.addEventListener('click' ,function(){
-        tags.input.focus();           
+        tags.input.focus();
     });
-    
+
 
     tags.input.addEventListener('keydown' , function(e){
-        var str = tags.input.value.trim(); 
+        var str = tags.input.value.trim();
 
         if( !!(~[9 , 13 , 188].indexOf( e.keyCode ))  )
         {
@@ -498,7 +498,7 @@ var tagInput1 = new TagsInput({
 </script>
 
 <script>
-   
+
     function delay(callback, ms) {
         var timer = 0;
         return function() {
@@ -521,7 +521,7 @@ var tagInput1 = new TagsInput({
     //     success:function(response){
     //         $('#customFields').empty();
     //         $("#customFields").append(response.emails);
-    //     }   
+    //     }
     //    });
     // }, 1000));
 
@@ -536,7 +536,7 @@ var tagInput1 = new TagsInput({
         success:function(response){
             $('#customFields').empty();
             $("#customFields").append(response.emails);
-        }   
+        }
        });
 
     }, 500));

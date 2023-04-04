@@ -1,9 +1,9 @@
 @extends('admin.layouts.master')
-@section('title', 'ابحاث المستخدمين')
+@section('title', 'طلبات النشر ')
 @section('content')
 
     <div class="links-bar my-4 ">
-        <h4>ابحاث المستخدمين</h4>
+        <h4>طلبات النشر </h4>
     
     </div><!-- End Bar Links -->
 
@@ -24,9 +24,9 @@
                         <table class="table table-striped table-inverse table-bordered mb-0 text-center table-with-avatar">
                             <thead class="thead-inverse">
                                 <tr>
-                                    <th>عنوان البحث</th>
-                                    <th>ملخص البحث</th>
-                                    <th>نوع البحث</th>
+                                    <th>عنوان الدراسة</th>
+                                    <th>ملخص الدراسة</th>
+                                    <th>نوع الدراسة</th>
                                     <th>المجلة</th>
                                     <th>بواسطة</th>
                                     <th>تاريخ الطلب</th>
@@ -46,7 +46,7 @@
                                                 {{ 'مفتوح المصدر' }}
                                             @endif
                                         </td>
-                                        <td>{{ $row->journal ? $row->journal->name : 'تم حذف المجله' }}</td>
+                                        <td>{{ $row->journal ? $row->journal->name : 'تم حذف المجلة' }}</td>
 
                                         <td>
                                             <a

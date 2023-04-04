@@ -173,7 +173,7 @@ class UsersController extends Controller
             }
         ])->orderBy("id", 'DESC')->paginate('10');
 
-        $pageTitle = 'أبحاث المستخدمين';
+        $pageTitle = 'طلبات النشر';
         return view("admin.user-researches.all", compact('researches', 'pageTitle'));
     }
 
@@ -188,7 +188,7 @@ class UsersController extends Controller
             }
         ])->orderBy("id", 'DESC')->paginate('15');
 
-        $pageTitle = 'أبحاث المستخدمين';
+        $pageTitle = 'طلبات النشر';
         return view("admin.user-researches.all", compact('researches', 'pageTitle'));
     }
     public function user_researche_details($id)
@@ -264,9 +264,9 @@ class UsersController extends Controller
             $etat = "قبول الدراسة للنشر";
             $info = [
                 'id' => '',
-                'mail_title' => 'تهانينا!',
+                'mail_title' => 'مرحباً',
                 'mail_details1' => 'وافقت لجنة المراجعة على نشر دراستك',
-                'mail_details2' => 'الإجراءات التالية للنشر هي:-',
+                'mail_details2' => 'الإجراءات التالية للنشر هي',
                 'mail_details3' => '١- اعتماد شهادة قبول النشر',
                 'mail_details4' => '٢- جدولة الدراسة ضمن الإصدار التالي للمجلة',
                 'mail_details5' => 'لإتمام الإجراءات يجب سداد رسوم التحكيم والنشر باستخدام الفيزا أو الماستر كارد أو الباي بال',
@@ -314,9 +314,9 @@ class UsersController extends Controller
                 $etat = "قبول الدراسة للنشر";
                 $info = [
                     'id' => '',
-                    'mail_title' => 'تهانينا!',
+                    'mail_title' => 'مرحباً',
                     'mail_details1' => 'وافقت لجنة المراجعة على نشر دراستك',
-                    'mail_details2' => 'الإجراءات التالية للنشر هي:-',
+                    'mail_details2' => 'الإجراءات التالية للنشر هي',
                     'mail_details3' => '١- اعتماد شهادة قبول النشر',
                     'mail_details4' => '٢- جدولة الدراسة ضمن الإصدار التالي للمجلة',
                     'mail_details5' => 'لإتمام الإجراءات يجب سداد رسوم التحكيم والنشر باستخدام الفيزا أو الماستر كارد أو الباي بال',
@@ -335,7 +335,7 @@ class UsersController extends Controller
                 $mail = Mail::to($user_email)->send(new ResiveOrderMail($info, $etat));
                 if ($mail) {
                     $id_send = $user_researche->id;
-                    $success = "تم ارسال الفاتورة بنجاح";
+                    $success = "تم إرسال الفاتورة بنجاح";
                     return back()->with(compact('success', 'id_send'));
                 }
             }
@@ -367,7 +367,7 @@ class UsersController extends Controller
                 'user_name' => $user_name,
                 'type' => 'reject',
                 'body' => 'نعتذر، تم رفض نشر دراستك بعنوان ' . $user_researche->title . ' بسبب عدم مراعاة معايير النشر بالمجلة
-                لا تتردد بإرسال أعمالك البحثية مستقبلا
+                لا تتردد بإرسال أعمالك البحثية مستقبلاً
                 ',
             ];
             Notification::send($user, new ResearcheReject($requestData));
@@ -375,8 +375,8 @@ class UsersController extends Controller
             $etat = "تعديل مطلوب في الدراسة";
             $info = [
                 'id' => $user_researche->id,
-                'mail_title' => 'وردك رد من المراجع',
-                'mail_details1' => 'قام المراجع بإضافة تعليقات مطلوب تنفيذها في دراستك',
+                'mail_title' => 'وردك رد من المحكم',
+                'mail_details1' => 'قام المحكم بإضافة تعليقات مطلوب تنفيذها في دراستك',
                 'mail_details2' => '',
                 'mail_details3' => '',
                 'mail_details4' => '',
@@ -428,7 +428,7 @@ class UsersController extends Controller
             'user_name' => $user->name,
             'type' => 'delete',
             'body' => 'نعتذر، تم حذف دراستك بعنوان ' . $row->title . ' بسبب ' . $request->reason . '
-            لا تتردد بإرسال أعمالك البحثية مستقبلا
+            لا تتردد بإرسال أعمالك البحثية مستقبلاً
             ',
         ];
 
@@ -466,7 +466,7 @@ class UsersController extends Controller
 
 
             if (!$inside_call) {
-                $request->session()->flash("success", 'تم  الحذف بنجاح');
+                $request->session()->flash("success", 'تم الحذف بنجاح');
                 return response()->json([
                     'message' => 'deleted'
                 ]);
@@ -836,7 +836,7 @@ class UsersController extends Controller
             0 => 'مفتوح المصدر',
         ];
         $journals = Journals::select("name", 'id')->get();
-        $pageTitle = 'انشاء البحث';
+        $pageTitle = 'تقديم طلب نشر ';
         $users = User::all();
         return view("admin.user-researches.create", compact('pageTitle', 'journals', 'types', 'users'));
     }
@@ -905,7 +905,7 @@ class UsersController extends Controller
             'status' => true,
             'redirect_to_success_page' => false,
             'order_id' => $research->id,
-            'message' => 'تم انشاء الطلب بنجاح',
+            'message' => 'تم إنشاء الطلب بنجاح',
             'form' => false,
         ]);
     }
@@ -961,7 +961,7 @@ class UsersController extends Controller
         foreach($emails as $email){
             Subscribers::updateOrCreate(['email'=>$email],['email'=>$email]);
         }
-        Session::flash('message', 'تم إعادة التعين بنجاح');
+        Session::flash('message', 'تم إعادة التعيين بنجاح');
         return redirect()->back();
     }
 
@@ -1028,7 +1028,7 @@ class UsersController extends Controller
             'user_id' => $row->user->id,
             'user_name' => $row->user->name,
             'type' => '',
-            'body' => ' تم رفض طلب النشر العام الخاص بيك للاسباب التالية' . $request->reason_to_refused . '',
+            'body' => ' تم رفض طلب النشر الخاص بك للأسباب التالية' . $request->reason_to_refused . '',
         ];
 
         $info = [
@@ -1074,16 +1074,17 @@ class UsersController extends Controller
         ];
 
         $info = [
-            'mail_title' => 'Acceptance of the study for publication',
-            'mail_details1' => 'Dear ' . $row->user->name . '',
+            'mail_title' => 'Article Acceptance',
+            'mail_details1' => 'Dear ' . $row->user->name . ',',
             'status' => 2,
             'mail_details2' => 'The review committee has approved the publication of your study.',
             'mail_details3' => 'Study Title " ' . $row->title . '"',
-            'mail_details4' => 'Requisition reference number:"#' . $row->id . '"',
+            'mail_details4' => 'Requisition reference number: #' . $row->id . '',
+            'mail_details5' => 'The following procedures for publication are:-',
             'mail_details6' => '1- Approving the publication acceptance certificate.',
             'mail_details7' => '2- Scheduling the study within the next issue of the journal.',
             'mail_details8' => 'To complete the procedures, arbitration and publication fees must be paid using a bank card (Visa or Master Card) by clicking on the (Pay Publication Fees) button.',
-            'mail_details5' => 'The following procedures for publication are:-',
+
             'id' => '',
             'file' => asset(self::PATH . $row->file),
             'journal' => $row->journal->name,

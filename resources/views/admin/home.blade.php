@@ -6,12 +6,40 @@
         <h4>لوحة التحكم</h4>
     </div><!-- End Bar Links -->
 
+    <div class="links-bar">
+        <h5>إحصاءات </h5>
+    </div><!-- End Bar Links -->
+    
     <section id="home-dashboard">
         <div class="row">
 
 
             <!-- Start Counts --->
+            
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
+                <div class="statistics bg-dark p-3 rounded">
 
+                    <h5>المدفوعات</h5><!-- Name -->
+                    <h3>{{ DB::table('payments')->SUM('amount') }} دولار</h3><!-- Count -->
+                    <div class="box-icon">
+                        <i class="fa-solid fa-dollar"></i>
+                    </div><!-- Icon -->
+
+                </div><!-- statistics -->
+            </div><!-- Col Doctors -->
+            
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
+                <div class="statistics bg-dark p-3 rounded">
+
+                    <h5>الفواتير</h5><!-- Name -->
+                    <h3>{{ DB::table('invoices')->count('payment_response') }} </h3><!-- Count -->
+                    <div class="box-icon">
+                        <i class="fa-solid fa-dollar"></i>
+                    </div><!-- Icon -->
+
+                </div><!-- statistics -->
+            </div><!-- Col Doctors -->
+            
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
                 <div class="statistics bg-dark p-3 rounded">
 
@@ -37,18 +65,29 @@
                 </div><!-- statistics -->
             </div><!-- Col Sick -->
 
-
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
+                <div class="statistics bg-dark  p-3 rounded">
+
+                    <h5>المشتركون</h5><!-- Name -->
+                    <h3>{{ DB::table('subscribers')->count('id') }}</h3><!-- Count -->
+                    <div class="box-icon">
+                        <i class="fa-solid fa-people-group"></i>
+                    </div><!-- Icon -->
+
+                </div><!-- statistics -->
+            </div><!-- Col Sick -->
+
+            {{--<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
                 <div class="statistics bg-dark p-3 rounded">
 
-                    <h5>الاعتمادات الدولية</h5><!-- Name -->
+                    <h5>التصنيف الدولي</h5><!-- Name -->
                     <h3>{{ DB::table('international_credits')->count('id') }}</h3><!-- Count -->
                     <div class="box-icon">
                         <i class="fa-solid fa-circle-check"></i>
                     </div><!-- Icon -->
 
                 </div><!-- statistics -->
-            </div><!-- Col Subs -->
+            </div><!-- Col Subs -->--}}
 
 
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
@@ -67,7 +106,7 @@
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
                 <div class="statistics  bg-dark p-3 rounded">
 
-                    <h5>الابحاث</h5><!-- Name -->
+                    <h5>الأوراق المنشورة</h5><!-- Name -->
                     <h3>{{ DB::table('journals_researches')->count('id') }}</h3><!-- Count -->
                     <div class="box-icon">
                         <i class="fa-solid fa-file-pen"></i>
@@ -83,7 +122,7 @@
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
                 <div class="statistics  bg-dark p-3 rounded">
 
-                    <h5>الاصدارات</h5><!-- Name -->
+                    <h5>الإصدارات</h5><!-- Name -->
                     <h3>{{ DB::table('versions')->count('id') }}</h3><!-- Count -->
                     <div class="box-icon">
                         <i class="fa-solid fa-square-poll-vertical"></i>
@@ -99,7 +138,7 @@
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
                 <div class="statistics  bg-dark p-3 rounded">
 
-                    <h5>المستخدمين</h5><!-- Name -->
+                    <h5>المستخدمون</h5><!-- Name -->
                     <h3>{{ DB::table('users')->count('id') }}</h3><!-- Count -->
                     <div class="box-icon">
                         <i class="fa-solid fa-users"></i>
@@ -115,7 +154,7 @@
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
                 <div class="statistics  bg-dark p-3 rounded">
 
-                    <h5>المقالات</h5><!-- Name -->
+                    <h5>المقالات العربية</h5><!-- Name -->
                     <h3>{{ DB::table('articles_ar')->count('id') }}</h3><!-- Count -->
                     <div class="box-icon">
                         <i class="fa-solid fa-newspaper"></i>
@@ -129,7 +168,7 @@
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
                 <div class="statistics  bg-dark p-3 rounded">
 
-                    <h5>Articles English</h5><!-- Name -->
+                    <h5> المقالات الإنجليزية</h5><!-- Name -->
                     <h3>{{ DB::table('articles_en')->count('id') }}</h3><!-- Count -->
                     <div class="box-icon">
                         <i class="fa-solid fa-newspaper"></i>

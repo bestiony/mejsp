@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'المستخدمين')
+@section('title', 'Support')
 @section('css')
 <style>
     .tags-input-wrapper{
@@ -36,7 +36,7 @@
 @section('content')
 
     <div class="links-bar my-4 ">
-        {{-- <h4>المشتركين</h4> --}}
+        <h4>المحادثات</h4>
     </div><!-- End Bar Links -->
 
     <div class="result"></div>
@@ -51,8 +51,8 @@
                         <table id="customFields" class="table table-striped table-inverse table-bordered mb-0 text-center table-with-avatar">
                             <thead class="thead-inverse">
                                 <tr>
-                                    <th>البريد الالكتروني</th>
-                                    <th>التعديل</th>
+                                    <th>البريد الإلكتروني</th>
+                                    <th>فتح المحادثة</th>
                                     
                                 </tr>
                             </thead>
@@ -60,7 +60,7 @@
                                 @foreach ($emails as $row)
                                     <tr>
                                         <td>{{ $row->user_email }}</td>
-                                        <td><a href="{{ Route('OpenChat',$row->user_email) }}" class="btn btn-info"> فتح الشات</a></td>
+                                        <td><a href="{{ Route('OpenChat',$row->user_email) }}" class="btn btn-info"> فتح المحادثة</a></td>
                                         
                                     </tr>
                                 @endforeach

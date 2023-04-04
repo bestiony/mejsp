@@ -11,12 +11,12 @@
         <div class="col-12 mb-3">
             <div class="box-white">
                 <div class="form-group">
-                    <label for="emails">الإيميلات</label>
+                    <label for="emails">اكتب بريد إلكتروني واحد في كل سطر</label>
                     <!-- <input class="form-control" name="emails" type="text"> -->
                     <textarea class="form-control" name="emails" rows="10"></textarea>
                 </div>
                 <div class="form-group">
-                    <button type="submit" role="button" class="btn btn-primary">إضافة المشتركين</button>
+                    <button type="submit" role="button" class="btn btn-primary">إضافة </button>
                 </div>
             </div>
         </div>

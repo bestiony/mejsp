@@ -32,10 +32,10 @@
                                 <tr>
                                     <th>#</th>
                                     <th>الاسم</th>
-                                    <th>البريد الالكتروني</th>
+                                    <th>البريد الإلكتروني</th>
                                     <th>رقم الهاتف</th>
                                     <th>المؤهل</th>
-                                    <th>تأكيد البريد </th>
+                                    <th>تأكيد البريد الإلكتروني </th>
                                     <th>انضم منذ</th>
                                     <th>التحكم</th>
                                 </tr>
@@ -105,15 +105,15 @@
             <div class="row">
 
                 <div class="col-12">
-                    <h6 class="mb-3">الابحاث المقدمة</h6>
+                    <h6 class="mb-3">طلبات النشر </h6>
                     <div class="box-white table-responsive">
                         <table class="table table-striped table-inverse mb-0 table-bordered text-center">
                             <thead class="thead-inverse">
                                 <tr>
-                                    <th>عنوان البحث</th>
-                                    <th>نوع البحث</th>
+                                    <th>عنوان الدراسة</th>
+                                    <th>نوع الدراسة</th>
                                     <th>المجلة</th>
-                                    <th>ارسل منذ</th>
+                                    <th>أُرسل منذ</th>
                                     <th>التفاصيل</th>
                                     <th>الملف</th>
                                     <th>الحذف</th>
@@ -156,7 +156,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">اغلاق</button>
+                                                                data-dismiss="modal">إغلاق</button>
                                                         </div>
                                                     </div>
                                                 </div>
