@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'المستخدمين')
+@section('title', 'المشتركين')
 @section('css')
 <style>
     .tags-input-wrapper{
@@ -282,22 +282,39 @@
 @if (Session::has('message'))
     Swal.fire('{{ Session::get("message") }}', `
         <h4>
-            <span>الإضافات الناجحة: {{ count(Session::get("successful")) }}</span>
-            <span>الإضافات الفاشلة: {{ count(Session::get("failed")) }}</span>
+            
+			@if (is_countable(Session::get("successful")) && count(Session::get("successful")) > 0) 
+				<span>الإضافات الناجحة:
+				{{count(Session::get("successful"))}}
+				</span>
+			@endif
+			
+            
+			@if (is_countable(Session::get("failed")) && count(Session::get("failed")) > 0)
+				<span>الإضافات الفاشلة: 
+				{{count(Session::get("failed"))}}
+				</span>
+			@endif
+			
         </h4>
         <table class="table">
-            @foreach (Session::get("successful") as $item)
-                <tr class="text-right">
-                    <td>{{ $item }}</td>
-                    <td><i class="fa-solid fa-check" /></td>
-                </tr>
-            @endforeach
-            @foreach (Session::get("failed") as $item)
-                <tr class="text-right">
-                    <td>{{ $item }}</td>
-                    <td><i class="fa-solid fa-close" /></td>
-                </tr>
-            @endforeach
+			@if (is_countable(Session::get("successful")) && count(Session::get("successful")) > 0)
+				@foreach (Session::get("successful") as $item)
+					<tr class="text-right">
+						<td>{{ $item }}</td>
+						<td><i class="fa-solid fa-check" /></td>
+					</tr>
+				@endforeach
+			@endif
+            
+			@if (is_countable(Session::get("failed")) && count(Session::get("failed")) > 0)
+				@foreach (Session::get("failed") as $item)
+					<tr class="text-right">
+						<td>{{ $item }}</td>
+						<td><i class="fa-solid fa-close" /></td>
+					</tr>
+				@endforeach
+			@endif
         </table>
     `)
 @endif
