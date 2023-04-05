@@ -27,17 +27,18 @@
         </div>
     </div>
   <div class="alert-box message">
-	<h2 class="swal2-title" id="swal2-title" style="display: block;">تم الاضافة بنجاح</h2>
+	<h4 class="swal2-title" id="swal2-title" style="display: block;"> التقرير </h4>
 	<div class="swal2-html-container" id="swal2-html-container" style="display: block;">
-		<h4>
+		<h5>
 			<span class="successful">
-				الإضافات الناجحة:
+				نجاح:
 				<span></span>
 			</span>
-			<span class="failed">الإضافات الفاشلة: 
+			<br>
+			<span class="failed"> فشل: 
 				<span></span>
 			</span>			
-        </h4>
+        </h5>
 		
         <table class="table res">
 			
