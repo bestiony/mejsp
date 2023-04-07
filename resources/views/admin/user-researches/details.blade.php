@@ -121,7 +121,7 @@
                                         </div>
                                         <div class="col-8">
                                             <span > 
-                                                {{ parseTime($research->created_at) }}
+                                                {{ ($research->created_at) }}
                                             </span>
                                         </div>
                                     </div>
@@ -131,7 +131,7 @@
                                         </div>
                                         <div class="col-8">
                                             <span > 
-                                                {{ parseTime($research->updated_at) }}
+                                                {{ ($research->updated_at) }}
                                             </span>
                                         </div>
                                     </div>
