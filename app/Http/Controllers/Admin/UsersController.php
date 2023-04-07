@@ -989,7 +989,7 @@ class UsersController extends Controller
 
 
             dispatch(new SubscriberEmailJob($details))->delay($time);
-            $time = $time->addSeconds(30);
+            $time = $time->addSeconds(60);
         }
 
         Session::flash('message', 'تمت بنجاح');
@@ -1002,7 +1002,7 @@ class UsersController extends Controller
         $array = explode("\r\n", $request->emails);
         $time = Carbon::now();
         foreach ($array as $email) {
-            $time = $time->addSeconds(30);
+            $time = $time->addSeconds(60);
             dispatch(new SubscriberTestEmailJob($email))->delay($time);
         }
 
