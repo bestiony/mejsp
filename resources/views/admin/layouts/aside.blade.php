@@ -41,19 +41,15 @@
                             'name' => 'فواتير المجلات',
                         ],
                         [
-                            'name' => 'اضافة فاتورة جديدة',
+                            'name' => 'إضافة فاتورة جديدة',
                             'link' => 'invoices/create',
                         ],
                     ],
                 ];
                 /*
                                         [
-                            'name' => 'اضافة فاتورة جديدة',
+                            'name' => 'إضافة فاتورة جديدة',
                             'link' => 'invoices/create',
-                        ],
-                        [
-                            'name' => 'اضافة فاتورة مجله',
-                            'link' => 'invoices/create-journals',
                         ],
                         */
             @endphp
@@ -64,11 +60,11 @@
 
 
 
-        <li class="side-item-category">المدونات & الخدمات</li>
+        <li class="side-item-category">المدونة & الخدمات</li>
 
         @php
             $article = [
-                'name' => 'المقالات',
+                'name' => 'المدونة العربية',
                 'icon' => '<i class="fa-regular fa-newspaper"></i>',
                 'sub_menu' => [
                     [
@@ -76,7 +72,7 @@
                         'link' => 'articles',
                     ],
                     [
-                        'name' => 'اضافة مقالة جديدة',
+                        'name' => 'إضافة مقالة جديدة',
                         'link' => 'article/create',
                     ],
                 ],
@@ -95,7 +91,7 @@
                         'link' => 'services',
                     ],
                     [
-                        'name' => 'اضافة خدمة جديدة',
+                        'name' => 'إضافة خدمة جديدة',
                         'link' => 'services/create',
                     ],
                 ],
@@ -107,15 +103,15 @@
 
         @php
             $article_en = [
-                'name' => 'Articles',
+                'name' => 'المدونة الإنجليزية',
                 'icon' => '<i class="fa-regular fa-newspaper"></i>',
                 'sub_menu' => [
                     [
-                        'name' => 'All Articles',
+                        'name' => ' جميع المقالات',
                         'link' => 'en/articles',
                     ],
                     [
-                        'name' => 'Add New Article',
+                        'name' => '  إضافة مقالة جديدة',
                         'link' => 'en/article/create',
                     ],
                 ],
@@ -137,7 +133,7 @@
                             'link' => 'conference/all',
                         ],
                         [
-                            'name' => 'انواع الشهادة',
+                            'name' => 'أنواع الشهادة',
                             'link' => 'conference/categories',
                         ],
                     ],
@@ -156,11 +152,11 @@
                             'link' => 'journals',
                         ],
                         [
-                            'name' => 'الاصدارات',
+                            'name' => 'الإصدارات',
                             'link' => 'versions',
                         ],
                         [
-                            'name' => 'اضافة مجلة جديدة',
+                            'name' => 'إضافة مجلة جديدة',
                             'link' => 'journals/create',
                         ],
                     ],
@@ -172,15 +168,15 @@
 
             @php
                 $researches = [
-                    'name' => 'الابحاث',
+                    'name' => 'الأوراق المنشورة',
                     'icon' => '<i class="fa-solid fa-file-pen"></i>',
                     'sub_menu' => [
                         [
-                            'name' => 'جميع الابحاث',
+                            'name' => 'جميع الأوراق',
                             'link' => 'researches',
                         ],
                         [
-                            'name' => 'اضافة بحث جديد',
+                            'name' => 'نشر دراسة  ',
                             'link' => 'researches/create',
                         ],
                     ],
@@ -192,11 +188,11 @@
 
             @php
                 $researches = [
-                    'name' => 'النشر الدولي',
+                    'name' => 'SCOPUS/WOS(ISI)',
                     'icon' => '<i class="fa-solid fa-fax"></i>',
                     'sub_menu' => [
                         [
-                            'name' => 'انوع النشر الدولي',
+                            'name' => 'التصنيفات الدولية',
                             'link' => 'international-publishing/types-of-publication',
                         ],
                         [
@@ -229,7 +225,7 @@
                             'link' => 'team',
                         ],
                         [
-                            'name' => 'اضافة عضو جديد',
+                            'name' => 'إضافة عضو جديد',
                             'link' => 'team/create',
                         ],
                     ],
@@ -240,7 +236,7 @@
 
             @php
                 $international_credits = [
-                    'name' => 'الاعتمادات',
+                    'name' => 'التصنيف الدولي',
                     'icon' => '<i class="fa-solid fa-circle-check"></i>',
                     'link' => 'international',
                 ];
@@ -250,7 +246,7 @@
 
 
 
-            <li class="side-item-category">الاعضاء</li>
+            <li class="side-item-category">الأعضاء</li>
             @php
                 $users = [
                     'name' => 'المستخدمين',
@@ -260,18 +256,32 @@
             @endphp
             <x-aside :details="$users" />
 
+
+            <!-- End users -->
             @php
-                $users = [
+                $admins = [
                     'name' => 'المشتركين',
                     'icon' => '<i class="fa-solid fa-users"></i>',
-                    'link' => 'users/subscribers',
+                    'sub_menu' => [
+                        [
+                            'name' => 'جميع المشتركين',
+                            'link' => 'users/subscribers',
+                        ],
+                        [
+                            'name' => 'إضافة مشتركين',
+                            'link' => 'users/subscribers/new',
+                        ],
+                        [
+                            'name' => 'إنشاء حملة',
+                            'link' => 'users/subscribers/email',
+                        ],
+                    ],
                 ];
             @endphp
-            <x-aside :details="$users" />
-
+            <x-aside :details="$admins" />
             @php
             $users = [
-                'name' => 'رسائل التواصل معنا',
+                'name' => 'Support',
                 'icon' => '<i class="fa-solid fa-users"></i>',
                 'link' => 'users/supportchat',
             ];
@@ -298,7 +308,7 @@
                             'link' => 'admins',
                         ],
                         [
-                            'name' => 'اضافة مشرف جديد',
+                            'name' => 'إضافة مشرف جديد',
                             'link' => 'create/admin',
                         ],
                     ],
@@ -309,15 +319,15 @@
             
             @php
                 $user_researches = [
-                    'name' => 'أبحاث المستخدمين',
+                    'name' => 'طلبات النشر',
                     'icon' => '<i class="fa-solid fa-file-pen"></i>',
                     'sub_menu' => [
                         [
-                            'name' => 'اضافة دراسة جديدة ',
+                            'name' => 'تقديم طلب ',
                             'link' => 'users/user-researches/create',
                         ],
                         [
-                            'name' => 'جميع الأبحاث ',
+                            'name' => 'جميع الطلبات ',
                             'link' => 'users/user-researches',
                         ],
                         [
@@ -362,7 +372,7 @@
                             'link' => 'faqs',
                         ],
                         [
-                            'name' => 'اضافة سؤال جديد',
+                            'name' => 'إضافة سؤال جديد',
                             'link' => 'faqs/create',
                         ],
                     ],
@@ -373,7 +383,7 @@
 
             @php
             $settings = [
-                'name' => 'الاعدادات',
+                'name' => 'الإعدادات',
                 'icon' => '<i class="fa-solid fa-gear"></i>',
                 'sub_menu' => [
                     [
@@ -390,7 +400,7 @@
         <x-aside :details="$settings" />
             {{-- @php
                 $settings = [
-                    'name' => 'الاعدادات',
+                    'name' => 'الإعدادات',
                     'icon' => '<i class="fa-solid fa-gear"></i>',
                     'link' => 'settings',
                 ];
