@@ -1,9 +1,23 @@
 @extends('admin.layouts.master')
-@section('title', 'إنشاء حملة')
-
+@section('title', 'إرسال بريد ')
+@section('css')
+<style>
+div.hidden{display:none;}
+div.info-msg{
+	color: #ffffff;
+    max-height: 84px;
+    margin-top: 33px;
+    padding-top: 25px;}
+.green{background:#05e7a8;}
+.red{background:#e70505;}
+.flexable{display:flex;}
+div.info-msg.main{display:none}
+</style>
+@endsection
 @section('content')
   <div class="links-bar my-4">
-      <h4>إنشاء حملة</h4>
+      <h4>إرسال بريد للقائمة البريدية</h4>
+						
   </div>
 
   <form action="{{ route('subscribers.send.email') }}" method="post" enctype="multipart/form-data"> @csrf
@@ -57,11 +71,84 @@
                     </div>
 
                     <div class="form-group col-12">
-                      <button type="submit" role="button" class="btn btn-primary">إرسال للقائمة البريدية</button>
+                      <button type="submit" role="button" class="btn btn-primary main">إرسال للقائمة البريدية</button>
+					  <button type="button" role="button" class="btn btn-primary test"> إرسال بريد تجريبي </button>
+					  <input type="hidden" name="testormain" value="0" />
+					  <div class="form-group col-6 info-msg main">
+		
+						</div>
+					</div>
+					
+                    <div class="form-group col-12 hidden">
+						<div class="flexable">
+							<div class="form-group col-6">
+								<label for="emails">إضافة المستلمين</label>
+								<textarea class="form-control" name="emails" rows="3"></textarea>
+								<small id="emailsHelpBlock" class="form-text text-muted">
+									للإرسال لأكثر من حساب قم بإضافة بريد إلكتروني واحد في كل سطر
+								</small>
+							</div>
+							<div class="form-group col-6 info-msg">
+		
+							</div>
+						</div>
+						<div class="form-group col-6 modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">غلق</button>
+							<button type="submit" class="btn btn-primary send-mail">إرسال</button>
+						</div>
                     </div>
+					
                 </div>
             </div>
         </div>
     </div>
   </form>
+  
+@endsection
+@section('js')
+
+<script>
+	$('document').ready(function(){
+		$('button.test').click(function(){$('div.hidden').show('slow'); $('div.info-msg.main').hide('slow');});
+		$('button.send-mail').on('click', function (e) {
+			
+			$(this).parents("form").ajaxForm({ 
+				complete: function(response) 
+				{
+					if(response.status == 200){
+						$('div.info-msg').html("تم إرسال بريد تجريبي بنجاح");
+						$('div.info-msg').removeClass("red");
+						$('div.info-msg').addClass("green");
+					}else{
+						$('div.info-msg').html("فشل إرسال البريد التجريبي");
+						$('div.info-msg').removeClass("green");
+						$('div.info-msg').addClass("red");
+					}
+					$("textarea[name='emails']").val("");
+				}
+			});
+		});
+		
+		$('button.main').on('click', function (e) {
+			$('div.hidden').hide('slow');
+			
+			$("input[name='testormain']").val("0");
+			$(this).parents("form").ajaxForm({ 
+				complete: function(response) 
+				{
+					$('div.info-msg.main').show('slow');
+					if(response.status == 200){
+						$('div.info-msg.main').html("تم الإرسال");
+						$('div.info-msg.main').removeClass("red");
+						$('div.info-msg.main').addClass("green");
+					}else{
+						$('div.info-msg.main').html("فشل الإرسال");
+						$('div.info-msg.main').removeClass("green");
+						$('div.info-msg.main').addClass("red");
+					}
+				}
+			});
+		});
+    });
+</script>
 @endsection

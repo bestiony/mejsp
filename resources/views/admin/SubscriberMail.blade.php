@@ -234,7 +234,7 @@ table{
 }
 .heading-section-white h2{
 	font-size: 28px;
-	font-family: 
+	font-family:
 	line-height: 1;
 	padding-bottom: 0;
 }
@@ -260,7 +260,7 @@ table{
 
 /*SERVICES*/
 .text-services{
-	padding: 10px 10px 0; 
+	padding: 10px 10px 0;
 	text-align: center;
 }
 .text-services h3{
@@ -377,7 +377,7 @@ table{
       <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
       	<tr>
           <td class="bg_white logo" style="padding: 1em 2.5em; text-align: center">
-            <img src="{{ env('APP_URL') . '/' . env('APP_NAME') . '/email/' . $details['logo'].'' }} " alt="">
+            <img src="{{ env('APP_URL') . '/' . '/email/' . $details['logo'].'' }} " alt="">
           </td>
 	      </tr><!-- end tr -->
 			<tr>
@@ -407,7 +407,7 @@ table{
 		            				<table>
 		            					<tr>
 		            						<td>
-		            							<img src="{{ env('APP_URL') . '/' . env('APP_NAME') .'/email/bg_2.jpg' }}" width="600" height="" alt="alt_text" border="0" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;" class="g-img">
+		            							<img src="{{ env('APP_URL') . '/'  .'/email/bg_2.jpg' }}" width="600" height="" alt="alt_text" border="0" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;" class="g-img">
 		            						</td>
 		            					</tr>
 		            				</table>
@@ -439,7 +439,7 @@ table{
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                           <tr>
                             <td style="padding-right: 10px;">
-                              <img src="{{ env('APP_URL') . '/' . env('APP_NAME') . '/email/menu-1.jpg' }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
+                              <img src="{{ env('APP_URL') . '/'  . '/email/menu-1.jpg' }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
                             </td>
                           </tr>
                           <tr>
@@ -454,7 +454,7 @@ table{
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                           <tr>
                             <td style="padding-left: 10px;">
-                              <img src="{{ env('APP_URL') . '/' . env('APP_NAME') . '/email/menu-2.jpg' }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
+                              <img src="{{ env('APP_URL') . '/'  . '/email/menu-2.jpg' }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
                             </td>
                           </tr>
                           <tr>
@@ -478,7 +478,7 @@ table{
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                           <tr>
                             <td>
-                              <img src="{{ env('APP_URL') . '/' . env('APP_NAME')  .'/email/bg_4.jpg' }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
+                              <img src="{{ env('APP_URL') . '/'   .'/email/bg_4.jpg' }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
                             </td>
                           </tr>
                         </table>
@@ -519,7 +519,7 @@ table{
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                           <tr>
                             <td>
-                              <img src="{{ env('APP_URL') . '/' . env('APP_NAME') .'/email/bg_6.jpg' }}"  alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
+                              <img src="{{ env('APP_URL') . '/'  .'/email/bg_6.jpg' }}"  alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
                             </td>
                           </tr>
                         </table>
@@ -536,7 +536,7 @@ table{
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                           <tr>
                             <td>
-                              <img src="{{ env('APP_URL') . '/' . env('APP_NAME') . '/email/bg_5.jpg' }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
+                              <img src="{{ env('APP_URL') . '/'  . '/email/bg_5.jpg' }}" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
                             </td>
                           </tr>
                         </table>
@@ -579,7 +579,7 @@ table{
                       <td style="text-align: right; padding-left: 5px; padding-right: 5px;">
                       	<h3 class="heading">التواصل</h3>
                       	<ul>
-			<li><a href="https://api.whatsapp.com/send?phone={{ $details['setting']->whatsapp }}&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202."><span class="text">واتساب</span></a></li>
+			<li><a href="https://api.whatsapp.com/send?phone=201141620172"><span class="text">واتساب</span></a></li>
 			<li><a href="{{ $details['setting']->twitter }}"><span class="text">تويتر</span></a></li>
 			<li><a href="{{ $details['setting']->facebook }}"> <span class="text">فيسبوك</span></a></li>
 			</ul>
@@ -623,7 +623,7 @@ table{
                   <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                     <tr>
                       <td style="text-align: right; padding-left: 5px; padding-right: 5px;">
-                      	<p><a href="{{ env('APP_URL') . '/admin/users/subscribers/remove/' . $details['email'] }}" style="color: rgba(255,255,255,.4);">إلغاء الاشتراك</a></p>
+                      	<p><a href="{{ env('APP_URL') . '/admin/users/subscribers/remove/' . $details['email'] }}" style="color: rgba(255,255,255,.4);">إلغاء الاشتراك  </a></p>
                       </td>
                     </tr>
                   </table>
