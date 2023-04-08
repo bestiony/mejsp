@@ -61,18 +61,20 @@
                         <div class="col-lg-2 mt-2 mt-lg-0">
                             <a href="{{ route('new-subscriber-form') }}" class="btn btn-light btn-block border">
 							<i class="fa fa-add"></i>
-                                إضافة مشتركين
+                                إضافة
                             </a>
                         </div>
+
                         <div class="col-lg-2 mt-2 mt-lg-0">
                             <a href="{{ route('email-form') }}" class="btn btn-light btn-block border">
-							<i class="fa fa-paper-plane"></i>
-								إرسال بريد للكل
-                            </a>
-                        </div>
-                        <div class="col-lg-2 mt-2 mt-lg-0">
-                            <a href="{{ route('email-form') }}" class="btn btn-light btn-block border">
+                            <i class="fa fa-paper-plane"></i>
                                 إنشاء حملة
+                            </a>
+                        </div>
+                        <div class="col-lg-2 mt-2 mt-lg-0">
+                            <a href="#" class="btn btn-light btn-block border">
+                            <i class="fa fa-folder"></i>
+                                المسودات
                             </a>
                         </div>
                     </div>
@@ -320,6 +322,7 @@
     `)
 @endif
 </script>
+
 <script>
 	
     $('document').ready(function(){
@@ -563,3 +566,4 @@ var tagInput1 = new TagsInput({
 	
 </script>
 @endsection
+

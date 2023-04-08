@@ -71,8 +71,9 @@ div.info-msg.main{display:none}
                     </div>
 
                     <div class="form-group col-12">
-                      <button type="submit" role="button" class="btn-main btn-block main">إطلاق الحملة</button>
-					  <button type="button" role="button" class="btn-main btn-block test"> إرسال بريد تجريبي </button>
+                        <button type="" role="" class="btn-main">حفظ كمسودة</button>
+                        <button type="submit" role="button" class="btn-main main">إطلاق الحملة</button>
+					    <button type="button" role="button" class="btn-main test"> إرسال بريد تجريبي </button>
 					  <input type="hidden" name="testormain" value="0" />
 					  <div class="form-group info-msg main">
 		
@@ -105,6 +106,7 @@ div.info-msg.main{display:none}
   </form>
   
 @endsection
+
 @section('js')
 
 <script>
