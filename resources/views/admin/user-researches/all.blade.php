@@ -85,7 +85,7 @@
                                     <span class="research-date d-none d-sm-block">{{ date('Y-m-d',strtotime($row->created_at)) }}</span>
     
                                     <div class="px-3 mb-1 my-4  d-flex justify-content-start">
-                                        <span class="bolld float-right text-secondary" style="min-width: 93px;">عنوان البحث :</span>
+                                        <span class="bolld float-right text-secondary" style="min-width: 93px;">عنوان الدراسة :</span>
                                         <a href="{{route('research_details',['id'=>$row->id])}}" class="mx-3 font-weight-bold
                                             @if(preg_match("/^[\w\d\s.,-]*$/", $row->title))
                                             text-left

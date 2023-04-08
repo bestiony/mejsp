@@ -17,7 +17,6 @@ div.info-msg.main{display:none}
 @section('content')
   <div class="links-bar my-4">
       <h4>إنشاء حملة</h4>
-
   </div>
 
   <form action="{{ route('subscribers.send.email') }}" method="post" enctype="multipart/form-data"> @csrf
@@ -76,7 +75,6 @@ div.info-msg.main{display:none}
 					    <button type="button" role="button" class="btn-main btn-block test"> إرسال بريد تجريبي </button>
 					  <input type="hidden" name="testormain" value="0" />
 					  <div class="form-group info-msg main">
-
 						</div>
 					</div>
 
@@ -106,6 +104,7 @@ div.info-msg.main{display:none}
   </form>
 
 @endsection
+
 @section('js')
 
 <script>
