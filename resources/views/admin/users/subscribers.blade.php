@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'المشتركين')
+@section('title', 'المستخدمين')
 @section('css')
 <style>
     .tags-input-wrapper{
@@ -80,7 +80,7 @@
                     </div>
                 </div>
             </div>
-			
+
             @if (count($subscribers) == 0)
                 <div class="col-12">
                     <div class="box-white py-5">
@@ -285,20 +285,20 @@
 @if (Session::has('message'))
     Swal.fire('{{ Session::get("message") }}', `
         <h4>
-            
-			@if (is_countable(Session::get("successful")) && count(Session::get("successful")) > 0) 
+
+			@if (is_countable(Session::get("successful")) && count(Session::get("successful")) > 0)
 				<span>الإضافات الناجحة:
 				{{count(Session::get("successful"))}}
 				</span>
 			@endif
-			
-            
+
+
 			@if (is_countable(Session::get("failed")) && count(Session::get("failed")) > 0)
-				<span>الإضافات الفاشلة: 
+				<span>الإضافات الفاشلة:
 				{{count(Session::get("failed"))}}
 				</span>
 			@endif
-			
+
         </h4>
         <table class="table">
 			@if (is_countable(Session::get("successful")) && count(Session::get("successful")) > 0)
@@ -309,7 +309,7 @@
 					</tr>
 				@endforeach
 			@endif
-            
+
 			@if (is_countable(Session::get("failed")) && count(Session::get("failed")) > 0)
 				@foreach (Session::get("failed") as $item)
 					<tr class="text-right">
@@ -324,7 +324,7 @@
 </script>
 
 <script>
-	
+
     $('document').ready(function(){
         $('#customFields').on('click', '.edit', function() {
             $('#email_btn').val($(this).data('email'));
@@ -333,7 +333,7 @@
         });
     });
 
-	
+
     $('document').ready(function(){
         $('#customFields').on('click', '.delete', function() {
             $('#id_delete_btn').val($(this).data('id'));
@@ -563,7 +563,7 @@ var tagInput1 = new TagsInput({
        });
 
     }, 500));
-	
+
 </script>
 @endsection
 

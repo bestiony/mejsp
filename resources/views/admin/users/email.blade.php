@@ -17,7 +17,7 @@ div.info-msg.main{display:none}
 @section('content')
   <div class="links-bar my-4">
       <h4>إنشاء حملة</h4>
-						
+
   </div>
 
   <form action="{{ route('subscribers.send.email') }}" method="post" enctype="multipart/form-data"> @csrf
@@ -76,10 +76,10 @@ div.info-msg.main{display:none}
 					    <button type="button" role="button" class="btn-main btn-block test"> إرسال بريد تجريبي </button>
 					  <input type="hidden" name="testormain" value="0" />
 					  <div class="form-group info-msg main">
-		
+
 						</div>
 					</div>
-					
+
                     <div class="form-group col-12 hidden">
 						<div >
 							<div class="form-group">
@@ -91,31 +91,30 @@ div.info-msg.main{display:none}
 							</div>
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">غلق</button>
 							<button type="submit" class="btn btn-primary send-mail">إرسال</button>
-							
+
 							<div class="form-group info-msg">
-		                    
+
 							</div>
 						</div>
-						
+
                     </div>
-					
+
                 </div>
             </div>
         </div>
     </div>
   </form>
-  
-@endsection
 
+@endsection
 @section('js')
 
 <script>
 	$('document').ready(function(){
 		$('button.test').click(function(){$('div.hidden').show('slow'); $('div.info-msg.main').hide('slow');});
 		$('button.send-mail').on('click', function (e) {
-			
-			$(this).parents("form").ajaxForm({ 
-				complete: function(response) 
+
+			$(this).parents("form").ajaxForm({
+				complete: function(response)
 				{
 					if(response.status == 200){
 						$('div.info-msg').html("تم إرسال بريد تجريبي بنجاح");
@@ -130,13 +129,13 @@ div.info-msg.main{display:none}
 				}
 			});
 		});
-		
+
 		$('button.main').on('click', function (e) {
 			$('div.hidden').hide('slow');
-			
+
 			$("input[name='testormain']").val("0");
-			$(this).parents("form").ajaxForm({ 
-				complete: function(response) 
+			$(this).parents("form").ajaxForm({
+				complete: function(response)
 				{
 					$('div.info-msg.main').show('slow');
 					if(response.status == 200){
