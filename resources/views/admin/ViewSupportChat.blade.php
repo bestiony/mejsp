@@ -479,11 +479,12 @@ function validURL(str) {
         })
     })
     Pusher.logToConsole = false;
+
 var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
   cluster: 'eu'
 });
 
-var userId = "{{ auth('admin')->user()->id }}";
+let userId = "{{ auth('admin')->user()->id }}";
 var channel = pusher.subscribe('research-chat.'+userId);
 channel.bind('research-chat-message', function(data) {
   let message = data.message

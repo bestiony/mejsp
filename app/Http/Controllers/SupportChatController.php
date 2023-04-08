@@ -25,7 +25,7 @@ class SupportChatController extends Controller
                 'sender'=>'user',
                 // 'document'=>$file_name?? NULL
             ]);
-    
+
             // event(new SendMessage($request->message,$admin->id,$file_name??NULL));
         }
 
@@ -36,10 +36,10 @@ class SupportChatController extends Controller
                 'admin_id'=>$admin->id,
                 'sender'=>'user',
                 'document'=>$file_name?? NULL
-            ]); 
+            ]);
 
         }
-    
+
         $info = [
             'mail_title' => 'استفسار من زائر ',
             'mail_details1' => ': نص الرسالة ',
@@ -101,7 +101,6 @@ class SupportChatController extends Controller
             'mail_details7'=>'',
             'mail_details8'=>'',
             'mail_details5' => '',
-            'id' => '',
             'file' =>  '',
             'journal' => '',
             'username' => '',
@@ -120,7 +119,7 @@ class SupportChatController extends Controller
         $file_name=time().$file->getClientOriginalName();
         $file->move('email',$file_name);
         return $file_name;
-         
+
     }
 
     public function SupportChat()
@@ -134,6 +133,6 @@ class SupportChatController extends Controller
        return redirect()->route('ViewSupportChat',$id);
     }
 
-    
+
 
 }
