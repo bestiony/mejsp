@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="row my-3 px-5">
                                         <div class="col-4 p-0 bolld " >
-                                            عنوان البحث 
+                                            عنوان الدراسة 
                                         </div>
                                         <div class="col-8">
                                             <span class=" 
@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="row my-3 px-5">
                                         <div class="col-4 p-0 bolld  " >
-                                            نوع البحث 
+                                            نوع النشر 
                                         </div>
                                         <div class="col-8">
                                             <span > 
@@ -117,7 +117,7 @@
                                     </div>
                                     <div class="row my-3 px-5">
                                         <div class="col-4 p-0 bolld  " >
-                                            تاريخ الارسال  
+                                            تاريخ الإرسال  
                                         </div>
                                         <div class="col-8">
                                             <span > 
@@ -127,7 +127,7 @@
                                     </div>
                                     <div class="row my-3 px-5">
                                         <div class="col-4 p-0 bolld  " >
-                                            تاريخ آخر تعديل  
+                                            تاريخ أخر تعديل  
                                         </div>
                                         <div class="col-8">
                                             <span > 
@@ -146,7 +146,7 @@
                                                 @elseif(!$research->journal_id)
                                                 لم تختر مجلة بعد
                                                 @else
-                                                تم حذف المجله
+                                                تم حذف المجلة
                                                 @endif
                                             </span>
                                         </div>
@@ -231,10 +231,10 @@
                                                         @endif
                                                         @endif
                                                     @else
-                                                        <span>لايوجد</span>
+                                                        <span>لا يوجد</span>
                                                     @endif
                                                 @else 
-                                                  <span>لاتوجد فاتورة</span>
+                                                  <span>لا توجد فاتورة</span>
                                                 @endif
                                                
                                                 @if($research->id == session('id_send'))
@@ -277,7 +277,7 @@
                                         <div class="col-4 p-0 bolld  " >
                                             ارسال تذكير بالسداد
                                             <p class="   text-danger  font-weight-bold ml-3">
-                                                آخر رسالة : {{$research->invoice->sent_reminder == 0 ? 'رسالة القبول' : $research->invoice->sent_reminder}}
+                                                أخر رسالة : {{$research->invoice->sent_reminder == 0 ? 'رسالة القبول' : $research->invoice->sent_reminder}}
                                             </p>
                                         </div>
                                         <div class="col-8">
@@ -405,7 +405,7 @@
                                             href="{{ asset('assets/uploads/users-researches/' . $research->file) }}"
                                             class="btn btn-info status mx-1"> 
                                             <i class="fa fa-file-word"></i>
-                                            ملخص البحث
+                                            الملخص
                                         </a>      
                                     
                                     
@@ -415,7 +415,7 @@
                                                 href="{{ asset('assets/uploads/users-researches/' . $research->file) }}"
                                                 class="btn btn-info status mx-1"> 
                                                 <i class="fa fa-download"></i>
-                                                تحميل ملف الدراسة 
+                                                تحميل الملف 
                                             </a>
                                         @else
                                             <span class=" font-weight-bold text-danger mx-1" style="line-height:2">لا يوجد ملف !</span>
@@ -437,7 +437,7 @@
                                         </button>
                                         <div class="dropdown-menu text-right" aria-labelledby="triggerId">
                                             <a class="dropdown-item"
-                                                    href="{{route('admin_edit_research',['id'=>$research->id]) }}">تعديل يدويا</a>
+                                                    href="{{route('admin_edit_research',['id'=>$research->id]) }}">تعديل</a>
                                         
                                             @if ($research->status == 1)
                                             

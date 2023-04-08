@@ -61,24 +61,26 @@
                         <div class="col-lg-2 mt-2 mt-lg-0">
                             <a href="{{ route('new-subscriber-form') }}" class="btn btn-light btn-block border">
 							<i class="fa fa-add"></i>
-                                إضافة مشتركين
+                                إضافة
                             </a>
                         </div>
+
                         <div class="col-lg-2 mt-2 mt-lg-0">
                             <a href="{{ route('email-form') }}" class="btn btn-light btn-block border">
-							<i class="fa fa-paper-plane"></i>
-								إرسال بريد للكل
-                            </a>
-                        </div>
-                        <div class="col-lg-2 mt-2 mt-lg-0">
-                            <a href="{{ route('email-form') }}" class="btn btn-light btn-block border">
+                            <i class="fa fa-paper-plane"></i>
                                 إنشاء حملة
+                            </a>
+                        </div>
+                        <div class="col-lg-2 mt-2 mt-lg-0">
+                            <a href="#" class="btn btn-light btn-block border">
+                            <i class="fa fa-folder"></i>
+                                المسودات
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-			
+
             @if (count($subscribers) == 0)
                 <div class="col-12">
                     <div class="box-white py-5">
@@ -283,20 +285,20 @@
 @if (Session::has('message'))
     Swal.fire('{{ Session::get("message") }}', `
         <h4>
-            
-			@if (is_countable(Session::get("successful")) && count(Session::get("successful")) > 0) 
+
+			@if (is_countable(Session::get("successful")) && count(Session::get("successful")) > 0)
 				<span>الإضافات الناجحة:
 				{{count(Session::get("successful"))}}
 				</span>
 			@endif
-			
-            
+
+
 			@if (is_countable(Session::get("failed")) && count(Session::get("failed")) > 0)
-				<span>الإضافات الفاشلة: 
+				<span>الإضافات الفاشلة:
 				{{count(Session::get("failed"))}}
 				</span>
 			@endif
-			
+
         </h4>
         <table class="table">
 			@if (is_countable(Session::get("successful")) && count(Session::get("successful")) > 0)
@@ -307,7 +309,7 @@
 					</tr>
 				@endforeach
 			@endif
-            
+
 			@if (is_countable(Session::get("failed")) && count(Session::get("failed")) > 0)
 				@foreach (Session::get("failed") as $item)
 					<tr class="text-right">
@@ -320,8 +322,9 @@
     `)
 @endif
 </script>
+
 <script>
-	
+
     $('document').ready(function(){
         $('#customFields').on('click', '.edit', function() {
             $('#email_btn').val($(this).data('email'));
@@ -330,7 +333,7 @@
         });
     });
 
-	
+
     $('document').ready(function(){
         $('#customFields').on('click', '.delete', function() {
             $('#id_delete_btn').val($(this).data('id'));
@@ -560,6 +563,7 @@ var tagInput1 = new TagsInput({
        });
 
     }, 500));
-	
+
 </script>
 @endsection
+

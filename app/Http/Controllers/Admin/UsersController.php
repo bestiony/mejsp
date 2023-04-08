@@ -47,6 +47,7 @@ use App\Jobs\SubscriberEmailJob;
 use Carbon\Carbon;
 use App\Models\Settings;
 use App\Models\SupportChat;
+use Illuminate\Queue\QueueManager;
 
 class UsersController extends Controller
 {
@@ -995,9 +996,9 @@ class UsersController extends Controller
         $details['subject']=$request->subject;
         $details['publication_terms']=$request->publication_terms;
         $details['judgement_comity']=$request->judgement_comity;
-
-
-            dispatch(new SubscriberEmailJob($details))->delay($time);
+		$job = new SubscriberEmailJob($details);
+		app(QueueManager::class)->connection('database')->pushOn('default', $job);
+            dispatch($job)->delay($time);
             $time = $time->addSeconds(30);
         }
 		return response()->json(['success'=>true]);
@@ -1009,7 +1010,7 @@ class UsersController extends Controller
         $array = explode("\r\n", $request->emails);
         $time = Carbon::now();
         foreach ($array as $email) {
-            $time = $time->addSeconds(30);
+            $time = $time->addSeconds(60);
             dispatch(new SubscriberTestEmailJob($email))->delay($time);
         }
 

@@ -29,10 +29,13 @@ return [
     */
 
     'connections' => [
-
-        'database' => [
-            'driver' => 'database',
+        'sync' => [
+            'driver' => 'sync',
         ],
+
+        // 'database' => [
+        //     'driver' => 'database',
+        // ],
 
         'database' => [
             'driver' => 'database',
