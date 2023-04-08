@@ -4,7 +4,7 @@
 
 
 <script>
-    
+
 
 
 
@@ -23,10 +23,10 @@ function showFileName(){
        // research_label.innerHTML = currentContent;
       document.querySelector('textarea[name="message"]').scrollIntoView()
     }, 2000);
-   
+
 
     document.querySelector('#file-name').innerText=research_file.name
-    document.querySelector('#file-size').innerText=  Math.round(research_file.size/1000) < 1000 
+    document.querySelector('#file-size').innerText=  Math.round(research_file.size/1000) < 1000
                                      ? Math.round(research_file.size/1000)+" KB"
                                      : Math.round(research_file.size/1000)+" MB"
 
@@ -42,20 +42,20 @@ reader.addEventListener('load', function(event) {
 // Files can be read with the readAs[ArrayBuffer|BinaryString|DataURL|Text] methods
 reader.readAsArrayBuffer(research_file)
 reader.addEventListener('progress', event => {
-   
+
     const percent = Math.round((event.loaded / event.total) * 100)
         const loadingBar = Array(10)
             .fill('▒')
             .map(function(item, index) {
                 document.querySelector('#upload-progress .progress-bar').style.width=Math.round(percent)+"%"
-              
+
                return Math.round(percent / 10) > index ? '█'
-                : '▒'   
+                : '▒'
             } )
             .join('')
 
         // document.location.hash = `${loadingBar}(${percent}%)`
-        
+
 
 })
 // reader.readAsBinaryString(research_file)
@@ -71,7 +71,7 @@ reader.addEventListener('progress', event => {
     let research_label = document.querySelector('label[for="research-file"]')
     research_label.innerHTML =`<i class="fa fa-file-upload mr-3" id="file-uploader" style="font-size: 23px;cursor:pointer;
                                 margin: 0 2px;    position: relative;top: 4px;"></i>`
-    
+
   }
   function changeTextDirection(event){
 
@@ -85,7 +85,7 @@ reader.addEventListener('progress', event => {
 
         event.target.classList.remove('fa-align-right')
          event.target.classList.add('fa-align-left')
-       
+
     }else{
         inputMessage.classList.remove('text-left')
         inputMessage.classList.add('text-right')
@@ -99,7 +99,7 @@ reader.addEventListener('progress', event => {
       var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
       return text.toString().replace(exp,`<a href="$1">$1</a>`);
     }
-    function isRTL(s){           
+    function isRTL(s){
     var ltrChars    = 'A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02B8\u0300-\u0590\u0800-\u1FFF'+'\u2C00-\uFB1C\uFDFE-\uFE6F\uFEFD-\uFFFF',
         rtlChars    = '\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC',
         rtlDirCheck = new RegExp('^[^'+ltrChars+']*['+rtlChars+']');
@@ -112,17 +112,17 @@ reader.addEventListener('progress', event => {
 @section('content')
 
 <style>
-    
+
     /*#journals-researches{*/
     /*    color: #007bff;*/
     /*    font-size: 18px !important;*/
     /*}*/
-    
+
     /*#journals-researches .title {*/
     /*    color: #007bff;*/
     /*    font-size: 20px !important;*/
     /*}*/
-    
+
     .status{
         padding: 0 20px;
         font-size: 17px !important;
@@ -133,13 +133,13 @@ reader.addEventListener('progress', event => {
     .ico{
         font-size:12px !important;
     }
-    
+
     .message-s {
         display: flex;
         justify-content: flex-start;
         flex-diretion: column;
     }
-    
+
 .message-r {
   display: flex;
   justify-content: flex-end;
@@ -152,11 +152,11 @@ reader.addEventListener('progress', event => {
     .roww{
         width:50% !important
     }
-    */ 
+    */
     .left-side-boxes{
         margin-top: 0;
     }
-    
+
 }
 .bg-primary.text-white a{
     color: #fff;
@@ -187,7 +187,7 @@ reader.addEventListener('progress', event => {
 .user-img img{
   /* position: relative;
     top: -3px; */
-    width: 45px; 
+    width: 45px;
 }
 .date .fa-clock{
   position:relative; top: 1px;width: auto !important;
@@ -257,7 +257,7 @@ reader.addEventListener('progress', event => {
 </style>
 
 
-   
+
     <div class="clearfix"></div>
     <div class="result"></div><!-- Result Box -->
 
@@ -275,15 +275,15 @@ reader.addEventListener('progress', event => {
                     </div>
                 @endif
             </div>
-            
-            
+
+
             <div class="container p-1.5">
                 <div class="row justify-content-center">
                     <div class="col-sm-12  col-lg-7">
                         <div class="card" id="chat2">
                             <div class="card-header d-flex justify-content-between align-items-center p-3">
                               <h5 class="mb-0">الرسائل</h5>
-                             
+
                             </div>
                             <div class="card-body p-0" id="chat-container" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px;overflow-y:scroll">
                                 <div class="chat">
@@ -306,7 +306,7 @@ reader.addEventListener('progress', event => {
                                                         <a download href="{{ asset('email/'.$message->document.'') }}"> <i class="fa-solid fa-folder-closed"></i></a>
                                                     </div>
                                                 @endif
-                                               
+
 
                                             @elseif ($message->sender=='user')
                                                 @if ($message->document==NULL)
@@ -320,10 +320,10 @@ reader.addEventListener('progress', event => {
                                                     <a download href="{{ asset('email/'.$message->document.'') }}"> <i class="fa-solid fa-folder-closed"></i></a>
                                                 </div>
                                                 @endif
-                                                
+
                                             @endif
                                         @endforeach
-                                        
+
                                         {{-- <div class="message receved">
                                             وعليكم السلام ورحمة الله وبركاته
                                         </div>
@@ -347,15 +347,15 @@ reader.addEventListener('progress', event => {
                                 </div>
                             </div>
                             <div class="card-footer text-muted d-flex justify-content-end align-items-center p-3">
-            
+
                               <textarea type="text" name="message" required minlength="2" class="form-control form-control-lg" id="exampleFormControlInput1"
                                 placeholder="ادخل الرسالة"></textarea>
                                 {{-- upload file --}}
-                                
+
                                  <label for="research-file" class="m-0"  data-mdb-ripple-color="dark">
                                     <i class="fa fa-file-upload mr-3" id="file-uploader" style="font-size: 23px;cursor:pointer;
                                 margin: 0 2px;    position: relative;top: 4px;"></i>
-                                   
+
                                   </label>
                                   <input id="research-file" type="file" name="file" onchange="showFileName()" class="d-none" accept="*">
 
@@ -377,7 +377,7 @@ reader.addEventListener('progress', event => {
                                         <span class="mx-2 mx-md-0">حجم الملف : <strong id="file-size">25kb</strong></span>
                                     </span>
                                     <button id="remove-file" onclick="removeCurrentFile()" class="btn btn-danger btn-sm p-1">
-                                        X 
+                                        X
                                         حذف
                                     </button>
                                 </div>
@@ -402,8 +402,8 @@ reader.addEventListener('progress', event => {
 <script>
     $('#submit-msg-btn').on('click',function(){
 
-        
-        var message=$('#exampleFormControlInput1').val();    
+
+        var message=$('#exampleFormControlInput1').val();
       var file=$("#research-file")[0].files;
       console.log(message);
       console.log(file);
@@ -417,7 +417,7 @@ reader.addEventListener('progress', event => {
                         ${message}
                 </div>`;
 
-       
+
 
         if(message!==''){
             $('#chats').append(html);

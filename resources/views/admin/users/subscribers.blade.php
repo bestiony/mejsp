@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'المشتركين')
+@section('title', 'المستخدمين')
 @section('css')
 <style>
     .tags-input-wrapper{
@@ -33,6 +33,7 @@
 }
 
 </style>
+@livewireStyles
 @endsection
 @section('content')
     <div class="links-bar my-4 ">
@@ -41,80 +42,7 @@
 
     <div class="result"></div>
 
-    <div id="freelancers">
-        <div class="row">
-
-            <div class="col-12 mb-3">
-                <div class="box-white">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <form action="{{ admin_url('users') }}" method="GET">
-                                <input
-                                    type="email"
-                                    name="search"
-                                    id="search"
-                                    class="form-control form-control-sm"
-                                    placeholder="ابحث بواسطة البريد الإلكتروني"
-                                />
-                            </form>
-                        </div>
-                        <div class="col-lg-2 mt-2 mt-lg-0">
-                            <a href="{{ route('new-subscriber-form') }}" class="btn btn-light btn-block border">
-							<i class="fa fa-add"></i>
-                                إضافة
-                            </a>
-                        </div>
-
-                        <div class="col-lg-2 mt-2 mt-lg-0">
-                            <a href="{{ route('email-form') }}" class="btn btn-light btn-block border">
-                            <i class="fa fa-paper-plane"></i>
-                                إنشاء حملة
-                            </a>
-                        </div>
-                        <div class="col-lg-2 mt-2 mt-lg-0">
-                            <a href="#" class="btn btn-light btn-block border">
-                            <i class="fa fa-folder"></i>
-                                المسودات
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-			
-            @if (count($subscribers) == 0)
-                <div class="col-12">
-                    <div class="box-white py-5">
-                        <h5 class="mb-0 text-center">لا يوجد مشتركين !</h5>
-                    </div>
-                </div>
-            @else
-                <div class="col-12 mb-4">
-                    <div class="box-white table-responsive">
-                        <table id="customFields" class="table table-striped table-inverse table-bordered mb-0 text-center table-with-avatar">
-                            <thead class="thead-inverse">
-                                <tr>
-                                    <th>البريد الإلكتروني</th>
-                                    <th>التعديل</th>
-                                    <th>الحذف</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($subscribers as $row)
-                                    <tr>
-                                        <td>{{ $row->email }}</td>
-                                        <td><button data-email="{{ $row->email }}" data-id="{{ $row->id }}" class="btn btn-info edit"><i class="fa fa-edit"></i> تعديل</button></td>
-                                        <td><button data-id="{{ $row->id }}" class="btn btn-danger delete"><i class="fa fa-trash"></i> حذف</button></td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            @endif
-
-        </div><!-- row -->
-    </div><!-- freelancers -->
+    @livewire('admin.subscribers-component')
 
     <button id="edit" data-toggle="modal" data-target="#exampleModal1" class="d-none"></button>
     <button id="delete" data-toggle="modal" data-target="#exampleModal2" class="d-none"></button>
@@ -279,26 +207,27 @@
 @endsection
 
 @section('js')
+@livewireScripts
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
 @if (Session::has('message'))
     Swal.fire('{{ Session::get("message") }}', `
         <h4>
-            
-			@if (is_countable(Session::get("successful")) && count(Session::get("successful")) > 0) 
+
+			@if (is_countable(Session::get("successful")) && count(Session::get("successful")) > 0)
 				<span>الإضافات الناجحة:
 				{{count(Session::get("successful"))}}
 				</span>
 			@endif
-			
-            
+
+
 			@if (is_countable(Session::get("failed")) && count(Session::get("failed")) > 0)
-				<span>الإضافات الفاشلة: 
+				<span>الإضافات الفاشلة:
 				{{count(Session::get("failed"))}}
 				</span>
 			@endif
-			
+
         </h4>
         <table class="table">
 			@if (is_countable(Session::get("successful")) && count(Session::get("successful")) > 0)
@@ -309,7 +238,7 @@
 					</tr>
 				@endforeach
 			@endif
-            
+
 			@if (is_countable(Session::get("failed")) && count(Session::get("failed")) > 0)
 				@foreach (Session::get("failed") as $item)
 					<tr class="text-right">
@@ -324,7 +253,7 @@
 </script>
 
 <script>
-	
+
     $('document').ready(function(){
         $('#customFields').on('click', '.edit', function() {
             $('#email_btn').val($(this).data('email'));
@@ -333,12 +262,30 @@
         });
     });
 
-	
+
     $('document').ready(function(){
         $('#customFields').on('click', '.delete', function() {
             $('#id_delete_btn').val($(this).data('id'));
             $('#delete').click();
         });
+    });
+    document.addEventListener('reLaunchJS', function(){
+
+    $('document').ready(function(){
+        $('#customFields').on('click', '.edit', function() {
+            $('#email_btn').val($(this).data('email'));
+            $('#id_btn').val($(this).data('id'));
+            $('#edit').click();
+        });
+    });
+
+
+    $('document').ready(function(){
+        $('#customFields').on('click', '.delete', function() {
+            $('#id_delete_btn').val($(this).data('id'));
+            $('#delete').click();
+        });
+    });
     });
 </script>
 
@@ -563,7 +510,7 @@ var tagInput1 = new TagsInput({
        });
 
     }, 500));
-	
+
 </script>
 @endsection
 

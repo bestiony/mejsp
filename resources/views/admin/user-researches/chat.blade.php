@@ -29,7 +29,6 @@
         var pusher = new Pusher("{{ env('PUSHER_APP_KEY') }}", {
             cluster: 'eu'
         });
-
         var channel = pusher.subscribe('research-chat.' + "{{ $user_researches->user_id }}");
         channel.bind('research-chat-message', function(data) {
             //   alert(JSON.stringify(data));
