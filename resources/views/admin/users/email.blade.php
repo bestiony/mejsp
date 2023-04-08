@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'إرسال بريد ')
+@section('title', 'إنشاء حملة ')
 @section('css')
 <style>
 div.hidden{display:none;}
@@ -16,7 +16,7 @@ div.info-msg.main{display:none}
 @endsection
 @section('content')
   <div class="links-bar my-4">
-      <h4>إرسال بريد للقائمة البريدية</h4>
+      <h4>إنشاء حملة</h4>
 						
   </div>
 
@@ -71,31 +71,32 @@ div.info-msg.main{display:none}
                     </div>
 
                     <div class="form-group col-12">
-                      <button type="submit" role="button" class="btn btn-primary main">إرسال للقائمة البريدية</button>
-					  <button type="button" role="button" class="btn btn-primary test"> إرسال بريد تجريبي </button>
+                        <button type="" role="" class="btn-main btn-block">حفظ كمسودة</button>
+                        <button type="submit" role="button" class="btn-main btn-block main">إطلاق الحملة</button>
+					    <button type="button" role="button" class="btn-main btn-block test"> إرسال بريد تجريبي </button>
 					  <input type="hidden" name="testormain" value="0" />
-					  <div class="form-group col-6 info-msg main">
+					  <div class="form-group info-msg main">
 		
 						</div>
 					</div>
 					
                     <div class="form-group col-12 hidden">
-						<div class="flexable">
-							<div class="form-group col-6">
+						<div >
+							<div class="form-group">
 								<label for="emails">إضافة المستلمين</label>
 								<textarea class="form-control" name="emails" rows="3"></textarea>
 								<small id="emailsHelpBlock" class="form-text text-muted">
 									للإرسال لأكثر من حساب قم بإضافة بريد إلكتروني واحد في كل سطر
 								</small>
 							</div>
-							<div class="form-group col-6 info-msg">
-		
-							</div>
-						</div>
-						<div class="form-group col-6 modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">غلق</button>
 							<button type="submit" class="btn btn-primary send-mail">إرسال</button>
+							
+							<div class="form-group info-msg">
+		                    
+							</div>
 						</div>
+						
                     </div>
 					
                 </div>
@@ -105,6 +106,7 @@ div.info-msg.main{display:none}
   </form>
   
 @endsection
+
 @section('js')
 
 <script>

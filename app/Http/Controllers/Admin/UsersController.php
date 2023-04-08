@@ -997,9 +997,9 @@ class UsersController extends Controller
         $details['publication_terms']=$request->publication_terms;
         $details['judgement_comity']=$request->judgement_comity;
 		$job = new SubscriberEmailJob($details);
-		app(QueueManager::class)->connection('database')->pushOn('default', $job);
-            dispatch($job)->delay($time);
-            $time = $time->addSeconds(30);
+		//app(QueueManager::class)->connection('database')->pushOn('default', $job);
+            dispatch($job)->onConnection('database')->delay($time);
+            $time = $time->addSeconds(60);
         }
 		return response()->json(['success'=>true]);
 
@@ -1010,7 +1010,7 @@ class UsersController extends Controller
         $array = explode("\r\n", $request->emails);
         $time = Carbon::now();
         foreach ($array as $email) {
-            $time = $time->addSeconds(30);
+            $time = $time->addSeconds(60);
             dispatch(new SubscriberTestEmailJob($email))->delay($time);
         }
 
