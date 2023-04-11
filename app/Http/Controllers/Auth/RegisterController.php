@@ -71,7 +71,7 @@ class RegisterController extends Controller
             'password' => Hash::make($password),
             'created_at' => date('Y-m-d')
         ]);
-        Subscribers::create(['email'=>$email]);
+        Subscribers::firstOrCreate(['email'=>$email]);
 
         if ($insert->save()) {
 

@@ -666,10 +666,10 @@ class UsersController extends Controller
         $row = User::find($id);
         if (!empty($row)) {
             deleteFile(self::PATH, $row->image);
-            $subscription = Subscribers::where('email', $row->email)->first();
-            if ($subscription){
-                $subscription->delete();
-            }
+            // $subscription = Subscribers::where('email', $row->email)->first();
+            // if ($subscription){
+            //     $subscription->delete();
+            // }
             $row->delete();
         }
         return back();
@@ -1142,7 +1142,8 @@ class UsersController extends Controller
         $pageTitle = 'الرسائل';
         $message_email = SupportChat::find($id);
         $messages = SupportChat::where('user_email', $message_email->user_email)->get();
+        $client = User::where('email', $message_email->user_email)->firstOrFail();
         // dd(auth('admin')->user());
-        return view("admin.ViewSupportChat", compact('pageTitle', 'messages', 'message_email'));
+        return view("admin.ViewSupportChat", compact('pageTitle', 'messages', 'message_email', 'client'));
     }
 }
