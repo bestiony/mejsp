@@ -165,11 +165,11 @@
                             <a href="${text}" class="small mb-0">${text}</a>
                             </div>
                         </div>`
-                if(text!==''){
-                    validURL(text) ?
-                    $('#CardBody').append(inkerTag):
-                    $('#CardBody').append(html);
-                }
+                // if(text!==''){
+                //     validURL(text) ?
+                //     $('#CardBody').append(inkerTag):
+                //     $('#CardBody').append(html);
+                // }
 
 
 
@@ -197,7 +197,7 @@
                                         <a download href="{{ asset('email/${resonse_file_name}') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
                                     </div>
                                     </div>`;
-                            $('#CardBody').append(file_div);
+                            // $('#CardBody').append(file_div);
                         }
                         $('#textAreaExample').val('');
                         $("#textAreaExample").removeAttr("disabled");
@@ -233,11 +233,11 @@
                 //     <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
                 //         <p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p>
                 //     </div>`;
-                if(text!==''){
-                    validURL(text) ?
-                    $('#CardBody').append(inkerTag):
-                    $('#CardBody').append(html);
-                }
+                // if(text!==''){
+                //     validURL(text) ?
+                //     $('#CardBody').append(inkerTag):
+                //     $('#CardBody').append(html);
+                // }
                 // if(file.length>0){
                 //     $('#CardBody').append(file_div);
                 // }
@@ -265,7 +265,7 @@
                                         <a download href="{{ asset('email/${resonse_file_name}') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
                                     </div>
                                     </div>`;
-                            $('#CardBody').append(file_div);
+                            // $('#CardBody').append(file_div);
                         }
                         $('#textAreaExample').val('');
                         $("#textAreaExample").removeAttr("disabled");
@@ -282,6 +282,10 @@
 
 
 <script>
+var sender_div = `<div class="d-flex flex-row justify-content-start mb-4">
+                            <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">`;
+var reciever_div = `<div class="d-flex flex-row justify-content-end mb-4">
+                            <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">`
     Pusher.logToConsole = false;
 
 var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
@@ -299,17 +303,16 @@ var channel = pusher.subscribe('research-chat.'+userId);
 channel.bind('research-chat-message', function(data) {
     let message = data.message
     let document_file = data.file
+    let sender_type = data.sender_type
+    let my_messages_type = sender_type == 'admin' ? reciever_div : sender_div
     console.log(data);
     console.log(document_file);
     console.log(message);
-    var push_html=`<div class="d-flex flex-row justify-content-end mb-4">
-                            <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                                <p class="small mb-0">${message}</p>
+    var push_html=`${my_messages_type} <p class="small mb-0">${message}</p>
                             </div>
                         </div>`
-    var push_ankerTag=`<div class="d-flex flex-row justify-content-end mb-4">
-                            <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                                <a href="${message}" class="small mb-0">${message}</a>
+
+    var push_ankerTag=`${my_messages_type}<a href="${message}" class="small mb-0">${message}</a>
                             </div>
                         </div>`
     if(message!==null){
@@ -318,9 +321,7 @@ channel.bind('research-chat-message', function(data) {
         $('#CardBody').append(push_html);
         document.querySelector("#CardBody").scrollTo(0, document.querySelector("#CardBody").scrollHeight);
     }
-    var push_file_div=`<div class="d-flex flex-row justify-content-end mb-4">
-                        <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                            <a download href="{{ asset('email/${document_file}') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
+    var push_file_div=`${my_messages_type}<a download href="{{ asset('email/${document_file}') }}"><p class="small mb-0"><i class="fa-solid fa-folder-closed" style="cursor:pointer;font-size:22px"></i></p></a>
                         </div>
                     </div>`;
 

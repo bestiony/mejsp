@@ -25,7 +25,7 @@ class SupportChatController extends Controller
                 'sender'=>'user',
                 // 'document'=>$file_name?? NULL
             ]);
-    
+
             // event(new SendMessage($request->message,$admin->id,$file_name??NULL));
         }
 
@@ -36,10 +36,10 @@ class SupportChatController extends Controller
                 'admin_id'=>$admin->id,
                 'sender'=>'user',
                 'document'=>$file_name?? NULL
-            ]); 
+            ]);
 
         }
-    
+
         $info = [
             'mail_title' => 'استفسار من زائر ',
             'mail_details1' => ': نص الرسالة ',
@@ -59,7 +59,7 @@ class SupportChatController extends Controller
             'subject'=>'التواصل مع زائر',
             'id'=>$mesage->id ?? $file_mesage->id,
         ];
-        event(new SendMessage($request->message,$admin->id,$file_name??NULL));
+        event(new SendMessage($request->message,$admin->id,$file_name??NULL, 'support', $request->email,'client'));
 
         Mail::to($admin->email)->send(new EmailSupportChat($info));
         return response()->json(['resonse_file_name'=>$file_mesage->document?? NULL]);
@@ -109,7 +109,7 @@ class SupportChatController extends Controller
             'subject'=>'رد على استفسار',
             'id'=>$mesage->id ?? $file_mesage->id,
         ];
-        event(new SendMessage($request->message,$request->email,$file_name??NULL));
+        event(new SendMessage($request->message,$request->email,$file_name??NULL, 'support', $request->email,'admin'));
 
         Mail::to($request->email)->send(new EmailSupportChat($info));
          return response()->json(['resonse_file_name'=>$file_mesage->document?? NULL]);
@@ -120,7 +120,7 @@ class SupportChatController extends Controller
         $file_name=time().$file->getClientOriginalName();
         $file->move('email',$file_name);
         return $file_name;
-         
+
     }
 
     public function SupportChat()
@@ -134,6 +134,6 @@ class SupportChatController extends Controller
        return redirect()->route('ViewSupportChat',$id);
     }
 
-    
+
 
 }

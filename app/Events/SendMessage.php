@@ -17,16 +17,22 @@ class SendMessage implements ShouldBroadcast
     public $message;
     public $researcher_id;
     public $file;
+    public $type;
+    public $email;
+    public $sender_type;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($message,$researcher_id,$file=NULL)
+    public function __construct($message,$researcher_id,$file=NULL, $type = 'internal',$email = '', $sender_type = '')
     {
         $this->researcher_id = $researcher_id;
         $this->message = $message;
         $this->file = $file;
+        $this->type = $type;
+        $this->email = $email;
+        $this->sender_type = $sender_type;
     }
 
     /**
@@ -36,7 +42,12 @@ class SendMessage implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('research-chat.'.$this->researcher_id);
+        if($this->type == 'internal'){
+            $channel = new Channel('research-chat.'.$this->researcher_id);
+        } elseif($this->type == 'support'){
+            $channel = new Channel('research-chat.'.$this->email);
+        }
+        return $channel;
     }
     public function broadcastAs()
     {
