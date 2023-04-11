@@ -517,7 +517,7 @@
         });
 
         // let userId = "{{ auth('admin')->user()->id }}";
-        let userId = "{{ $client->email }}";
+        let userId = "{{ $client_email }}";
         var channel = pusher.subscribe('research-chat.' + userId);
         channel.bind('research-chat-message', function(data) {
             let message = data.message

@@ -1142,8 +1142,8 @@ class UsersController extends Controller
         $pageTitle = 'الرسائل';
         $message_email = SupportChat::find($id);
         $messages = SupportChat::where('user_email', $message_email->user_email)->get();
-        $client = User::where('email', $message_email->user_email)->firstOrFail();
+        $client_email =$message_email->user_email;
         // dd(auth('admin')->user());
-        return view("admin.ViewSupportChat", compact('pageTitle', 'messages', 'message_email', 'client'));
+        return view("admin.ViewSupportChat", compact('pageTitle', 'messages', 'message_email', 'client_email'));
     }
 }
