@@ -289,8 +289,8 @@ var pusher = new Pusher("{{env('PUSHER_APP_KEY')}}", {
 });
 var email=getCookie('chat_email');
     email?$(".login-form").hide():null;
-    if(!userId){
-        let userId = email
+    if(typeof userId === 'undefined'){
+        var userId = email
     }
 
 console.log(pusher);
