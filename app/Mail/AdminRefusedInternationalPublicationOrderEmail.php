@@ -30,8 +30,8 @@ class AdminRefusedInternationalPublicationOrderEmail extends Mailable
     public function build()
     {
         $address = env('INTERNATIONAL_FROM_ADDRESS') ;
-        // $name = $this->info['journal'];
-        $name = env('INTERNATIONAL_MAIL_FROM_NAME');
+        $name = $this->info['journal'];
+        // $name = env('INTERNATIONAL_MAIL_FROM_NAME');
         $subject=$this->info['subject'];
         // $from_email= env('INTERNATIONAL_FROM_ADDRESS');
         return $this->subject($subject)->view('admin.mail.AdminRefusedInternationalPublicationOrderEmail')->from($address, $name);
