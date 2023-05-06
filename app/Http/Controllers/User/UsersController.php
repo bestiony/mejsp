@@ -180,7 +180,7 @@ class UsersController extends Controller
         catch (DecryptException $e) {
         }
         $request->session()->flash('تم تأكيد إيمايلك بنجاح');
-        return redirect()->route('home_page')->with('message', 'تم تأكيد إيمايلك بنجاح');
+        return redirect()->route('home_page')->with('message', 'تم تأكيد البريد الإلكتروني بنجاح');
     }
 
     //baik
