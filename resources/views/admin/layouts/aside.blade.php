@@ -275,6 +275,18 @@
                             'name' => 'إنشاء حملة',
                             'link' => 'users/subscribers/email',
                         ],
+                        [
+                            'name' => 'القوائم البريدية',
+                            'link' => 'users/subscribers/email-lists',
+                        ],
+                        [
+                            'name' => 'Templates',
+                            'link' => 'users/subscribers/templates',
+                        ],
+                        [
+                            'name' => 'الحملات',
+                            'link' => 'users/subscribers/email-campaigns',
+                        ],
                     ],
                 ];
             @endphp
@@ -316,7 +328,7 @@
             @endphp
             <x-aside :details="$admins" />
             <!-- End admins -->
-            
+
             @php
                 $user_researches = [
                     'name' => 'طلبات النشر',

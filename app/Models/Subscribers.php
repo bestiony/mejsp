@@ -12,5 +12,8 @@ class Subscribers extends Model
     public $table   = 'subscribers';
     public $guarded = [];
 
+    public function email_list(){
+        return $this->belongsTo(EmailList::class);
+    }
 
 }

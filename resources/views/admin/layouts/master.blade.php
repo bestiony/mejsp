@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('admin-assets/css/aside.css') }}?v<?php echo time(); ?>" />
     <link rel="stylesheet" href="{{ asset('admin-assets/css/global.css') }}?v<?php echo time(); ?>" />
     <link rel="stylesheet" href="{{ asset('admin-assets/css/rtl/rtl.css') }}?v<?php echo time(); ?>" />
-
+    @livewireStyles
     <title>@yield('title','Default Tilte')</title>
 </head>
 
@@ -95,8 +95,9 @@
 
         </script>
     @endif
+    @livewireScripts
     @yield('js')
-
+    @stack('script')
 </body>
 
 </html>
