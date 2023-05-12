@@ -25,18 +25,18 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('researches:publish')
-        ->everyMinute();
-        $schedule->command('researches:filter')->everyFiveMinutes();
-
+        // $schedule->command('researches:publish')
+        // ->everyMinute();
+        // $schedule->command('researches:filter')->everyFiveMinutes();
+        $schedule->command('launch:campaign')->everyFiveMinutes()->withoutOverlapping();
         // $schedule->command('queue:work')
         // ->name('queue_work')
         // ->withoutOverlapping()
         // ->everyFiveMinutes();
 
-        $schedule->command('queue:work --stop-when-empty')
-        ->everyMinute()
-        ->withoutOverlapping();
+        // $schedule->command('queue:work --stop-when-empty')
+        // ->everyMinute()
+        // ->withoutOverlapping();
     }
 
     /**
