@@ -2,7 +2,10 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\EmailCampaign;
 use App\Models\EmailTemplate;
+use Exception;
+use Illuminate\Support\Facades\File;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -27,8 +30,19 @@ class EmailTemplateComponent extends Component
     }
     public function delete($id)
     {
-        $template = EmailTemplate::findOrFail($id);
-        $template->delete();
+        try{
+            $template = EmailTemplate::findOrFail($id);
+            File::delete(resource_path(EMAIL_TEMPLATES_DIRECTORY . $template->template));
+            EmailCampaign::where('template_id', $template->id)->update(['template_id' => null]);
+            $template->delete();
+        }catch(Exception $ex){
+            $this->dispatchBrowserEvent('alert_message', [
+                'type' => 'error',
+                'title' => $ex->getMessage(),
+                'text' => '',
+            ]);
+            return;
+        }
         $this->dispatchBrowserEvent('alert_message', [
             'type' => 'success',
             'title' => 'تم حذف القالب بنجاح',
@@ -46,7 +60,6 @@ class EmailTemplateComponent extends Component
 
         $search = '%' . $this->searchTerm . '%';
         $data['templates'] = EmailTemplate::where('name', 'LIKE', $search)
-            ->orWhere('body', 'LIKE', $search)
             ->orWhere('subject', 'LIKE', $search)
             ->orderBy('id', 'DESC')
             ->paginate(10);

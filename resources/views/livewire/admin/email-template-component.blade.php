@@ -58,7 +58,7 @@
 
                                 <th>الاسم</th>
                                 <th>العنوان</th>
-                                <th>المحتوى</th>
+                                {{-- <th>الملف</th> --}}
                                 <th>التعديل</th>
                                 <th>الحذف</th>
 
@@ -70,7 +70,7 @@
 
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->subject }}</td>
-                                    <td>{{ $row->body }}</td>
+                                    {{-- <td>{{ $row->template }}</td> --}}
                                     <td><button data-email="{{ $row->email }}" data-id="{{ $row->id }}"
                                             class="btn btn-info edit customFields"><i class="fa fa-edit"></i>
                                             تعديل</button></td>

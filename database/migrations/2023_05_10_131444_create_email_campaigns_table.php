@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('status')->default(0)->comment('0 = inactive , 1 = launched , 2 = canceled , 3 = finished');
             $table->integer('progress')->default(0);
             $table->integer('time_gap');
-            $table->unsignedBigInteger('template_id');
+            $table->unsignedBigInteger('template_id')->nullable();
             $table->timestamp('launch_at');
             $table->timestamps();
             $table->foreign('template_id')->references('id')->on('email_templates')->onDelete('no action');

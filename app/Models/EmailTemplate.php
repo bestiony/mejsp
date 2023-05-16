@@ -11,7 +11,10 @@ class EmailTemplate extends Model
     protected $fillable = [
         'name',
         'subject',
-        'body',
+        'template',
         'status',
     ];
+    public function campaigns(){
+        $this->hasMany(EmailCampaign::class, 'template_id');
+    }
 }

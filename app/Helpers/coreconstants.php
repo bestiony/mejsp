@@ -12,3 +12,6 @@ const CAMPAIN_STATUSES = [
     CANCELED_CAMPAIGN => 'ملغاة',
     FINISHED_CAMPAIGN => 'منتهية',
 ];
+
+
+const EMAIL_TEMPLATES_DIRECTORY = 'views/admin/mail/uploaded/';

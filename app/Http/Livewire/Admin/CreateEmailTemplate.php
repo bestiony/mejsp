@@ -3,24 +3,53 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\EmailTemplate;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateEmailTemplate extends Component
 {
+    use WithFileUploads;
     public $name;
     public $subject;
-    public $body;
+    public $template;
     public $status = 1;
     protected $rules = [
         'name' => 'required',
         'subject' => 'required',
-        'body' => 'required',
+        'template' => 'required',
         'status' => 'required',
     ];
     public function createTemplate()
     {
+        $this->validate();
+        DB::beginTransaction();
+        try {
 
-        $template =  EmailTemplate::create($this->validate());
+            $file = $this->template;
+            $filePath = $file->path();
+            $fileContents = File::get($filePath);
+            $file_name = slug($this->name) ;
+            $file_new_path = resource_path(EMAIL_TEMPLATES_DIRECTORY .$file_name . '.blade.php');
+            File::put($file_new_path, $fileContents);
+            $template =  EmailTemplate::create([
+                'name' => $this->name,
+                'subject' => $this->subject,
+                'template' => $file_name,
+                'status' => $this->status,
+            ]);
+        } catch (Exception $ex) {
+            DB::rollBack();
+            $this->dispatchBrowserEvent('alert_message', [
+                'type' => 'error',
+                'title' => $ex->getMessage(),
+                'text' => '',
+            ]);
+            return;
+        }
+        DB::commit();
         $this->dispatchBrowserEvent('alert_message', [
             'type' => 'success',
             'title' => 'تم انشاء القالب بنجاح',

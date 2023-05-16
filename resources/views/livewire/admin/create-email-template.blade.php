@@ -30,11 +30,10 @@
             </div>
 
             <div class="form-group">
-                <label for="body">المحتوى</label>
-                <textarea rows="6" wire:model='body' id="body" type="text" name="body"
-                    class="form-control form-control-sm">
-                </textarea>
-                @error('body')
+                <label for="body">القالب</label>
+                {{-- <textarea rows="6" wire:model='body' id="body" type="text" name="body"></textarea> --}}
+                <input type="file" name="template" wire:model='template' id="template" class="form-control form-control-sm">
+                @error('template')
                     <div class="alert alert-danger text-right">{{ $message }}</div>
                 @enderror
             </div>

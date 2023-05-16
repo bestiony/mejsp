@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\DynamicTemplateMail;
 use App\Mail\TemplateMail;
 use App\Models\EmailCampaign;
 use Carbon\Carbon;
@@ -61,7 +62,7 @@ class LaunchEmailCampaign extends Command
                     break;
                 }
                 $this->info('sending email to ' . $email);
-                Mail::to($email)->send(new TemplateMail($template->subject, $template->body));
+                Mail::to($email)->send(new DynamicTemplateMail($template->subject, $template->template));
                 $campaign->progress++;
                 $campaign->save();
                 sleep($time_gap);
