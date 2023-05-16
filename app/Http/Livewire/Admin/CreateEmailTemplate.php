@@ -17,7 +17,7 @@ class CreateEmailTemplate extends Component
     public $template;
     public $status = 1;
     protected $rules = [
-        'name' => 'required',
+        'name' => 'required|unique:email_templates,name',
         'subject' => 'required',
         'template' => 'required',
         'status' => 'required',
