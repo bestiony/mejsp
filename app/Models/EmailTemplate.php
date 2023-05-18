@@ -12,6 +12,7 @@ class EmailTemplate extends Model
         'name',
         'subject',
         'template',
+        'sender',
         'status',
     ];
     public function campaigns(){

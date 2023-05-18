@@ -58,8 +58,8 @@
 
                                 <th>الاسم</th>
                                 <th>العنوان</th>
-                                {{-- <th>الملف</th> --}}
-                                <th>التعديل</th>
+                                <th>المرسل</th>
+                                {{-- <th>التعديل</th> --}}
                                 <th>الحذف</th>
 
                             </tr>
@@ -70,10 +70,10 @@
 
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->subject }}</td>
-                                    {{-- <td>{{ $row->template }}</td> --}}
-                                    <td><button data-email="{{ $row->email }}" data-id="{{ $row->id }}"
+                                    <td>{{ $row->sender }}</td>
+                                    {{-- <td><button data-email="{{ $row->email }}" data-id="{{ $row->id }}"
                                             class="btn btn-info edit customFields"><i class="fa fa-edit"></i>
-                                            تعديل</button></td>
+                                            تعديل</button></td> --}}
                                     <td><button
                                             wire:click.prevent='deleteConfirm({{ $row->id }},"هل أنت متأكد من حذف هذا القالب")'
                                             data-id="{{ $row->id }}" class="btn btn-danger delete"><i

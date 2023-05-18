@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('subject');
             $table->string('template');
+            $table->string('sender');
             $table->tinyInteger('status')->default(1)->comment('0=inactive, 1-active');
             $table->timestamps();
         });

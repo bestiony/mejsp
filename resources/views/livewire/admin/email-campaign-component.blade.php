@@ -58,6 +58,7 @@
                             <tr>
 
                                 <th>الاسم</th>
+                                <th>القالب المستخدم</th>
                                 <th>موعد الانطلاق</th>
                                 <th>الجمهور المستهدف</th>
                                 <th>التقدم</th>
@@ -72,6 +73,7 @@
                                 <tr>
 
                                     <td>{{ $row->name }}</td>
+                                    <td>{{ $row->template ? $row->template->name : '#غير معروف#'  }}</td>
                                     <td>{{ $row->launch_at }}</td>
                                     @php
                                         $count = count($row->emails);

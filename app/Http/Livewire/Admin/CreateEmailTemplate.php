@@ -15,11 +15,13 @@ class CreateEmailTemplate extends Component
     public $name;
     public $subject;
     public $template;
+    public $sender;
     public $status = 1;
     protected $rules = [
         'name' => 'required|unique:email_templates,name',
         'subject' => 'required',
         'template' => 'required',
+        'sender' => 'required',
         'status' => 'required',
     ];
     public function createTemplate()
@@ -38,6 +40,7 @@ class CreateEmailTemplate extends Component
                 'name' => $this->name,
                 'subject' => $this->subject,
                 'template' => $file_name,
+                'sender' => $this->sender,
                 'status' => $this->status,
             ]);
         } catch (Exception $ex) {

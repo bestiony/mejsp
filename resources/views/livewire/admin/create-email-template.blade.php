@@ -39,6 +39,15 @@
             </div>
 
             <div class="form-group">
+                <label for="body">المرسل</label>
+                {{-- <textarea rows="6" wire:model='body' id="body" type="text" name="body"></textarea> --}}
+                <input type="text" name="sender" wire:model='sender' id="sender" class="form-control form-control-sm">
+                @error('sender')
+                    <div class="alert alert-danger text-right">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
                 <label for="status">الحالة</label>
 
                 <select class="form-control form-control-sm" name="status" wire:model='status' id="status">

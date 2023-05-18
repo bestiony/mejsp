@@ -62,7 +62,7 @@ class LaunchEmailCampaign extends Command
                     break;
                 }
                 $this->info('sending email to ' . $email);
-                Mail::to($email)->send(new DynamicTemplateMail($template->subject, $template->template));
+                Mail::to($email)->send(new DynamicTemplateMail($template->subject, $template->template, $template->sender));
                 $campaign->progress++;
                 $campaign->save();
                 sleep($time_gap);

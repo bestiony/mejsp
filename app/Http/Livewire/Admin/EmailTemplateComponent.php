@@ -61,6 +61,7 @@ class EmailTemplateComponent extends Component
         $search = '%' . $this->searchTerm . '%';
         $data['templates'] = EmailTemplate::where('name', 'LIKE', $search)
             ->orWhere('subject', 'LIKE', $search)
+            ->orWhere('sender', 'LIKE', $search)
             ->orderBy('id', 'DESC')
             ->paginate(10);
 
