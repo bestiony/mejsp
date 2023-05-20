@@ -169,9 +169,9 @@
                                 href="{{url('publication-price/' . $row->slug)}}">رسوم النشر</a> </div>
                     </li> --}}
                 <li class="nav-item"> <a class="nav-link {{ activeSingleLink('international-credits') }}"
-                        href="{{ url('international-credits/' . $row->slug) }}" title="تعليمات للمحكمين ">التصنيف
+                        href="{{ url('international-credits/' . $row->slug) }}" title="التصنيف الدولي ">التصنيف
                         الدولي
-                        الدولية</a> </li>
+                        </a> </li>
                 <li class="nav-item"> <a class="nav-link {{ activeSingleLink('publication-price') }}"
                         href="{{ url('publication-price/' . $row->slug) }}" title=" رسوم النشر ">رسوم النشر
                     </a> </li>
