@@ -42,7 +42,8 @@
             "app/Helpers/main_helpers.php",
             "app/Helpers/admin_helpers.php",
             "app/Helpers/image_helpers.php",
-            "app/Helpers/db_helpers.php"
+            "app/Helpers/db_helpers.php",
+            "app/Helpers/coreconstants.php"
         ]
     },
     "scripts": {

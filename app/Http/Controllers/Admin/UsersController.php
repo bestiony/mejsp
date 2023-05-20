@@ -1146,4 +1146,6 @@ class UsersController extends Controller
         // dd(auth('admin')->user());
         return view("admin.ViewSupportChat", compact('pageTitle', 'messages', 'message_email', 'client_email'));
     }
+
+    
 }

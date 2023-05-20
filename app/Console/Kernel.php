@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\AutoJournalResearchesPublishing::class,
         Commands\FilterResearches::class,
+        Commands\LaunchEmailCampaign::class,
     ];
     /**
      * Define the application's command schedule.
@@ -25,18 +26,18 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('researches:publish')
-        ->everyMinute();
-        $schedule->command('researches:filter')->everyFiveMinutes();
-
+        // $schedule->command('researches:publish')
+        // ->everyMinute();
+        // $schedule->command('researches:filter')->everyFiveMinutes()->withoutOverlapping();
+        $schedule->command('launch:campaign')->everyFiveMinutes()->withoutOverlapping();
         // $schedule->command('queue:work')
         // ->name('queue_work')
         // ->withoutOverlapping()
         // ->everyFiveMinutes();
-        
-        $schedule->command('queue:work --stop-when-empty')
-        ->everyMinute()
-        ->withoutOverlapping();
+
+        // $schedule->command('queue:work --stop-when-empty')
+        // ->everyMinute()
+        // ->withoutOverlapping();
     }
 
     /**
