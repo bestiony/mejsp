@@ -29,7 +29,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('researches:publish')
         ->everyMinute();
         $schedule->command('researches:filter')->everyFiveMinutes()->withoutOverlapping();
-        $schedule->command('launch:campaign')->everyFiveMinutes()->withoutOverlapping();
+        $schedule->command('launch:campaign')->everyFiveMinutes()
+        // ->withoutOverlapping()
+        ;
         // $schedule->command('queue:work')
         // ->name('queue_work')
         // ->withoutOverlapping()
