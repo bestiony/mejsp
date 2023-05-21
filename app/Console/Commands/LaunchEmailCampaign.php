@@ -56,7 +56,7 @@ class LaunchEmailCampaign extends Command
             $emails = $campaign->emails;
             $template = $campaign->template;
             $time_gap = $campaign->time_gap;
-            $campaign->refresh();
+            // $campaign->refresh();
             foreach($emails as $email){
                 if($campaign->status != LAUNCHED_CAMPAIGN){
                     break;
