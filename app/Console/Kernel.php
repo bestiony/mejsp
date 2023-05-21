@@ -26,9 +26,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('researches:publish')
-        ->everyMinute();
-        $schedule->command('researches:filter')->everyFiveMinutes()->withoutOverlapping();
+        // $schedule->command('researches:publish')
+        // ->everyMinute();
+        // $schedule->command('researches:filter')->everyFiveMinutes()->withoutOverlapping();
         $schedule->command('launch:campaign')->everyFiveMinutes()
         // ->withoutOverlapping()
         ;

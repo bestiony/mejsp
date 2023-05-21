@@ -6,7 +6,7 @@ use Carbon\Carbon;
  * Create Text To Slug
  * 1- Remove All (-) IF Isset In The Text
  * 2- String To Lower Case
- * 3- IF Have Space In Text Replace to (-) 
+ * 3- IF Have Space In Text Replace to (-)
  **/
 
 function slug($text)
@@ -31,7 +31,7 @@ function unSlug($text)
 function test($numbers)
 {
     $num = null;
-    
+
     $num += $numbers;
 
     return $num;
@@ -91,7 +91,7 @@ function getAuth($guard, $get)
 
 
 /**
- * Check If File Exist 
+ * Check If File Exist
  */
 function checkFile($file)
 {
