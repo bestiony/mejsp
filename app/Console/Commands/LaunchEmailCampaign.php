@@ -42,23 +42,28 @@ class LaunchEmailCampaign extends Command
          *
          */
         $this->info('launch email campaigns');
-        $now = Carbon::now();
-        $max_into_the_future = Carbon::now()->addMinutes(80);
-        $campaigns = EmailCampaign::where('launch_at', '>', $now)
-            ->where('launch_at', '<', $max_into_the_future)
+        $campaigns = EmailCampaign::where(function ($query) {
+                $now = Carbon::now();
+                $max_into_the_future = Carbon::now()->addMinutes(80);
+                $query->where('launch_at', '>', $now)
+                    ->where('launch_at', '<', $max_into_the_future);
+            })
+            ->orWhere('status', RESUMEABLE_CAMPAIGN)
             ->get();
         foreach ($campaigns as $campaign) {
             try {
-
+                
                 $campaign->refresh();
-                if ($campaign->status != INACTIVE_CAMPAIGN) {
+                if (!in_array($campaign->status,  [INACTIVE_CAMPAIGN, RESUMEABLE_CAMPAIGN])) {
                     continue;
                 }
                 $this->info('launching campaign ' . $campaign->id);
                 $campaign->update_hitory_log('launching campaign ');
                 $campaign->pushStatus(LAUNCHED_CAMPAIGN);
+                $all_emails = $campaign->emails ?? [];
+                $sent = $campaign->was_sent_to ?? [];
+                $emails = array_diff($all_emails, $sent);
 
-                $emails = $campaign->emails;
                 $template = $campaign->template;
                 $time_gap = $campaign->time_gap;
                 // $campaign->refresh();
@@ -71,10 +76,12 @@ class LaunchEmailCampaign extends Command
                         Mail::to($email)->send(new DynamicTemplateMail($template->subject, $template->template, $template->sender));
                         $campaign->progress++;
                         $campaign->save();
+                        $campaign->pushToSent($email);
                         sleep($time_gap);
                         $campaign->refresh();
                     } catch (Exception $ex) {
-                        $campaign->update_hitory_log($ex->getMessage() . ' stopped at email :' . $email);
+                        $this->info('error happened emails');
+                        $campaign->update_hitory_log($ex->getMessage() . ' stopped at email :' . $email , $email);
                         continue;
                     }
                 }
@@ -83,6 +90,10 @@ class LaunchEmailCampaign extends Command
                 $this->info('finished campaign ' . $campaign->id);
                 $campaign->update_hitory_log('finished campaign');
             } catch (Exception $Ex) {
+                $this->info('error happened campain');
+                $campaign->update_hitory_log('error : '. $Ex->getMessage() . ' code :' . $Ex->getCode() );
+
+                $campaign->pushStatus(FAILED_CAMPAIGN);
                 Log::channel('campaign_errors')->error($Ex->getMessage() . '- with campaign :' . $campaign->id);
                 continue;
             }

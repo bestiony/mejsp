@@ -72,7 +72,7 @@
                             @foreach ($campaigns as $row)
                                 <tr>
 
-                                    <td>{{ $row->name }}</td>
+                                    <td><a href="{{route('email_camaign_details',['campaign'=>$row->id])}}"> {{ $row->name }}</a></td>
                                     <td>{{ $row->template ? $row->template->name : '#غير معروف#'  }}</td>
                                     <td>{{ $row->launch_at }}</td>
                                     @php

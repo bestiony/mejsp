@@ -1147,5 +1147,5 @@ class UsersController extends Controller
         return view("admin.ViewSupportChat", compact('pageTitle', 'messages', 'message_email', 'client_email'));
     }
 
-    
+
 }

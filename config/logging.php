@@ -117,7 +117,7 @@ return [
         'campaign_errors' => [
             'driver' => 'single',
             'path' => storage_path('logs/campaign.log'),
-            'level' => 'error',
+            'level' => env('LOG_LEVEL', 'debug'),
         ],
     ],
 

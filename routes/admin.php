@@ -30,6 +30,7 @@ use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\SupportChatController;
 use App\Http\Livewire\Admin\EmailCampaignComponent;
+use App\Http\Livewire\Admin\EmailCampaignDetailsComponent;
 use App\Http\Livewire\Admin\EmailListComponent;
 use App\Http\Livewire\Admin\EmailTemplateComponent;
 
@@ -123,7 +124,8 @@ Route::prefix(adminPrefix())->group(function () {
         Route::prefix('users')->group(function () {
             Route::get('subscribers/templates', EmailTemplateComponent::class);
             Route::get('subscribers/email-lists', EmailListComponent::class);
-            Route::get('subscribers/email-campaigns', EmailCampaignComponent::class);
+            Route::get('subscribers/email-campaigns', EmailCampaignComponent::class)->name('email_campaigns');
+            Route::get('subscribers/email-campaigns/show/{campaign}', EmailCampaignDetailsComponent::class)->name('email_camaign_details');
             Route::controller(UsersController::class)->group(function () {
                 Route::get('user-researches/create', 'admin_create_research')->name('admin_create_research');
                 Route::post('admin-user-researches/store', 'admin_store_research')->name('admin_store_research');
